@@ -1,0 +1,64 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="System.String" name="TableName" #>
+<#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>testt</title>
+</head>
+<body>
+    <link href="/media/css/soby.ui.components.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="/media/js/soby.spservice.js"></script>
+    <script src="/media/js/soby.ui.components.js"></script>
+    <div id='soby_TasksDiv'></div>
+
+    <script language="javascript">
+        function soby_GetTutorialWebAPIUrl() {
+            return "/api";
+        }
+        $(function () {
+            soby_PopulateTasks();
+        });
+        function soby_PopulateTasks() {
+            var bookDataSourceBuilder = new soby_WSBuilder();
+            bookDataSourceBuilder.Filters = new SobyFilters(false);
+            var bookService = new soby_WebServiceService(bookDataSourceBuilder);
+            var bookGrid = new soby_WebGrid("#soby_TasksDiv", "<#= TableName #>", bookService, "There is no record found.");
+            bookGrid.ImagesFolderUrl = "/media/images";
+
+            bookService.Transport.Read = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>", "json", "application/json; charset=utf-8", "GET");
+            bookService.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>", "json", "application/json; charset=utf-8", "POST");
+            bookService.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>(#key)", "json", "application/json; charset=utf-8", "PUT");
+            bookService.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>(#key)", "json", "application/json; charset=utf-8", "DELETE");
+
+			<#
+			foreach(Field field in Fields){
+			if(field.IsPrimary == true){
+			#>
+            bookGrid.AddKeyField("<#= field.Name #>");
+			<#
+			}
+			}
+			#>
+
+
+			<#
+			foreach(Field field in Fields){
+			#>
+            bookDataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Number, null);
+            bookGrid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, true, null);
+			<#
+			}
+			#>
+            bookGrid.Initialize(true);
+        }
+    </script>
+</body>
+</html>

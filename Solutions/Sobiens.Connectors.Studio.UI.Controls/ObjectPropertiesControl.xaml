@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Sobiens.Connectors.Studio.UI.Controls.ObjectPropertiesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Properties" Height="20" Margin="0,0,0,0" FontSize="9" Background="#4A6184" Foreground="White"/>
+            <TreeView Grid.Row="1"  Name="FoldersTreeView" MinWidth="100" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" SelectedItemChanged="FoldersTreeView_SelectedItemChanged"></TreeView>
+            <!--<TextBox x:Name="textBlock" MinWidth="100" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,30,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="TextBlock" VerticalAlignment="Stretch"   />
+            <Button x:Name="DeleteUniquePermissionsRecursivelyButton" MinWidth="100" Content="Delete Unique Permissions (Recursively)" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="DeleteUniquePermissionsRecursivelyButton_Click"/>-->
+        </Grid>
+    </ScrollViewer>
+</UserControl>

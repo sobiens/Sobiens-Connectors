@@ -1,0 +1,39 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.SiteSettingForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="508" xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls" BorderBrush="Black" Margin="10" Padding="10">
+    <Grid>
+        <Label Content="{DynamicResource Type}" Height="28" HorizontalAlignment="Left" Margin="31,12,0,0" Name="TypeLabel" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="156,17,0,0" Name="TypeComboBox" VerticalAlignment="Top" Width="120" Tag="SiteSettingType" TabIndex="1" SelectionChanged="TypeComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource URL}" Height="23" HorizontalAlignment="Left" Margin="31,59,0,0" Name="URLLabel" VerticalAlignment="Top" Width="119" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="156,59,0,0" Name="URLTextBox" VerticalAlignment="Top" Width="326" Tag="Url" TabIndex="2" />
+        <CheckBox Content="{DynamicResource Default credential}" Height="16" HorizontalAlignment="Left" Margin="39,88,0,0" Name="DefaultCredentialCheckBox" VerticalAlignment="Top" Tag="UseDefaultCredential" Checked="DefaultCredentialCheckBox_Checked" Unchecked="DefaultCredentialCheckBox_Unchecked" TabIndex="3" />
+        <Label Content="{DynamicResource Domain\User}" Height="28" HorizontalAlignment="Left" Margin="52,110,0,0" Name="UsernameLabel" VerticalAlignment="Top" Width="98" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="156,115,0,0" Name="UserTextBox" VerticalAlignment="Top" Width="326" Tag="Username" TabIndex="4" />
+        <Label Content="{DynamicResource Password}" Height="24" HorizontalAlignment="Left" Margin="52,144,0,0" Name="label2" VerticalAlignment="Top" Width="98" />
+        <my:BindablePasswordBox HorizontalAlignment="Left" Margin="156,148,0,0" x:Name="PasswordTextBox" VerticalAlignment="Top" Width="326" Tag="Password" />
+        <CheckBox Content="{DynamicResource Claim Authentication}" Height="20" HorizontalAlignment="Left" IsChecked="False" Margin="39,178,0,0" Name="ClaimAuthenticationCheckBox" TabIndex="6" Tag="UseClaimAuthentication" VerticalAlignment="Top" IsEnabled="True" Width="237" />
+        <Expander Name="AdvancedSharePointSetting" Header="{DynamicResource SharePoint advanced setting}" HorizontalAlignment="Stretch" Margin="20,204,0,0" VerticalAlignment="Stretch" >
+            <Border BorderBrush="#FFD1D1D1" BorderThickness="1,0,0,0" Margin="10,0,0,0">
+            <Grid>
+                <Label Content="{DynamicResource Check in object after}" Margin="0" />
+                <CheckBox Margin="10,17,0,0" Name="CheckInAfterCopyCheckBox" TabIndex="7" Tag="CheckInAfterCopy">
+                    <Label Content="{DynamicResource move or copy}" Margin="0" /></CheckBox>
+                <CheckBox Margin="10,34,0,0" Name="CheckInAfterEditPropertiesCheckBox" TabIndex="8" Tag="CheckInAfterEditProperties">
+                    <Label Content="{DynamicResource set of all properties}" Margin="0" />
+                </CheckBox>
+                <CheckBox Margin="5,55,0,0" Name="useMajorVersionAsDefaultCheckBox" TabIndex="9" Tag="useMajorVersionAsDefault">
+                    <Label Content="{DynamicResource Use major version as default to checkin}" Margin="0" />
+                </CheckBox>
+                    <CheckBox Margin="5,76,0,0" Name="limitFolderEditablePropertiesCheckBox" TabIndex="10" Tag="limitFolderEditableProperties">
+                        <Label Content="{DynamicResource Limit folder editable properties}" Margin="0" />
+                    </CheckBox>
+                </Grid>
+            </Border>
+        </Expander>
+    </Grid>
+</wpfc:HostControl>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://win-ram4kem5k9l/_vti_bin/workflow.asmx?wsdl" docRef="http://win-ram4kem5k9l/_vti_bin/workflow.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://win-ram4kem5k9l/_vti_bin/workflow.asmx" xmlns:q1="http://schemas.microsoft.com/sharepoint/soap/workflow/" binding="q1:WorkflowSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://win-ram4kem5k9l/_vti_bin/workflow.asmx" xmlns:q2="http://schemas.microsoft.com/sharepoint/soap/workflow/" binding="q2:WorkflowSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

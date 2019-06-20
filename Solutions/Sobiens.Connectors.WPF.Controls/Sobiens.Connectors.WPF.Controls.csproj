@@ -1,0 +1,885 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{110D90E6-3E8A-478C-AEB8-940315E2CBE9}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sobiens.Connectors.WPF.Controls</RootNamespace>
+    <AssemblyName>Sobiens.Connectors.WPF.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WindowsWP|AnyCPU'">
+    <OutputPath>bin\WindowsWP\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WPFControlsTest|AnyCPU'">
+    <OutputPath>bin\WPFControlsTest\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Lync.Controls">
+      <HintPath>..\lib\Microsoft.Lync.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Lync.Controls.Framework">
+      <HintPath>..\lib\Microsoft.Lync.Controls.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Lync.Utilities">
+      <HintPath>..\lib\Microsoft.Lync.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUserControl.cs" />
+    <Compile Include="BrowserExplorer.xaml.cs">
+      <DependentUpon>BrowserExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContentExplorer.xaml.cs">
+      <DependentUpon>ContentExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DragableListview\DragAdorner.cs" />
+    <Compile Include="DragableListview\ListViewDragDropManager.cs" />
+    <Compile Include="DragableListview\MouseUtilities.cs" />
+    <Compile Include="EditItems\EditItemFileControl.xaml.cs">
+      <DependentUpon>EditItemFileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemLabelControl.xaml.cs">
+      <DependentUpon>EditItemLabelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemTaxonomyControl.xaml.cs">
+      <DependentUpon>EditItemTaxonomyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorForm.xaml.cs">
+      <DependentUpon>ErrorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\CheckInForm.xaml.cs">
+      <DependentUpon>CheckInForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\FileCopyNameForm.xaml.cs">
+      <DependentUpon>FileCopyNameForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\FileExistConfirmationForm.xaml.cs">
+      <DependentUpon>FileExistConfirmationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\ItemVersionHistoryForm.xaml.cs">
+      <DependentUpon>ItemVersionHistoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FoldersManager.cs" />
+    <Compile Include="ItemsManager.cs" />
+    <Compile Include="LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\TermSetSelector.xaml.cs">
+      <DependentUpon>TermSetSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\DocumentTemplateSelection.xaml.cs">
+      <DependentUpon>DocumentTemplateSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\PictureSelection.xaml.cs">
+      <DependentUpon>PictureSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\PictureSelectors.xaml.cs">
+      <DependentUpon>PictureSelectors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\DocumentTemplateLocationSelectionForm.xaml.cs">
+      <DependentUpon>DocumentTemplateLocationSelectionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\TaskListLocationForm.xaml.cs">
+      <DependentUpon>TaskListLocationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\EmptyConfigurationControl.xaml.cs">
+      <DependentUpon>EmptyConfigurationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ExplorerLocationForm.xaml.cs">
+      <DependentUpon>ExplorerLocationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\DocumentTemplateMappingForm.xaml.cs">
+      <DependentUpon>DocumentTemplateMappingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ConfigurationImportForm.xaml.cs">
+      <DependentUpon>ConfigurationImportForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ItemPropertyMappingForm.xaml.cs">
+      <DependentUpon>ItemPropertyMappingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ItemPropertyMappingsForm.xaml.cs">
+      <DependentUpon>ItemPropertyMappingsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchViewItemMenu.cs" />
+    <Compile Include="EditItemPropertiesControl.xaml.cs">
+      <DependentUpon>EditItemPropertiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemManager.cs" />
+    <Compile Include="EditItems\EditItemTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemRichTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemRichTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemDateTimeControl.xaml.cs">
+      <DependentUpon>EditItemDateTimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemNumberTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemNumberTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemMultiLineTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemMultiLineTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemComboBoxControl.xaml.cs">
+      <DependentUpon>EditItemComboBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemCheckedListBoxControl.xaml.cs">
+      <DependentUpon>EditItemCheckedListBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemBooleanControl.xaml.cs">
+      <DependentUpon>EditItemBooleanControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemControl.cs" />
+    <Compile Include="EditItems\FieldMappingControl.xaml.cs">
+      <DependentUpon>FieldMappingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Excel\ExcelConnectorExplorer.xaml.cs">
+      <DependentUpon>ExcelConnectorExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HierarchyBreadcrumbBar.xaml.cs">
+      <DependentUpon>HierarchyBreadcrumbBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Outlook\OutlookConnectorExplorer.xaml.cs">
+      <DependentUpon>OutlookConnectorExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchExplorer.xaml.cs">
+      <DependentUpon>SearchExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchTextBox.cs" />
+    <Compile Include="Search\SearchFiltersPanelControl.xaml.cs">
+      <DependentUpon>SearchFiltersPanelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Search\SearchFilterControl.xaml.cs">
+      <DependentUpon>SearchFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\DocumentTemplateForm.xaml.cs">
+      <DependentUpon>DocumentTemplateForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SiteContentSelections.xaml.cs">
+      <DependentUpon>SiteContentSelections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Social\SocialExplorer.xaml.cs">
+      <DependentUpon>SocialExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatusBar.xaml.cs">
+      <DependentUpon>StatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UploadFilesForm.xaml.cs">
+      <DependentUpon>UploadFilesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\TaskListView.xaml.cs">
+      <DependentUpon>TaskListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Word\WordConnectorExplorer.xaml.cs">
+      <DependentUpon>WordConnectorExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowExplorer.xaml.cs">
+      <DependentUpon>WorkflowExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\ItemWorkflowForm.xaml.cs">
+      <DependentUpon>ItemWorkflowForm.xaml</DependentUpon>
+    </Compile>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrowserExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContentExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemFileControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemLabelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemTaxonomyControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ErrorForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditItems\CheckInForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\FileCopyNameForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\FileExistConfirmationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditItems\ItemVersionHistoryForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Selectors\TermSetSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\DocumentTemplateSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\PictureSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\PictureSelectors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Selectors\DocumentTemplateLocationSelectionForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\TaskListLocationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\EmptyConfigurationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\ExplorerLocationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\DocumentTemplateMappingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\ConfigurationImportForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\ItemPropertyMappingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\ItemPropertyMappingsForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItemPropertiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditItems\EditItemTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemRichTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemDateTimeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemNumberTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemMultiLineTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemComboBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemCheckedListBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemBooleanControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditItems\FieldMappingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Excel\ExcelConnectorExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HierarchyBreadcrumbBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HierarchyNavigator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HostWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConnectorExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Outlook\OutlookConnectorExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Search\SearchFiltersPanelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Search\SearchFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\DocumentTemplateForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\SettingsForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="BindablePasswordBox.cs" />
+    <Compile Include="Helpers\PasswordBoxHelper.cs" />
+    <Compile Include="HierarchyNavigator.xaml.cs">
+      <DependentUpon>HierarchyNavigator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HostControl.cs" />
+    <Compile Include="HostWindow.xaml.cs">
+      <DependentUpon>HostWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectorExplorer.xaml.cs">
+      <DependentUpon>ConnectorExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsForm.xaml.cs">
+      <DependentUpon>SettingsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SiteSettingForm.xaml.cs">
+      <DependentUpon>SiteSettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIExtensions.cs" />
+    <Compile Include="UIHelper.cs" />
+    <Page Include="Settings\SiteSettingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SiteContentSelections.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Social\SocialExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UploadFilesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Workflow\TaskListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Word\WordConnectorExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkflowExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Workflow\ItemWorkflowForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sobiens.Connectors.Common\Sobiens.Connectors.Common.csproj">
+      <Project>{B654D14D-DBC7-41DB-9286-EC9794340402}</Project>
+      <Name>Sobiens.Connectors.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Entities\Sobiens.Connectors.Entities.csproj">
+      <Project>{5A43ACC0-1BF6-4FB4-B990-9C681BC705FB}</Project>
+      <Name>Sobiens.Connectors.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Services.SharePoint\Sobiens.Connectors.Services.SharePoint.csproj">
+      <Project>{C21E377F-CC1A-439F-B80D-B1961B1BE6AC}</Project>
+      <Name>Sobiens.Connectors.Services.SharePoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.WPF.Controls\Sobiens.WPF.Controls.csproj">
+      <Project>{30B935DE-1738-4216-8759-B55FD94199FD}</Project>
+      <Name>Sobiens.WPF.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FOLDER.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SPFOLDER.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SPList.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SPWeb.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear.png" />
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Next.png" />
+    <Resource Include="Images\Previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\APPRJ.gif" />
+    <Resource Include="Images\MenuItems\CHECKIN.gif" />
+    <Resource Include="Images\MenuItems\CHECKOUT.gif" />
+    <Resource Include="Images\DELETE.gif" />
+    <Resource Include="Images\EDIT.gif" />
+    <Resource Include="Images\OPEN.gif" />
+    <Resource Include="Images\MenuItems\PASTE.gif" />
+    <Resource Include="Images\MenuItems\UNCHKOUT.gif" />
+    <Resource Include="Images\MenuItems\VERSIONS.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\advadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\advminus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sobiens_20x20.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\REFRESH.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICACCDB.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICASAX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICASCX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICASMX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICASP.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICASPX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICBMP.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICCONFIG.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICCSS.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDB.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDIB.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDOC.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDOCX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDOT.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDOTX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICDWP.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\icdwt.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICEML.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICGIF.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICHLP.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICHTM.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICINF.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICINI.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICJPG.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICJS.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICMASTER.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICMHT.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICMHTML.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICMSG.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICMSI.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICO16.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICOCX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICPPS.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICPPT.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICTIF.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICTXT.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICVST.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICVSX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICWMA.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICXLSX.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\ICZIP.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\LIST.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UPFOLDER.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\EDIT.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\OPEN.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\ATTACH.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\DELETE.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\COPY.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newdocument.png" />
+    <Resource Include="Images\searchqry.gif" />
+    <Resource Include="Images\navigation.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\WORKFLOWS.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\availableworkflow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EMMCopyTerm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIcons\icpdf.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExtensionIconsExtracted\ICACCDB.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICASAX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICASCX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICASMX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICASP.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICASPX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICBMP.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICCONFIG.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICCSS.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDB.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDIB.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDOC.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDOCX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDOT.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDOTX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICDWP.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\icdwt.gif" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICEML.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICGIF.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICHLP.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICHTM.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICINF.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICINI.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICJPG.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICJS.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICMASTER.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICMHT.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICMHTML.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICMSG.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICMSI.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICO16.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICOCX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\icpdf.gif" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICPPS.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICPPT.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICTIF.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICTXT.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICVST.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICVSX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICWMA.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICXLSX.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\ICZIP.GIF" />
+    <Resource Include="Images\ExtensionIconsExtracted\LIST.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\FOLDER.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\internet.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\internet.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\advadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuItems\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lg_icdocx.png" />
+    <Resource Include="Images\lg_icont.png" />
+    <Resource Include="Images\lg_icpptx.png" />
+    <Resource Include="Images\lg_icxlsx.png" />
+    <Resource Include="Images\mb_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FileUpload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Synhronize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Views.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Settings.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

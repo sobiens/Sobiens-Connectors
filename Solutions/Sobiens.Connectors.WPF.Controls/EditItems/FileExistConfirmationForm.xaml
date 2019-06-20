@@ -1,0 +1,41 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.EditItems.FileExistConfirmationForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="421" d:DesignWidth="582">
+    <Grid>
+        <Label Name="label1" Width="466" FontWeight="Bold" FontSize="16" FontFamily="Microsoft Sans Serif" TabIndex="19" Foreground="DarkBlue" Margin="34,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">{DynamicResource There is a file with the same name already!}</Label>
+        <Label Name="label3" Width="311" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="26" Margin="41,37,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20">{DynamicResource Click the file you want to keep}</Label>
+        <GroupBox Header="{DynamicResource Copy and Replace}" Height="89" HorizontalAlignment="Left" Margin="40,56,0,0" Name="CopyAndReplaceGroupBox" VerticalAlignment="Top" Width="462" FontWeight="Bold" FontSize="13" FontFamily="Microsoft Sans Serif" Foreground="DarkBlue">
+            <Grid>
+                <Label Name="label4" Width="353" FontSize="10.6666666666667" FontFamily="Microsoft Sans Serif" TabIndex="27" Foreground="DarkBlue" Margin="6,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Normal" Height="21">{DynamicResource Replace the file in the destination folder with the file you are copying:}</Label>
+                <Button Name="ReplaceButton" Height="35" Width="79" TabIndex="22" Background="Transparent" Click="ReplaceButton_Click" Margin="0,6,6,0" HorizontalAlignment="Right" VerticalAlignment="Top">{DynamicResource Replace}</Button>
+                <Label Name="Replace_FileNameLabel" Width="52" FontSize="13" FontFamily="Microsoft Sans Serif" TabIndex="28" Margin="10,24,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="DarkBlue">label6</Label>
+                <Label Content="label6" FontFamily="Microsoft Sans Serif" FontSize="13" HorizontalAlignment="Left" Margin="11,45,0,0" Name="Replace_FileLocationLabel" TabIndex="28" VerticalAlignment="Top" Width="52" Foreground="DarkBlue" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="{DynamicResource Don t Copy}" Height="84" HorizontalAlignment="Left" Margin="40,154,0,0" Name="DontCopyGroupBox" VerticalAlignment="Top" Width="462" FontWeight="Bold" FontSize="13" FontFamily="Microsoft Sans Serif" Foreground="DarkBlue">
+            <Grid>
+                <Button Name="DontCopyButton" Height="35" Width="79" TabIndex="23" Background="Transparent" Click="DontCopyButton_Click" Margin="0,6,6,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{DynamicResource Don t Copy}"></Button>
+                <Label Name="label2" Width="353" FontSize="10.6666666666667" FontFamily="Microsoft Sans Serif" TabIndex="27" Foreground="DarkBlue" Margin="6,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Normal" Height="26">{DynamicResource No files will be changed. Leave this file in the destination folder:}</Label>
+                <Label Name="DontCopy_FileNameLabel" Width="52" FontSize="13" FontFamily="Microsoft Sans Serif" TabIndex="28" Margin="11,24,0,14" HorizontalAlignment="Left" Foreground="DarkBlue">label7</Label>
+                <Label Name="DontCopy_FileLocationLabel" Width="52" FontSize="13" FontFamily="Microsoft Sans Serif" TabIndex="29" Margin="11,38,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="DarkBlue">label8</Label>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="{DynamicResource Copy but keep both files}" Height="89" HorizontalAlignment="Left" Margin="40,255,0,0" Name="CopyButKeepBothFilesGroupBox" VerticalAlignment="Top" Width="462" FontWeight="Bold" FontSize="13" FontFamily="Microsoft Sans Serif" Foreground="DarkBlue">
+            <Grid>
+                <Button Name="CopyButton" Height="35" Width="79" TabIndex="23" Background="Transparent" Click="CopyButton_Click" Margin="0,6,6,0" HorizontalAlignment="Right" VerticalAlignment="Top">{DynamicResource Copy}</Button>
+                <Label Name="label5" Width="352" FontSize="10.6666666666667" FontFamily="Microsoft Sans Serif" TabIndex="27" Foreground="DarkBlue" Margin="7,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Normal" Height="24">{DynamicResource The file you are copying will be renamed with your below input}</Label>
+                <TextBox Name="FileNameTextBox" Width="232" TabIndex="17" Margin="7,36,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBox>
+            </Grid>
+        </GroupBox>
+        <Grid Height="69" HorizontalAlignment="Left" Margin="0,350,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="582" Background="LightGray">
+            <Button Name="SkipButton" Height="35" Width="79" TabIndex="21" Background="Transparent" Click="SkipButton_Click" Margin="0,15,99,0" HorizontalAlignment="Right" VerticalAlignment="Top">{DynamicResource Skip}</Button>
+            <Button Name="CancelButton" Height="35" Width="79" TabIndex="21" Background="Transparent" Click="CancelButton_Click" Margin="0,15,14,0" HorizontalAlignment="Right" VerticalAlignment="Top">{DynamicResource Cancel}</Button>
+            <CheckBox Name="DoThisForNextConflictsCheckBox" Height="25" Width="229" TabIndex="0" Margin="14,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">{DynamicResource this for next conflicts}</CheckBox>
+        </Grid>
+    </Grid>
+</wpfc:HostControl>

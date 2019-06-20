@@ -1,0 +1,10 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Services.Gmail.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csproj.CopyComplete
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\NLog.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Gmail\bin\Debug\NLog.xml

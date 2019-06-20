@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Sobiens.Connectors.Studio.UI.Controls.QueryFilterGeneratorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600" Loaded="UserControl_Loaded">
+    <Grid>
+        <Label x:Name="label1" Content="Source:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212"/>
+        <Button x:Name="SourceSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="SourceSelectButton_Click"/>
+        <TreeView Name="FiltersTreeView" HorizontalAlignment="Left" Margin="12,71,0,0" VerticalAlignment="Top" Width="500" Height="300" />
+        <Button x:Name="FilterUpButton" Content="Up" HorizontalAlignment="Left" Margin="525,71,0,0" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.601,-2.3" Click="FilterUpButton_Click"/>
+        <Button x:Name="FilterDownButton" Content="Down" HorizontalAlignment="Left" Margin="525,101,0,0" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.601,-2.3" Click="FilterDownButton_Click"/>
+        <Label x:Name="label1_Copy" Content="View Fields:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212"/>
+        <Label x:Name="SelectedViewFieldsLabel" Content="Not Selected" HorizontalAlignment="Left" Margin="139,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212" MouseDoubleClick="SelectedViewFieldsLabel_MouseDoubleClick"/>
+        <Menu Width="20" Height="20" Margin="120,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <MenuItem Name="ViewFieldsMenuItem" Margin="0,0,0,0">
+                <MenuItem.Header>
+                    <Image Source="Images/ArrowDown.png" Margin="-7,0,0,0"></Image>
+                </MenuItem.Header>
+            </MenuItem>
+            
+        </Menu>
+    </Grid>
+</UserControl>

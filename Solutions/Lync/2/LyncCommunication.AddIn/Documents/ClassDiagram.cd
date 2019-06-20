@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.CustomizedPresenceIndicator">
+    <Position X="6.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>CustomizedPresenceIndicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.LyncCommunicationControl">
+    <Position X="3.25" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>lFQABQCAEqAAgAgQIMAgAA4AAICQBAAAmACAAAIAEIA=</HashCode>
+      <FileName>LyncCommunicationControl.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.LyncCommunicationControlAddIn">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="CreateControl" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnEditableChanged" Hidden="true" />
+      <Method Name="OnPresenceContactChanged" Hidden="true" />
+      <Method Name="SearchCandidatesAreEqual" Hidden="true" />
+      <Method Name="UpdatePresenceFieldStates" Hidden="true" />
+      <Method Name="UpdatePresenceIndicatorSize" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAAgQASAAIIBAAQAEICAAAADYCCAAEAAgBAAAAQA=</HashCode>
+      <FileName>LyncCommunicationControlAddIn.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="lyncCommunicationControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.CustomizedContactSearch">
+    <Position X="6.25" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAABAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomizedContactSearch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.CustomizedContactSearchResultList">
+    <Position X="9.25" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>CustomizedContactSearchResultList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Lync.Controls.ContactSearchResultList" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.CustomizedContactSearchResultListItem" Collapsed="true">
+    <Position X="9.25" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomizedContactSearchResultListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Microsoft.Dynamics.Nav.Client.LyncCommunication.AddInControlContext">
+    <Position X="0.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>AddInControlContext.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

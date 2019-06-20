@@ -1,0 +1,25 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.CheckInForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" d:DesignHeight="318" d:DesignWidth="394">
+    <Grid>
+        <GroupBox Header="{DynamicResource What kind of version would you like to check in?}" Height="100" HorizontalAlignment="Left" Margin="12,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="372">
+            <Grid>
+                <RadioButton Content="{DynamicResource Minor version}" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="10,8,0,0" Name="DraftRadioButton" VerticalAlignment="Top" GroupName="CheckInType" />
+                <RadioButton Content="{DynamicResource Major version}" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="10,31,0,0" Name="PublishRadioButton" VerticalAlignment="Top" GroupName="CheckInType" />
+                <RadioButton Content="{DynamicResource Overwrite the current minor version}" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="10,54,0,0" Name="OverwriteRadioButton" VerticalAlignment="Top" GroupName="CheckInType" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="{DynamicResource Keep the document checked out after checking in this version?}" Height="67" HorizontalAlignment="Left" Margin="12,118,0,0" Name="groupBox2" VerticalAlignment="Top" Width="372">
+            <Grid>
+                <RadioButton Content="{DynamicResource Yes}" Height="16" HorizontalAlignment="Left" Margin="11,17,0,0" Name="KeepDocumentCheckedOutRadioButton" VerticalAlignment="Top" />
+                <RadioButton Content="{DynamicResource No}" Height="16" HorizontalAlignment="Left" Margin="59,17,0,0" Name="DontKeepDocumentCheckedOutRadioButton" VerticalAlignment="Top" IsChecked="True" />
+            </Grid>
+        </GroupBox>
+        <Label Content="{DynamicResource Comments}" Height="28" HorizontalAlignment="Left" Margin="15,197,0,0" Name="CommentsLabel" VerticalAlignment="Top" />
+        <TextBox Height="71" HorizontalAlignment="Left" Margin="18,229,0,0" Name="CommentsTextBox" VerticalAlignment="Top" Width="364" />
+    </Grid>
+</wpfc:HostControl>

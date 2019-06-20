@@ -1,0 +1,23 @@
+﻿<wpfc:EditItemControl x:Class="Sobiens.Connectors.Studio.UI.Controls.EditItems.EditItemCheckedListBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls.EditItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="179">
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Name="scrollViewer" Grid.Row="1" >
+            <ListBox Name="listBoxZone" ItemsSource="{Binding TheList}" Width="180" Background="Azure">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Name="CheckBoxZone" Content="{Binding TheText}" Tag="{Binding TheValue}" Checked="CheckBoxZone_Checked" Unchecked="CheckBoxZone_Unchecked" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</wpfc:EditItemControl>

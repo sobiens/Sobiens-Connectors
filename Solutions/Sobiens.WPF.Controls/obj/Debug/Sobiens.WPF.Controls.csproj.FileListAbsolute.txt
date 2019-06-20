@@ -1,0 +1,17 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\bin\Debug\Sobiens.WPF.Controls.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\bin\Debug\Sobiens.WPF.Controls.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Styles\Brushes.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\UserControls\FilterableHeader.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\UserControls\FilterableHeader.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls_MarkupCompile.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls_MarkupCompile.lref
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Styles\BreadcrumbBar.Generic.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Themes\Generic.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.g.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.Properties.Resources.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csproj.GenerateResource.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.pdb

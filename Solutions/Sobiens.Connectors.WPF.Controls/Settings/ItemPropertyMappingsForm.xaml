@@ -1,0 +1,52 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.ItemPropertyMappingsForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" d:DesignHeight="447" d:DesignWidth="602">
+    <Grid Height="446" Width="579">
+        <ListView Height="250" HorizontalAlignment="Left" Margin="12,183,0,0" Name="MappingsListView" VerticalAlignment="Top" Width="560" MouseDoubleClick="MappingsListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="70" Header="" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Button Name="EditButton" Tag="{Binding Path=ID}" Click="EditButton_Click" Width="25" Margin="0,0,0,0" HorizontalAlignment="Left">
+                                        <StackPanel>
+                                            <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/Edit.GIF" Width="20" Height="20" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Name="DeleteButton" Tag="{Binding Path=ID}" Click="DeleteButton_Click" Width="25" Margin="26,-25,0,0">
+                                        <StackPanel>
+                                            <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/Delete.GIF" Width="20" Height="20" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="{DynamicResource Application Property}" DisplayMemberBinding="{Binding Path=ApplicationPropertyName}" />
+                    <GridViewColumn Width="150" Header="{DynamicResource Service Property}" DisplayMemberBinding="{Binding Path=ServicePropertyName}" />
+                    <GridViewColumn Width="180" Header="{DynamicResource Folder}" DisplayMemberBinding="{Binding Path=FolderDisplayName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="{DynamicResource Content Type:}" Height="28" HorizontalAlignment="Left" Margin="10,116,0,0" Name="ContentTypeLabel" VerticalAlignment="Top" />
+        <ComboBox DisplayMemberPath="Name" Height="20" HorizontalAlignment="Left" Margin="166,116,0,0" Name="ContentTypeComboBox" VerticalAlignment="Top" Width="406" SelectionChanged="ContentTypeComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource Site Setting:}" Height="28" HorizontalAlignment="Left" Margin="10,59,0,0" Name="DescriptionLabel" VerticalAlignment="Top" />
+        <Label Content="{DynamicResource  Location:}" Height="28" HorizontalAlignment="Left" Margin="10,89,0,0" Name="URLLabel" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="166,89,0,0" Name="SaveLocationTextBox" Tag="TemplateURL" VerticalAlignment="Top" Width="368" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="540,89,0,0" Name="SelectLocationButton" VerticalAlignment="Top" Width="32" Click="SelectLocationButton_Click" />
+        <ComboBox DisplayMemberPath="Url" Height="24" HorizontalAlignment="Left" Margin="166,59,0,0" Name="SiteSettingComboBox" SelectedValuePath="ID" Tag="ContentTypeID" VerticalAlignment="Top" Width="406" SelectionChanged="SiteSettingComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource Application:}" Height="28" HorizontalAlignment="Left" Margin="10,4,0,0" Name="ApplicationTypeLabel" VerticalAlignment="Top" />
+        <RadioButton Content="Excel" Height="21" HorizontalAlignment="Left" Margin="166,9,0,0" Name="ExcelApplicationRadioButton" VerticalAlignment="Top" Width="66" GroupName="ApplicationType" Checked="ApplicationRadioButton_Checked" />
+        <RadioButton Content="Word" Height="21" HorizontalAlignment="Left" Margin="99,9,0,0" Name="WordApplicationRadioButton" VerticalAlignment="Top" Width="61" GroupName="ApplicationType" Checked="ApplicationRadioButton_Checked" />
+        <RadioButton Content="Outlook" Height="21" HorizontalAlignment="Left" Margin="232,9,0,0" Name="OutlookApplicationRadioButton" VerticalAlignment="Top" Width="66" GroupName="ApplicationType" Checked="ApplicationRadioButton_Checked" />
+        <Label Content="{DynamicResource Location Type:}" Height="26" HorizontalAlignment="Left" Margin="10,28,0,0" Name="LocationTypeLabel" VerticalAlignment="Top" Width="121" />
+        <RadioButton Content="{DynamicResource Specific}" Height="21" HorizontalAlignment="Left" Margin="204,33,0,0" Name="SpecificLocationTypeRadioButton" VerticalAlignment="Top" Width="112" GroupName="LocationType" Checked="LocationTypeRadioButton_Checked" />
+        <RadioButton Content="{DynamicResource General}" Height="21" HorizontalAlignment="Left" Margin="137,33,0,0" Name="GeneralLocationTypeRadioButton" VerticalAlignment="Top" Width="61" GroupName="LocationType" Checked="LocationTypeRadioButton_Checked" />
+        <Button Content="{DynamicResource Add Mapping}" Height="27" HorizontalAlignment="Right" Margin="0,150,7,0" Name="AddButton" VerticalAlignment="Top" Width="166" Click="AddButton_Click" />
+    </Grid>
+</wpfc:HostControl>

@@ -1,0 +1,4 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.Properties.Resources.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csproj.GenerateResource.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csproj.CoreCompileInputs.cache

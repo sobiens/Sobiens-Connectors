@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Office.Tools.v9.0</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.#ctor"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.#ctor(System.String,System.String,System.Type)">
+      <param name="cookie"></param>
+      <param name="identifier"></param>
+      <param name="innerType"></param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.BindingContext"></member>
+    <member name="E:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.BindingContextChanged"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.ContainerComponent"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.DataBindings"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.DefaultDataSourceUpdateMode"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointBindableComponentBase.OnBindingContextChanged(System.EventArgs)">
+      <param name="eventArgs"></param>
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.#ctor"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.#ctor(System.String,System.String,System.Type)">
+      <param name="cookie"></param>
+      <param name="identifier"></param>
+      <param name="innerType"></param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.DataHost"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Dispose(System.Boolean)">
+      <param name="disposing"></param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.FinishInitialization"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Initialize"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.InitializeDataBindings"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Microsoft#VisualStudio#Tools#Applications#Runtime#IEntryPoint#FinishInitialization"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Microsoft#VisualStudio#Tools#Applications#Runtime#IEntryPoint#Initialize(System.IServiceProvider)">
+      <param name="hostContext"></param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Microsoft#VisualStudio#Tools#Applications#Runtime#IEntryPoint#InitializeDataBindings"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.Microsoft#VisualStudio#Tools#Applications#Runtime#IEntryPoint#OnShutdown"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.OnShutdown"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.EntryPointComponentBase.OnStartup"></member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.IOfficeEntryPoint"></member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.IOfficeHostItemEntryPoint"></member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.ISupportInitializeControl"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.ISupportInitializeControl.InitializeControl(Microsoft.VisualStudio.Tools.Applications.Runtime.IHostItemProviderExtended,System.IServiceProvider,System.String,System.Object,System.String)">
+      <param name="itemProvider"></param>
+      <param name="runtimeCallback"></param>
+      <param name="primaryCookie"></param>
+      <param name="container"></param>
+      <param name="identifier"></param>
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.ISupportInitializeExtendedControl"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.ISupportInitializeExtendedControl.InitializeControl(Microsoft.VisualStudio.Tools.Applications.Runtime.IHostItemProviderExtended,System.IServiceProvider,System.String,System.String,System.Object,System.String)">
+      <param name="itemProvider"></param>
+      <param name="runtimeCallback"></param>
+      <param name="primaryCookie"></param>
+      <param name="extenderCookie"></param>
+      <param name="container"></param>
+      <param name="identifier"></param>
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent">
+      <summary>Provides a default implementation of the <see cref="T:System.Windows.Forms.IBindableComponent" /> interface for host controls in Visual Studio Tools for Office solutions.</summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.#ctor"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.#ctor(Microsoft.VisualStudio.Tools.Applications.Runtime.IHostItemProviderExtended,System.IServiceProvider,System.String,System.Object,System.String,System.Type)"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.BindingContext">
+      <summary>Gets or sets the <see cref="T:System.Windows.Forms.BindingContext" /> for the component.</summary>
+    </member>
+    <member name="E:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.BindingContextChanged">
+      <summary>Occurs when the value of the <see cref="P:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.BindingContext" /> property changes.</summary>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.ContainerComponent"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.DataBindings">
+      <summary>Gets the <see cref="T:System.Windows.Forms.Binding" /> objects for the component.</summary>
+      <returns>A <see cref="T:System.Windows.Forms.ControlBindingsCollection" /> that contains the <see cref="T:System.Windows.Forms.Binding" /> objects for the component.</returns>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.DefaultDataSourceUpdateMode">
+      <summary>Gets or sets the default <see cref="T:System.Windows.Forms.DataSourceUpdateMode" /> for the component.</summary>
+      <returns>One of the <see cref="T:System.Windows.Forms.DataSourceUpdateMode" /> values. The default is <see cref="F:System.Windows.Forms.DataSourceUpdateMode.Never" />.</returns>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteBindableComponent.OnBindingContextChanged(System.EventArgs)"></member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.RemoteComponent"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.#ctor"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.#ctor(Microsoft.VisualStudio.Tools.Applications.Runtime.IHostItemProviderExtended,System.IServiceProvider,System.String,System.Object,System.String,System.Type)">
+      <param name="itemProvider"></param>
+      <param name="hostContext"></param>
+      <param name="cookie"></param>
+      <param name="containerComponent"></param>
+      <param name="identifier"></param>
+      <param name="innerType"></param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.CheckValidState"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Container"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.DesignMode"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Dispose"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Dispose(System.Boolean)">
+      <param name="disposing"></param>
+    </member>
+    <member name="E:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Disposed"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Finalize"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.GetHostItem``1(System.Type,System.String)">
+      <param name="type"></param>
+      <param name="cookie"></param>
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.GetService(System.Type)">
+      <param name="service"></param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.HostContext"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Identifier"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.InitializeControl(Microsoft.VisualStudio.Tools.Applications.Runtime.IHostItemProviderExtended,System.IServiceProvider,System.String,System.String,System.Type,System.Object)">
+      <param name="hostItemProvider"></param>
+      <param name="serviceProvider"></param>
+      <param name="cookie"></param>
+      <param name="identifier"></param>
+      <param name="innerType"></param>
+      <param name="containerComponent"></param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.InnerType"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.ItemProvider"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.PrimaryCookie"></member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.RemoteComponent.SetPrimaryCookie(System.String)">
+      <param name="cookie"></param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Site"></member>
+    <member name="P:Microsoft.VisualStudio.Tools.Office.RemoteComponent.Tag"></member>
+  </members>
+</doc>

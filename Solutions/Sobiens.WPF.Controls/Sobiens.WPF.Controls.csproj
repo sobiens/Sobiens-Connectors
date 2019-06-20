@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{30B935DE-1738-4216-8759-B55FD94199FD}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sobiens.WPF.Controls</RootNamespace>
+    <AssemblyName>Sobiens.WPF.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WindowsWP|AnyCPU'">
+    <OutputPath>bin\WindowsWP\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WPFControlsTest|AnyCPU'">
+    <OutputPath>bin\WPFControlsTest\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\ExtendedUserControl.cs" />
+    <Compile Include="BreadcrumbBarControl\ApplyPropertiesEventArgs.cs" />
+    <Compile Include="BreadcrumbBarControl\BreadcrumbBar.cs" />
+    <Compile Include="BreadcrumbBarControl\BreadcrumbButton.cs" />
+    <Compile Include="BreadcrumbBarControl\BreadcrumbItem.cs" />
+    <Compile Include="BreadcrumbBarControl\BreadcrumbItemEventArgs.cs" />
+    <Compile Include="BreadcrumbBarControl\PathConversionEventArgs.cs" />
+    <Compile Include="BreadcrumbBarControl\AeroChrome.cs" />
+    <Compile Include="Classes\ClipboardHelper.cs" />
+    <Compile Include="Classes\FindControls.cs" />
+    <Compile Include="Classes\Helpers.cs" />
+    <Compile Include="Classes\ImageViewItem.cs" />
+    <Compile Include="Interface\IExtendedColumn.cs" />
+    <Compile Include="UserControls\FilterableHeader.xaml.cs">
+      <DependentUpon>FilterableHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImageView.cs" />
+    <Compile Include="UserControls\Extensions.cs" />
+    <Compile Include="UserControls\ImageBehavior.cs" />
+    <Compile Include="UserControls\ListBoxItemExt.cs" />
+    <Compile Include="UserControls\Pinkman.cs" />
+    <Page Include="Styles\BreadcrumbBar.Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FilterableHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add32.png" />
+    <Resource Include="Images\addAll.png" />
+    <Resource Include="Images\Browse.png" />
+    <Resource Include="Images\btn_donateCC_LG.gif" />
+    <Resource Include="Images\button_delete_blue.png" />
+    <Resource Include="Images\clear32.png" />
+    <Resource Include="Images\codeplex.png" />
+    <Resource Include="Images\columnChooser.ico" />
+    <Resource Include="Images\Converter-32.png" />
+    <Resource Include="Images\delete32.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\Merge-48.png" />
+    <Resource Include="Images\ok.jpg" />
+    <Resource Include="Images\OK.png" />
+    <Resource Include="Images\plus.png" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\snippet.ico" />
+    <Resource Include="Images\Splash-Utopia.png" />
+    <Resource Include="Images\Splash-Utopia1.gif" />
+    <Resource Include="Images\Splash-Utopia1.png" />
+    <Resource Include="Images\sweep_broom_brush_clear.png" />
+    <Resource Include="Images\visualstudio.ico" />
+    <Resource Include="Images\vsi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SORTAZ.GIF" />
+    <Resource Include="Images\SORTZA.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FilterBrowse.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExtendedColumn\" />
+    <Folder Include="ExtendedGridControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewDocument.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

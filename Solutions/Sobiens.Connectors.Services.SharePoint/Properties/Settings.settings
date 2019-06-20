@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sobiens.Connectors.Services.SharePoint.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_com_sobiens_demo_Copy" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sbs007-public.sharepoint.com/_vti_bin/copy.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointListsWS_Lists" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sbs007-public.sharepoint.com/_vti_bin/lists.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointSiteWS_SiteData" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sbs007-public.sharepoint.com/_vti_bin/sitedata.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointViewsWS_Views" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sbs007-public.sharepoint.com/_vti_bin/views.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointWebsWS_Webs" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sbs007-public.sharepoint.com/_vti_bin/webs.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointVersionsWS_Versions" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://demo.sobiens.com/_vti_bin/versions.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointWorkflowWS_Workflow" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://win-ram4kem5k9l/_vti_bin/workflow.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Connectors_Services_SharePoint_SharePointTaxonomyWS_Taxonomy_x0020_web_x0020_service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://win-ram4kem5k9l/_vti_bin/TaxonomyClientService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

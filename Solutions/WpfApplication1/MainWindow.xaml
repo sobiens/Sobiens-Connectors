@@ -1,0 +1,14 @@
+﻿<Window x:Class="Sobiens.Connectors.test"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:my="Sobiens.Connectors.WPF.Controls"
+             xmlns:st="Sobiens.Connectors.WPF.Controls.Settings"
+             xmlns:l="Sobiens.Connectors.WPF.Controls.Selectors"
+             Loaded="UserControl_Loaded" d:DesignHeight="288" d:DesignWidth="264">
+    <Grid>
+        <my:StatusBar x:Name="StatusBarControl" Margin="0,30,0,2" Loaded="StatusBarControl_Loaded" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></my:StatusBar>
+    </Grid>
+</Window>

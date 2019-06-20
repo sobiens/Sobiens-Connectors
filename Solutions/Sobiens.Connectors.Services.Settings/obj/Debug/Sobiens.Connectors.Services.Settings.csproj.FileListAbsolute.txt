@@ -1,0 +1,11 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CopyComplete
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csprojAssemblyReference.cache

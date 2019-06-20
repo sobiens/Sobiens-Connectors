@@ -1,0 +1,12 @@
+﻿<wpfc:EditItemControl x:Class="Sobiens.Connectors.WPF.Controls.EditItems.EditItemMultiLineTextBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls.EditItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="179" Height="80">
+    <Grid>
+        <TextBox Height="79" HorizontalAlignment="Left" Name="textBox1" VerticalAlignment="Top" Width="179" AcceptsReturn="True" />
+    </Grid>
+</wpfc:EditItemControl>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CheckServiceExistency">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckServiceExistencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckServiceExistencyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyAlerts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMyAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyAlertsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAlertResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="listID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="alertTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eventType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="frequency" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAlertResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckServiceExistencySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckServiceExistency" />
+  </wsdl:message>
+  <wsdl:message name="CheckServiceExistencySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckServiceExistencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyAlerts" />
+  </wsdl:message>
+  <wsdl:message name="GetMyAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAlert" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAlert" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAlertResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AlertsWebServiceSoap">
+    <wsdl:operation name="CheckServiceExistency">
+      <wsdl:input message="tns:CheckServiceExistencySoapIn" />
+      <wsdl:output message="tns:CheckServiceExistencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyAlerts">
+      <wsdl:input message="tns:GetMyAlertsSoapIn" />
+      <wsdl:output message="tns:GetMyAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <wsdl:input message="tns:DeleteAlertSoapIn" />
+      <wsdl:output message="tns:DeleteAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <wsdl:input message="tns:UpdateAlertSoapIn" />
+      <wsdl:output message="tns:UpdateAlertSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AlertsWebServiceSoap" type="tns:AlertsWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckServiceExistency">
+      <soap:operation soapAction="http://tempuri.org/CheckServiceExistency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyAlerts">
+      <soap:operation soapAction="http://tempuri.org/GetMyAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <soap:operation soapAction="http://tempuri.org/DeleteAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <soap:operation soapAction="http://tempuri.org/UpdateAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AlertsWebServiceSoap12" type="tns:AlertsWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckServiceExistency">
+      <soap12:operation soapAction="http://tempuri.org/CheckServiceExistency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyAlerts">
+      <soap12:operation soapAction="http://tempuri.org/GetMyAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AlertsWebService">
+    <wsdl:port name="AlertsWebServiceSoap" binding="tns:AlertsWebServiceSoap">
+      <soap:address location="http://localhost/_layouts/AlertsWebSebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AlertsWebServiceSoap12" binding="tns:AlertsWebServiceSoap12">
+      <soap12:address location="http://localhost/_layouts/AlertsWebSebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

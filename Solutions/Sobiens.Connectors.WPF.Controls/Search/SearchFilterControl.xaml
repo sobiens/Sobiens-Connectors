@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Sobiens.Connectors.WPF.Controls.Search.SearchFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="35" d:DesignWidth="701">
+    <Grid>
+        <Label Content="{DynamicResource Where the Property...}" Height="28" HorizontalAlignment="Left" Margin="0,5,0,0" Name="Filterlabel" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,5,0,0" Name="PropertyComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="PropertyComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource Property}" Height="28" HorizontalAlignment="Left" Margin="132,5,0,0" Name="PropertyLabel" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="266,5,0,0" Name="FilterTypeComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="FilterTypeComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource Filter Type}" Height="28" HorizontalAlignment="Left" Margin="266,5,0,0" Name="FilterTypeLabel" VerticalAlignment="Top" />
+        <StackPanel Height="27" HorizontalAlignment="Left" Margin="398,5,0,0" Name="FilterValueControlPanel" VerticalAlignment="Top" Width="193" />
+        <Label Content="{DynamicResource Filter Value}" Height="28" HorizontalAlignment="Left" Margin="398,5,0,0" Name="FilterValueLabel" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="608,5,0,0" Name="AndOrComboBox" VerticalAlignment="Top" Width="52" SelectionChanged="AndOrComboBox_SelectionChanged">
+            <ComboBoxItem Content="{DynamicResource And}" IsSelected="True" />
+            <ComboBoxItem Content="{DynamicResource Or}" />
+        </ComboBox>
+        <Label Content="{DynamicResource And Or}" Height="28" HorizontalAlignment="Left" Margin="608,5,0,0" Name="AndOrLabel" VerticalAlignment="Top" />
+        <Button Width="23" Height="23" HorizontalAlignment="Left" Margin="666,5,12,15" Name="AddFilterButton" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Click="AddFilterButton_Click" Content="+"></Button>
+        <Button Width="23" Height="23" HorizontalAlignment="Left" Margin="666,5,12,15" Name="RemoveFilterButton" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Click="RemoveFilterButton_Click" Content="X"></Button>
+    </Grid>
+</UserControl>

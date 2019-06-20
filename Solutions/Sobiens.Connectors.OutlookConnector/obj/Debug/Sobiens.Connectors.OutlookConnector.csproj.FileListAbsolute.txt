@@ -1,0 +1,6 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.ConnectorRibbonExt.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.ManageTaskPaneRibbonExt.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.Properties.Resources.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csproj.GenerateResource.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csproj.CoreCompileInputs.cache

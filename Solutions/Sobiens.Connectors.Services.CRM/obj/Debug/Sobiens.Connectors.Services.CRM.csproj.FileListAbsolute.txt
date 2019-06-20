@@ -1,0 +1,15 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Sobiens.Connectors.Services.CRM.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Sobiens.Connectors.Services.CRM.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Xrm.Sdk.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\NLog.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Xrm.Sdk.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\bin\Debug\NLog.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csproj.CopyComplete
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.pdb

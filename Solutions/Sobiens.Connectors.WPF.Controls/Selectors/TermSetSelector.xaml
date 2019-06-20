@@ -1,0 +1,14 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Selectors.TermSetSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="251" d:DesignWidth="360">
+    <Grid>
+        <Button Content="{DynamicResource Select}" Height="23" HorizontalAlignment="Left" Margin="10,181,0,0" Name="SelectButton" VerticalAlignment="Top" Width="80" Click="SelectButton_Click" />
+        <TreeView Height="155" HorizontalAlignment="Stretch" Margin="10,10,10,0" Name="TermSetTreeView" VerticalAlignment="Top" MouseDoubleClick="TermSetTreeView_MouseDoubleClick" />
+        <ListView Height="58" HorizontalAlignment="Left" Margin="99,181,0,0" Name="SelectedTemSetsListView" VerticalAlignment="Top" Width="250" />
+    </Grid>
+</wpfc:HostControl>

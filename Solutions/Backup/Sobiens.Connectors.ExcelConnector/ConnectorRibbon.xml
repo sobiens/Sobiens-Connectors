@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabAddIns" label="SharePoint Word Connector">
+        <group id="MyGroup" label="SharePoint Word Connector">
+          <button id="ShowConnectorButton" label="Show Office Connector" onAction="ShowConnectorButton_OnAction"/>
+          <button id="SaveToButton" label="Save To" onAction="SaveToButton_OnAction"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sobiens.Office.SharePointOutlookConnector.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SharePointOutlookConnector_SharePointWebsWS_Webs" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/webs.asmx</Value>
+    </Setting>
+    <Setting Name="SharePointOutlookConnector_SharePointListsWS_Lists" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/lists.asmx</Value>
+    </Setting>
+    <Setting Name="SharePointOutlookConnector_SharePointCopyWS_Copy" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/copy.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_SharePointVersionsWS_Versions" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/versions.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_SharePointAlertsWS_Alerts" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/Alerts.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_SobiensAlertsWS_AlertsWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/_layouts/AlertsWebSebService.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_SharePointViewsWS_Views" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/views.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_ActivationService_Activation" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.sobiens.com/activation.asmx</Value>
+    </Setting>
+    <Setting Name="Sobiens_Office_SharePointOutlookConnector_SharePointSiteWS_SiteData" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/SiteData.asmx</Value>
+    </Setting>
+    <Setting Name="EmailUploader_SharePointCopyWS_Copy" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/copy.asmx</Value>
+    </Setting>
+    <Setting Name="EmailUploader_SharePointListsWS_Lists" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/lists.asmx</Value>
+    </Setting>
+    <Setting Name="EmailUploader_SharePointWebsWS_Webs" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://moss/_vti_bin/webs.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

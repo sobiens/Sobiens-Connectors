@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Sobiens.Connectors.WPF.Controls.HierarchyBreadcrumbBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:bbc="clr-namespace:Sobiens.WPF.Controls.BreadcrumbBarControl;assembly=Sobiens.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="300">
+    <Grid Height="25">
+        <bbc:BreadcrumbBar x:Name="bar"    Focusable="True"
+                           PopulateItems="BreadcrumbBar_PopulateItems"    
+                           Height="25" SelectedBreadcrumbChanged="bar_SelectedBreadcrumbChanged" PathChangedByText="bar_PathChangedByText">
+            <bbc:BreadcrumbBar.Buttons>
+                <Button Name="RefreshButton" Click="RefreshButton_Click" Padding="0,0,0,0" Width="Auto">
+                    <StackPanel>
+                        <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/Refresh.GIF" />
+                    </StackPanel>
+                </Button>
+                <Button Name="OpenInExplorerButton" Click="OpenInExplorerButton_Click">
+                    <StackPanel>
+                        <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/open.GIF" />
+                    </StackPanel>
+                </Button>
+                <Button Name="OpenInNavigatorButton" Click="OpenInNavigatorButton_Click">
+                    <StackPanel>
+                        <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/Internet.GIF" />
+                    </StackPanel>
+                </Button>
+                <Button Name="EditButton" Click="EditButton_Click">
+                    <StackPanel>
+                        <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/Edit.GIF" />
+                    </StackPanel>
+                </Button>
+            </bbc:BreadcrumbBar.Buttons>
+            <bbc:BreadcrumbItem Header="{DynamicResource Select}">
+            </bbc:BreadcrumbItem>
+        </bbc:BreadcrumbBar>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/taxonomy/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://schemas.microsoft.com/sharepoint/taxonomy/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is designed for Office client applications to use</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/taxonomy/soap/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetTermSets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sharedServiceIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="termSetIds" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lcid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientTimeStamps" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientVersions" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTermSetsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTermSetsResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serverTermSetTimeStampXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTermsByLabel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="label" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lcid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="matchOption" type="tns:StringMatchOption" />
+            <s:element minOccurs="1" maxOccurs="1" name="resultCollectionSize" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="termIds" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="addIfNotFound" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="StringMatchOption">
+        <s:restriction base="s:string">
+          <s:enumeration value="StartsWith" />
+          <s:enumeration value="ExactMatch" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetTermsByLabelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTermsByLabelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTerms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sharedServiceId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="termSetId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="lcid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newTerms" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTermsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddTermsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKeywordTermsByGuids">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="termIds" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lcid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKeywordTermsByGuidsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKeywordTermsByGuidsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTermSetsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTermSets" />
+  </wsdl:message>
+  <wsdl:message name="GetTermSetsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTermSetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsByLabelSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTermsByLabel" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsByLabelSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTermsByLabelResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTermsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTerms" />
+  </wsdl:message>
+  <wsdl:message name="AddTermsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTermsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordTermsByGuidsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKeywordTermsByGuids" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordTermsByGuidsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKeywordTermsByGuidsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Taxonomy_x0020_web_x0020_serviceSoap">
+    <wsdl:operation name="GetTermSets">
+      <wsdl:input message="tns:GetTermSetsSoapIn" />
+      <wsdl:output message="tns:GetTermSetsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsByLabel">
+      <wsdl:input message="tns:GetTermsByLabelSoapIn" />
+      <wsdl:output message="tns:GetTermsByLabelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTerms">
+      <wsdl:input message="tns:AddTermsSoapIn" />
+      <wsdl:output message="tns:AddTermsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordTermsByGuids">
+      <wsdl:input message="tns:GetKeywordTermsByGuidsSoapIn" />
+      <wsdl:output message="tns:GetKeywordTermsByGuidsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Taxonomy_x0020_web_x0020_serviceSoap" type="tns:Taxonomy_x0020_web_x0020_serviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTermSets">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetTermSets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsByLabel">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetTermsByLabel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTerms">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/AddTerms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordTermsByGuids">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetKeywordTermsByGuids" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Taxonomy_x0020_web_x0020_serviceSoap12" type="tns:Taxonomy_x0020_web_x0020_serviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTermSets">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetTermSets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsByLabel">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetTermsByLabel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTerms">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/AddTerms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordTermsByGuids">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/taxonomy/soap/GetKeywordTermsByGuids" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Taxonomy_x0020_web_x0020_service">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is designed for Office client applications to use</wsdl:documentation>
+    <wsdl:port name="Taxonomy_x0020_web_x0020_serviceSoap" binding="tns:Taxonomy_x0020_web_x0020_serviceSoap">
+      <soap:address location="http://win-ram4kem5k9l/_vti_bin/TaxonomyClientService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Taxonomy_x0020_web_x0020_serviceSoap12" binding="tns:Taxonomy_x0020_web_x0020_serviceSoap12">
+      <soap12:address location="http://win-ram4kem5k9l/_vti_bin/TaxonomyClientService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

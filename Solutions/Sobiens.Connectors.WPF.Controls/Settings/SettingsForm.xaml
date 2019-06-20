@@ -1,0 +1,62 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.SettingsForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+    d:DesignHeight="446" d:DesignWidth="451" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" Loaded="UserControl_Loaded">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <TabControl Height="422" HorizontalAlignment="Left" Margin="12,12,0,0" Name="tabControl1" VerticalAlignment="Top" Width="427">
+            <TabItem Header="{DynamicResource Site Settings}" Name="SitesTabItem">
+                <Grid>
+                    <ListBox Height="133" HorizontalAlignment="Left" Margin="17,14,0,0" Name="SitesListBox" VerticalAlignment="Top" Width="227" MouseDoubleClick="SitesListBox_MouseDoubleClick" Tag="SiteSettings" />
+                    <Button Content="{DynamicResource Add}" Height="23" HorizontalAlignment="Left" Margin="250,32,0,0" Name="NewButton" VerticalAlignment="Top" Width="75" Click="NewButton_Click" />
+                    <Button Content="{DynamicResource Delete}" Height="23" HorizontalAlignment="Left" Margin="250,0,0,307" Name="DeleteButton" VerticalAlignment="Bottom" Width="75" Click="DeleteButton_Click" />
+                    <Button Content="{DynamicResource Logs}" Height="23" HorizontalAlignment="Left" Margin="159,200,0,0" Name="LogsButton" VerticalAlignment="Top" Width="75" Click="ShowLogsButton_Click" />
+                    <CheckBox Content="{DynamicResource Detailed Log}" Height="16" HorizontalAlignment="Left" Margin="268,207,0,0" Name="DetailedLogCheckBox" VerticalAlignment="Top" Tag="DetailedLogMode" Checked="DetailedLogCheckBox_Checked" Unchecked="DetailedLogCheckBox_Unchecked" />
+                    <Button Content="{DynamicResource Import Configuration}" Height="23" HorizontalAlignment="Left" Margin="250,90,0,0" Name="ConfigurationImportButton" VerticalAlignment="Top" Width="161" Click="ConfigurationImportButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource Explorer}" Name="ExplorerTabItem">
+                <Grid>
+                    <ListBox Height="133" HorizontalAlignment="Left" Margin="10,10,0,0" Name="ExplorerLocationListBox" Tag="SiteSettings" VerticalAlignment="Top" Width="227" MouseDoubleClick="ExplorerLocationListBox_MouseDoubleClick" />
+                    <Button Content="{DynamicResource Add}" Height="23" HorizontalAlignment="Left" Margin="257,10,0,0" Name="AddExplorerLocationButton" VerticalAlignment="Top" Width="75" Click="AddExplorerLocationButton_Click" />
+                    <Button Content="{DynamicResource Delete}" Height="23" HorizontalAlignment="Left" Margin="257,39,0,0" Name="DeleteExplorerLocationButton" VerticalAlignment="Top" Width="75" Click="DeleteExplorerLocationButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource Templates}" Name="TemplatesTabItem">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListBox Height="150" HorizontalAlignment="Left" Margin="72,35,0,0" Name="TemplatesListBox" Tag="SiteSettings" VerticalAlignment="Top" Width="227" MouseDoubleClick="TemplatesListBox_MouseDoubleClick" />
+                    <Button Content="{DynamicResource Add}" Height="23" HorizontalAlignment="Left" Margin="305,35,0,0" Name="NewTemplateButton" VerticalAlignment="Top" Width="75" Click="NewTemplateButton_Click" />
+                    <Button Content="{DynamicResource Delete}" Height="23" HorizontalAlignment="Left" Margin="305,64,0,0" Name="DeleteTemplateButton" VerticalAlignment="Top" Width="75" Click="DeleteTemplateButton_Click" />
+                    <ListBox DisplayMemberPath="Title" Height="150" HorizontalAlignment="Left" Margin="72,224,0,0" Name="TemplateMappingsListBox" VerticalAlignment="Top" Width="227" MouseDoubleClick="TemplateMappingsListBox_MouseDoubleClick" />
+                    <Button Content="{DynamicResource Add}" Height="23" HorizontalAlignment="Left" Margin="305,224,0,0" Name="NewTemplateMappingButton" VerticalAlignment="Top" Width="75" Click="NewTemplateMappingButton_Click" />
+                    <Button Content="{DynamicResource Delete}" Height="23" HorizontalAlignment="Left" Margin="305,253,0,0" Name="DeleteTemplateMappingButton" VerticalAlignment="Top" Width="75" Click="DeleteTemplateMappingButton_Click" />
+                    <Label Content="{DynamicResource Template Mappings}" Height="28" HorizontalAlignment="Left" Margin="8,197,0,0" Name="TemplateMappingsLabel" VerticalAlignment="Top" />
+                    <Label Content="{DynamicResource Templates}" Height="28" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label2" VerticalAlignment="Top" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource Workflow}" Name="WorkflowTabItem">
+                <Grid>
+                    <ListBox Height="133" HorizontalAlignment="Left" Margin="10,10,0,0" Name="TaskListLocationListBox" Tag="SiteSettings" VerticalAlignment="Top" Width="227" MouseDoubleClick="TaskListLocationListBox_MouseDoubleClick" />
+                    <Button Content="{DynamicResource Add}" Height="23" HorizontalAlignment="Left" Margin="257,10,0,0" Name="AddTaskListLocationButton" VerticalAlignment="Top" Width="75" Click="AddTaskListLocationButton_Click" />
+                    <Button Content="{DynamicResource Delete}" Height="23" HorizontalAlignment="Left" Margin="257,39,0,0" Name="DeleteTaskListLocationButton" VerticalAlignment="Top" Width="75" Click="DeleteTaskListLocationButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Outlook" Name="OutlookTabItem">
+                <Grid>
+                    <RadioButton Content="{DynamicResource Email Item msg}" Height="21" HorizontalAlignment="Left" Margin="66,68,0,0" Name="EmailRadioButton" VerticalAlignment="Top" Width="345" Checked="EmailRadioButton_Checked" />
+                    <RadioButton Height="21" HorizontalAlignment="Left" Margin="66,41,0,0" Name="WordPlusAttachmentsRadioButton" VerticalAlignment="Top" Width="345" Content="{DynamicResource Word document doc attachments as seperate files}" Checked="WordPlusAttachmentsRadioButton_Checked" />
+                    <CheckBox Content="{DynamicResource Upload automatically on drag-drop}" Height="16" HorizontalAlignment="Left" Margin="66,95,0,0" Name="UploadAutomaticallyCheckBox" VerticalAlignment="Top" Checked="UploadAutomaticallyCheckBox_Checked" Unchecked="UploadAutomaticallyCheckBox_Unchecked" Width="337" />
+                    <Label Content="{DynamicResource Save email as}" HorizontalAlignment="Left" Margin="18,6,0,355" Name="SaveEmailAsLabel" Width="393" />
+                    <Label Content="{DynamicResource Default attachments save folder}" Height="33" HorizontalAlignment="Left" Margin="18,127,0,0" Name="DefaultAttachmentsFolderTitleLabel" VerticalAlignment="Top" Width="393" />
+                    <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="66,171,0,0" Name="SaveLocationTextBox" Tag="TemplateURL" VerticalAlignment="Top" Width="161" />
+                    <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="233,170,0,0" Name="SelectLocationButton" VerticalAlignment="Top" Width="32" Click="SelectLocationButton_Click" />
+                    <CheckBox Height="25" HorizontalAlignment="Left" Margin="66,200,0,0" Name="DontAskSaveAttachmentLocationCheckBox" VerticalAlignment="Top" Content="{DynamicResource Do not ask save location}" Checked="DontAskSaveAttachmentLocationCheckBox_Checked" Unchecked="DontAskSaveAttachmentLocationCheckBox_Unchecked" Width="345" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</wpfc:HostControl>

@@ -1,0 +1,15 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.ItemPropertyMappingForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" d:DesignHeight="98" d:DesignWidth="345">
+    <Grid>
+        <Label Content="{DynamicResource Item Property:}" Height="28" HorizontalAlignment="Left" Margin="10,10,0,0" Name="ApplicationItemPropertyLabel" VerticalAlignment="Top" />
+        <ComboBox DisplayMemberPath="Name" Height="28" HorizontalAlignment="Left" Margin="100,10,0,0" Name="ApplicationItemPropertyComboBox" SelectedValuePath="ID" VerticalAlignment="Top" Width="226" SelectionChanged="ApplicationItemPropertyComboBox_SelectionChanged" />
+        <Label Content="{DynamicResource Field:}" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label1" VerticalAlignment="Top" Width="85" />
+        <ComboBox DisplayMemberPath="Name" Height="28" HorizontalAlignment="Left" Margin="100,46,0,0" Name="ServicePropertyComboBox" SelectedValuePath="ID" VerticalAlignment="Top" Width="226" SelectionChanged="ServicePropertyComboBox_SelectionChanged" />
+        <TextBox Height="28" HorizontalAlignment="Left" Margin="100,46,0,0" Name="ServicePropertyTextBox" VerticalAlignment="Top" Width="226" TextChanged="ServicePropertyTextBox_TextChanged" />
+    </Grid>
+</wpfc:HostControl>

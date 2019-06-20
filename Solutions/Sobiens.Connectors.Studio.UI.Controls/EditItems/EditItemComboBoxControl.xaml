@@ -1,0 +1,13 @@
+﻿<wpfc:EditItemControl x:Class="Sobiens.Connectors.Studio.UI.Controls.EditItems.EditItemComboBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls.EditItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="179" Height="25">
+    <Grid>
+        <ComboBox Width="180" Height="24" HorizontalAlignment="Left" Name="comboBox1" DisplayMemberPath="TheText"
+                  SelectedValuePath="TheValue" VerticalAlignment="Top" />
+    </Grid>
+</wpfc:EditItemControl>

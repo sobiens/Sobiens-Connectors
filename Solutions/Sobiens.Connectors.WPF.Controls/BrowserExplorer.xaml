@@ -1,0 +1,13 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.BrowserExplorer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <WebBrowser x:Name="myBrowser" Margin="0,0,0,20" Cursor="Arrow" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"  />
+        <Label Name="StatusLabel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="" ></Label>
+    </Grid>
+</wpfc:HostControl>

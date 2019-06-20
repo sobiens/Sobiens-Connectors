@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    This section defines project-level properties.
+
+    AssemblyName
+      Name of the output assembly.
+    Configuration
+      Specifies a default value for debug.
+    OutputType
+      Must be "Library" for VSTO.
+    Platform
+      Specifies what CPU the output of this project can run on.
+    NoStandardLibraries
+      Set to "false" for VSTO.
+    RootNamespace
+      In C#, this specifies the namespace given to new files. In VB, all objects are
+      wrapped in this namespace at runtime.
+  -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F5342FE4-4F7E-4EFE-A398-6E8956666CB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <RootNamespace>Sobiens.Office.SharePointOutlookConnector</RootNamespace>
+    <AssemblyName>Sobiens.Office.SharePointOutlookConnector</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ManifestCertificateThumbprint>D80F74378666E9FC7BED9268A83106F0E158E630</ManifestCertificateThumbprint>
+    <ManifestKeyFile>SharePointOutlookConnector_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <VSTO_TrustAssembliesLocation>true</VSTO_TrustAssembliesLocation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+    <PublishUrl>C:\SharePointOutlookConnector\v2.10\v2.10.1.6\</PublishUrl>
+    <InstallUrl />
+    <TargetCulture>en</TargetCulture>
+    <ApplicationVersion>2.10.1.8</ApplicationVersion>
+    <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateInterval>0</UpdateInterval>
+    <UpdateIntervalUnits>days</UpdateIntervalUnits>
+    <ProductName>Sobiens.Office.SharePointOutlookConnector</ProductName>
+    <PublisherName>Sobiens Information Technology Limited</PublisherName>
+    <SupportUrl />
+    <FriendlyName>Sobiens.Office.SharePointOutlookConnector</FriendlyName>
+    <OfficeApplicationDescription />
+    <LoadBehavior>3</LoadBehavior>
+  </PropertyGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Office.PIARedist.2007">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Office 2007 Primary Interop Assemblies</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Office.PIARedist.2010">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Office 2010 Primary Interop Assemblies</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <PropertyGroup>
+    <!--
+      OfficeApplication
+        Add-in host application
+    -->
+    <OfficeApplication>Outlook</OfficeApplication>
+  </PropertyGroup>
+  <!--
+    This section defines properties that are set when the "Debug" configuration is selected.
+
+    DebugSymbols
+      If "true", create symbols (.pdb). If "false", do not create symbols.
+    DefineConstants
+      Constants defined for the preprocessor.
+    EnableUnmanagedDebugging
+      If "true", starting the debugger will attach both managed and unmanaged debuggers.
+    Optimize
+      If "true", optimize the build output. If "false", do not optimize.
+    OutputPath
+      Output path of project relative to the project file.
+    WarningLevel
+      Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PublisherName>Sobiens Information Technology Limited</PublisherName>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!--
+    This section defines properties that are set when the "Release" configuration is selected.
+
+    DebugSymbols
+      If "true", create symbols (.pdb). If "false", do not create symbols.
+    DefineConstants
+      Constants defined for the preprocessor.
+    EnableUnmanagedDebugging
+      If "true", starting the debugger will attach both managed and unmanaged debuggers.
+    Optimize
+      If "true", optimize the build output. If "false", do not optimize.
+    OutputPath
+      Output path of project relative to the project file.
+    WarningLevel
+      Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PublisherName>Sobiens Information Technology Limited</PublisherName>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!--
+    This section enables pre- and post-build steps. However, in VSTO use
+    MSBuild tasks instead of these properties.       
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SharePointOutlookConnector_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WindowsWP|AnyCPU'">
+    <OutputPath>bin\WindowsWP\</OutputPath>
+  </PropertyGroup>
+  <!--
+    This section specifies references for the project.
+  -->
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common.v9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Tools.Outlook.v9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Tools.v9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime.v9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AddIn" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Silverlight\v3.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Google.GData.AccessControl, Version=1.8.0.0, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Client, Version=1.8.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Documents, Version=1.8.0.0, Culture=neutral, PublicKeyToken=e4daaad656f19bb9, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Extensions, Version=1.8.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <!--
+    This section defines the user source files that are part of the project.
+     
+    A "Compile" element specifies a source file to compile.
+    An "EmbeddedResource" element specifies an .resx file for embedded resources.
+    A "None" element specifies a file that is not to be passed to the compiler (for instance, 
+    a text file or XML file).
+    The "AppDesigner" element specifies the directory where the application properties files
+    can be found.
+  -->
+  <ItemGroup>
+    <Compile Include="AlertMaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertMaintenanceForm.Designer.cs">
+      <DependentUpon>AlertMaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\ActivationManager.cs" />
+    <Compile Include="BLL\AlertManager.cs" />
+    <Compile Include="BLL\BackgroundThreadManager.cs" />
+    <Compile Include="BLL\ButtonHelper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AlertEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertEditForm.Designer.cs">
+      <DependentUpon>AlertEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlertFilterEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertFilterEditForm.Designer.cs">
+      <DependentUpon>AlertFilterEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertAddForm.Designer.cs">
+      <DependentUpon>AlertAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\CommonManager.cs" />
+    <Compile Include="BLL\DocumentsService.cs" />
+    <Compile Include="BLL\Entities\ChoiceDataItem.cs" />
+    <Compile Include="BLL\Entities\EnumExtensions.cs" />
+    <Compile Include="BLL\Entities\EUAlert.cs" />
+    <Compile Include="BLL\Entities\EUAttachment.cs" />
+    <Compile Include="BLL\Entities\EUCamlFieldRef.cs" />
+    <Compile Include="BLL\Entities\EUCamlFilter.cs" />
+    <Compile Include="BLL\Entities\EUCamlFilters.cs" />
+    <Compile Include="BLL\Entities\EUCamlFilterTypes.cs" />
+    <Compile Include="BLL\Entities\EUCamlQuery.cs" />
+    <Compile Include="BLL\Entities\EUCheckinTypes.cs" />
+    <Compile Include="BLL\Entities\EUContentType.cs" />
+    <Compile Include="BLL\Entities\EUEmailFields.cs" />
+    <Compile Include="BLL\Entities\EUEmailMapping.cs" />
+    <Compile Include="BLL\Entities\EUEmailMetaData.cs" />
+    <Compile Include="BLL\Entities\EUEmailUploadFile.cs" />
+    <Compile Include="BLL\Entities\EUExplorerPaneStatuses.cs" />
+    <Compile Include="BLL\Entities\EUField.cs" />
+    <Compile Include="BLL\Entities\EUFieldCollection.cs" />
+    <Compile Include="BLL\Entities\EUFieldComparer.cs" />
+    <Compile Include="BLL\Entities\EUFieldInformation.cs" />
+    <Compile Include="BLL\Entities\EUFieldInformations.cs" />
+    <Compile Include="BLL\Entities\EUListItemVersion.cs" />
+    <Compile Include="BLL\Entities\EUListSettings.cs" />
+    <Compile Include="BLL\Entities\EULogModes.cs" />
+    <Compile Include="BLL\Entities\EUOrGroup.cs" />
+    <Compile Include="BLL\Entities\EUSettings.cs" />
+    <Compile Include="BLL\Entities\EUSiteSettings.cs" />
+    <Compile Include="BLL\Entities\EUSiteSettingTypes.cs" />
+    <Compile Include="BLL\Entities\EUTreeNode.cs" />
+    <Compile Include="BLL\Entities\EUUploadItem.cs" />
+    <Compile Include="BLL\Entities\FileExistDialogResults.cs" />
+    <Compile Include="BLL\Entities\FileSystem\FSFolder.cs" />
+    <Compile Include="BLL\Entities\FileSystem\FSItem.cs" />
+    <Compile Include="BLL\Entities\FileSystem\FSView.cs" />
+    <Compile Include="BLL\Entities\Gmail\GFolder.cs" />
+    <Compile Include="BLL\Entities\Gmail\GItem.cs" />
+    <Compile Include="BLL\Entities\Gmail\GView.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUDocument.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUFolder.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUList.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUListItem.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUView.cs" />
+    <Compile Include="BLL\Entities\SharePoint\EUWeb.cs" />
+    <Compile Include="BLL\Entities\SkyDrive\SDFolder.cs" />
+    <Compile Include="BLL\EUEmailManager.cs" />
+    <Compile Include="BLL\EUSettingsManager.cs" />
+    <Compile Include="BLL\FileSystem\FileSystemOutlookConnector.cs" />
+    <Compile Include="BLL\GMailManager.cs" />
+    <Compile Include="BLL\Gmail\GmailOutlookConnector.cs" />
+    <Compile Include="BLL\ImageManager.cs" />
+    <Compile Include="BLL\Interfaces\EditItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BLL\Interfaces\IOutlookConnector.cs" />
+    <Compile Include="BLL\Interfaces\ISPCFolder.cs" />
+    <Compile Include="BLL\Interfaces\ISPCItem.cs" />
+    <Compile Include="BLL\Interfaces\ISPCView.cs" />
+    <Compile Include="BLL\LogManager.cs" />
+    <Compile Include="BLL\OutlookConnector.cs" />
+    <Compile Include="BLL\SerilizationHelper.cs" />
+    <Compile Include="BLL\SharePointManager.cs" />
+    <Compile Include="BLL\SharePoint\SharePointOutlookConnector.cs" />
+    <Compile Include="BLL\SkyDrive\SkyDriveOutlookConnector.cs" />
+    <Compile Include="BLL\SPCamlManager.cs" />
+    <Compile Include="BLL\SystemInformationManager.cs" />
+    <Compile Include="CheckInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckInForm.Designer.cs">
+      <DependentUpon>CheckInForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemRichTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemRichTextBoxControl.Designer.cs">
+      <DependentUpon>EditItemRichTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemNumberTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemNumberTextBoxControl.Designer.cs">
+      <DependentUpon>EditItemNumberTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemBooleanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemBooleanControl.Designer.cs">
+      <DependentUpon>EditItemBooleanControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemMultiLineTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemMultiLineTextBoxControl.Designer.cs">
+      <DependentUpon>EditItemMultiLineTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemDateTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemDateTimeControl.Designer.cs">
+      <DependentUpon>EditItemDateTimeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemComboBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemComboBoxControl.Designer.cs">
+      <DependentUpon>EditItemComboBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemTextBoxControl.Designer.cs">
+      <DependentUpon>EditItemTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemCheckedListBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditItem\EditItemCheckedListBoxControl.Designer.cs">
+      <DependentUpon>EditItemCheckedListBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmailFieldMappingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EmailFieldMappingControl.Designer.cs">
+      <DependentUpon>EmailFieldMappingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmailMappingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EmailMappingControl.Designer.cs">
+      <DependentUpon>EmailMappingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ActivateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActivateForm.Designer.cs">
+      <DependentUpon>ActivateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmailMappingFieldSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmailMappingFieldSelectionForm.Designer.cs">
+      <DependentUpon>EmailMappingFieldSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListFiltersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListFiltersForm.Designer.cs">
+      <DependentUpon>ListFiltersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileExistConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileExistConfirmationForm.Designer.cs">
+      <DependentUpon>FileExistConfirmationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListItemEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListItemEditForm.Designer.cs">
+      <DependentUpon>ListItemEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SiteSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SiteSettingForm.Designer.cs">
+      <DependentUpon>SiteSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SobiensAlertErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SobiensAlertErrorForm.Designer.cs">
+      <DependentUpon>SobiensAlertErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SobiensAlertServiceDisabledForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SobiensAlertServiceDisabledForm.Designer.cs">
+      <DependentUpon>SobiensAlertServiceDisabledForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileCopyNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileCopyNameForm.Designer.cs">
+      <DependentUpon>FileCopyNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InspectorWrapper.cs" />
+    <Compile Include="ListItemPropertyGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListItemPropertyGrid.Designer.cs">
+      <DependentUpon>ListItemPropertyGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListItemVersionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListItemVersionsForm.Designer.cs">
+      <DependentUpon>ListItemVersionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTaskPaneRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ManageTaskPaneRibbon.Designer.cs">
+      <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointListViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharePointListViewControl.Designer.cs">
+      <DependentUpon>SharePointListViewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SOCActionBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SOCActionBar.Designer.cs">
+      <DependentUpon>SOCActionBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPFoldersTreeViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SPFoldersTreeViewControl.Designer.cs">
+      <DependentUpon>SPFoldersTreeViewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToogleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToogleButton.Designer.cs">
+      <DependentUpon>ToogleButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToogleButtonExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToogleButtonExt.Designer.cs">
+      <DependentUpon>ToogleButtonExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadAttachmentsProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadAttachmentsProgressForm.Designer.cs">
+      <DependentUpon>UploadAttachmentsProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharePointExplorerPane.resx">
+      <DependentUpon>SharePointExplorerPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadProgressForm.resx">
+      <DependentUpon>UploadProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SeriliazableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SobiensAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SobiensAboutBox.Designer.cs">
+      <DependentUpon>SobiensAboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThisAddIn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="SharePointOutlookConnector_TemporaryKey.pfx" />
+    <None Include="ThisAddIn.Designer.xml">
+      <DependentUpon>ThisAddIn.cs</DependentUpon>
+    </None>
+    <Compile Include="ThisAddIn.Designer.cs">
+      <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointExplorerPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharePointExplorerPane.Designer.cs">
+      <DependentUpon>SharePointExplorerPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadProgressForm.Designer.cs">
+      <DependentUpon>UploadProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ActivationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointAlertsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointCopyWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointListsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointSiteWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointVersionsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointViewsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharePointWebsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SobiensAlertsWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\SharePointWebsWS\webs.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/_layouts/AlertsWebSebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SobiensAlertsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_layouts/AlertsWebSebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_SobiensAlertsWS_AlertsWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/Alerts.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointAlertsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/Alerts.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_SharePointAlertsWS_Alerts</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/copy.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointCopyWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/copy.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>EmailUploader_SharePointCopyWS_Copy</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/lists.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointListsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/lists.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>EmailUploader_SharePointListsWS_Lists</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/versions.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointVersionsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/versions.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_SharePointVersionsWS_Versions</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/views.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointViewsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/views.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_SharePointViewsWS_Views</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/_vti_bin/webs.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointWebsWS\</RelPath>
+      <UpdateFromURL>http://localhost/_vti_bin/webs.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>EmailUploader_SharePointWebsWS_Webs</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://moss/_vti_bin/SiteData.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharePointSiteWS\</RelPath>
+      <UpdateFromURL>http://moss/_vti_bin/SiteData.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_SharePointSiteWS_SiteData</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://www.sobiens.com/activation.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ActivationService\</RelPath>
+      <UpdateFromURL>http://www.sobiens.com/activation.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sobiens_Office_SharePointOutlookConnector_ActivationService_Activation</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\SharePointListsWS\lists.wsdl" />
+    <None Include="Web References\SharePointWebsWS\CustomizedPageStatus.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointWebsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointWebsWS\webs.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\SharePointListsWS\lists.disco" />
+    <None Include="Web References\SharePointListsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\SharePointCopyWS\copy.disco" />
+    <None Include="Web References\SharePointCopyWS\copy.wsdl" />
+    <None Include="Web References\SharePointCopyWS\CopyResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointCopyWS\FieldInformation.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointCopyWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ManageTaskPaneRibbon.resx">
+      <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadAttachmentsProgressForm.resx">
+      <DependentUpon>UploadAttachmentsProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\folder.gif" />
+    <EmbeddedResource Include="images\itgen.gif" />
+    <EmbeddedResource Include="images\stsicon.gif" />
+    <EmbeddedResource Include="SobiensAboutBox.resx">
+      <DependentUpon>SobiensAboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sobiens.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AlertMaintenanceForm.resx">
+      <DependentUpon>AlertMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlertEditForm.resx">
+      <DependentUpon>AlertEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlertFilterEditForm.resx">
+      <DependentUpon>AlertFilterEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlertAddForm.resx">
+      <DependentUpon>AlertAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckInForm.resx">
+      <DependentUpon>CheckInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemRichTextBoxControl.resx">
+      <DependentUpon>EditItemRichTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemNumberTextBoxControl.resx">
+      <DependentUpon>EditItemNumberTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemBooleanControl.resx">
+      <DependentUpon>EditItemBooleanControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemMultiLineTextBoxControl.resx">
+      <DependentUpon>EditItemMultiLineTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemDateTimeControl.resx">
+      <DependentUpon>EditItemDateTimeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemComboBoxControl.resx">
+      <DependentUpon>EditItemComboBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemTextBoxControl.resx">
+      <DependentUpon>EditItemTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditItem\EditItemCheckedListBoxControl.resx">
+      <DependentUpon>EditItemCheckedListBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EmailFieldMappingControl.resx">
+      <DependentUpon>EmailFieldMappingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EmailMappingControl.resx">
+      <DependentUpon>EmailMappingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActivateForm.resx">
+      <DependentUpon>ActivateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmailMappingFieldSelectionForm.resx">
+      <DependentUpon>EmailMappingFieldSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListFiltersForm.resx">
+      <DependentUpon>ListFiltersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileExistConfirmationForm.resx">
+      <DependentUpon>FileExistConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListItemEditForm.resx">
+      <DependentUpon>ListItemEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SiteSettingForm.resx">
+      <DependentUpon>SiteSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SobiensAlertErrorForm.resx">
+      <DependentUpon>SobiensAlertErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SobiensAlertServiceDisabledForm.resx">
+      <DependentUpon>SobiensAlertServiceDisabledForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileCopyNameForm.resx">
+      <DependentUpon>FileCopyNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Sobiens_20x20.gif" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICACCDB.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICASAX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICASCX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICASMX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICASP.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICASPX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICBMP.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICCONFIG.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICCSS.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDB.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDIB.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDOC.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDOCX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDOT.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDOTX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICDWP.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\icdwt.gif" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICEML.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICGIF.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICHLP.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICHTM.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICINF.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICINI.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICJPG.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICJS.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICMASTER.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICMHT.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICMHTML.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICMSG.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICMSI.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICO16.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICOCX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICPPS.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICPPT.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICTIF.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICTXT.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICVST.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICVSX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICWMA.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICXLSX.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\ICZIP.GIF" />
+    <EmbeddedResource Include="ListItemPropertyGrid.resx">
+      <DependentUpon>ListItemPropertyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="ExternalResources\Google.GData.AccessControl.dll" />
+    <Content Include="ExternalResources\Google.GData.Client.dll" />
+    <Content Include="ExternalResources\Google.GData.Documents.dll" />
+    <Content Include="ExternalResources\Google.GData.Extensions.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapterV5.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.ServiceLocation.XML" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Configuration.xml" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Interception.Configuration.xml" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.Interception.xml" />
+    <Content Include="ExternalResources\Microsoft.Practices.Unity.xml" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\APPRJ.GIF" />
+    <Content Include="images\ATTACH.GIF" />
+    <Content Include="images\CHECKIN.GIF" />
+    <Content Include="images\CHECKOUT.GIF" />
+    <Content Include="images\COPY.GIF" />
+    <Content Include="images\CUT.GIF" />
+    <Content Include="images\DELETE.GIF" />
+    <Content Include="images\EDIT.GIF" />
+    <Content Include="images\EDITICON.GIF" />
+    <EmbeddedResource Include="images\ExtensionIcons\LIST.GIF" />
+    <EmbeddedResource Include="ListItemVersionsForm.resx">
+      <DependentUpon>ListItemVersionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharePointListViewControl.resx">
+      <DependentUpon>SharePointListViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOCActionBar.resx">
+      <DependentUpon>SOCActionBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPFoldersTreeViewControl.resx">
+      <DependentUpon>SPFoldersTreeViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToogleButton.resx">
+      <DependentUpon>ToogleButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToogleButtonExt.resx">
+      <DependentUpon>ToogleButtonExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="images\gmail_icon.gif" />
+    <Content Include="images\google-docs.png" />
+    <Content Include="images\Hiearchy.GIF" />
+    <Content Include="images\OPEN.GIF" />
+    <Content Include="images\PASTE.GIF" />
+    <Content Include="images\Down.gif" />
+    <Content Include="images\Properties.gif" />
+    <Content Include="images\REFRESH.GIF" />
+    <Content Include="images\SAVEITEM.GIF" />
+    <Content Include="images\SETTINGS.GIF" />
+    <Content Include="images\UNCHKOUT.GIF" />
+    <Content Include="images\Up.gif" />
+    <Content Include="images\VERSIONS.GIF" />
+    <Content Include="Resources\Ar.png" />
+    <Content Include="Resources\btn.png" />
+    <Content Include="Resources\btnAttach.png" />
+    <None Include="Resources\FILTER.GIF" />
+    <Content Include="Resources\Foot.png" />
+    <Content Include="Resources\gdHeadbg.png" />
+    <Content Include="Resources\Head.png" />
+    <Content Include="Resources\M.png" />
+    <None Include="Web References\SharePointSiteWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointSiteWS\SiteData.disco" />
+    <EmbeddedResource Include="Resources\SPOCPublic.snk" />
+    <None Include="Web References\ActivationService\activation.disco" />
+    <None Include="Web References\ActivationService\activation.wsdl" />
+    <None Include="Web References\ActivationService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointSiteWS\SiteData.wsdl" />
+    <None Include="Web References\SharePointSiteWS\_sFPUrl.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sList.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sListMetadata.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sListWithTime.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sProperty.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sSiteMetadata.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sWebMetadata.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointSiteWS\_sWebWithTime.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointViewsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointViewsWS\views.disco" />
+    <None Include="Web References\SharePointViewsWS\views.wsdl" />
+    <None Include="Web References\SobiensAlertsWS\AlertsWebSebService.disco" />
+    <None Include="Web References\SharePointAlertsWS\AlertInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointAlertsWS\Alerts.disco" />
+    <None Include="Web References\SharePointAlertsWS\Alerts.wsdl" />
+    <None Include="Web References\SharePointAlertsWS\DeleteFailure.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SharePointAlertsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointVersionsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharePointVersionsWS\versions.disco" />
+    <None Include="Web References\SharePointVersionsWS\versions.wsdl" />
+    <None Include="Web References\SobiensAlertsWS\AlertsWebSebService.wsdl" />
+    <None Include="Web References\SobiensAlertsWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMicrosoft.Vbe.Interop.Forms">
+      <Guid>{0D452EE1-E08F-101A-852E-02608C4D0BB4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Vbe.Interop.Forms">
+      <Guid>{0D452EE1-E08F-101A-852E-02608C4D0BB4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sobiens.Connectors.WPF.Controls\Sobiens.Connectors.WPF.Controls.csproj">
+      <Project>{110D90E6-3E8A-478C-AEB8-940315E2CBE9}</Project>
+      <Name>Sobiens.Connectors.WPF.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project. -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Include additional build rules for an Office application add-in. -->
+  <!-- This section defines VSTO properties that describe the host-changeable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
+        <ProjectProperties HostName="Outlook" HostPackage="{20A848B8-E01F-4801-962E-25DB0FF57389}" OfficeVersion="14.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="VSTOTemplates" DebugInfoExeName="#Software\Microsoft\Office\14.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{66FE057A-6BD5-4A46-8060-3C3E596574A0}" />
+        <Host Name="Outlook" GeneratedCodeNamespace="EmailUploader" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="BF7026318452A09F2E526DB75258EA4ECDE14E49" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        </Host>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets" />
+</Project>

@@ -1,0 +1,8 @@
+﻿Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Communicator\SessionManager\Apps\{E4BB0ECB-5764-4269-93DD-BD47789A01FC}]
+"Name"="sdx"
+"Path"="C:\\Sobiens\\Projects\\Sobiens.Connectors\\SharePointLyncConnector.WPF\\bin\\Debug\\SharePointLyncConnector.WPF.exe /userId=%user-id% /contactId=%contact-id%"
+"ApplicationType"=dword:00000000
+"ExtensibleMenu"="MainWindowActions;MainWindowRightClick"
+"SessionType"=dword:00000000

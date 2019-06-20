@@ -1,0 +1,8 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\FilterableHeader.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\FilterableHeader.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\MainWindow.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\App.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest_MarkupCompile.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest_MarkupCompile.lref

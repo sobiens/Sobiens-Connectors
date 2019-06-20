@@ -1,0 +1,5 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\App.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF_MarkupCompile.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\Window1.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\Window1.g.cs

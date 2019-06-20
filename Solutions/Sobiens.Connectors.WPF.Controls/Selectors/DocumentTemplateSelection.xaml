@@ -1,0 +1,21 @@
+﻿<wpfc:BaseUserControl x:Class="Sobiens.Connectors.WPF.Controls.Selectors.DocumentTemplateSelection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls.Selectors"
+             xmlns:l="clr-namespace:Sobiens.WPF.Controls.UserControls;assembly=Sobiens.WPF.Controls"
+             d:DesignHeight="128" d:DesignWidth="313" >
+    <Grid>
+        <ListView Name="TemplatesGrid" MouseDoubleClick="TemplatesGrid_MouseDoubleClick">
+            <ListView.View>
+                <l:ImageView />
+            </ListView.View>
+            <ListView.ItemsSource>
+                <l:FileCollection />
+            </ListView.ItemsSource>
+        </ListView>
+    </Grid>
+</wpfc:BaseUserControl>

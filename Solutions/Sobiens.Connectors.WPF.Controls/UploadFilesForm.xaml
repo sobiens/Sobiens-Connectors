@@ -1,0 +1,14 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.UploadFilesForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="321" d:DesignWidth="469" xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls">
+    <StackPanel>
+        <my:SiteContentSelections HorizontalAlignment="Left" Margin="12,12,0,0" MaxHeight="350" x:Name="UploadLocation" VerticalAlignment="Top" />
+        <TextBlock Height="288" HorizontalAlignment="Left" Margin="330,12,0,0" Name="FilesTextBlock" Text="TextBlock" VerticalAlignment="Top" Width="127" />
+        <my:StatusBar x:Name="StatusBarControl" VerticalAlignment="Bottom" Visibility="Hidden"></my:StatusBar>
+    </StackPanel>
+</wpfc:HostControl>

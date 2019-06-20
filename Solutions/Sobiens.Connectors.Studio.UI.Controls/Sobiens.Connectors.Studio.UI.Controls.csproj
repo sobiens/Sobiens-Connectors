@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E6D5F4A-65D7-4C7A-A116-58C6BD8A2048}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Sobiens.Connectors.Studio.UI.Controls</RootNamespace>
+    <AssemblyName>Sobiens.Connectors.Studio.UI.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.0-rc1\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeTemplates\WebAPI\ControllerClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControllerClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\EDMXTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDMXTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\ModelClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\SobyGridPageTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SobyGridPageTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\TaskServiceContextClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskServiceContextClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\WebAPIConfigClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPIConfigClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FilterGroupEditControl.xaml.cs">
+      <DependentUpon>FilterGroupEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FilterEditControl.xaml.cs">
+      <DependentUpon>FilterEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\CheckInForm.xaml.cs">
+      <DependentUpon>CheckInForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemBooleanControl.xaml.cs">
+      <DependentUpon>EditItemBooleanControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemCheckedListBoxControl.xaml.cs">
+      <DependentUpon>EditItemCheckedListBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemComboBoxControl.xaml.cs">
+      <DependentUpon>EditItemComboBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemControl.cs" />
+    <Compile Include="EditItems\EditItemDateTimeControl.xaml.cs">
+      <DependentUpon>EditItemDateTimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemFileControl.xaml.cs">
+      <DependentUpon>EditItemFileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemLabelControl.xaml.cs">
+      <DependentUpon>EditItemLabelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemManager.cs" />
+    <Compile Include="EditItems\EditItemMultiLineTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemMultiLineTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemNumberTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemNumberTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemRichTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemRichTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemTaxonomyControl.xaml.cs">
+      <DependentUpon>EditItemTaxonomyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\EditItemTextBoxControl.xaml.cs">
+      <DependentUpon>EditItemTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\FieldMappingControl.xaml.cs">
+      <DependentUpon>FieldMappingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\FileCopyNameForm.xaml.cs">
+      <DependentUpon>FileCopyNameForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\FileExistConfirmationForm.xaml.cs">
+      <DependentUpon>FileExistConfirmationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItems\ItemVersionHistoryForm.xaml.cs">
+      <DependentUpon>ItemVersionHistoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectAccessMaintenanceForm.xaml.cs">
+      <DependentUpon>ObjectAccessMaintenanceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebPartPropertiesForm.xaml.cs">
+      <DependentUpon>WebPartPropertiesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryFilterGeneratorControl.xaml.cs">
+      <DependentUpon>QueryFilterGeneratorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryGeneratorControl.xaml.cs">
+      <DependentUpon>QueryGeneratorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\TermSetSelector.xaml.cs">
+      <DependentUpon>TermSetSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\CRMSiteSettingForm.xaml.cs">
+      <DependentUpon>CRMSiteSettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SiteSettingForm.xaml.cs">
+      <DependentUpon>SiteSettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SQLServerSettingForm.xaml.cs">
+      <DependentUpon>SQLServerSettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncTaskProgressForm.xaml.cs">
+      <DependentUpon>SyncTaskProgressForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRelationForm.xaml.cs">
+      <DependentUpon>ViewRelationForm.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CamlPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CamlTextEditorPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CloseableHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CodeWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CompareWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CriteriaPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FilterGroupEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FilterEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItemPropertiesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\CheckInForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemBooleanControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemCheckedListBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemComboBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemDateTimeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemFileControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemLabelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemMultiLineTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemNumberTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemRichTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemTaxonomyControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\EditItemTextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\FieldMappingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\FileCopyNameForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\FileExistConfirmationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditItems\ItemVersionHistoryForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ExportWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HostWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImportWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WebPartPropertiesForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectPropertiesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectAccessMaintenanceForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectEditForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectLoadForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueriesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueryDesignerToolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueryFilterGeneratorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueryGeneratorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectEntityForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\TermSetSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ServerObjectExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\CRMSiteSettingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\SiteSettingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\SQLServerSettingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncCopyListWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncDataWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncTaskProgressForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncTaskListForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="BindablePasswordBox.cs" />
+    <Compile Include="CamlPane.xaml.cs">
+      <DependentUpon>CamlPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CamlTextEditorPane.xaml.cs">
+      <DependentUpon>CamlTextEditorPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClosableTab.cs" />
+    <Compile Include="CloseableHeader.xaml.cs">
+      <DependentUpon>CloseableHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CodeWizardForm.xaml.cs">
+      <DependentUpon>CodeWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CompareWizardForm.xaml.cs">
+      <DependentUpon>CompareWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CriteriaPane.xaml.cs">
+      <DependentUpon>CriteriaPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditItemPropertiesControl.xaml.cs">
+      <DependentUpon>EditItemPropertiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExportWizardForm.xaml.cs">
+      <DependentUpon>ExportWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FindControls.cs" />
+    <Compile Include="HostControl.cs" />
+    <Compile Include="HostWindow.xaml.cs">
+      <DependentUpon>HostWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageBehavior.cs" />
+    <Compile Include="ImportWizardForm.xaml.cs">
+      <DependentUpon>ImportWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectPropertiesControl.xaml.cs">
+      <DependentUpon>ObjectPropertiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEditForm.xaml.cs">
+      <DependentUpon>ProjectEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectLoadForm.xaml.cs">
+      <DependentUpon>ProjectLoadForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueriesPanel.xaml.cs">
+      <DependentUpon>QueriesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryDesignerToolbar.xaml.cs">
+      <DependentUpon>QueryDesignerToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultPane.xaml.cs">
+      <DependentUpon>ResultPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEntityForm.xaml.cs">
+      <DependentUpon>SelectEntityForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerObjectExplorer.xaml.cs">
+      <DependentUpon>ServerObjectExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncCopyListWizardForm.xaml.cs">
+      <DependentUpon>SyncCopyListWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncDataWizardForm.xaml.cs">
+      <DependentUpon>SyncDataWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncTaskListForm.xaml.cs">
+      <DependentUpon>SyncTaskListForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIExtensions.cs" />
+    <Compile Include="UIHelper.cs" />
+    <Page Include="ViewRelationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CodeWizard.png" />
+    <Resource Include="Images\Crm.png" />
+    <Resource Include="Images\CRMEntity.gif" />
+    <Resource Include="Images\CrmWeb.gif" />
+    <Resource Include="Images\DataExport.png" />
+    <Resource Include="Images\ExecuteQuery.png" />
+    <Resource Include="Images\ExportToExcel16x16.png" />
+    <Resource Include="Images\loader.gif" />
+    <Resource Include="Images\NewQuery.png" />
+    <Resource Include="Images\ServerConnect.png" />
+    <Resource Include="Images\ShowCamlTextPane.png" />
+    <Resource Include="Images\ShowCriteriaPane.png" />
+    <Resource Include="Images\ShowResultsPane.png" />
+    <Resource Include="Images\SPFOLDER.gif" />
+    <Resource Include="Images\SPList.gif" />
+    <Resource Include="Images\SPWeb.gif" />
+    <Resource Include="Images\SQLServer.jpg" />
+    <Resource Include="Images\ValidateCaml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sobiens.Connectors.Common\Sobiens.Connectors.Common.csproj">
+      <Project>{b654d14d-dbc7-41db-9286-ec9794340402}</Project>
+      <Name>Sobiens.Connectors.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Entities\Sobiens.Connectors.Entities.csproj">
+      <Project>{5a43acc0-1bf6-4fb4-b990-9c681bc705fb}</Project>
+      <Name>Sobiens.Connectors.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Services.CRM\Sobiens.Connectors.Services.CRM.csproj">
+      <Project>{6303d486-618e-4af1-b42a-c16f9e381d0a}</Project>
+      <Name>Sobiens.Connectors.Services.CRM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Services.SharePoint\Sobiens.Connectors.Services.SharePoint.csproj">
+      <Project>{c21e377f-cc1a-439f-b80d-b1961b1be6ac}</Project>
+      <Name>Sobiens.Connectors.Services.SharePoint</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeTemplates\WebAPI\ControllerClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ControllerClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\EDMXTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EDMXTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\ModelClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ModelClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\SobyGridPageTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SobyGridPageTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TaskServiceContextClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPIConfigClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Images\Filter.png" />
+    <Resource Include="Images\ArrowDown.png" />
+    <Resource Include="Images\FilterGroup.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

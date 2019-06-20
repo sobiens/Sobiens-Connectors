@@ -1,0 +1,25 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.SearchExplorer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="335" xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls" xmlns:my1="http://schemas.microsoft.com/wpf/2008/toolkit">
+    <Grid>
+      <RadioButton Content="General" Height="16" HorizontalAlignment="Left" Margin="152,12,0,0" Name="radioButtonGeneral" Selector.IsSelected="True" VerticalAlignment="Top" GroupName="ContentPane" IsEnabled="True" Visibility="Hidden" />
+      <RadioButton Content="Word" Height="16" HorizontalAlignment="Left" Margin="5,10,0,0" Name="radioButtonWord" VerticalAlignment="Top" GroupName="ContentPane" IsChecked="True" />
+      <RadioButton Content="Excel" Height="16" HorizontalAlignment="Left" Margin="60,10,0,0" Name="radioButtonExcel" VerticalAlignment="Top" GroupName="ContentPane"/>
+      <RadioButton Content="Outlook" Height="16" HorizontalAlignment="Left" Margin="110,10,0,0" Name="radioButtonOutlook" VerticalAlignment="Top" GroupName="ContentPane" />
+
+        <ComboBox Height="23" Name="TemplateComboBox" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,32,0,0" SelectionChanged="TemplateComboBox_SelectionChanged" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="130,32,0,0" Name="SearchLocationComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="SearchLocationComboBox_SelectionChanged" DisplayMemberPath="Folder.Title" />
+        <Button Content="{DynamicResource Filters}" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Name="FiltersButton" Width="75" Margin="255,32,0,0" Click="FiltersButton_Click" IsEnabled="False" />
+
+        <my:SearchTextBox Height="23" x:Name="SearchTextBox" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,60,0,0" TextChanged="SearchTextBox_TextChanged"></my:SearchTextBox>
+        <Button Content="{DynamicResource Search}" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Margin="255,60,0,0" Name="SearchButton" Width="75" Click="SearchButton_Click" IsEnabled="False" />
+
+        <DataGrid Margin="0,90,0,0" x:Name="SearchResultDataGridView" ItemsSource="{Binding SourceTable}" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+      </DataGrid>
+    </Grid>
+</wpfc:HostControl>

@@ -1,0 +1,21 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.ItemVersionHistoryForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" d:DesignHeight="197" d:DesignWidth="520">
+    <Grid>
+        <ListView Height="174" HorizontalAlignment="Left" Margin="12,12,0,0" Name="MappingsListView" VerticalAlignment="Top" Width="500" ContextMenuOpening="MappingsListView_ContextMenuOpening">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="60" Header="Version" DisplayMemberBinding="{Binding Path=Version}" />
+                    <GridViewColumn Width="60" Header="Size" DisplayMemberBinding="{Binding Path=Size}" />
+                    <GridViewColumn Width="100" Header="Created" DisplayMemberBinding="{Binding Path=Created}" />
+                    <GridViewColumn Width="120" Header="CreatedBy" DisplayMemberBinding="{Binding Path=CreatedBy}" />
+                    <GridViewColumn Width="150" Header="Comments" DisplayMemberBinding="{Binding Path=Comments}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</wpfc:HostControl>

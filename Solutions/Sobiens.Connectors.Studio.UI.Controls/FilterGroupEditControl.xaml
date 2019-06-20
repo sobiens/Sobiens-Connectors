@@ -1,0 +1,18 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.FilterGroupEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             d:DesignHeight="485" d:DesignWidth="680" Loaded="HostControl_Loaded">
+    <Grid>
+        <GroupBox x:Name="groupBox" Header="Group Criteria" HorizontalAlignment="Left" Height="35" Margin="10,10,0,0" VerticalAlignment="Top" Width="330">
+            <Grid>
+                <RadioButton x:Name="ORRadioButton" Content="OR" HorizontalAlignment="Left" Height="20" Margin="30,0,0,-22" VerticalAlignment="Top"/>
+                <RadioButton x:Name="ANDRadioButton" Content="AND" HorizontalAlignment="Left" Height="20" Margin="130,0,0,-22" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</wpfc:HostControl>

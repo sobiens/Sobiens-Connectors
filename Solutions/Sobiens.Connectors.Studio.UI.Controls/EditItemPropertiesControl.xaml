@@ -1,0 +1,29 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.EditItemPropertiesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             d:DesignHeight="485" d:DesignWidth="680">
+    <Grid>
+        <Label Content="{DynamicResource Content Type:}" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="ContentTypeLabel" VerticalAlignment="Top" />
+        <ComboBox Height="28" HorizontalAlignment="Left" Margin="175,12,0,0" Name="ContentTypeComboBox" VerticalAlignment="Top" SelectedValuePath="ID" DisplayMemberPath="Name" SelectionChanged="ContentTypeComboBox_SelectionChanged" />
+        <StackPanel Margin="0,50,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="370">
+                <StackPanel Margin="0,0">
+                    <Grid Margin="12,0,12,32" Name="FieldMappingsStackPanel" />
+                    <Grid>
+                        <Label Content="{DynamicResource Required field}" Height="28" HorizontalAlignment="Left" Margin="12,0,0,0" Name="labelfieldRequired" VerticalAlignment="Top" Foreground="#FF0000" />
+                        <CheckBox Margin="0,8,10,0" Name="CheckInAfter" TabIndex="7" VerticalAlignment="Top" HorizontalAlignment="Right">
+                            <Label Content="{DynamicResource try to check in}" Margin="0"  VerticalAlignment="Top"/>
+                        </CheckBox>
+                    </Grid>
+                    <Border BorderBrush="#FF8D8D8D" BorderThickness="1" Margin="0,15,0,0">
+                        <Grid Margin="12,0" Name="GenericFieldStackPanel"/>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</wpfc:HostControl>

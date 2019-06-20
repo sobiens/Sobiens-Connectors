@@ -1,0 +1,111 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
+	xmlns:Microsoft_Lync_Controls_Internal="clr-namespace:Microsoft.Lync.Controls.Internal;assembly=Microsoft.Lync.Controls"
+	xmlns:LyncCommunicationAddIn="clr-namespace:LyncCommunicationAddIn" mc:Ignorable="d"
+	x:Class="LyncCommunicationAddIn.LyncCommunicationControl"
+	x:Name="LyncCommunicationPresenceControl"
+	d:DesignWidth="269" d:DesignHeight="40" IsTabStop="True" TabIndex="2" Focusable="True">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ContactListTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.ContextMenu>
+        <ContextMenu x:Name="InputHelperContextMenu" Placement="Center">
+            <MenuItem x:Name="LookupMenuHeader" Background="#FFF0F2F5" Focusable="false">
+                <MenuItem.Header>
+                    <TextBlock x:Name="LookupMenuHeaderText" Text="!Lookup contact for:" Margin="-25,0,0,0" Padding="0,0,0,0" FontWeight="Bold"/>
+                </MenuItem.Header>
+            </MenuItem>
+
+            <Separator x:Name="SearchContextMenuSeparator" Visibility="Collapsed"/>
+            <MenuItem x:Name="CustomSearch" Header="!Lookup ..." InputGestureText="F3"  Click="OnCustomSearchMenuClick" />
+
+            <MenuItem x:Name="ContactMenuHeader" Background="#FFF0F2F5" Focusable="false">
+                <MenuItem.Header>
+                    <TextBlock x:Name="ContactMenuHeaderText" Text="!Communication contact:" Margin="-25,0,0,0" Padding="0,0,0,0" FontWeight="Bold"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem x:Name="ShowContact" Header="!Show details" InputGestureText="F4"  Click="OnOpenContactDetailsMenuClick" />
+            <MenuItem x:Name="RemoveContact" Header="!Remove" Click="OnRemoveContactMenuClick" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+
+        <Grid x:Name="LayoutGrid" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="PresenceVisualColumn" Width="Auto"/>
+            <ColumnDefinition x:Name="DisplayNameColumn"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <LyncCommunicationAddIn:CustomizedPresenceIndicator x:Name="PresenceIndicator" Margin="0" HorizontalAlignment="Left" PhotoDisplayMode="Small" VerticalAlignment="Center" 
+                                                       IsTabStop="False" Focusable="False"/>
+
+        <TextBlock x:Name="DisplayName" Grid.Column="1" VerticalAlignment="Center" Margin="0" Text="{Binding DisplayName, ElementName=PresenceIndicator}" Padding="8,0" TextTrimming="CharacterEllipsis" ToolTip="{Binding DisplayName, ElementName=PresenceIndicator}" OverridesDefaultStyle="True" />
+
+        <Button x:Name="InputHelper" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Center" Width="22" Height="21" VerticalContentAlignment="Stretch" IsEnabled="{Binding IsEnabled, ElementName=UserControl}" Click="OnInputHelperButtonClick" TabIndex="4">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Viewbox Stretch="UniformToFill">
+                        <Image x:Name="Icon" Source="LookupButton_Idle.png"/>
+                    </Viewbox>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Source" Value="LookupButton_Disabled.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="false"/>
+                                <Condition Property="IsEnabled" Value="true"/>
+                                <Condition Property="IsPressed" Value="false"/>
+                                <Condition Property="IsMouseOver" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Source" Value="LookupButton_Idle.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="true"/>
+                                <Condition Property="IsPressed" Value="false"/>
+                                <Condition Property="IsMouseOver" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Source" Value="LookupButton_Hovered.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="true"/>
+                                <Condition Property="IsPressed" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Source" Value="LookupButton_Pressed.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Popup x:Name="SearchPopup" Grid.ColumnSpan="3" PopupAnimation="Slide" StaysOpen="False" HorizontalOffset="1" VerticalOffset="1">
+            <Border BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" CornerRadius="3">
+                <Grid>
+                    <LyncCommunicationAddIn:CustomizedContactSearch x:Name="contactSearchBox"  d:LayoutOverrides="Width, Height" IsTabStop="False" Focusable="False"/>
+                </Grid>
+            </Border>
+        </Popup>
+
+        <TextBlock x:Name="SignInError" Grid.Column="1" VerticalAlignment="Center" Margin="0" Padding="8,0" Text="Please sign into Microsoft™ Lync" Visibility="Hidden" TextTrimming="WordEllipsis" ToolTip="{Binding Text, ElementName=SignInError}"/>
+        <Viewbox x:Name="LyncIcon" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Center" SnapsToDevicePixels="True">
+            <Image x:Name="LyncIconImage" Stretch="None" SnapsToDevicePixels="True"/>
+        </Viewbox>
+
+    </Grid>
+
+</UserControl>

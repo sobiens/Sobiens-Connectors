@@ -1,0 +1,23 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.ExplorerLocationForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="296" d:DesignWidth="405">
+    <Grid>
+        <Label Content="{DynamicResource Site Setting:}" Height="28" HorizontalAlignment="Left" Margin="6,36,0,0" Name="DescriptionLabel" VerticalAlignment="Top" />
+        <ComboBox DisplayMemberPath="Url" Height="23" HorizontalAlignment="Left" Margin="89,36,0,0" Name="SiteSettingComboBox" SelectedValuePath="ID" Tag="ContentTypeID" VerticalAlignment="Top" Width="199" />
+        <CheckBox Content="{DynamicResource Allow to select subfolders}" Height="19" HorizontalAlignment="Left" Margin="12,123,0,0" Name="AllowToSelectSubFoldersCheckBox" VerticalAlignment="Top" Width="219" />
+        <CheckBox Content="Outlook" Height="16" HorizontalAlignment="Left" Margin="164,13,0,0" Name="OutlookATCheckBox" VerticalAlignment="Top" Width="67" />
+        <CheckBox Content="Word" Height="16" HorizontalAlignment="Left" Margin="241,13,0,0" Name="WordATCheckBox" VerticalAlignment="Top" Width="67" />
+        <CheckBox Content="Excel" Height="16" HorizontalAlignment="Left" Margin="314,13,0,0" Name="ExcelATCheckBox" VerticalAlignment="Top" Width="67" />
+        <Label Content="{DynamicResource Application:}" Height="28" HorizontalAlignment="Left" Margin="7,7,0,0" Name="label1" VerticalAlignment="Top" />
+        <RadioButton Content="{DynamicResource Show All}" Height="16" HorizontalAlignment="Left" Margin="12,66,0,0" Name="ShowAllRadioButton" VerticalAlignment="Top" Checked="ShowAllRadioButton_Checked" Width="109" />
+        <RadioButton Content="{DynamicResource Show Selected}" Height="16" HorizontalAlignment="Left" Margin="127,66,0,0" Name="ShowSelectedRadioButton" VerticalAlignment="Top" Checked="ShowAllRadioButton_Checked" Width="143" />
+        <Label Content="{DynamicResource Locations:}" Height="28" HorizontalAlignment="Left" Margin="10,89,0,0" Name="LocationsLabel" VerticalAlignment="Top" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="89,90,0,0" Name="SelectLocationButton" VerticalAlignment="Top" Width="32" Click="SelectLocationButton_Click" />
+        <CheckBox Content="{DynamicResource General}" Height="16" HorizontalAlignment="Left" Margin="89,13,0,0" Name="GeneralATCheckBox" VerticalAlignment="Top" Width="67" />
+    </Grid>
+</wpfc:HostControl>

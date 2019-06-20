@@ -1,0 +1,93 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.SyncCopyListWizardForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Loaded="HostControl_Loaded">
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Name="WizardTabControl">
+            <TabItem Header="Source">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <wpfc:QueryGeneratorControl x:Name="SourceQueryGeneratorControl" Margin="0,0,0,0"/>
+
+                    <Button x:Name="SourceNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="SourceNextButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Destination">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="187*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="2" Click="DestinationBackButton_Click"/>
+                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="DestinationNextButton_Click"/>
+                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" Margin="42,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212"/>
+                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="14,87,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Mapping">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="247*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="233*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="12,5,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.Row="0" >
+                        <CheckBox Margin="0,5,0,0" Name="AllowUpdateCheckBox" Content="Enable update field mapping" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Checked="AllowUpdateCheckBox_Checked" Unchecked="AllowUpdateCheckBox_Unchecked"></CheckBox>
+                        <Label Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Source field:" Height="30"></Label>
+                        <ComboBox Name="UpdateSourceFieldComboBox" Margin="100,30,0,0" HorizontalAlignment="Left" Width="100" Height="30" IsEnabled="False"></ComboBox>
+                        <Label Margin="220,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Destination field:" Height="30"></Label>
+                        <ComboBox Name="UpdateDestinationFieldComboBox" Margin="350,30,0,0" HorizontalAlignment="Left" Width="100" Height="30" IsEnabled="False"></ComboBox>
+                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.ColumnSpan="3" Grid.Row="1">
+                        <Grid Margin="12,0,12,32" Name="FieldMappingsStackPanel" />
+                    </ScrollViewer>
+
+                    <Button x:Name="MappingBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="2"  Grid.Column="2" Click="MappingBackButton_Click"/>
+                    <Button x:Name="MappingNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="2"  Grid.Column="2" Click="MappingNextButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Schedule">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="ScheduleBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="ScheduleBackButton_Click"/>
+                    <Button x:Name="ScheduleNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,0" Width="75" Grid.Row="1" Click="ScheduleNextButton_Click" Height="20" VerticalAlignment="Top"/>
+                    <CheckBox Margin="10,10,0,0" Name="SkipUpdateEventsCheckBox" Content="Skip update events" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"></CheckBox>
+
+                    <GroupBox x:Name="RunOnceRadioButton" Header="Schedule" HorizontalAlignment="Left" Height="154" Margin="35,110,0,0" VerticalAlignment="Top" Width="314">
+                        <Grid>
+                            <Label x:Name="label" Content="Frequency" HorizontalAlignment="Left" Margin="35,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135"/>
+                            <TextBox x:Name="FrequencyTextBox" HorizontalAlignment="Left" Height="23" Margin="122,65,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                            <RadioButton x:Name="RunOnceRadioButtonNo" Content="No"  HorizontalAlignment="Left" Margin="178,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonNo_Checked"/>
+                            <RadioButton x:Name="RunOnceRadioButtonYes" Content="Yes"  HorizontalAlignment="Left" Margin="122,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonYes_Checked" IsChecked="True" RenderTransformOrigin="1.458,-4.067"/>
+                            <Label x:Name="label_Copy" Content="One time job?" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</wpfc:HostControl>

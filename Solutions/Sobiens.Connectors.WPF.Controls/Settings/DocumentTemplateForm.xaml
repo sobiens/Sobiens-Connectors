@@ -1,0 +1,24 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.DocumentTemplateForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="299" d:DesignWidth="403" xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls.Selectors">
+    <Grid>
+        <Label Content="{DynamicResource Title:}" Height="28" HorizontalAlignment="Left" Margin="6,52,0,0" Name="TitleLabel" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="89,52,0,0" Name="TitleTextBox" VerticalAlignment="Top" Width="202" Tag="Title" />
+        <Label Content="{DynamicResource Description:}" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="DescriptionLabel" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="89,82,0,0" Name="DescriptionTextBox" VerticalAlignment="Top" Width="202" Tag="Description" />
+        <Label Content="{DynamicResource Application:}" Height="28" HorizontalAlignment="Left" Margin="6,23,0,0" Name="ApplicationTypeLabel" VerticalAlignment="Top" />
+        <RadioButton Content="Excel" Height="21" HorizontalAlignment="Left" Margin="156,28,0,0" Name="ExcelTemplateApplicationRadioButton" VerticalAlignment="Top" Width="66" />
+        <RadioButton Content="Word" Height="21" HorizontalAlignment="Left" Margin="89,28,0,0" Name="WordTemplateApplicationRadioButton" VerticalAlignment="Top" Width="61" />
+        <Label Content="{DynamicResource Picture:}" Height="28" HorizontalAlignment="Left" Margin="8,106,0,0" Name="PictureLabel" VerticalAlignment="Top" />
+        <my:PictureSelection HorizontalAlignment="Left" Margin="89,111,0,0" x:Name="pictureSelection" VerticalAlignment="Top" Height="112" Width="273" />
+        <Label Content="{DynamicResource Template:}" Height="28" HorizontalAlignment="Left" Margin="12,231,0,0" Name="TemplateLabel" VerticalAlignment="Top" />
+        <Label Content="{DynamicResource Not Selected}" Height="28" HorizontalAlignment="Left" Margin="89,231,0,0" Name="TemplatePathLabel" VerticalAlignment="Top" Width="202" HorizontalContentAlignment="Right" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="309,233,0,0" Name="SelectTemplateButton" VerticalAlignment="Top" Width="37" Click="SelectTemplateButton_Click" />
+        <RadioButton Content="Outlook" Height="21" HorizontalAlignment="Left" Margin="209,28,0,0" Name="OutlookTemplateApplicationRadioButton" VerticalAlignment="Top" Width="66" />
+    </Grid>
+</wpfc:HostControl>

@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Office.Tools.Outlook.v9.0</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Office.Tools.Outlook.ControlNotFoundException">
+      <summary>Represents errors that occur when a control is not found in the Microsoft.Vbe.Interop.Forms.UserForm of an imported form region.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ControlNotFoundException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.ControlNotFoundException" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ControlNotFoundException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.ControlNotFoundException" /> class by using the name of a control that is not found in the Microsoft.Vbe.Interop.Forms.UserForm of an imported form region.</summary>
+      <param name="identifier">The name of the control that is not found in the Microsoft.Vbe.Interop.Forms.UserForm of the form region.</param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ControlNotFoundException.#ctor(System.String,System.Exception)">
+      <summary />
+      <param name="identifier" />
+      <param name="innerException" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ControlNotFoundException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary />
+      <param name="info" />
+      <param name="context" />
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.ControlNotFoundException.Identifier">
+      <summary>Gets the name of a control that is not found in the Microsoft.Vbe.Interop.Forms.UserForm of an imported form region.</summary>
+      <returns>A string that represents the name of the control that is not found in the Microsoft.Vbe.Interop.Forms.UserForm of the form region.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionControl">
+      <summary>Represents an Outlook form region that is based on a user control.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionControl.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionControl" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionControl.#ctor(Microsoft.Office.Interop.Outlook.FormRegion)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionControl" /> class by using the specified <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" /> object.</summary>
+      <param name="outlookFormRegion">The <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" /> object to use to create this <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionControl" />.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="outlookFormRegion" /> argument is null.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Anchor">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.AutoSize">
+      <summary />
+      <returns />
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.AutoSizeChanged">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.AutoSizeMode">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Dock">
+      <summary />
+      <returns />
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.DockChanged">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Factory">
+      <summary>Gets or sets the form region factory that is associated with this <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionControl" />.</summary>
+      <returns>An object that implements the <see cref="T:Microsoft.Office.Tools.Outlook.IFormRegionFactory" /> interface.</returns>
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.FormRegionClosed">
+      <summary>Occurs before the form region is closed. </summary>
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.FormRegionShowing">
+      <summary>Occurs after an instance of the form region is created but before the form region appears. </summary>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Location">
+      <summary />
+      <returns />
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.LocationChanged">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Manifest">
+      <summary>Gets the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that describes how the form region appears in Outlook.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that describes how the form region appears in Outlook.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Margin">
+      <summary />
+      <returns />
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.MarginChanged">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.MaximumSize">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionControl.Microsoft#Office#Tools#Outlook#IFormRegion#OnShutdown">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionControl.Microsoft#Office#Tools#Outlook#IFormRegion#OnStartup">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.MinimumSize">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.OutlookFormRegion">
+      <summary>Gets or sets the native form region object. </summary>
+      <returns>A <see cref="T:Microsoft.Office.Interop.Outlook._FormRegion" /> that represents the form region.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.OutlookItem">
+      <summary>Gets the Outlook item in which the form region appears. </summary>
+      <returns>An <see cref="T:System.Object" /> that represents the Outlook item in which the form region appears.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionControl.Padding">
+      <summary />
+      <returns />
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.FormRegionControl.PaddingChanged">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionControl.ProcessTabKey(System.Boolean)">
+      <summary />
+      <returns />
+      <param name="forward" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction">
+      <summary>Represents a custom action that appears in the Custom Actions group on the Ribbon of an Outlook item.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> class with a default name.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> class by using the specified name.</summary>
+      <param name="name">A string that represents the name of the custom action.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.AddressLike">
+      <summary>Gets or sets a value that specifies how to address the form that appears when the user executes the custom action.</summary>
+      <returns>One of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike" /> values that specify how to address the target form that appears when the user executes the custom action. The default is <see cref="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.Reply" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Body">
+      <summary>Gets or sets a value that specifies how the Message or Notes field of an Outlook item is included in the reply that appears when the user executes the custom action.</summary>
+      <returns>One of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody" /> values that specify how the Message or Notes field of an Outlook item is appended to the form that appears when the user executes the custom action. The default is <see cref="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.User" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Enabled">
+      <summary>Gets or sets a value that indicates whether the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> is enabled for the form region.</summary>
+      <returns>true if the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Method">
+      <summary>Gets or sets a value that specifies how to respond when the user executes the custom action. </summary>
+      <returns>One of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod" /> values that specify how to respond when the user executes the custom action. The default is <see cref="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod.Open" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Name">
+      <summary>Gets or sets the name of the custom action. </summary>
+      <returns>A string that represents the name of the custom action.</returns>
+      <exception cref="T:System.ArgumentNullException">The value is null, or is empty. </exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.ShowOnRibbon">
+      <summary>Gets or sets a value that indicates whether to show the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> in the Custom Actions group of the Ribbon that displays the form region.</summary>
+      <returns>true if the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> appears on the Ribbon; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.SubjectPrefix">
+      <summary>Gets or sets the text that appears at the beginning of the subject line of the reply.</summary>
+      <returns>A string that represents text that appears at the beginning of the subject line of the original form.</returns>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.TargetForm">
+      <summary>Gets or sets the message class of the form that appears when the user executes the custom action.</summary>
+      <returns>A string that represents the message class of the form that appears when a user executes the custom action.</returns>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+      <exception cref="T:Microsoft.Office.Tools.Outlook.InvalidMessageClassException">The value of the string is empty or contains the name of a message class that is not valid.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Title">
+      <summary>Gets or sets the name that is used to identify the custom action in the Custom Actions group of the Ribbon.</summary>
+      <returns>A string that represents the name that is used to identify the custom action in the Custom Actions group of the Ribbon.</returns>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.ToXml">
+      <summary>Returns a string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> as XML.</summary>
+      <returns>A string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> as XML.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.ToXml(System.Xml.XmlWriter)">
+      <summary>Saves the XML representation of the custom action in a string to an <see cref="T:System.XML.XMLTextWriter" /> object.</summary>
+      <param name="writer">An <see cref="T:System.XML.XMLTextWriter" /> to which to write the string.</param>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike">
+      <summary>Specifies how to address the target item that appears when the user executes the custom action.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.Reply">
+      <summary>Makes the new item a reply to the original item. If you create a new mail message, this option copies the address that appears in the From field of the message into the To field of the new message. The text that appears in the Subject field of the new message contains the text that appeared in the original Subject field.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.ReplyAll">
+      <summary>Makes the new item a reply to all of the senders and recipients of the original item. If you create a new mail item, this option copies the addresses that appear in the From and To fields of the message into the To field of the target form. This option also copies the addresses that appear in the CC field of the message into the CC field of the target form. The text that appears in the Subject field of the new message contains the text that appeared in the original Subject field.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.Forward">
+      <summary>Makes the new item a forward of the original item. If you create a new mail message, this option clears the To and CC fields of the new message. The text that appears in the Subject field of the new message contains the text that appeared in the original Subject field. The attachments on the original item are copied to the new item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.ReplyToFolder">
+      <summary>If you create a new Post item, this option posts the item to the active folder. This item also copies the text that appears in the Subject field into the Conversation field of the new item. It then clears the Subject field of the new item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.Response">
+      <summary>Causes the custom action button to appear when you click the Vote button in the Respond group of the Ribbon. </summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody">
+      <summary>Specifies how the Message or Notes field of an Outlook item is included to the reply that appears when the user executes the custom action. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.Omit">
+      <summary>The reply contains no references to the original item or the text of the original item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.Attach">
+      <summary>The reply includes the original item as an attachment.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.Include">
+      <summary>The reply includes the text of the original item. This text appears in the body of the reply.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.Indent">
+      <summary>The reply includes the text of the original item. The text is indented in the body of the reply. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.Prefix">
+      <summary>The reply includes the text of the original item. The text appears in the body of the reply. Each line of text is preceded by the prefix that you specify for the <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.SubjectPrefix" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" />.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionBody.User">
+      <summary>The reply includes the text of the original item. The text appears in the body of the reply. The text in the Subject field uses the default prefix. For example, if you set the <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.AddressLike" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> to <see cref="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionAddressLike.Reply" />, the text in the Subject field is preceded by "RE:".</summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection">
+      <summary>Represents a collection of <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> objects.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection.#ctor(Microsoft.Office.Tools.Outlook.FormRegionManifest)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" /> class by using a <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" />.</summary>
+      <param name="manifest">The <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that represents the display properties of the form region.</param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection.Contains(System.String)">
+      <summary>Returns a value that indicates whether the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" /> contains the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> that has the specified name. </summary>
+      <returns>true if the string matches the <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionCustomAction.Name" /> property of a <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> in the collection; otherwise, false.</returns>
+      <param name="actionName">A string that identifies a <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomAction" /> in the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" />. </param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection.Manifest">
+      <summary>Gets or sets the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" />.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that represents the properties of the form region to which this custom action is associated.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod">
+      <summary>Specifies how to respond when the user executes the custom action. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod.Open">
+      <summary>Opens a new form. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod.Prompt">
+      <summary>Prompts the user to open or send the new form. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionCustomActionMethod.Send">
+      <summary>Sends the form immediately. </summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs">
+      <summary>Provides data for the FormRegionInitializing event of the form region factory class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs.#ctor(System.Object,Microsoft.Office.Interop.Outlook.OlFormRegionMode,Microsoft.Office.Interop.Outlook.OlFormRegionSize,System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs" /> class. </summary>
+      <param name="outlookItem">The Outlook item that caused the form region to load.</param>
+      <param name="formRegionMode">The mode of the Outlook item that caused the form region to load. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionMode" /> enumeration.</param>
+      <param name="formRegionSize">The type of form region that loads. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionSize" /> enumeration.</param>
+      <param name="cancel">A <see cref="T:System.Boolean" /> that indicates whether the form region should appear for <paramref name="outlookItem" />.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs.FormRegionMode">
+      <summary>Gets the mode of the Microsoft Office Outlook item that caused the form region to load.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionMode" /> that represents the mode of the Outlook item that caused the form region to load.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs.FormRegionSize">
+      <summary>Gets the type of form region that loads.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionSize" /> that represents the type of form region that loads.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs.OutlookItem">
+      <summary>Gets the Microsoft Office Outlook item that caused the form region to load.</summary>
+      <returns>An <see cref="T:System.Object" /> that represents the Outlook item that caused the form region to load.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionKindConstants">
+      <summary>Contains constants that specify whether the form region that a form region factory creates is based on a user control or an Outlook Form Storage (.ofs) file.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionKindConstants.Ofs">
+      <summary>Specifies that the form region is imported from Outlook. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionKindConstants.WindowsForms">
+      <summary>Specifies that the form region is based on a user control. </summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionManifest">
+      <summary>Represents a form region manifest that describes how the form region appears in Outlook.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifest.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifest.#ctor(Microsoft.Office.Tools.Outlook.FormRegionManifestIcons,Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> class using the specified icons and custom actions.</summary>
+      <param name="icons">A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> that represents the icons that you want to appear on Outlook Inspectors that display separate, replacement, and replace-all form regions. </param>
+      <param name="customActions">A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" /> that contains all of the custom actions that you want to appear in the Custom Actions group on the Ribbon of the Outlook item that displays the form region.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="icons" /> argument or the <paramref name="customActions" /> argument is null.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Contact">
+      <summary>Gets or sets the name that appears in the Choose Form dialog box in Outlook for replacement and replace-all form regions. </summary>
+      <returns>A string that represents the name that appears in the Choose Form dialog box in Outlook for replacement and replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.CustomActions">
+      <summary>Gets a collection that contains all of the custom actions that appear in the Custom Actions group on the Ribbon of the Outlook item that displays the form region.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionCustomActionCollection" /> that contains all of the custom actions that appear in the Custom Actions group on the Ribbon of the Outlook item that displays the form region.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Description">
+      <summary>Gets or sets the text that appears in the Choose Form dialog box in Outlook for replacement and replace-all form regions.</summary>
+      <returns>A string that represents the text that appears in the Choose Form dialog box in Outlook for replacement and replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.DisplayAfter">
+      <summary>Gets or sets the name of the form region to display before this form region.</summary>
+      <returns>A string that represents the name of the form region to display before this form region.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.ExactMessageClass">
+      <summary>Gets or sets a value that indicates whether the form region is displayed by derived message classes.</summary>
+      <returns>true if the form region is not displayed by derived message classes; otherwise, false. The default is false.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.FormRegionFactory">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.FormRegionName">
+      <summary>Gets or sets the text that appears on the Ribbon of an Outlook item or in the header text of an adjoining form region. </summary>
+      <returns>A string that contains the text that appears on the Ribbon of an Outlook item or in the header text of an adjoining form region. </returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.FormRegionType">
+      <summary>Gets or sets a <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionType" /> that determines how the form region appears in an Outlook form.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionType" /> that determines how the form region appears in an Outlook form.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Hidden">
+      <summary>Gets or sets a value that indicates whether replacement and replace-all form regions appear in the Choose Form dialog box in Outlook. </summary>
+      <returns>true if replacement and replace-all form regions do not appear in the Choose Form dialog box in Outlook; otherwise, false. The default is false.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Icons">
+      <summary>Gets or sets a <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> that specifies the icons that appear for separate, replacement, or replace-all form regions.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> that specifies the icons that appear for separate, replacement, or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.LoadLegacyForm">
+      <summary>Gets or sets a value that indicates whether Outlook loads legacy forms before loading this form region. </summary>
+      <returns>true if Outlook loads legacy forms before loading this form region; otherwise, false. The default is false.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked">
+      <summary>Gets or sets a value that indicates whether the properties of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> can be modified.</summary>
+      <returns>true if the properties of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> cannot be modified; otherwise, false. </returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.RibbonAccelerator">
+      <summary>Gets or sets the keyboard shortcut of separate, replacement, and replace-all form regions.</summary>
+      <returns>A string that represents the keyboard shortcut of separate, replacement, and replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 2 characters in length or contains characters that are not alpha numeric.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.ShowInspectorCompose">
+      <summary>Gets or sets a value that indicates whether to display the form region when an Outlook Inspector is in compose mode. </summary>
+      <returns>true to display the form region when an Outlook Inspector is in compose mode; otherwise, false. The default is true.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.ShowInspectorRead">
+      <summary>Gets or sets a value that indicates whether to display the form region when an Outlook Inspector is in read mode. </summary>
+      <returns>true to display the form region when an Outlook Inspector is in read mode; otherwise, false. The default is true.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.ShowReadingPane">
+      <summary>Gets or sets a value that indicates whether to display the form region in the Reading Pane. </summary>
+      <returns>true to display the form region in the Reading Pane; otherwise, false. The default is false.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Title">
+      <summary>Gets or sets the name that appears in the Actions menu and Choose Form dialog box in Outlook for replacement and replace-all form regions.</summary>
+      <returns>A string that represents the text that appears in the Actions menu and Choose Form dialog box in Outlook for replacement and replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifest.ToXml">
+      <summary>Creates a string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> as XML.</summary>
+      <returns>A string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> as XML.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifest.ToXml(System.Xml.XmlWriter)">
+      <summary>Creates a string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> as XML and saves it to an <see cref="T:System.XML.XMLTextWriter" /> instance.</summary>
+      <param name="writer">An <see cref="T:System.XML.XMLTextWriter" /> to which to write the string.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Version">
+      <summary>Gets or sets the version number of the form region.</summary>
+      <returns>A string that represents the version number of the form region.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> is true.</exception>
+      <exception cref="T:System.ArgumentException">The value is greater than 256 characters in length.</exception>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons">
+      <summary>Represents a collection of icons that appear for separate, replace, and replace-all form regions.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.#ctor(Microsoft.Office.Tools.Outlook.FormRegionManifest)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> class using the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> of the form region.</summary>
+      <param name="manifest">A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that describes how the form region appears in Outlook. </param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Default">
+      <summary>Gets or sets the default icon that appears for replacement and replace-all form regions. </summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears by default in Explorers that display replacement and replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Encrypted">
+      <summary>Gets or sets the icon that appears for encrypted items that have replacement or replace-all form regions. </summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for encrypted items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Forwarded">
+      <summary>Gets or sets the icon that appears for forwarded items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for forwarded items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.GetIcon(Microsoft.Office.Interop.Outlook.OlFormRegionIcon)">
+      <summary>Returns an image that will be displayed for a particular type of icon for the form region.</summary>
+      <returns>An <see cref="T:stdole.IPictureDisp" /> that represents the icon.</returns>
+      <param name="icon">An Microsoft.Office.Interop.Outlook.OlFormRegionIcon that represents the type of icon that you want to return.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Manifest">
+      <summary>The <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> instance that is associated with this <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" />.</summary>
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Page">
+      <summary>Gets or sets the icon that appears on the Ribbon of an Inspector for items that have separate, replacement, or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Image" /> that appears on the Ribbon of an Inspector for items that have separate, replacement, or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Read">
+      <summary>Gets or sets the icon that appears for items marked as read that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for items marked as read that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Recurring">
+      <summary>Gets or sets the icon that appears for recurring items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for recurring items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Replied">
+      <summary>Gets or sets the icon that appears for replied-to items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for replied-to items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Signed">
+      <summary>Gets or sets the icon that appears for digitally signed items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for digitally signed items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Submitted">
+      <summary>Gets or sets the icon that appears for submitted items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for submitted items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.ToString">
+      <summary>Returns an empty string.</summary>
+      <returns>An empty string.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.ToXml">
+      <summary>Creates a string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> as XML.</summary>
+      <returns>A string that represents the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> as XML.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.ToXml(System.Xml.XmlWriter)">
+      <summary>Creates an XML representation of <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons" /> as a string and saves it to an <see cref="T:System.XML.XMLTextWriter" /> instance.</summary>
+      <param name="writer">An <see cref="T:System.XML.XMLTextWriter" /> to which to write the string.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Unread">
+      <summary>Gets or sets the icon that appears for items marked as unread that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for items marked as unread that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Unsent">
+      <summary>Gets or sets the icon that appears for unsent items that have replacement or replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears for unsent items that have replacement or replace-all form regions.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionManifestIcons.Window">
+      <summary>Gets or sets the icon that appears in the notification area and in the ALT+TAB dialog box for open items that display replacement and replace-all form regions.</summary>
+      <returns>An <see cref="T:System.Drawing.Icon" /> that appears in the notification area and in the ALT+TAB dialog box for open items that display replacement and replace-all form regions. </returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:Microsoft.Office.Tools.Outlook.FormRegionManifest.Locked" /> property of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> object associated with this object is true.</exception>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute">
+      <summary>Represents an attribute that specifies the name of a Microsoft Office Outlook message class to associate with the form region.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute" /> class. </summary>
+      <param name="messageClass">The name of a message class.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="messageClass" /> argument is null or is empty.</exception>
+      <exception cref="T:System.ArgumentException">The <paramref name="messageClass" /> argument is greater than 255 characters in length.</exception>
+      <exception cref="T:Microsoft.Office.Tools.Outlook.InvalidMessageClassException">The <paramref name="messageClass" /> argument is invalid. For more information about valid message class names, see Associating a Form Region with an Outlook Message Class.</exception>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Activity">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Journal item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Appointment">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Appointment item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Contact">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Contact item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.DistributionList">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Distribution List item.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Equals(System.Object)">
+      <summary />
+      <returns />
+      <param name="obj" />
+      <param name="obj">An <see cref="T:System.Object" /> to compare with this instance or null. </param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.GetHashCode">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.MessageClass">
+      <summary>Gets the name of the message class to associate with the form region.</summary>
+      <returns>A string that represents the name of the message class to associate with the form region.</returns>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Note">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Mail item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Post">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Post item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.PostRss">
+      <summary>Specifies the message class name of a Microsoft Office Outlook RSS Post item.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionMessageClassAttribute.Task">
+      <summary>Specifies the message class name of a Microsoft Office Outlook Task item.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute">
+      <summary>Represents the name that uniquely identifies a form region across all Outlook add-ins.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute" /> class.</summary>
+      <param name="name">A string that uniquely identifies the form region across all add-ins.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> argument is null.</exception>
+      <exception cref="T:System.ArgumentException">The <paramref name="name" /> argument is greater than 255 characters in length.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute.Equals(System.Object)">
+      <summary />
+      <returns />
+      <param name="obj" />
+      <param name="obj">An <see cref="T:System.Object" /> to compare with this instance or null. </param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute.GetHashCode">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.FormRegionNameAttribute.Name">
+      <summary>Gets a name that uniquely identifies the form region across all add-ins.</summary>
+      <returns>A string that represents the name of the form region.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionReadOnlyCollection">
+      <summary>Represents a collection of form regions that are associated with a Microsoft Office Outlook add-in.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionReadOnlyCollection.#ctor">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionReadOnlyCollection.#ctor(System.Collections.Generic.IList{Microsoft.Office.Tools.Outlook.IFormRegion})">
+      <summary />
+      <param name="list" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionReadOnlyCollection.FindFirst``1">
+      <summary>Returns a form region of type T in the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionReadOnlyCollection" />.</summary>
+      <returns>An object of type T that inherits from <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionControl" /> or <see cref="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException">
+      <summary>Represents an error that occurs when the <see cref="M:Microsoft.Office.Tools.Outlook.IFormRegionFactory.GetFormRegionStorage(System.Object,Microsoft.Office.Interop.Outlook.OlFormRegionMode,Microsoft.Office.Interop.Outlook.OlFormRegionSize)" /> method of the form region factory class returns null.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException.#ctor(System.Exception)">
+      <summary />
+      <param name="innerException" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException.#ctor(System.String)">
+      <summary />
+      <param name="message" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.FormRegionStorageNullException.#ctor(System.String,System.Exception)">
+      <summary />
+      <param name="message" />
+      <param name="innerException" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.FormRegionType">
+      <summary>Specifies the way the form region appears in Microsoft Office Outlook.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionType.Adjoining">
+      <summary>Appends the form region to the bottom of an Outlook form's default page.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionType.Replacement">
+      <summary>Adds the form region as a new page that replaces the default page of an Outlook form.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionType.ReplaceAll">
+      <summary>Replaces the whole Outlook form with the form region. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Tools.Outlook.FormRegionType.Separate">
+      <summary>Adds the form region as a new page in an Outlook form.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.IFormRegion">
+      <summary>Defines an interface that exposes methods that are used by the events of the form region.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.IFormRegion.OnShutdown">
+      <summary>Occurs before the form region is closed. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.IFormRegion.OnStartup">
+      <summary>Occurs after an instance of the form region is created but before the form region appears. </summary>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.IFormRegionFactory">
+      <summary>Defines an interface that creates instances of classes that implement <see cref="T:Microsoft.Office.Tools.Outlook.IFormRegion" />.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.IFormRegionFactory.CreateFormRegion(Microsoft.Office.Interop.Outlook.FormRegion)">
+      <summary>Returns an instance of a class that implements the <see cref="T:Microsoft.Office.Tools.Outlook.IFormRegion" /> interface.</summary>
+      <returns>An instance of a class that implements the <see cref="T:Microsoft.Office.Tools.Outlook.IFormRegion" /> interface.</returns>
+      <param name="formRegion">A <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" /> that represents the native form region.</param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.IFormRegionFactory.GetFormRegionStorage(System.Object,Microsoft.Office.Interop.Outlook.OlFormRegionMode,Microsoft.Office.Interop.Outlook.OlFormRegionSize)">
+      <summary>Returns an Outlook Form Storage (.ofs) file.</summary>
+      <returns>A <see cref="T:System.Byte" /> array that contains the contents of the .ofs file. </returns>
+      <param name="outlookItem">The Outlook item that caused the form region to load.</param>
+      <param name="formRegionMode">The mode of the Outlook item that caused the form region to load. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionMode" /> enumeration.</param>
+      <param name="formRegionSize">The type of form region being loaded. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionSize" /> enumeration.</param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.IFormRegionFactory.IsDisplayedForItem(System.Object,Microsoft.Office.Interop.Outlook.OlFormRegionMode,Microsoft.Office.Interop.Outlook.OlFormRegionSize)">
+      <summary>Returns a value that indicates whether the form region should appear for the specified Microsoft Office Outlook item.</summary>
+      <returns>A <see cref="T:System.Boolean" /> that indicates whether the form region should appear for the specified Outlook item.</returns>
+      <param name="outlookItem">The Outlook item that caused the form region to load.</param>
+      <param name="formRegionMode">The mode of the Outlook item that caused the form region to load. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionMode" /> enumeration.</param>
+      <param name="formRegionSize">The type of form region being loaded. This mode is represented by the <see cref="T:Microsoft.Office.Interop.Outlook.OlFormRegionSize" /> enumeration.</param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.IFormRegionFactory.Kind">
+      <summary>Gets the type of form region that the factory creates.</summary>
+      <returns>A string that represents the type of form region that the factory creates.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.IFormRegionFactory.Manifest">
+      <summary>Gets a collection of properties that describe how the form region appears in Microsoft Office Outlook.</summary>
+      <returns>A <see cref="T:Microsoft.Office.Tools.Outlook.FormRegionManifest" /> that represents a collection of properties that describe how the form region appears in Outlook.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion">
+      <summary>Represents a Microsoft Office Outlook form region that is based on an Outlook Form Storage (*.ofs) file.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.#ctor(Microsoft.Office.Interop.Outlook.FormRegion)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion" /> class by using the native <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" />.</summary>
+      <param name="outlookFormRegion">The <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" /> object to use to create this <see cref="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion" />.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="outlookFormRegion" /> argument is null.</exception>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.ImportedFormRegion.Factory">
+      <summary>Gets or sets the form region factory that is associated with this <see cref="T:Microsoft.Office.Tools.Outlook.ImportedFormRegion" />.</summary>
+      <returns>An object that implements the <see cref="T:Microsoft.Office.Tools.Outlook.IFormRegionFactory" /> interface.</returns>
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.ImportedFormRegion.FormRegionClosed">
+      <summary>Occurs before the form region is closed. </summary>
+    </member>
+    <member name="E:Microsoft.Office.Tools.Outlook.ImportedFormRegion.FormRegionShowing">
+      <summary>Occurs after an instance of the form region is created but before the form region appears. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.GetFormRegionControl``1(System.String)">
+      <summary>Returns the specified control from the Microsoft.Vbe.Interop.Forms.UserForm of the form region.</summary>
+      <returns>The control of type T that is specified by <paramref name="identifier" />.</returns>
+      <param name="identifier">The name of the control that you would like to locate in theMicrosoft.Vbe.Interop.Forms.UserForm of the form region.</param>
+      <exception cref="T:System.InvalidOperationException">The form region specified by the <see cref="P:Microsoft.Office.Tools.Outlook.ImportedFormRegion.OutlookFormRegion" /> property is null.</exception>
+      <exception cref="T:Microsoft.Office.Tools.Outlook.ControlNotFoundException">Identifier does not match a control in the .ofs file.</exception>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.InitializeControls">
+      <summary>Initializes the controls on the form region.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.Microsoft#Office#Tools#Outlook#IFormRegion#OnShutdown"></member>
+    <member name="M:Microsoft.Office.Tools.Outlook.ImportedFormRegion.Microsoft#Office#Tools#Outlook#IFormRegion#OnStartup"></member>
+    <member name="P:Microsoft.Office.Tools.Outlook.ImportedFormRegion.OutlookFormRegion">
+      <summary>Gets or sets the native form region object. </summary>
+      <returns>A <see cref="T:Microsoft.Office.Interop.Outlook.FormRegion" /> that represents the form region.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.ImportedFormRegion.OutlookItem">
+      <summary>Gets the Microsoft Office Outlook item for which the form region appears. </summary>
+      <returns>An <see cref="T:System.Object" /> that represents the Outlook item for which the form region appears.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.InvalidMessageClassException">
+      <summary>Represents errors that occur when a specified message class name is not valid.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.InvalidMessageClassException" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Tools.Outlook.InvalidMessageClassException" /> class by using the invalid message class name.</summary>
+      <param name="messageClass">The invalid message class name.</param>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.#ctor(System.String,System.Exception)">
+      <summary />
+      <param name="messageClass" />
+      <param name="innerException" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.#ctor(System.String,System.String)">
+      <summary />
+      <param name="messageClass" />
+      <param name="parameterName" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary />
+      <param name="info" />
+      <param name="context" />
+      <param name="info">The object that holds the serialized object data. </param>
+      <param name="context">The contextual information about the source or destination. </param>
+    </member>
+    <member name="P:Microsoft.Office.Tools.Outlook.InvalidMessageClassException.MessageClass">
+      <summary>Gets the invalid message class name.</summary>
+      <returns>A string that represents the invalid message class name.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Tools.Outlook.OutlookAddIn">
+      <summary>Represents a Microsoft Office Outlook add-in.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.#ctor">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.#ctor(System.String,System.String)">
+      <summary />
+      <param name="cookie" />
+      <param name="identifier" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.GetFormRegions">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.GetFormRegions``1(Microsoft.Office.Interop.Outlook.Explorer)">
+      <summary />
+      <returns />
+      <param name="explorer" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.GetFormRegions``1(Microsoft.Office.Interop.Outlook.Inspector)">
+      <summary />
+      <returns />
+      <param name="inspector" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Outlook.OutlookAddIn.RequestService(System.Guid)">
+      <summary>Returns an object that implements the <see cref="T:Microsoft.Office.Interop.Outlook.FormRegionStartup" /> interface.</summary>
+      <returns>An object that implements the <see cref="T:Microsoft.Office.Interop.Outlook.FormRegionStartup" /> interface.</returns>
+      <param name="serviceGuid">A <see cref="T:System." /><see cref="Guid" /> that identifies a <see cref="T:Microsoft.Office.Interop.Outlook.FormRegionStartup" />.</param>
+    </member>
+  </members>
+</doc>

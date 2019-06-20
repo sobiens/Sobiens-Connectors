@@ -1,0 +1,14 @@
+﻿<Window x:Class="test2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             xmlns:st="clr-namespace:Sobiens.Connectors.WPF.Controls.Settings"
+             xmlns:l="clr-namespace:Sobiens.Connectors.WPF.Controls.Selectors"
+             Loaded="UserControl_Loaded" d:DesignHeight="288" d:DesignWidth="264">
+    <Grid>
+        
+    </Grid>
+</Window>

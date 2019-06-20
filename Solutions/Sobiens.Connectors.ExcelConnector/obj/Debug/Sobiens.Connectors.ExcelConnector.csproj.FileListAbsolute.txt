@@ -1,0 +1,4 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.Properties.Resources.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csproj.GenerateResource.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csproj.CoreCompileInputs.cache

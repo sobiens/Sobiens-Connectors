@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Sobiens.WPF.Controls.UserControls.FilterableHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="133">
+    <Grid>
+        <ComboBox Name="cboTask" Height="25" HorizontalAlignment="Stretch" Visibility="Collapsed" DropDownClosed="cboTask_DropDownClosed">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="chkTask" Content="{Binding}" Checked="chkTask_Checked" Unchecked="chkTask_Unchecked" IsChecked="{Binding Path=IsChecked}"></CheckBox>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Name="HeaderLabel" VerticalAlignment="Top"  HorizontalAlignment="Left" Content="{DynamicResource Status}"></Label>
+        <Button Width="25" Height="25" HorizontalAlignment="Right" Margin="0,0,0,0" BorderThickness="0" Click="Button_Click">
+            <ContentControl Margin="0,0,0,0" BorderThickness="0">
+                <Image Margin="0,0,0,0" Source="../Images/FilterBrowse.gif" Width="23" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="LoadingImage" />
+            </ContentControl>
+        </Button>
+    </Grid>
+</UserControl>

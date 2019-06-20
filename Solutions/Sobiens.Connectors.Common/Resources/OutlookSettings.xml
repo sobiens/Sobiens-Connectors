@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <ItemProperties>
+    <Property Name="Application" DisplayName="Application" Type="olOutlookInternal" />
+    <Property Name="Class" DisplayName="Class" Type="olNumber" />
+    <Property Name="Session" DisplayName="Session" Type="olOutlookInternal" />
+    <Property Name="Parent" DisplayName="Parent" Type="olOutlookInternal" />
+    <Property Name="Actions" DisplayName="Actions" Type="olOutlookInternal" />
+    <Property Name="Attachments" DisplayName="Attachments" Type="olOutlookInternal" />
+    <Property Name="BillingInformation" DisplayName="BillingInformation" Type="olText" Hidden="False" />
+    <Property Name="Body" DisplayName="Body" Type="olText" Hidden="False" />
+    <Property Name="Categories" DisplayName="Categories" Type="olText" />
+    <Property Name="Companies" DisplayName="Companies" Type="olText" />
+    <Property Name="ConversationIndex" DisplayName="ConversationIndex" Type="olText" />
+    <Property Name="ConversationTopic" DisplayName="ConversationTopic" Type="olText" Hidden="False" />
+    <Property Name="CreationTime" DisplayName="CreationTime" Type="olDateTime" Hidden="False" />
+    <Property Name="EntryID" DisplayName="EntryID" Type="olText" />
+    <Property Name="FormDescription" DisplayName="FormDescription" Type="olOutlookInternal" />
+    <Property Name="GetInspector" DisplayName="GetInspector" Type="olOutlookInternal" />
+    <Property Name="Importance" DisplayName="Importance" Type="olNumber" Hidden="False" />
+    <Property Name="LastModificationTime" DisplayName="LastModificationTime" Type="olDateTime" />
+    <Property Name="MessageClass" DisplayName="MessageClass" Type="olText" />
+    <Property Name="Mileage" DisplayName="Mileage" Type="olText" />
+    <Property Name="NoAging" DisplayName="NoAging" Type="olYesNo" />
+    <Property Name="OutlookInternalVersion" DisplayName="OutlookInternalVersion" Type="olNumber" />
+    <Property Name="OutlookVersion" DisplayName="OutlookVersion" Type="olText" />
+    <Property Name="Saved" DisplayName="Saved" Type="olYesNo" />
+    <Property Name="Sensitivity" DisplayName="Sensitivity" Type="olNumber" />
+    <Property Name="Size" DisplayName="Size" Type="olNumber" Hidden="False" />
+    <Property Name="Subject" DisplayName="Subject" Type="olText" Hidden="False" />
+    <Property Name="UnRead" DisplayName="UnRead" Type="olYesNo" />
+    <Property Name="UserProperties" DisplayName="UserProperties" Type="olOutlookInternal" />
+    <Property Name="AlternateRecipientAllowed" DisplayName="AlternateRecipientAllowed" Type="olYesNo" />
+    <Property Name="AutoForwarded" DisplayName="AutoForwarded" Type="olYesNo" />
+    <Property Name="BCC" DisplayName="BCC" Type="olText" Hidden="False" />
+    <Property Name="CC" DisplayName="CC" Type="olText" Hidden="False" />
+    <Property Name="DeferredDeliveryTime" DisplayName="DeferredDeliveryTime" Type="olOutlookInternal" />
+    <Property Name="DeleteAfterSubmit" DisplayName="DeleteAfterSubmit" Type="olYesNo" />
+    <Property Name="ExpiryTime" DisplayName="ExpiryTime" Type="olOutlookInternal" />
+    <Property Name="FlagRequest" DisplayName="FlagRequest" Type="olText" />
+    <Property Name="HTMLBody" DisplayName="HTMLBody" Type="olText" Hidden="False" />
+    <Property Name="OriginatorDeliveryReportRequested" DisplayName="OriginatorDeliveryReportRequested" Type="olYesNo" />
+    <Property Name="ReadReceiptRequested" DisplayName="ReadReceiptRequested" Type="olYesNo" />
+    <Property Name="ReceivedByEntryID" DisplayName="ReceivedByEntryID" Type="olOutlookInternal" />
+    <Property Name="ReceivedByName" DisplayName="ReceivedByName" Type="olText" />
+    <Property Name="ReceivedOnBehalfOfEntryID" DisplayName="ReceivedOnBehalfOfEntryID" Type="olOutlookInternal" />
+    <Property Name="ReceivedOnBehalfOfName" DisplayName="ReceivedOnBehalfOfName" Type="olText" />
+    <Property Name="ReceivedTime" DisplayName="ReceivedTime" Type="olDateTime" />
+    <Property Name="RecipientReassignmentProhibited" DisplayName="RecipientReassignmentProhibited" Type="olYesNo" />
+    <Property Name="Recipients" DisplayName="Recipients" Type="olOutlookInternal" />
+    <Property Name="ReminderOverrideDefault" DisplayName="ReminderOverrideDefault" Type="olYesNo" />
+    <Property Name="ReminderPlaySound" DisplayName="ReminderPlaySound" Type="olYesNo" />
+    <Property Name="ReminderSet" DisplayName="ReminderSet" Type="olYesNo" />
+    <Property Name="ReminderSoundFile" DisplayName="ReminderSoundFile" Type="olText" />
+    <Property Name="ReminderTime" DisplayName="ReminderTime" Type="olOutlookInternal" />
+    <Property Name="RemoteStatus" DisplayName="RemoteStatus" Type="olNumber" />
+    <Property Name="ReplyRecipientNames" DisplayName="ReplyRecipientNames" Type="olText" />
+    <Property Name="ReplyRecipients" DisplayName="ReplyRecipients" Type="olOutlookInternal" />
+    <Property Name="SaveSentMessageFolder" DisplayName="SaveSentMessageFolder" Type="olOutlookInternal" />
+    <Property Name="SenderName" DisplayName="SenderName" Type="olText" Hidden="False" />
+    <Property Name="Sent" DisplayName="Sent" Type="olYesNo" />
+    <Property Name="SentOn" DisplayName="SentOn" Type="olDateTime" />
+    <Property Name="SentOnBehalfOfName" DisplayName="SentOnBehalfOfName" Type="olText" />
+    <Property Name="Submitted" DisplayName="Submitted" Type="olYesNo" />
+    <Property Name="To" DisplayName="To" Type="olText" Hidden="False" />
+    <Property Name="VotingOptions" DisplayName="VotingOptions" Type="olText" />
+    <Property Name="VotingResponse" DisplayName="VotingResponse" Type="olText" />
+    <Property Name="Links" DisplayName="Links" Type="olOutlookInternal" />
+    <Property Name="ItemProperties" DisplayName="ItemProperties" Type="olOutlookInternal" />
+    <Property Name="BodyFormat" DisplayName="BodyFormat" Type="olNumber" />
+    <Property Name="DownloadState" DisplayName="DownloadState" Type="olNumber" />
+    <Property Name="InternetCodepage" DisplayName="InternetCodepage" Type="olNumber" />
+    <Property Name="MarkForDownload" DisplayName="MarkForDownload" Type="olNumber" />
+    <Property Name="IsConflict" DisplayName="IsConflict" Type="olYesNo" />
+    <Property Name="AutoResolvedWinner" DisplayName="AutoResolvedWinner" Type="olYesNo" />
+    <Property Name="Conflicts" DisplayName="Conflicts" Type="olOutlookInternal" />
+    <Property Name="SenderEmailAddress" DisplayName="SenderEmailAddress" Type="olText" Hidden="False" />
+    <Property Name="SenderEmailType" DisplayName="SenderEmailType" Type="olText" />
+    <Property Name="Permission" DisplayName="Permission" Type="olNumber" />
+    <Property Name="PermissionService" DisplayName="PermissionService" Type="olNumber" />
+    <Property Name="PropertyAccessor" DisplayName="PropertyAccessor" Type="olOutlookInternal" />
+    <Property Name="SendUsingAccount" DisplayName="SendUsingAccount" Type="olOutlookInternal" />
+    <Property Name="TaskSubject" DisplayName="TaskSubject" Type="olText" />
+    <Property Name="TaskDueDate" DisplayName="TaskDueDate" Type="olOutlookInternal" />
+    <Property Name="TaskStartDate" DisplayName="TaskStartDate" Type="olOutlookInternal" />
+    <Property Name="TaskCompletedDate" DisplayName="TaskCompletedDate" Type="olOutlookInternal" />
+    <Property Name="ToDoTaskOrdinal" DisplayName="ToDoTaskOrdinal" Type="olOutlookInternal" />
+    <Property Name="IsMarkedAsTask" DisplayName="IsMarkedAsTask" Type="olYesNo" />
+    <Property Name="ConversationID" DisplayName="ConversationID" Type="olText" />
+    <Property Name="Sender" DisplayName="Sender" Type="olOutlookInternal" Hidden="False" />
+    <Property Name="PermissionTemplateGuid" DisplayName="PermissionTemplateGuid" Type="olText" />
+    <Property Name="RTFBody" DisplayName="RTFBody" Type="olOutlookInternal" Hidden="False" />
+    <Property Name="RetentionPolicyName" DisplayName="RetentionPolicyName" Type="olText" />
+    <Property Name="RetentionExpirationDate" DisplayName="RetentionExpirationDate" Type="olDateTime" />
+  </ItemProperties>
+</Settings>

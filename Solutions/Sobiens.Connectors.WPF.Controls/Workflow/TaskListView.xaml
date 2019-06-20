@@ -1,0 +1,45 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.WPF.Controls.Workflow.TaskListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:l="clr-namespace:Sobiens.WPF.Controls.UserControls;assembly=Sobiens.WPF.Controls"
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             xmlns:my="clr-namespace:Sobiens.WPF.Controls.UserControls;assembly=Sobiens.WPF.Controls"
+             d:DesignHeight="148" d:DesignWidth="431">
+    <Grid>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="31" Height="31" BorderThickness="0" Name="RefreshButton" Click="RefreshButton_Click">
+            <StackPanel>
+                <Image my:ImageBehavior.AnimatedSource="/Sobiens.Connectors.WPF.Controls;component/Images/loader.GIF" Stretch="Fill" Margin="0,0,0,0" Name="LoadingImage" Visibility="Hidden" />
+                <Image Source="/Sobiens.Connectors.WPF.Controls;component/Images/REFRESH.GIF" Stretch="Fill" Name="RefreshImage" Margin="0,0,0,0" />
+            </StackPanel>
+            <Button.Background>
+                <SolidColorBrush />
+            </Button.Background>
+        </Button>
+        <ListView Name="TasksListView" Margin="25,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            BorderThickness="0" MouseDoubleClick="TasksListView_MouseDoubleClick" ContextMenuOpening="TasksListView_ContextMenuOpening">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{DynamicResource Title}" DisplayMemberBinding="{Binding Path=Title}" Width="123" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=AssignedTo}" Width="95" >
+                        <HeaderedContentControl >
+                            <l:FilterableHeader Name="AssignedToFilterableHeader" Width="90" ></l:FilterableHeader>
+                        </HeaderedContentControl>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Status}" Width="95">
+                        <HeaderedContentControl >
+                            <l:FilterableHeader Name="StatusFilterableHeader" Width="90" ></l:FilterableHeader>
+                        </HeaderedContentControl>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Priority}" Width="95">
+                        <HeaderedContentControl >
+                            <l:FilterableHeader Name="PriorityFilterableHeader" Width="90" ></l:FilterableHeader>
+                        </HeaderedContentControl>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</wpfc:HostControl>

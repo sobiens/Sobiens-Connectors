@@ -1,0 +1,13 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.EditItems.FileCopyNameForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" d:DesignHeight="81" d:DesignWidth="274">
+    <Grid>
+        <Label Name="FileNameLabel" TabIndex="26" Margin="12,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{DynamicResource File Name}"></Label>
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,15,63,0" Name="FileNameTextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="{DynamicResource There is a file with the same name already!}" Height="28" HorizontalAlignment="Left" Margin="12,45,0,0" Name="ErrorLabel" VerticalAlignment="Top" Foreground="Red" />
+    </Grid>
+</wpfc:HostControl>

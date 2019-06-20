@@ -1,0 +1,15 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.ObjectAccessMaintenanceForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="508" xmlns:my="clr-namespace:Sobiens.Connectors.Studio.UI.Controls" BorderBrush="Black" Margin="10" Padding="10">
+    <Grid>
+        <Label Content="Type" Height="25" HorizontalAlignment="Left" Margin="31,30,0,0" Name="TypeLabel" VerticalAlignment="Top" Width="119" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="156,30,0,0" Name="TypeTextBox" VerticalAlignment="Top" Width="326" Tag="Name" TabIndex="2" IsEnabled="False" />
+        <Label Content="Object" Height="25" HorizontalAlignment="Left" Margin="31,59,0,0" Name="NameLabel" VerticalAlignment="Top" Width="119" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="156,59,0,0" Name="NameTextBox" VerticalAlignment="Top" Width="326" Tag="Name" TabIndex="2" IsEnabled="False" />
+    </Grid>
+</wpfc:HostControl>

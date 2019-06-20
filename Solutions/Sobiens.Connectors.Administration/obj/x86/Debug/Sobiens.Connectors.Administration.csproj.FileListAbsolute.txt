@@ -1,0 +1,4 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Administration\obj\x86\Debug\MainWindow.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Administration\obj\x86\Debug\MainWindow.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Administration\obj\x86\Debug\App.g.cs
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration_MarkupCompile.cache

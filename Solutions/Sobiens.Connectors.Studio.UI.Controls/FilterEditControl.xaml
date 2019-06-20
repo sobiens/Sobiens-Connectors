@@ -1,0 +1,17 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.FilterEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             d:DesignHeight="485" d:DesignWidth="680" Loaded="HostControl_Loaded">
+    <Grid>
+        <ComboBox x:Name="FieldComboBox" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.058,-0.864"/>
+        <ComboBox x:Name="ComparisonTypeComboBox" HorizontalAlignment="Left" Margin="150,70,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.058,-0.864"/>
+        <Label x:Name="FieldLabel" Content="Field" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ValueLabel" Content="Filter value" HorizontalAlignment="Left" Margin="300,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.863,4.308"/>
+        <Label x:Name="ComparisonTypeLabel" Content="Comparison Type" HorizontalAlignment="Left" Margin="150,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.863,4.308"/>
+        <TextBox x:Name="FilterValueTextBox" HorizontalAlignment="Left" Height="23" Margin="300,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</wpfc:HostControl>

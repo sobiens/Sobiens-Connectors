@@ -1,0 +1,54 @@
+﻿<Window x:Class="Sobiens.Connectors.Studio.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:my1="clr-namespace:Sobiens.Connectors.Studio.UI.Controls;assembly=Sobiens.Connectors.Studio.UI.Controls"
+        xmlns:local="clr-namespace:Sobiens.Connectors.Studio.UI"
+        Title="Sobiens Studio" Height="500" Width="500" Loaded="Window_Loaded" Initialized="Window_Initialized" Icon="Images/Sobiens_20x20.gif" Closing="Window_Closing"
+        mc:Ignorable="d"
+        >
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu IsMainMenu="True"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#ADBACE">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Name="OpenMenuItem" Click="OpenMenuItem_Click"/>
+                <MenuItem Header="Save" Name="SaveMenuItem" Click="SaveMenuItem_Click" />
+                <MenuItem Header="Scheduled Jobs" Name="ScheduledJobsMenuItem" Click="ScheduledJobsMenuItem_Click" />
+                <MenuItem Header="Sync Data" Name="SyncDataMenuItem" Click="SyncDataMenuItem_Click" />
+                <MenuItem Header="Exit" Name="ExitMenuItem" Click="ExitMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="Help" Name="HelpMenuItem" Click="HelpMenuItem_Click"></MenuItem>
+        </Menu>
+        <my1:QueryDesignerToolbar Background="#ADBACE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="queryDesignerToolbar" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="30" />
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <my1:ServerObjectExplorer Grid.Column="0" x:Name="serverObjectExplorer" Margin="0,0,0,0" After_Select="serverObjectExplorer_After_Select"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" ShowCheckBoxes="False" />
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="Gray" />
+            <my1:QueriesPanel Grid.Column="2" x:Name="queriesPanel" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        </Grid>
+        
+        <StatusBar HorizontalAlignment="Left" Height="23" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <StatusBarItem Height="23" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Button Content="Start service" Name="StartBackgrounProcessButton" Click="Button_Click"></Button>
+            </StatusBarItem>
+            <StatusBarItem Height="23" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <ProgressBar Value="50" Width="90" Height="16" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

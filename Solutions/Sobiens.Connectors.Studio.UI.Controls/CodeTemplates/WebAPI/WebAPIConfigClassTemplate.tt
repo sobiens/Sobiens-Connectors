@@ -1,0 +1,52 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+
+<#@ parameter type="System.Object" name="Tables" #>
+using SobyGrid_WebAPIExample.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using System.Web.OData.Builder;
+using System.Web.OData.Extensions;
+
+namespace SobyGrid_WebAPIExample
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Web API configuration and services
+            config.Select();
+            config.Filter();
+            config.Expand();
+            config.Count();
+            config.OrderBy();
+            config.MaxTop(10000);
+
+            // Web API routes
+            //config.MapHttpAttributeRoutes();
+
+            // New code:
+            ODataModelBuilder builder = new ODataConventionModelBuilder();
+			<#
+			List<Folder> tables = (List<Folder>)Tables;
+			foreach (Folder table in tables)
+			{
+			#>
+            builder.EntitySet<<#= table.Title #>Record>("<#= table.Title #>");
+			<#
+			}
+			#>
+
+            config.MapODataServiceRoute(
+                routeName: "ODataRoute",
+                routePrefix: "api",
+                model: builder.GetEdmModel());
+        }
+    }
+}

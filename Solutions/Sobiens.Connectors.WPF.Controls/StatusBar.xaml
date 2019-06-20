@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Sobiens.Connectors.WPF.Controls.StatusBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="211" Height="20">
+    <StackPanel >
+        <TextBlock Name="StatusBarTextBlock" Text="{DynamicResource Ready}" VerticalAlignment="Top" Margin="2,2,2,2" FontSize="10" Height="10" />
+        <ProgressBar Name="StatusBarProgressBar" Value="0" Height="7" HorizontalContentAlignment="Center" Margin="0,0,0,10" />
+    </StackPanel>
+</UserControl>

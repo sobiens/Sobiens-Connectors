@@ -1,0 +1,12 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\registryUpdater.exe.config
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\registryUpdater.exe
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\registryUpdater.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CopyComplete
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.exe
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\NLog.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\NLog.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.csprojAssemblyReference.cache

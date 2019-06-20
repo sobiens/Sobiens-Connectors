@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/workflow/">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetToDosForItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetToDosForItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetToDosForItemResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplatesForItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplatesForItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplatesForItemResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartWorkflow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="templateId" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="workflowParameters">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartWorkflowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartWorkflowResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlterToDo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="todoId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="todoListId" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="taskData">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlterToDoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlterToDoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkflowDataForItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkflowDataForItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkflowDataForItemResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClaimReleaseTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="listId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fClaim" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClaimReleaseTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaimReleaseTaskResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkflowTaskData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="listId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkflowTaskDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkflowTaskDataResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetToDosForItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetToDosForItem" />
+  </wsdl:message>
+  <wsdl:message name="GetToDosForItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetToDosForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesForItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplatesForItem" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesForItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplatesForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartWorkflowSoapIn">
+    <wsdl:part name="parameters" element="tns:StartWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="StartWorkflowSoapOut">
+    <wsdl:part name="parameters" element="tns:StartWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlterToDoSoapIn">
+    <wsdl:part name="parameters" element="tns:AlterToDo" />
+  </wsdl:message>
+  <wsdl:message name="AlterToDoSoapOut">
+    <wsdl:part name="parameters" element="tns:AlterToDoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowDataForItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkflowDataForItem" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowDataForItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkflowDataForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClaimReleaseTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:ClaimReleaseTask" />
+  </wsdl:message>
+  <wsdl:message name="ClaimReleaseTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:ClaimReleaseTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowTaskDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkflowTaskData" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowTaskDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkflowTaskDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WorkflowSoap">
+    <wsdl:operation name="GetToDosForItem">
+      <wsdl:input message="tns:GetToDosForItemSoapIn" />
+      <wsdl:output message="tns:GetToDosForItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplatesForItem">
+      <wsdl:input message="tns:GetTemplatesForItemSoapIn" />
+      <wsdl:output message="tns:GetTemplatesForItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartWorkflow">
+      <wsdl:input message="tns:StartWorkflowSoapIn" />
+      <wsdl:output message="tns:StartWorkflowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterToDo">
+      <wsdl:input message="tns:AlterToDoSoapIn" />
+      <wsdl:output message="tns:AlterToDoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowDataForItem">
+      <wsdl:input message="tns:GetWorkflowDataForItemSoapIn" />
+      <wsdl:output message="tns:GetWorkflowDataForItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClaimReleaseTask">
+      <wsdl:input message="tns:ClaimReleaseTaskSoapIn" />
+      <wsdl:output message="tns:ClaimReleaseTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowTaskData">
+      <wsdl:input message="tns:GetWorkflowTaskDataSoapIn" />
+      <wsdl:output message="tns:GetWorkflowTaskDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkflowSoap" type="tns:WorkflowSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToDosForItem">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetToDosForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplatesForItem">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetTemplatesForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartWorkflow">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/StartWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterToDo">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/AlterToDo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowDataForItem">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetWorkflowDataForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimReleaseTask">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/ClaimReleaseTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowTaskData">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetWorkflowTaskData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WorkflowSoap12" type="tns:WorkflowSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToDosForItem">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetToDosForItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplatesForItem">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetTemplatesForItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartWorkflow">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/StartWorkflow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterToDo">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/AlterToDo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowDataForItem">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetWorkflowDataForItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimReleaseTask">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/ClaimReleaseTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowTaskData">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/workflow/GetWorkflowTaskData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Workflow">
+    <wsdl:port name="WorkflowSoap" binding="tns:WorkflowSoap">
+      <soap:address location="http://win-ram4kem5k9l/_vti_bin/workflow.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WorkflowSoap12" binding="tns:WorkflowSoap12">
+      <soap12:address location="http://win-ram4kem5k9l/_vti_bin/workflow.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.VisualStudio.Tools.Office.Contract.v9.0</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IListObjectContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.AddListener(System.AddIn.Contract.IContract)">
+      <summary />
+      <param name="contract" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetCurrentNumberOfColumns">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetCurrentNumberOfRows">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetIndexOfSelectedRowOnSheet">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetRowIds(System.Int32,System.Int32,System.Int32)"></member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetRowIds(System.Int32[],System.Int32)"></member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.GetTotalsRowVisible">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.IsSelected">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.IsSelectingIndex">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.RemoveListener(System.AddIn.Contract.IContract)">
+      <summary />
+      <param name="contract" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetCurrentNumberOfColumns(System.Int32)">
+      <summary />
+      <param name="columns" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetCurrentNumberOfRows(System.Int32)">
+      <summary />
+      <param name="rows" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetIndexOfSelectedRowOnSheet(System.Int32)">
+      <summary />
+      <param name="index" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetListObjectSupport(Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract)">
+      <summary />
+      <param name="contract" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetRowIds(System.Int32[],System.String[])"></member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectContract.SetTotalsRowVisible(System.Boolean)">
+      <summary />
+      <param name="totalsRowVisible" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.BeforeDoubleClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="targetRange" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.BeforeRightClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="targetRange" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.Change(System.IntPtr,Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges)">
+      <summary />
+      <param name="targetRange" />
+      <param name="changesRanges" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.DataBindingFailure">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.SelectionChange(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.SelectionChangeDeselected(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.SelectionChangeSelected(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectListenerContract.WorkbookBeforeSave(System.Boolean,System.Boolean@)">
+      <summary />
+      <param name="showSaveAsUI" />
+      <param name="cancel" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.ColumnManagerApplyFormatting">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.EndAddNewRow(System.Boolean)">
+      <summary />
+      <returns />
+      <param name="applyFormatting" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetBinding">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetCurrencyManagerCount">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetMappedPropertiesLength">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetRowCache">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetRowCacheCount">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetRowIndex(System.IntPtr,System.Int32)">
+      <summary />
+      <returns />
+      <param name="bodyRange" />
+      <param name="rowIndex" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetRowIndices(System.IntPtr)">
+      <summary />
+      <returns />
+      <param name="bodyRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.GetSelectedIndex">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleAllRowsDeletedCase(System.IntPtr,System.Boolean,System.Boolean@)">
+      <summary />
+      <param name="targetRange" />
+      <param name="forceColumnChecking" />
+      <param name="cacheCurrentIndices" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleColumnResize(System.Int32,System.Int32)">
+      <summary />
+      <param name="originalNumberOfColumns" />
+      <param name="newNumberOfColumns" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleRowAddition(System.Int32,System.Int32,System.Int32,System.Boolean)">
+      <summary />
+      <param name="difference" />
+      <param name="startRowIndex" />
+      <param name="newNumberOfRows" />
+      <param name="updateNumberOfRows" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleRowDeletion(System.Int32[],System.Boolean@)">
+      <summary />
+      <param name="rowIndices" />
+      <param name="copyCachedIndices" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleRowEdit(System.Int32,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,System.IntPtr,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,System.Int32[],System.Boolean@,System.Boolean,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,System.Boolean@,System.Int32)">
+      <summary />
+      <param name="newNumberOfRows" />
+      <param name="originalTargetAddress" />
+      <param name="targetAddress" />
+      <param name="bodyRange" />
+      <param name="listAddress" />
+      <param name="rowIndices" />
+      <param name="cacheCurrentIndices" />
+      <param name="ensureAreaInData" />
+      <param name="insertRowAddress" />
+      <param name="isInsertRowCase" />
+      <param name="rowCountDifference" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HandleSort(System.IntPtr)">
+      <summary />
+      <param name="dataBodyRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HasColumnManager">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HasCurrencyManager">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.HasRowCache">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.IsDesignMode">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.IsEmptyDataSetState">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.IsInitializing">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.IsInRowAdd">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.IsUpdating">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.SetSelectedIndex(System.Int32)">
+      <summary />
+      <param name="index" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.UpdateRowCache(System.Int32[])">
+      <summary />
+      <param name="newRowCache" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IListObjectSupportContract.UpdateRowCache(System.IntPtr)">
+      <summary />
+      <param name="dataBodyRange" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.INamedRangeContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeContract.AddListener(Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract)">
+      <summary />
+      <param name="contract" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeContract.CheckNameExists(System.String)">
+      <summary />
+      <returns />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeContract.RemoveListener(Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract)">
+      <summary />
+      <param name="contract" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeContract.SetNewName(System.String,System.String)">
+      <summary />
+      <returns />
+      <param name="oldName" />
+      <param name="newName" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.BeforeDoubleClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="targetRange" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.BeforeRightClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="targetRange" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.Change(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.SelectionChange(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.SelectionChangeDeselected(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.INamedRangeListenerContract.SelectionChangeSelected(System.IntPtr)">
+      <summary />
+      <param name="targetRange" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IWorkbookContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorkbookContract.RemoveCustomization">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IWorksheetContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetContract.GetControls">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.CreateChart(System.Double,System.Double,System.Double,System.Double,System.String)">
+      <summary />
+      <returns />
+      <param name="left" />
+      <param name="top" />
+      <param name="width" />
+      <param name="height" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.CreateListObject(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.CreateNamedRange(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.CreateWrapper(System.Double,System.Double,System.Double,System.Double,System.String,System.Boolean,System.IntPtr@)">
+      <summary />
+      <returns />
+      <param name="left" />
+      <param name="top" />
+      <param name="width" />
+      <param name="height" />
+      <param name="name" />
+      <param name="anchor" />
+      <param name="wrapper" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.CreateXmlMappedRange(System.IntPtr,System.IntPtr@,System.String,System.String,System.String,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="map" />
+      <param name="schema" />
+      <param name="rootElementName" />
+      <param name="xpath" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.DestroyChart(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.DestroyListObject(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.DestroyNamedRange(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.DestroyWrapper(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.GetXmlMappedRangeCookie(System.IntPtr,System.String,System.String)">
+      <summary />
+      <returns />
+      <param name="map" />
+      <param name="xpath" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.IsValidMap(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="map" />
+      <param name="xpath" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.IWorksheetControlCollectionContract.IsValidRange(System.IntPtr,System.String@,System.String@)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="worksheetName" />
+      <param name="rangeSheetName" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress">
+      <summary />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.AreasLength">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.BottomRow">
+      <summary />
+      <returns />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.Empty">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.Equals(Microsoft.Office.Tools.Excel.Contract.ListObjectAddress)">
+      <summary />
+      <returns />
+      <param name="compareToAddress" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.Equals(System.Object)">
+      <summary />
+      <returns />
+      <param name="obj" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.GetArea(System.Int32)">
+      <summary />
+      <returns />
+      <param name="index" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.GetAreas">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.GetHashCode">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.IsEmpty">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.LeftColumn">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.op_Equality(Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress)">
+      <summary />
+      <returns />
+      <param name="address1" />
+      <param name="address2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.op_Inequality(Microsoft.Office.Tools.Excel.Contract.ListObjectAddress,Microsoft.Office.Tools.Excel.Contract.ListObjectAddress)">
+      <summary />
+      <returns />
+      <param name="address1" />
+      <param name="address2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.Parse(System.String)">
+      <summary />
+      <returns />
+      <param name="addressString" />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.RightColumn">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectAddress.TopRow">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectArea">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.#ctor(Microsoft.Office.Tools.Excel.Contract.ListObjectPoint,Microsoft.Office.Tools.Excel.Contract.ListObjectPoint)">
+      <summary />
+      <param name="topLeft" />
+      <param name="rightBottom" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary />
+      <param name="top" />
+      <param name="left" />
+      <param name="bottom" />
+      <param name="right" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.Equals(Microsoft.Office.Tools.Excel.Contract.ListObjectArea)">
+      <summary />
+      <returns />
+      <param name="compareToArea" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.Equals(System.Object)">
+      <summary />
+      <returns />
+      <param name="obj" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.GetHashCode">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.op_Equality(Microsoft.Office.Tools.Excel.Contract.ListObjectArea,Microsoft.Office.Tools.Excel.Contract.ListObjectArea)">
+      <summary />
+      <returns />
+      <param name="area1" />
+      <param name="area2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.op_Inequality(Microsoft.Office.Tools.Excel.Contract.ListObjectArea,Microsoft.Office.Tools.Excel.Contract.ListObjectArea)">
+      <summary />
+      <returns />
+      <param name="area1" />
+      <param name="area2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.Parse(System.String)">
+      <summary />
+      <returns />
+      <param name="rangeAddress" />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.RightBottom">
+      <summary />
+      <returns />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectArea.TopLeft">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.ReadOnlyDataSource">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.FixedLengthDataSource">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.FixedNumberOfColumnsInDataBoundList">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.DataBoundColumnHeaderIsAutoSet">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.ErrorInCommit">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeReason.Other">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.RangeValueRestored">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.ColumnAdded">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.ColumnRemoved">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.RowAdded">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.RowRemoved">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectChangeType.ColumnHeaderRestored">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectDataBoundType">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectDataBoundType.Unbound">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectDataBoundType.DataBound">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectDataBoundType.TypeBound">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges.None">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges.HeaderRowRange">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges.DataBodyRange">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Office.Tools.Excel.Contract.ListObjectListRanges.TotalsRowRange">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.#ctor(System.Int32,System.Int32)">
+      <summary />
+      <param name="row" />
+      <param name="column" />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.Column">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.Equals(Microsoft.Office.Tools.Excel.Contract.ListObjectPoint)">
+      <summary />
+      <returns />
+      <param name="compareToPoint" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.Equals(System.Object)">
+      <summary />
+      <returns />
+      <param name="obj" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.GetHashCode">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.op_Equality(Microsoft.Office.Tools.Excel.Contract.ListObjectPoint,Microsoft.Office.Tools.Excel.Contract.ListObjectPoint)">
+      <summary />
+      <returns />
+      <param name="point1" />
+      <param name="point2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.op_Inequality(Microsoft.Office.Tools.Excel.Contract.ListObjectPoint,Microsoft.Office.Tools.Excel.Contract.ListObjectPoint)">
+      <summary />
+      <returns />
+      <param name="point1" />
+      <param name="point2" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.Parse(System.String)">
+      <summary />
+      <returns />
+      <param name="cellAddress" />
+    </member>
+    <member name="P:Microsoft.Office.Tools.Excel.Contract.ListObjectPoint.Row">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IDocumentContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.CreateListener(Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract)">
+      <summary />
+      <returns />
+      <param name="callback" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.GetControls">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.GetInlineShape(System.String)">
+      <summary />
+      <returns />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.GetShape(System.String)">
+      <summary />
+      <returns />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.GetXmlNode(System.String,Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract)">
+      <summary />
+      <returns />
+      <param name="cookie" />
+      <param name="callback" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.GetXmlNodes(System.String,Microsoft.Office.Tools.Word.Contract.IXmlNodesCallbackContract)">
+      <summary />
+      <returns />
+      <param name="cookie" />
+      <param name="callback" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentContract.RemoveCustomization">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.CreateBookmark(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.CreateContentControl(System.IntPtr,System.Int32,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="contentControlType" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.CreateInlineWrapper(System.IntPtr,System.String,System.IntPtr@)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="name" />
+      <param name="shape" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.CreateWrapper(System.Single,System.Single,System.Single,System.Single,System.String,System.IntPtr@)">
+      <summary />
+      <returns />
+      <param name="left" />
+      <param name="top" />
+      <param name="width" />
+      <param name="height" />
+      <param name="name" />
+      <param name="shape" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.CreateXmlNode(System.IntPtr,System.String,System.String,System.String,System.String,System.String)">
+      <summary />
+      <returns />
+      <param name="range" />
+      <param name="schemaFileName" />
+      <param name="alias" />
+      <param name="namespaceUri" />
+      <param name="elementName" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.DestroyBookmark(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.DestroyContentControl(System.String,System.Boolean)">
+      <summary />
+      <param name="cookie" />
+      <param name="deleteContent" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.DestroyWrapper(System.String)">
+      <summary />
+      <param name="cookie" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.DestroyXmlNode(System.String)"></member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.GetBookmarkCookie(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="bookmark" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.GetContentControlCookie(System.IntPtr,System.String)">
+      <summary />
+      <returns />
+      <param name="control" />
+      <param name="name" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentControlCollectionContract.IsValidBookmarkName(System.String)">
+      <summary />
+      <returns />
+      <param name="name" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnActivate(System.IntPtr)">
+      <summary />
+      <param name="window" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnBeforeClose(System.Boolean@)">
+      <summary />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnBeforeDoubleClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="selection" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnBeforePrint(System.Boolean@)">
+      <summary />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnBeforeRightClick(System.IntPtr,System.Boolean@)">
+      <summary />
+      <param name="selection" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnBeforeSave(System.Boolean@,System.Boolean@)">
+      <summary />
+      <param name="saveAsUI" />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnDeactivate(System.IntPtr)">
+      <summary />
+      <param name="window" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeAfterMerge(System.IntPtr)">
+      <summary />
+      <param name="result" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeAfterRecordMerge">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeBeforeMerge">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeBeforeRecordMerge(System.Boolean@)">
+      <summary />
+      <param name="cancel" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeDataSourceLoad">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeWizardSendToCustom">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnMailMergeWizardStateChange(System.Int32@,System.Int32@,System.Boolean@)">
+      <summary />
+      <param name="fromState" />
+      <param name="toState" />
+      <param name="handled" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnSelectionChange(System.IntPtr)">
+      <summary />
+      <param name="selection" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerCallbackContract.OnWindowSize(System.IntPtr)">
+      <summary />
+      <param name="window" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableActivateEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableBeforeCloseEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableBeforeDoubleClickEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableBeforePrintEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableBeforeRightClickEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableBeforeSaveEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableDeactivateEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeAfterMergeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeAfterRecordMergeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeBeforeMergeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeBeforeRecordMergeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeDataSourceLoadEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeWizardSendToCustomEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableMailMergeWizardStateChangeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableSelectionChangeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IDocumentListenerContract.EnableWindowSizeEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IPictureContentControlContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IPictureContentControlContract.GetImage">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IPictureContentControlContract.GetShowInsertPictureIcon">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IPictureContentControlContract.SetImage(System.Byte[],System.Int32)">
+      <summary />
+      <param name="image" />
+      <param name="size" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IPictureContentControlContract.SetShowInsertPictureIcon(System.Boolean)">
+      <summary />
+      <param name="show" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnAfterInsert(System.Boolean)">
+      <summary />
+      <param name="inUndoRedo" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnBeforeDelete(System.Boolean)">
+      <summary />
+      <param name="inUndoRedo" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnDeselect(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32)">
+      <summary />
+      <param name="selection" />
+      <param name="oldNode" />
+      <param name="newNode" />
+      <param name="reason" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnEnter(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32)">
+      <summary />
+      <param name="selection" />
+      <param name="oldNode" />
+      <param name="newNode" />
+      <param name="reason" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnLeave(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32)">
+      <summary />
+      <param name="selection" />
+      <param name="oldNode" />
+      <param name="newNode" />
+      <param name="reason" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnSelect(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32)">
+      <summary />
+      <param name="selection" />
+      <param name="oldNode" />
+      <param name="newNode" />
+      <param name="reason" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeCallbackContract.OnValidationError">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IXmlNodeContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeContract.EnableAfterInsertEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeContract.EnableBeforeDeleteEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeContract.GetNode">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeContract.SetRangeText(System.IntPtr,System.String)">
+      <summary />
+      <param name="node" />
+      <param name="value" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract.EnableDeselectEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract.EnableEnterEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract.EnableLeaveEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract.EnableSelectEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodeEventsContract.EnableValidationErrorEvent(System.Boolean)">
+      <summary />
+      <param name="enable" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IXmlNodesCallbackContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodesCallbackContract.OnNodesInvalidated(System.IntPtr)">
+      <summary />
+      <param name="nodes" />
+    </member>
+    <member name="T:Microsoft.Office.Tools.Word.Contract.IXmlNodesContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.Office.Tools.Word.Contract.IXmlNodesContract.GetNodes">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.ExecuteCustomizationExceptionInfo">
+      <summary />
+    </member>
+    <member name="F:Microsoft.VisualStudio.Tools.Office.Contract.ExecuteCustomizationExceptionInfo.details">
+      <summary />
+    </member>
+    <member name="F:Microsoft.VisualStudio.Tools.Office.Contract.ExecuteCustomizationExceptionInfo.hResult">
+      <summary />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IActionsPaneSiteContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IActionsPaneSiteContract.Clear">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IActionsPaneSiteContract.SetClient(System.IntPtr)">
+      <summary />
+      <param name="control" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IComReferenceReleaseContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IComReferenceReleaseContract.ReleaseComReference(System.IntPtr)">
+      <summary />
+      <param name="unknown" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneCallbackContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneCallbackContract.OnDockPositionChanged">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneCallbackContract.OnVisibleChanged">
+      <summary />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetDockPosition">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetDockPositionRestrict">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetHeight">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetTitle">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetVisible">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetWidth">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.GetWindow">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetCallback(Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneCallbackContract)">
+      <summary />
+      <param name="callbackContract" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetDockPosition(System.Int32)">
+      <summary />
+      <param name="dockPosition" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetDockPositionRestrict(System.Int32)">
+      <summary />
+      <param name="dockPositionRestrict" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetHeight(System.Int32)">
+      <summary />
+      <param name="height" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetVisible(System.Boolean)">
+      <summary />
+      <param name="visible" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneContract.SetWidth(System.Int32)">
+      <summary />
+      <param name="width" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneFactoryContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.ICustomTaskPaneFactoryContract.Create(System.IntPtr,System.String,System.IntPtr)">
+      <summary />
+      <returns />
+      <param name="control" />
+      <param name="title" />
+      <param name="window" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IHostItemProviderExtendedContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IHostItemProviderExtendedContract.GetHostExtender(System.String,System.String)">
+      <summary />
+      <returns />
+      <param name="extenderType" />
+      <param name="extenderCookie" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IHostItemProviderExtendedContract.SetHostObjectOnExtender(System.String,System.String,System.IntPtr)">
+      <summary />
+      <param name="primaryType" />
+      <param name="extenderCookie" />
+      <param name="controlHandle" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.INotifyDocumentCreationContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.INotifyDocumentCreationContract.OnNew">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.INotifyDocumentCreationContract.OnOpen">
+      <summary />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IOfficeEntryPointContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IOfficeEntryPointContract.GetExceptionInfo">
+      <summary />
+      <returns />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IOfficeInteropProxyControllerContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IOfficeInteropProxyControllerContract.ShouldProxyObject(System.IntPtr,System.String)"></member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IPersistAppInfoContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IPersistAppInfoContract.GetExceptionDetails">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IPersistAppInfoContract.IsDirty">
+      <summary />
+      <returns />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IPersistAppInfoContract.SaveAll">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IPersistAppInfoContract.Update">
+      <summary />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IRegisterDocumentCreationCallbackContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IRegisterDocumentCreationCallbackContract.RegisterCallback(Microsoft.VisualStudio.Tools.Office.Contract.INotifyDocumentCreationContract)">
+      <summary />
+      <param name="callback" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IRegisterWindowEventsContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IRegisterWindowEventsContract.RegisterEvents(Microsoft.VisualStudio.Tools.Office.Contract.IWindowEventsContract)">
+      <summary />
+      <param name="events" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IRibbonServiceContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IRibbonServiceContract.GetWindowRibbonId(System.IntPtr)">
+      <summary />
+      <returns />
+      <param name="window" />
+    </member>
+    <member name="T:Microsoft.VisualStudio.Tools.Office.Contract.IWindowEventsContract">
+      <summary />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IWindowEventsContract.Close(System.IntPtr)">
+      <summary />
+      <param name="window" />
+    </member>
+    <member name="M:Microsoft.VisualStudio.Tools.Office.Contract.IWindowEventsContract.Open(System.IntPtr)">
+      <summary />
+      <param name="window" />
+    </member>
+  </members>
+</doc>

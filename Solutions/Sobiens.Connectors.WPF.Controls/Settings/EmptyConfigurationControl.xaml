@@ -1,0 +1,14 @@
+﻿<wpfc:BaseUserControl x:Class="Sobiens.Connectors.WPF.Controls.Settings.EmptyConfigurationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="113" d:DesignWidth="213" xmlns:my="clr-namespace:Sobiens.Connectors.WPF.Controls" Loaded="BaseUserControl_Loaded">
+    <Grid>
+        <TextBlock TextWrapping="WrapWithOverflow" Height="69" HorizontalAlignment="Left" Margin="11,12,0,0" Name="EmptyConfigurationLabel" VerticalAlignment="Top" Width="194" Text="{DynamicResource No configuration has been found.}"/>
+            
+        <Button Content="{DynamicResource Start Configuring}" Height="23" HorizontalAlignment="Left" Margin="40,90,0,0" Name="ConfigureButton" VerticalAlignment="Top" Width="138" Click="ConfigureButton_Click" />
+    </Grid>
+</wpfc:BaseUserControl>

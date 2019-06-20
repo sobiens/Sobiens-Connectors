@@ -1,0 +1,13 @@
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\bin\Debug\NLog.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\bin\Debug\NLog.xml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csprojAssemblyReference.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\en-US.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\fr-FR.baml
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities_MarkupCompile.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.g.resources
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CoreCompileInputs.cache
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CopyComplete
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.dll
+C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.pdb
