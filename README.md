@@ -1,4 +1,3 @@
-# Sobiens.Connectors<br>
 <table>
   <tr>
     <td valign='top'><a href='http://tutorials.sobiens.com/solutions/sharepoint-office-connector/'>SharePoint Office Connector</a><br>SharePoint Office Connector makes it easier for outlook users to upload emails to SP and attach SP documents to an email message . You'll no longer have to save your email to desktop and upload from SP UI or download SP documents to your drive and attach them to your email.</td>
