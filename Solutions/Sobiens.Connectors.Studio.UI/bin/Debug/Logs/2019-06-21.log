@@ -1,0 +1,13 @@
+Debug|2019-06-21 15:48:41.2969|2019-06-21 15:48:41,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 15:48:41.3993|2019-06-21 15:48:41,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 15:48:41.3993|2019-06-21 15:48:41,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 15:48:42.8330|2019-06-21 15:48:42,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 15:48:48.2772|2019-06-21 15:48:48,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 15:48:48.6481|2019-06-21 15:48:48,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:14:10.3637|2019-06-21 17:14:10,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:14:10.4297|2019-06-21 17:14:10,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:14:13.0768|2019-06-21 17:14:13,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:21:47.4949|2019-06-21 17:21:47,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:21:47.5699|2019-06-21 17:21:47,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:21:49.8009|2019-06-21 17:21:49,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-06-21 17:22:30.4773|2019-06-21 17:22:30,error,SyncCopyListWizardForm,6|Sobiens.Connectors.Entities.Logger.WriteEntry

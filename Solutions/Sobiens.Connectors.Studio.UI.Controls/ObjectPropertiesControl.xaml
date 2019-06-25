@@ -8,10 +8,12 @@
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Properties" Height="20" Margin="0,0,0,0" FontSize="9" Background="#4A6184" Foreground="White"/>
-            <TreeView Grid.Row="1"  Name="FoldersTreeView" MinWidth="100" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" SelectedItemChanged="FoldersTreeView_SelectedItemChanged"></TreeView>
+            <Button Grid.Row="1" x:Name="DeleteUniquePermissionsRecursivelyButton" Width="150" Content="Delete Unique Permissions (Recursively)" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="DeleteUniquePermissionsRecursivelyButton_Click" Visibility="Hidden" />
+            <TreeView Grid.Row="2"  Name="FoldersTreeView" MinWidth="100" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" SelectedItemChanged="FoldersTreeView_SelectedItemChanged"></TreeView>
             <!--<TextBox x:Name="textBlock" MinWidth="100" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,30,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="TextBlock" VerticalAlignment="Stretch"   />
             <Button x:Name="DeleteUniquePermissionsRecursivelyButton" MinWidth="100" Content="Delete Unique Permissions (Recursively)" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="DeleteUniquePermissionsRecursivelyButton_Click"/>-->
         </Grid>

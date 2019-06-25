@@ -376,9 +376,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 newQueryMenuItem.Click += newQueryMenuItem_Click;
                 this.FoldersTreeView.ContextMenu.Items.Add(newQueryMenuItem);
 
+                /*
                 MenuItem objectDetailsMenuItem = new MenuItem() { Header = "Properties", Tag = item };
                 objectDetailsMenuItem.Click += ObjectDetailsMenuItem_Click; ; ;
                 this.FoldersTreeView.ContextMenu.Items.Add(objectDetailsMenuItem);
+                */
 
                 MenuItem createMenuItem = new MenuItem() { Header = "Create", Tag = item };
                 createMenuItem.Click += CreateMenuItem_Click; ;
@@ -405,7 +407,6 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             MenuItem menuItem = e.OriginalSource as MenuItem;
             Folder sourceObject = ((TreeViewItem)menuItem.Tag).Tag as Folder;
-
             /*
             ObjectPropertiesForm objectPropertiesForm = new ObjectPropertiesForm();
             objectPropertiesForm.Initialize(sourceObject);

@@ -9,6 +9,7 @@ using Sobiens.Connectors.Common;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Entities.Interfaces;
+using Sobiens.Connectors.Entities.SharePoint;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -54,6 +55,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             this.SourceObject = sourceObject;
             this.FoldersTreeView.ContextMenu = new ContextMenu();
+
+            if (SourceObject as SPFolder != null)
+            {
+                DeleteUniquePermissionsRecursivelyButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DeleteUniquePermissionsRecursivelyButton.Visibility = Visibility.Hidden;
+            }
         }
 
         private void FoldersTreeView_ContextMenuOpening(object sender, ContextMenuEventArgs e)

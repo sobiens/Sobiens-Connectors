@@ -156,6 +156,12 @@
     <Compile Include="ObjectAccessMaintenanceForm.xaml.cs">
       <DependentUpon>ObjectAccessMaintenanceForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MMSCopyWizardForm.xaml.cs">
+      <DependentUpon>MMSCopyWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\TermObjectSelector.xaml.cs">
+      <DependentUpon>TermObjectSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebPartPropertiesForm.xaml.cs">
       <DependentUpon>WebPartPropertiesForm.xaml</DependentUpon>
     </Compile>
@@ -296,6 +302,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="LoadingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MMSCopyWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\TermObjectSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -550,6 +564,7 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIConfigClassTemplate.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\EMMGroup.png" />
     <Resource Include="Images\Filter.png" />
     <Resource Include="Images\ArrowDown.png" />
     <Resource Include="Images\FilterGroup.png" />

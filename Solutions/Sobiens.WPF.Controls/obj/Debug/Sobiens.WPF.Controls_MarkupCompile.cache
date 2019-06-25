@@ -16,5 +16,5 @@ DEBUG;TRACE
 12-259233173
 Styles\BreadcrumbBar.Generic.xaml;Styles\Brushes.xaml;Themes\Generic.xaml;UserControls\FilterableHeader.xaml;
 
-True
+False
 

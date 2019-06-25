@@ -56,6 +56,11 @@
                     <Image Source="Images/DataExport.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
+            <Button ToolTip="Copy MMS Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopyMMSWizardButton_Click" Background="Transparent" Name="CopyMMSWizardButton">
+                <Button.Content>
+                    <Image Source="Images/EMMGroup.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
         </StackPanel>
     </Grid>
 </wpfc:HostControl>

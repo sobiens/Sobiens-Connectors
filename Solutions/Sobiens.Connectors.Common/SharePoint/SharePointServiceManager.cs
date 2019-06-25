@@ -583,5 +583,30 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
-    }
+
+        public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
+        {
+            ISharePointService spService = new SharePointService();
+            return spService.GetTermGroups(siteSetting);
+        }
+
+        public List<SPTermSet> GetGroupTermSets(ISiteSetting siteSetting, Guid termGroupId)
+        {
+            ISharePointService spService = new SharePointService();
+            return spService.GetTermSets(siteSetting, termGroupId);
+        }
+
+        public List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId)
+        {
+            ISharePointService spService = new SharePointService();
+            return spService.GetTerms(siteSetting, termSetId);
+        }
+
+        public List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId)
+        {
+            ISharePointService spService = new SharePointService();
+            return spService.GetTermTerms(siteSetting, termId);
+        }
+
+}
 }

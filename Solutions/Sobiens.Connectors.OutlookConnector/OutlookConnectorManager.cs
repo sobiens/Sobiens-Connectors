@@ -1,26 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using Sobiens.Connectors.Common.Interfaces;
 using Sobiens.Connectors.Entities.Interfaces;
-using System.Collections;
 using Sobiens.Connectors.Entities;
 using System.IO;
 using Sobiens.Connectors.Common;
-using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.WPF.Controls;
-using Sobiens.Connectors.Entities.SharePoint;
-using System.Data;
-using Sobiens.Connectors.Entities.Data;
-using Microsoft.Windows.Controls;
-using System.Windows.Threading;
-using System.Threading;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Controls;
-using Microsoft.Lync.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Sobiens.Connectors.OutlookConnector

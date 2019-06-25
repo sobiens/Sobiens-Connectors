@@ -1,19 +1,16 @@
 ﻿#if General
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Google.GData.Documents;
 using Google.GData.Client;
 using System.IO;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Gmail;
-using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Common.Interfaces;
-using System.Data;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Net;
+using Sobiens.Connectors.Entities.SharePoint;
 
 namespace Sobiens.Connectors.Common
 {
@@ -358,6 +355,26 @@ namespace Sobiens.Connectors.Common
         {
             throw new NotImplementedException();
         }
+
+        public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SPTermSet> GetGroupTermSets(ISiteSetting siteSetting, Guid termGroupId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId)
+        {
+            throw new NotImplementedException();
+        }
+        public List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 #endif

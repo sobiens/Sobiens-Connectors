@@ -10,3 +10,15 @@ C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Deb
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\NLog.dll
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\bin\Debug\NLog.xml
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\registryUpdater\obj\x86\Debug\registryUpdater.csprojAssemblyReference.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.exe.config
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.exe
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\NLog.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\NLog.xml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csprojAssemblyReference.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CoreCompileInputs.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CopyComplete
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.exe
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.pdb

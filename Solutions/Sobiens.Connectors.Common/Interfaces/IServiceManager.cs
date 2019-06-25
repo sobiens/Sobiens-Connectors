@@ -31,7 +31,12 @@ namespace Sobiens.Connectors.Common.Interfaces
 
         string GetKeywordTermsByGuids(ISiteSetting siteSetting, string webUrl, int lcid, string termIds);
 
-        TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds);//JD
+        TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds);
+
+        List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting);
+        List<SPTermSet> GetGroupTermSets(ISiteSetting siteSetting, Guid termGroupId);
+        List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId);
+        List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId);
 
         List<IView> GetViews(ISiteSetting siteSetting, Folder folder);
 

@@ -14,6 +14,7 @@ using System.Web;
 using Microsoft.SharePoint.Client;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Globalization;
+using Microsoft.SharePoint.Client.Taxonomy;
 
 namespace Sobiens.Connectors.Services.SharePoint
 {
@@ -2065,7 +2066,84 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        public TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)
+        public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
+        {
+            List<SPTermGroup> _termGroups = new List<SPTermGroup>();
+
+            ClientContext context = GetClientContext(siteSetting);
+            var taxonomySession = TaxonomySession.GetTaxonomySession(context);
+            var termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
+            TermGroupCollection termGroups = termStore.Groups;
+            context.Load(termGroups);
+            context.ExecuteQuery();
+            foreach (var termGroup in termGroups)
+            {
+                _termGroups.Add(new SPTermGroup(termGroup.Id, termGroup.Name, termGroup.IsSystemGroup, termGroup.IsSiteCollectionGroup));
+            }
+
+            return _termGroups;
+        }
+
+        public List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId)
+        {
+            List<SPTerm> _terms = new List<SPTerm>();
+
+            ClientContext context = GetClientContext(siteSetting);
+            var taxonomySession = TaxonomySession.GetTaxonomySession(context);
+            var termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
+            Microsoft.SharePoint.Client.Taxonomy.Term term = termStore.GetTerm(termId);
+            Microsoft.SharePoint.Client.Taxonomy.TermCollection terms = term.Terms;
+            context.Load(terms);
+            context.ExecuteQuery();
+            foreach (var _term in terms)
+            {
+                _terms.Add(new SPTerm(_term.Id, _term.Name));
+            }
+
+            return _terms;
+        }
+
+        public List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId)
+        {
+            List<SPTerm> _terms = new List<SPTerm>();
+
+            ClientContext context = GetClientContext(siteSetting);
+            var taxonomySession = TaxonomySession.GetTaxonomySession(context);
+            var termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
+            Microsoft.SharePoint.Client.Taxonomy.TermSet termSet = termStore.GetTermSet(termSetId);
+            Microsoft.SharePoint.Client.Taxonomy.TermCollection terms = termSet.Terms;
+            context.Load(terms);
+            context.ExecuteQuery();
+            foreach (var term in terms)
+            {
+                _terms.Add(new SPTerm(term.Id, term.Name));
+            }
+
+            return _terms;
+        }
+
+        public List<SPTermSet> GetTermSets(ISiteSetting siteSetting, Guid termGroupId)
+        {
+            List<SPTermSet> _termSets = new List<SPTermSet>();
+
+            ClientContext context = GetClientContext(siteSetting);
+            var taxonomySession = TaxonomySession.GetTaxonomySession(context);
+            var termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
+            TermGroup termGroup = termStore.GetGroup(termGroupId);
+            TermSetCollection termSets = termGroup.TermSets;
+
+            context.Load(termGroup);
+            context.Load(termSets);
+            context.ExecuteQuery();
+            foreach (var termSet in termSets)
+            {
+                _termSets.Add(new SPTermSet(termSet.Id, termSet.Name, termSet.Names));
+            }
+
+            return _termSets;
+        }
+
+        public Entities.TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)
         {
             try
             {

@@ -137,6 +137,9 @@
     <Compile Include="Settings\TaskListLocation.cs" />
     <Compile Include="Settings\TaskListLocations.cs" />
     <Compile Include="SharePoint\SPTaxonomyField.cs" />
+    <Compile Include="SharePoint\SPTerm.cs" />
+    <Compile Include="SharePoint\SPTermSet.cs" />
+    <Compile Include="SharePoint\SPTermGroup.cs" />
     <Compile Include="SharePoint\SPWebpart.cs" />
     <Compile Include="SQLServer\SQLDB.cs" />
     <Compile Include="SQLServer\SQLFolder.cs" />

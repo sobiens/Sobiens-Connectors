@@ -3,3 +3,8 @@ C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF.csprojAssemblyReference.cache
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\Window1.baml
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\SharePointLyncConnector.WPF\obj\Debug\Window1.g.cs
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF.csprojAssemblyReference.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\Window1.baml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\Window1.g.cs
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\App.g.cs
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF_MarkupCompile.cache

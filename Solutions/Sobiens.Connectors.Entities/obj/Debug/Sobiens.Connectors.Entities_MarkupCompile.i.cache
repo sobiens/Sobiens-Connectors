@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\
 Sobiens.Connectors.Entities
 none
 false
@@ -12,8 +12,8 @@ TRACE;DEBUG;General
 
 2-1621244005
 
-1481239369040
-18-581521498
+151-356798668
+18142327163
 Resources\Languages\en-US.xaml;Resources\Languages\fr-FR.xaml;
 
 False

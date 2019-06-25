@@ -533,5 +533,30 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
+
+        public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SPTermSet> GetTermSets(ISiteSetting siteSetting, Guid termGroupId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SPTermSet> GetGroupTermSets(ISiteSetting siteSetting, Guid termGroupId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId)
+        {
+            throw new NotImplementedException();
+        }
+        public List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

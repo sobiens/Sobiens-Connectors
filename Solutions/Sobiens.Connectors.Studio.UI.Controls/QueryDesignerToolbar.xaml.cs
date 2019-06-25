@@ -164,5 +164,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
             }
         }
+
+        private void CopyMMSWizardButton_Click(object sender, RoutedEventArgs e)
+        {
+            MMSCopyWizardForm mmsCopyWizardForm = new MMSCopyWizardForm();
+            //syncCopyListWizardForm.Initialize();
+            if (mmsCopyWizardForm.ShowDialog(this.ParentWindow, "MMS Copy Wizard", false, true) == true)
+            {
+            }
+        }
     }
 }

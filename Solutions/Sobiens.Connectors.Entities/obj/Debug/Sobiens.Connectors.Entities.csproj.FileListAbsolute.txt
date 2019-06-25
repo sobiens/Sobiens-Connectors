@@ -11,3 +11,15 @@ C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CopyComplete
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.dll
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\NLog.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\NLog.xml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\en-US.baml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\fr-FR.baml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities_MarkupCompile.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.g.resources
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CoreCompileInputs.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CopyComplete
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.pdb

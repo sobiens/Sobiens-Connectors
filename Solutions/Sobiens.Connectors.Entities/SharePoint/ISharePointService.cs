@@ -30,8 +30,13 @@ namespace Sobiens.Connectors.Entities.SharePoint
         Result UndoCheckOutFile(ISiteSetting siteSetting, string webUrl, string pageURL);
         bool CheckFileExistency(ISiteSetting siteSetting, string webUrl, string listName, string folderName, int? listItemID, string fileName);
         Result CopyFile(ISiteSetting siteSetting, string webURL, string copySource, string copyDest);
-        uint AddFolder(ISiteSetting siteSetting, string webURL, string folderName,string folderPath, string listName);
+        uint AddFolder(ISiteSetting siteSetting, string webURL, string folderName, string folderPath, string listName);
         string GetUser(ISiteSetting siteSetting, string UserName);
         void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems);
+        List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting);
+        List<SPTermSet> GetTermSets(ISiteSetting siteSetting, Guid termGroupId);
+
+        List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId);
+        List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId);
     }
 }

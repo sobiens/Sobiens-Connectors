@@ -9,3 +9,13 @@ C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.dll
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.xml
 C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csprojAssemblyReference.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.xml
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CoreCompileInputs.cache
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CopyComplete
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.dll
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.pdb
