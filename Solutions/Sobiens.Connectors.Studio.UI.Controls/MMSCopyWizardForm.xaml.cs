@@ -180,6 +180,59 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         }
 
+        private void SynchronizeTermGroup(ISiteSetting sourceSiteSetting, SPTermGroup sourceTermGroup, ISiteSetting destinationSiteSetting, SPTermGroup destinationTermGroup)
+        {
+            List<SPTermSet> sourceTermSets = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetGroupTermSets(sourceSiteSetting, sourceTermGroup.ID);
+            List<SPTermSet> destinationTermSets = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetGroupTermSets(destinationSiteSetting, destinationTermGroup.ID);
+
+            foreach(SPTermSet termSetToSynch in sourceTermSets)
+            {
+                SPTermSet termSetFound = destinationTermSets.Where(t => t.Title.Equals(termSetToSynch.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if(termSetFound == null)
+                {
+                    // Create termset
+                }
+
+                SynchronizeTermSet(sourceSiteSetting, termSetToSynch, destinationSiteSetting, termSetFound);
+            }
+
+        }
+
+        private void SynchronizeTermSet(ISiteSetting sourceSiteSetting, SPTermSet sourceTermSet, ISiteSetting destinationSiteSetting, SPTermSet destinationTermSet)
+        {
+            List<SPTerm> sourceTerms = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetTerms(sourceSiteSetting, sourceTermSet.ID);
+            List<SPTerm> destinationTerms = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetTerms(destinationSiteSetting, destinationTermSet.ID);
+
+            foreach (SPTerm termToSynch in sourceTerms)
+            {
+                SPTerm termFound = destinationTerms.Where(t => t.Title.Equals(termToSynch.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if (termFound == null)
+                {
+                    // Create term
+                }
+
+                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);
+            }
+
+        }
+
+        private void SynchronizeTerm(ISiteSetting sourceSiteSetting, SPTerm sourceTerm, ISiteSetting destinationSiteSetting, SPTerm destinationTerm)
+        {
+            List<SPTerm> sourceTerms = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetTermTerms(sourceSiteSetting, sourceTerm.ID);
+            List<SPTerm> destinationTerms = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetTermTerms(destinationSiteSetting, destinationTerm.ID);
+
+            foreach (SPTerm termToSynch in sourceTerms)
+            {
+                SPTerm termFound = destinationTerms.Where(t => t.Title.Equals(termToSynch.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if (termFound == null)
+                {
+                    // Create term
+                }
+
+                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);
+            }
+        }
+
         private void DestinationBackButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabIndex = 0;

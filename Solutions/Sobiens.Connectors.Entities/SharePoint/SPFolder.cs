@@ -44,6 +44,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
                 return this.Url.Substring(this.WebUrl.Length);
             }
         }
+        public bool HasUniqueRoleAssignments = false;
         public bool AllowDeletion = false;
         public bool AllowMultiResponses = false;
         public bool EnableAttachments = false;

@@ -20,6 +20,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
         }
         public int ID = int.MinValue;
         public string UniqueIdentifier { get; set; }
+        public bool HasUniqueRoleAssignments { get; set; }
         public string ContentTypeName
         {
             get

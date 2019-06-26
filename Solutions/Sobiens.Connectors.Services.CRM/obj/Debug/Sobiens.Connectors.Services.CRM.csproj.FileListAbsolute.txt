@@ -27,3 +27,4 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\o
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.dll
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.pdb
+C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csprojAssemblyReference.cache

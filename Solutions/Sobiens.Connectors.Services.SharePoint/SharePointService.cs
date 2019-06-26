@@ -688,6 +688,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         private SPListItem ParseSPListItem(ListItem item, Guid siteSettingID, string folderPath, string webUrl, string webApplicationURL, string siteCollectionURL, string listName, string titleFieldName)
         {
             SPListItem listItem = new SPListItem(siteSettingID);
+            listItem.HasUniqueRoleAssignments = item.HasUniqueRoleAssignments;
             listItem.WebURL = webUrl;
             listItem.SiteCollectionURL = siteCollectionURL;
             listItem.ListName = listName;
@@ -865,7 +866,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                 //query.InnerXml = orderBy + SPCamlManager.GetCamlString(filters);
                 camlQuery.ViewXml = "<View>" + query.OuterXml + queryOptions.OuterXml + "</View>";
                 ListItemCollection collListItem = list.GetItems(camlQuery);
-                context.Load(collListItem);
+                context.Load(collListItem, a => a.IncludeWithDefaultProperties(b => b.HasUniqueRoleAssignments));
+                //context.Load(collListItem);
                 context.ExecuteQuery();
 
                 string siteCollectionURL = site.Url;
@@ -883,6 +885,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                 foreach (ListItem oListItem in collListItem)
                 {
                     SPFolder _folder = ParseSPFolder(oListItem, siteSetting.ID, currentFolder, web.ServerRelativeUrl);
+                    _folder.HasUniqueRoleAssignments = oListItem.HasUniqueRoleAssignments;
 
                     //SPListItem listItem = ParseSPListItem(oListItem, siteSetting.ID, folderName, webUrl, webApplicationURL, siteCollectionURL, listName, string.Empty);
                     folders.Add(_folder);
@@ -1070,7 +1073,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                 query.InnerXml = orderBy + SPCamlManager.GetCamlString(filters);
                 camlQuery.ViewXml = "<View>" + query.OuterXml + queryOptions.OuterXml + (view!=null?"<RowLimit>" + view.RowLimit.ToString() + "</RowLimit>":string.Empty) + "</View>";
                 ListItemCollection collListItem = list.GetItems(camlQuery);
-                context.Load(collListItem);
+                context.Load(collListItem, a => a.IncludeWithDefaultProperties(b => b.HasUniqueRoleAssignments), c=>c.ListItemCollectionPosition);
+                //context.Load(collListItem);
                 context.ExecuteQuery();
 
                 string siteCollectionURL = site.Url;
@@ -3142,17 +3146,15 @@ namespace Sobiens.Connectors.Services.SharePoint
 
         public void DeleteUniquePermissions(ISiteSetting siteSetting, Entities.Folder folder, bool applyToAllSubItems)
         {
-            System.Console.WriteLine(folder.GetPath() + " UniquePermissions has been deleted.");
+            Logger.Info(folder.GetPath() + " UniquePermissions has been deleted.", "Service");
 
-            DeleteUniquePermissions(siteSetting, folder.GetListName(), int.Parse(((SPFolder)folder).ID));
+            if (((SPFolder)folder).HasUniqueRoleAssignments == true)
+            {
+                DeleteUniquePermissions(siteSetting, folder.GetListName(), int.Parse(((SPFolder)folder).ID));
+            }
+
             if (applyToAllSubItems == true)
             {
-                List<Entities.Folder> subFolders = GetSubFolders(siteSetting, folder);
-                foreach (Entities.Folder subFolder in subFolders)
-                {
-                    DeleteUniquePermissions(siteSetting, subFolder, applyToAllSubItems);
-                }
-
                 string listItemCollectionPositionNext = string.Empty;
                 int itemCount = 5000;
                 IView view = new SPView(siteSetting.ID);
@@ -3160,8 +3162,17 @@ namespace Sobiens.Connectors.Services.SharePoint
                 List<IItem> items = GetListItems(siteSetting, view, string.Empty, true, false, siteSetting.Url, folder.GetListName(), folder.GetPath(), listItemCollectionPositionNext, new CamlFilters(), false, out listItemCollectionPositionNext, out itemCount);
                 foreach (IItem item in items)
                 {
-                    DeleteUniquePermissions(siteSetting, folder.GetListName(), int.Parse(item.GetID()));
-                    System.Console.WriteLine("Item with ID" + item.GetID() + " on " + folder.GetPath() + " UniquePermissions has been deleted.");
+                    if (((SPListItem)item).HasUniqueRoleAssignments == true)
+                    {
+                        DeleteUniquePermissions(siteSetting, folder.GetListName(), int.Parse(item.GetID()));
+                        Logger.Info("Item with ID" + item.GetID() + " on " + folder.GetPath() + " UniquePermissions has been deleted.", "Service");
+                    }
+                }
+
+                List<Entities.Folder> subFolders = GetSubFolders(siteSetting, folder);
+                foreach (Entities.Folder subFolder in subFolders)
+                {
+                    DeleteUniquePermissions(siteSetting, subFolder, applyToAllSubItems);
                 }
 
             }
