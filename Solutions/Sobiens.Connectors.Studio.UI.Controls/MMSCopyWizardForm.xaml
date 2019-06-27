@@ -28,20 +28,19 @@
             <TabItem Header="Destination">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="47*"/>
-                        <ColumnDefinition Width="187*"/>
+                        <ColumnDefinition Width="100*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <wpfcs:TermObjectSelector x:Name="DestinationTermObjectSelectorControl" Margin="10,30,0,0"/>
 
-                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="2" Click="DestinationBackButton_Click"/>
-                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="2" Click="DestinationNextButton_Click"/>
-                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" Margin="16.299,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212" Grid.Column="1"/>
-                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="14,87,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="2"/>
+                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Column="0" Grid.Row="0"/>
+                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="125,3,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="0" Grid.Row="0"/>
+                    <wpfcs:TermObjectSelector x:Name="DestinationTermObjectSelectorControl" Margin="10,30,0,0" Grid.Column="0" Grid.Row="0"/>
+
+                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="0" Click="DestinationBackButton_Click"/>
+                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="0" Click="DestinationNextButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -21,7 +21,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private int CurrentTabIndex = 0;
         private SPWeb SourceWeb = null;
         private SPWeb DestinationWeb = null;
-        private ISiteSetting DestinationSiteSetting = null;
+        //private ISiteSetting DestinationSiteSetting = null;
 
         public MMSCopyWizardForm()
         {
@@ -139,8 +139,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 DestinationWeb = (SPWeb)selectEntityForm.SelectedObject;
                 ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
                 DestinationSelectButton.Content = DestinationWeb.GetPath();
-                SourceSelectButton.Content = SourceWeb.GetPath();
-                SourceTermObjectSelectorControl.Initialize(siteSetting);
+                DestinationTermObjectSelectorControl.Initialize(siteSetting);
             }
         }
 
@@ -173,7 +172,43 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 return;
             }
 
+            try
+            {
+                if (sourceObject as SPTermGroup != null)
+                {
+                    SPTermGroup sourceTermGroup = sourceObject as SPTermGroup;
+                    SPTermGroup destinationTermGroup = destinationObject as SPTermGroup;
+                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
 
+                    SynchronizeTermGroup(sourceSiteSetting, sourceTermGroup, destinationSiteSetting, destinationTermGroup);
+                    MessageBox.Show("Completed");
+                }
+                else if (sourceObject as SPTermSet != null)
+                {
+                    SPTermSet sourceTermSet = sourceObject as SPTermSet;
+                    SPTermSet destinationTermSet = destinationObject as SPTermSet;
+                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                    SynchronizeTermSet(sourceSiteSetting, sourceTermSet, destinationSiteSetting, destinationTermSet);
+                    MessageBox.Show("Completed");
+                }
+                else if (sourceObject as SPTerm != null)
+                {
+                    SPTerm sourceTerm = sourceObject as SPTerm;
+                    SPTerm destinationTerm = destinationObject as SPTerm;
+                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                    SynchronizeTerm(sourceSiteSetting, sourceTerm, destinationSiteSetting, destinationTerm);
+                    MessageBox.Show("Completed");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
 
             CurrentTabIndex = 2;
             WizardTabControl.SelectedIndex = CurrentTabIndex;
@@ -191,6 +226,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 if(termSetFound == null)
                 {
                     // Create termset
+                    termSetFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTermSet(destinationSiteSetting, termSetToSynch);
                 }
 
                 SynchronizeTermSet(sourceSiteSetting, termSetToSynch, destinationSiteSetting, termSetFound);
@@ -208,7 +244,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 SPTerm termFound = destinationTerms.Where(t => t.Title.Equals(termToSynch.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                 if (termFound == null)
                 {
-                    // Create term
+                    termFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTerm(destinationSiteSetting, termToSynch);
                 }
 
                 SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);
@@ -227,6 +263,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 if (termFound == null)
                 {
                     // Create term
+                    termFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTerm(destinationSiteSetting, termToSynch);
                 }
 
                 SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);

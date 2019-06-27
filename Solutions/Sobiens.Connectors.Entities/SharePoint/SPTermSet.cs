@@ -18,14 +18,19 @@ namespace Sobiens.Connectors.Entities.SharePoint
     public class SPTermSet
     {
         public SPTermSet() { }
-        public SPTermSet(Guid id, string title, IDictionary<string, string> names)
+        public SPTermSet(Guid id, string title, Guid groupId, int lcid, IDictionary<string, string> names)
         {
             this.ID = id;
             this.Title = title;
+            this.GroupID = groupId;
+            this.LCID = lcid;
             this.Names = names;
         }
 
         public Guid ID  { get; set; }
+        public Guid GroupID { get; set; }
+        public int LCID { get; set; }
+        
         public string Title { get; set; }
         public IDictionary<string, string> Names { get; set; }
 

@@ -557,6 +557,18 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
+        public SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet)
+        {
+            throw new NotImplementedException();
+        }
+        public SPTermGroup CreateTermGroup(ISiteSetting siteSetting, SPTermGroup termGroup)
+        {
+            throw new NotImplementedException();
+        }
+        public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

@@ -18,13 +18,19 @@ namespace Sobiens.Connectors.Entities.SharePoint
     public class SPTerm
     {
         public SPTerm() { }
-        public SPTerm(Guid id, string title)
+        public SPTerm(Guid id, string title, Guid termSetId, Guid? parentTermID, int lcid)
         {
             this.ID = id;
             this.Title = title;
+            this.TermSetID = termSetId;
+            this.ParentTermID = parentTermID;
+            this.LCID = lcid;
         }
 
         public Guid ID  { get; set; }
+        public Guid TermSetID { get; set; }
+        public Guid? ParentTermID { get; set; }
+        public int LCID { get; set; }
         public string Title { get; set; }
 
         public override string ToString()

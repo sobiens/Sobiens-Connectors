@@ -110,5 +110,8 @@ namespace Sobiens.Connectors.Common.Interfaces
         void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, System.Collections.Generic.Dictionary<object, object> fields);
         string GetUser(ISiteSetting siteSetting, string UserName);
         void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems);
+        SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet);
+        SPTermGroup CreateTermGroup(ISiteSetting siteSetting, SPTermGroup termGroup);
+        SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term);
     }
 }

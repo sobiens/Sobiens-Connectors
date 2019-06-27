@@ -177,7 +177,7 @@ namespace Sobiens.Connectors.Common.SharePoint
                     folderName = folderName.Substring(folderName.LastIndexOf("/") + 1);
                 }
 
-                if (folderName.Equals(currentFolderName,StringComparison.OrdinalIgnoreCase) == true)
+                if (folderName.Equals(currentFolderName, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     currentFolder = tempFolder;
                     break;
@@ -257,7 +257,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             {
                 filename = new FileInfo(copySource).Name;
             }
-             */ 
+             */
             string[] copyDest = new string[1] { destinationFolderUrl + "/" + FixSharePointFileName(filename) };
             byte[] itemByteArray = SharePointServiceManager.ReadByteArrayFromFile(uploadItem.FilePath);
 
@@ -393,7 +393,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             ISharePointService spService = new SharePointService();
             string next;
             int count;
-            return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count); 
+            return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count);
         }
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
@@ -424,7 +424,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             SPBaseFolder spFolder = folder as SPBaseFolder;
             string folderPath = spFolder.WebUrl.CombineUrl(spFolder.FolderPath).TrimEnd(new char[] { '/' });
-            if (folderPath.Equals(siteSetting.Url,StringComparison.OrdinalIgnoreCase) == true)
+            if (folderPath.Equals(siteSetting.Url, StringComparison.OrdinalIgnoreCase) == true)
                 return null;
 
             //folderPath = folderPath.Substring(0, folderPath.LastIndexOf('/'));//JD
@@ -434,8 +434,8 @@ namespace Sobiens.Connectors.Common.SharePoint
             if (folder as SPList != null)
             {
                 //return spService.GetWeb(siteSetting, folderPath);
-                return spService.GetList(siteSetting, folderPath); 
-                
+                return spService.GetList(siteSetting, folderPath);
+
             }
             else if (folder as SPWeb != null)
             {
@@ -467,11 +467,11 @@ namespace Sobiens.Connectors.Common.SharePoint
         public Folder GetFolder(ISiteSetting siteSetting, BasicFolderDefinition folderDefinition)
         {
             ISharePointService spService = new SharePointService();
-            if (typeof(SPList).FullName.Equals(folderDefinition.FolderType,StringComparison.OrdinalIgnoreCase) == true)
+            if (typeof(SPList).FullName.Equals(folderDefinition.FolderType, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return spService.GetList(siteSetting, folderDefinition.FolderUrl);
             }
-            else if (typeof(SPWeb).FullName.Equals(folderDefinition.FolderType,StringComparison.OrdinalIgnoreCase) == true)
+            else if (typeof(SPWeb).FullName.Equals(folderDefinition.FolderType, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return spService.GetWeb(siteSetting, folderDefinition.FolderUrl);
             }
@@ -522,7 +522,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             // list item does not anything unique like document has unique file name
             if (copyItem as SPListItem == null)
                 return true;
-            
+
             //SPDocument spDocument = (SPDocument)copyItem;
             ISharePointService spService = new SharePointService();
             return !spService.CheckFileExistency(siteSetting, spFolder.WebUrl, spFolder.ListName, spFolder.GetUrl(), null, fileName);//JD spFolder.FolderPath
@@ -530,13 +530,13 @@ namespace Sobiens.Connectors.Common.SharePoint
 
         public Result CopyItem(ISiteSetting siteSetting, Folder targetFolder, IItem copySource, string newFileName)
         {
-            
+
             SPFolder spFolder = (SPFolder)targetFolder;
             SPListItem spListItem = (SPListItem)copySource;
             ISharePointService spService = new SharePointService();
             //return spService.CopyFile(siteSetting, spFolder.WebUrl, spFolder.ListName, spFolder.FolderPath + "/" + newFileName, out myCopyResultArray);
             return spService.CopyFile(siteSetting, spFolder.WebUrl, copySource.URL, spFolder.GetUrl() + "/" + newFileName);
-            
+
         }
 
         public string GetProperty(Dictionary<string, string> properies, string key)
@@ -548,7 +548,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
         {
             Hashtable changedProperties = SharePointService.getChangedProperties(null, fields);
-            if(auditInformation["Editor"] != null && auditInformation["Editor"] != string.Empty)
+            if (auditInformation["Editor"] != null && auditInformation["Editor"] != string.Empty)
                 changedProperties.Add("Editor", auditInformation["Editor"]);
 
             if (auditInformation["Modified"] != null && auditInformation["Modified"] != string.Empty)
@@ -608,5 +608,17 @@ namespace Sobiens.Connectors.Common.SharePoint
             return spService.GetTermTerms(siteSetting, termId);
         }
 
-}
+        public SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet)
+        {
+            return (new SharePointService()).CreateTermSet(siteSetting, termSet);
+        }
+        public SPTermGroup CreateTermGroup(ISiteSetting siteSetting, SPTermGroup termGroup)
+        {
+            return (new SharePointService()).CreateTermGroup(siteSetting, termGroup);
+        }
+        public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
+        {
+            return (new SharePointService()).CreateTerm(siteSetting, term);
+        }
+    }
 }

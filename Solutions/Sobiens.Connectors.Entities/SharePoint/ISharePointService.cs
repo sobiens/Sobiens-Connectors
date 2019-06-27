@@ -38,5 +38,9 @@ namespace Sobiens.Connectors.Entities.SharePoint
 
         List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId);
         List<SPTerm> GetTermTerms(ISiteSetting siteSetting, Guid termId);
+
+        SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet);
+        SPTermGroup CreateTermGroup(ISiteSetting siteSetting, SPTermGroup termGroup);
+        SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term);
     }
 }
