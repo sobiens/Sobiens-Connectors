@@ -290,6 +290,10 @@ namespace Sobiens.Connectors.Common.CRM
             SPFolder spFolder = folder as SPFolder;
             return (new CRMService()).GetPersonalViews(siteSetting, (CRMEntity)folder);
         }
+        public List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            return (new CRMService()).GetAuditLogs(siteSetting, listName, itemId);
+        }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount)
         {

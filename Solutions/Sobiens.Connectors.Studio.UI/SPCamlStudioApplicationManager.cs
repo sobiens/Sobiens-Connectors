@@ -122,6 +122,12 @@ namespace Sobiens.Connectors.UI
             return null;
         }
 
+        public override List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetAuditLogs(siteSetting, listName, itemId);
+        }
+
         public override List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount)
         {
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);

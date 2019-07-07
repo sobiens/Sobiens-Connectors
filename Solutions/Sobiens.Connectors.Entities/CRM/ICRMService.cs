@@ -13,6 +13,7 @@ namespace Sobiens.Connectors.Entities.CRM
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder);
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder, int[] includedFolderTypes);
         List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount);
+        List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
 
         /*
         string GetTermsByLabel(ISiteSetting siteSetting, string webUrl, string label, int lcid, int resultCollectionSize, string termIds, bool addIfNotFound);

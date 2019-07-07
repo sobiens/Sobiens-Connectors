@@ -41,6 +41,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sobiens.Connectors.Services.SharePoint\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.0-rc1\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -158,6 +162,9 @@
     </Compile>
     <Compile Include="MMSCopyWizardForm.xaml.cs">
       <DependentUpon>MMSCopyWizardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuditLogForm.xaml.cs">
+      <DependentUpon>AuditLogForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Selectors\TermObjectSelector.xaml.cs">
       <DependentUpon>TermObjectSelector.xaml</DependentUpon>
@@ -306,6 +313,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MMSCopyWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditLogForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

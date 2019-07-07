@@ -383,6 +383,11 @@ namespace Sobiens.Connectors.ExcelConnector
             throw new NotImplementedException();
         }
 
+        public override List<IItem> GetAuditLog(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            throw new NotImplementedException();
+        }
+
         public override List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount)
         {
             throw new NotImplementedException();

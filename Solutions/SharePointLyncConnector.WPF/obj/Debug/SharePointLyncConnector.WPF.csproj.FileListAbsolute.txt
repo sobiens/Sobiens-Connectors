@@ -8,3 +8,8 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\D
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\Window1.g.cs
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\App.g.cs
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF_MarkupCompile.cache
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF.csprojAssemblyReference.cache
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\Window1.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\Window1.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\App.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\SharePointLyncConnector.WPF\obj\Debug\SharePointLyncConnector.WPF_MarkupCompile.cache

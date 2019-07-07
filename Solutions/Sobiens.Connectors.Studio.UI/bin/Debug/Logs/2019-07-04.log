@@ -1,0 +1,233 @@
+Debug|2019-07-04 01:46:35.5817|2019-07-04 01:46:35,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:35.6046|2019-07-04 01:46:35,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:35.6046|2019-07-04 01:46:35,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:36.0644|2019-07-04 01:46:36,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:36.4224|2019-07-04 01:46:36,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:36.4224|2019-07-04 01:46:36,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:36.6229|2019-07-04 01:46:36,error,Service,SharePointService GetWebs method returned error:The request failed with HTTP status 403: Forbidden.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:46:36.9720|2019-07-04 01:46:36,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:28.4683|2019-07-04 01:47:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:28.4683|2019-07-04 01:47:28,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:28.4683|2019-07-04 01:47:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:28.4683|2019-07-04 01:47:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.3243|2019-07-04 01:47:30,info,Service,SharePointService GetWebs method returned xml:<Webs xmlns="http://schemas.microsoft.com/sharepoint/soap/" />|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.4450|2019-07-04 01:47:30,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.4799|2019-07-04 01:47:30,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.6524|2019-07-04 01:47:30,info,Service,SharePointService GetWebs method returned xml:<Webs xmlns="http://schemas.microsoft.com/sharepoint/soap/" />|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.7871|2019-07-04 01:47:30,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.7890|2019-07-04 01:47:30,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:30.9566|2019-07-04 01:47:30,info,Service,SharePointService GetWebs method returned xml:<Webs xmlns="http://schemas.microsoft.com/sharepoint/soap/" />|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:31.0683|2019-07-04 01:47:31,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:44.8605|2019-07-04 01:47:44,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:49.7384|2019-07-04 01:47:49,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20190704.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:49.7384|2019-07-04 01:47:49,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20190704.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:47:49.7424|2019-07-04 01:47:49,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20190704.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:53:56.9144|2019-07-04 01:53:56,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:53:56.9394|2019-07-04 01:53:56,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:53:59.9533|2019-07-04 01:53:59,info,Service,SharePointService GetWebs method returned xml:<Webs xmlns="http://schemas.microsoft.com/sharepoint/soap/" />|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:54:00.1478|2019-07-04 01:54:00,error,Service,SharePointService GetLists method returned error:Invalid URI: The hostname could not be parsed.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:55:33.4074|2019-07-04 01:55:33,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:55:33.4074|2019-07-04 01:55:33,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:55:33.4074|2019-07-04 01:55:33,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:55:46.2291|2019-07-04 01:55:46,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:56:17.6520|2019-07-04 01:56:17,info,Service,Cannot specify child attributes in the columnset for Retrieve. Attribute: actionname
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:57:20.5089|2019-07-04 01:57:20,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:57:50.4868|2019-07-04 01:57:50,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 01:59:23.9179|2019-07-04 01:59:23,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:00:06.4123|2019-07-04 02:00:06,info,Service,The entity with a name = 'Attachment' with namemapping = 'Logical' was not found in the MetadataCache. MetadataCacheDetails: ProviderType=Dynamic, StandardCache=True, IsLoadedInStagedContext = False, Timestamp=1724810, MinActiveRowVersion=1724810
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:00:32.1684|2019-07-04 02:00:32,info,Service,The entity with a name = 'Case' with namemapping = 'Logical' was not found in the MetadataCache. MetadataCacheDetails: ProviderType=Dynamic, StandardCache=True, IsLoadedInStagedContext = False, Timestamp=1724810, MinActiveRowVersion=1724810
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:03:05.8185|2019-07-04 02:03:05,info,Service,The entity with a name = '4803' with namemapping = 'Logical' was not found in the MetadataCache. MetadataCacheDetails: ProviderType=Dynamic, StandardCache=True, IsLoadedInStagedContext = False, Timestamp=1725657, MinActiveRowVersion=1725657
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:03:45.1782|2019-07-04 02:03:45,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:04:01.6422|2019-07-04 02:04:01,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:04:24.6137|2019-07-04 02:04:24,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:05:55.8896|2019-07-04 02:05:55,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:06:21.3296|2019-07-04 02:06:21,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:06:45.0990|2019-07-04 02:06:45,info,Service,RetriveMultiple call on Audit Entity must specify exactly one Condition set on objecttypecode at the top level filter
+
+Server stack trace: 
+   at System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Microsoft.Xrm.Sdk.IOrganizationService.RetrieveMultiple(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultipleCore(QueryBase query)
+   at Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy.RetrieveMultiple(QueryBase query)
+   at Sobiens.Connectors.Services.CRM.CRMService.GetListItems(ISiteSetting siteSetting, List`1 orderBys, CamlFilters filters, List`1 viewFields, CamlQueryOptions queryOptions, String webUrl, String listName, String& listItemCollectionPositionNext, Int32& itemCount) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\CRMService.cs:line 494|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:45:41.4000|2019-07-04 02:45:41,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:45:41.4249|2019-07-04 02:45:41,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:57:08.7917|2019-07-04 02:57:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 02:57:08.8166|2019-07-04 02:57:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 03:52:28.8791|2019-07-04 03:52:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-07-04 03:52:28.9030|2019-07-04 03:52:28,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry

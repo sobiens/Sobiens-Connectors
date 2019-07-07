@@ -361,6 +361,10 @@ namespace Sobiens.Connectors.Common.SharePoint
             SPFolder spFolder = folder as SPFolder;
             return new SharePointService().GetViews(siteSetting, spFolder.WebUrl, spFolder.ListName);
         }
+        public List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount)
         {

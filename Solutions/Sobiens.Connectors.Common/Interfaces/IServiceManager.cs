@@ -67,7 +67,7 @@ namespace Sobiens.Connectors.Common.Interfaces
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes);
 
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder);
-
+        List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
         List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView selectedView, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters customFilters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount);
 
         List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive);

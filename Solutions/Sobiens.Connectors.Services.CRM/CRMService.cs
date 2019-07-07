@@ -19,6 +19,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using System.ServiceModel.Description;
 using Microsoft.Crm.Sdk.Messages;
+using System.Text;
 
 namespace Sobiens.Connectors.Services.CRM
 {
@@ -474,6 +475,90 @@ namespace Sobiens.Connectors.Services.CRM
             }
             catch (Exception ex)
             {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            try
+            {
+                List<IItem> results = new List<IItem>();
+                IOrganizationService organizationService = GetClientContext(siteSetting);
+                RetrieveRecordChangeHistoryRequest changeRequest = new RetrieveRecordChangeHistoryRequest();
+                changeRequest.Target = new EntityReference(listName, new Guid(itemId));
+
+                RetrieveRecordChangeHistoryResponse changeResponse =
+                    (RetrieveRecordChangeHistoryResponse)organizationService.Execute(changeRequest);
+
+                AuditDetailCollection details = changeResponse.AuditDetailCollection;
+
+                foreach (var detail in details.AuditDetails)
+                {
+                    // Write out some of the change history information in the audit record. 
+                    Entity record = (Entity)detail.AuditRecord;
+                    CRMRecord crmRecord = new CRMRecord(siteSetting.ID);
+
+                    /*
+                    Console.WriteLine("\nAudit record created on: {0}", record.CreatedOn.Value.ToLocalTime());
+                    Console.WriteLine("Entity: {0}, Action: {1}, Operation: {2}",
+                        record.ObjectId.LogicalName, record.FormattedValues["action"],
+                        record.FormattedValues["operation"]);
+                    */
+                    StringBuilder changedData = new StringBuilder();
+                    // Show additional details for certain AuditDetail sub-types.
+                    var detailType = detail.GetType();
+                    if (detailType == typeof(AttributeAuditDetail))
+                    {
+                        var attributeDetail = (AttributeAuditDetail)detail;
+
+                        // Display the old and new attribute values.
+                        foreach (KeyValuePair<String, object> attribute in attributeDetail.NewValue.Attributes)
+                        {
+                            String oldValue = "(no value)", newValue = "(no value)";
+
+                            //TODO Display the lookup values of those attributes that do not contain strings.
+                            if (attributeDetail.OldValue.Contains(attribute.Key))
+                                oldValue = attributeDetail.OldValue[attribute.Key].ToString();
+
+                            newValue = attributeDetail.NewValue[attribute.Key].ToString();
+
+                            changedData.AppendLine(string.Format("Attribute: {0}, old value: {1}, new value: {2}",
+                                attribute.Key, oldValue, newValue));
+                        }
+
+                        foreach (KeyValuePair<String, object> attribute in attributeDetail.OldValue.Attributes)
+                        {
+                            if (!attributeDetail.NewValue.Contains(attribute.Key))
+                            {
+                                String newValue = "(no value)";
+
+                                //TODO Display the lookup values of those attributes that do not contain strings.
+                                String oldValue = attributeDetail.OldValue[attribute.Key].ToString();
+
+                                changedData.AppendLine(string.Format("Attribute: {0}, old value: {1}, new value: {2}",
+                                    attribute.Key, oldValue, newValue));
+                            }
+                        }
+
+                        crmRecord.Properties.Add("Action", record.FormattedValues["action"]);
+                        crmRecord.Properties.Add("Operation", record.FormattedValues["operation"]);
+                        crmRecord.Properties.Add("ChangedData", changedData.ToString());
+                        results.Add(crmRecord);
+                    }
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = errorMessage = ex.Message;
+
+                errorMessage += Environment.NewLine + ex.StackTrace;
+                Logger.Info(errorMessage, "Service");
+
+
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 //LogManager.LogAndShowException(methodName, ex);
                 throw ex;

@@ -30,13 +30,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private CamlQueryOptions queryOptions;
         private List<CamlOrderBy> orderBys;
         private string FolderServerRelativePath;
+        private string listName;
 
         public ResultPane()
         {
             InitializeComponent();
         }
 
-        public void PopulateResults(ISiteSetting _siteSetting, string webUrl, string listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath)
+        public void PopulateResults(ISiteSetting _siteSetting, string webUrl, string _listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath)
         {
             this.FolderServerRelativePath = folderServerRelativePath;
             siteSetting = _siteSetting;
@@ -44,6 +45,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             viewFields = _viewFields;
             orderBys= _orderBys;
             queryOptions = _queryOptions;
+            listName = _listName;
             string listItemCollectionPositionNext;
             int itemCount;
             List<IItem> items = ApplicationContext.Current.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
@@ -89,8 +91,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private void ContextMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             ResultGrid.ContextMenu.Items.Clear();
-            object fileLeafRefObj = this.FolderServerRelativePath + "/" + ((DataRowView)ResultGrid.SelectedItem)["FileLeafRef"];
-            if(fileLeafRefObj != null)
+            object fileLeafRefObj = null;
+            if(((DataRowView)ResultGrid.SelectedItem).DataView.Table.Columns.Contains("FileLeafRef") == true)
+                fileLeafRefObj = this.FolderServerRelativePath + "/" + ((DataRowView)ResultGrid.SelectedItem)["FileLeafRef"];
+            object itemId = ((DataRowView)ResultGrid.SelectedItem)[0];
+            if (fileLeafRefObj != null)
             {
                 MenuItem webPartPropertiesMenuItem = new MenuItem();
                 webPartPropertiesMenuItem.Click += WebPartPropertiesMenuItem_Click;
@@ -98,6 +103,24 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 webPartPropertiesMenuItem.Tag = new object[] { siteSetting, fileLeafRefObj };
                 ResultGrid.ContextMenu.Items.Add(webPartPropertiesMenuItem);
             }
+
+            MenuItem auditDetailsMenuItem = new MenuItem();
+            auditDetailsMenuItem.Click += AuditDetailsMenuItem_Click; ;
+            auditDetailsMenuItem.Header = "Audit Details";
+            auditDetailsMenuItem.Tag = new object[] { siteSetting, listName, itemId };
+            ResultGrid.ContextMenu.Items.Add(auditDetailsMenuItem);
+
+        }
+
+        private void AuditDetailsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            object[] args = (object[])((MenuItem)sender).Tag;
+            SiteSetting siteSetting = (SiteSetting)args[0];
+            string listName = args[1].ToString();
+            string itemId = args[2].ToString();
+            AuditLogForm wpf = new AuditLogForm();
+            wpf.Initialize(siteSetting, listName, itemId);
+            wpf.ShowDialog(null, "Audit Logs", 500, 700, false, true);
         }
 
         private void WebPartPropertiesMenuItem_Click(object sender, RoutedEventArgs e)

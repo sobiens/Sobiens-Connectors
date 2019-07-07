@@ -37,6 +37,7 @@ namespace Sobiens.Connectors.Common
         public abstract IView GetView(ISiteSetting siteSetting, Folder folder);
         public abstract List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount);
         public abstract List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount);
+        public abstract List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
         public abstract void BindFoldersToListViewControl(ISiteSetting siteSetting, Folder parentFolder, Folder folder, List<Folder> folders, object LibraryContentDataListView, object LibraryContentDataGridView);
         public abstract void BindItemsToListViewControl(ISiteSetting siteSetting, Folder parentFolder, Folder folder, IView view, List<Folder> folders, List<IItem> items, object LibraryContentDataListView, object LibraryContentDataGridView);
         public abstract void BindSearchResultsToListViewControl(ISiteSetting siteSetting, List<IItem> items, object LibraryContentDataGridView);

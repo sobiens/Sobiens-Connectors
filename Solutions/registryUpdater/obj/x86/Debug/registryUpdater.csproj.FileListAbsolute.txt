@@ -22,3 +22,15 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\reg
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.exe
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.exe.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.exe
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\registryUpdater.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\NLog.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\bin\Debug\NLog.xml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csprojAssemblyReference.cache
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CoreCompileInputs.cache
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.csproj.CopyComplete
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.exe
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\registryUpdater\obj\x86\Debug\registryUpdater.pdb
