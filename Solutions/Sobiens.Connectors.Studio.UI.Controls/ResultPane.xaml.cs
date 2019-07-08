@@ -29,6 +29,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private List<CamlFieldRef> viewFields;
         private CamlQueryOptions queryOptions;
         private List<CamlOrderBy> orderBys;
+        private List<Field> primaryFields;
         private string FolderServerRelativePath;
         private string listName;
 
@@ -37,7 +38,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             InitializeComponent();
         }
 
-        public void PopulateResults(ISiteSetting _siteSetting, string webUrl, string _listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath)
+        public void PopulateResults(ISiteSetting _siteSetting, string webUrl, string _listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath, List<Field> _primaryFields)
         {
             this.FolderServerRelativePath = folderServerRelativePath;
             siteSetting = _siteSetting;
@@ -46,6 +47,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             orderBys= _orderBys;
             queryOptions = _queryOptions;
             listName = _listName;
+            primaryFields = _primaryFields;
             string listItemCollectionPositionNext;
             int itemCount;
             List<IItem> items = ApplicationContext.Current.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
@@ -94,7 +96,9 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             object fileLeafRefObj = null;
             if(((DataRowView)ResultGrid.SelectedItem).DataView.Table.Columns.Contains("FileLeafRef") == true)
                 fileLeafRefObj = this.FolderServerRelativePath + "/" + ((DataRowView)ResultGrid.SelectedItem)["FileLeafRef"];
-            object itemId = ((DataRowView)ResultGrid.SelectedItem)[0];
+            object itemId = null;
+            if (this.primaryFields.Count > 0)
+                itemId = ((DataRowView)ResultGrid.SelectedItem)[this.primaryFields[0].Name];
             if (fileLeafRefObj != null)
             {
                 MenuItem webPartPropertiesMenuItem = new MenuItem();
@@ -115,6 +119,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private void AuditDetailsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             object[] args = (object[])((MenuItem)sender).Tag;
+            if (args[2] == null)
+            {
+                MessageBox.Show("Please select primary field '" + this.primaryFields[0].Name + "' as output field in order to use this functionality");
+            }
+
             SiteSetting siteSetting = (SiteSetting)args[0];
             string listName = args[1].ToString();
             string itemId = args[2].ToString();

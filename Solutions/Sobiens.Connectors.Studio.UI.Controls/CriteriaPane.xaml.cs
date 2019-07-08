@@ -26,7 +26,6 @@ namespace Sobiens.Connectors.Studio.UI.Controls
     /// </summary>
     public partial class CriteriaPane : UserControl
     {
-        private bool isInitialized = false;
         public event CriteriaPaneAfter_CriteriaChange After_CriteriaChange;
 
         public List<string> SortTypes
@@ -41,6 +40,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
         }
 
+        public FieldCollection Fields { get; set; }
+
         public CriteriaPane()
         {
             InitializeComponent();
@@ -54,9 +55,9 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         public void Initialize(Folder selectedObject)
         {
             SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[selectedObject.SiteSettingID];
-            FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, selectedObject);
-            var query = from field in fields
-                        select new CriteriaPaneItem() { FieldInternalName = field.Name, FieldName = field.DisplayName, FieldType = field.Type, Output = false, SortType = string.Empty, SortOrder = string.Empty, Filter1 = string.Empty, Filter2 = string.Empty, Filter3 = string.Empty, Filter4 = string.Empty };
+            Fields = ApplicationContext.Current.GetFields(siteSetting, selectedObject);
+            var query = from field in Fields
+                        select new CriteriaPaneItem() { FieldInternalName = field.Name, FieldName = field.DisplayName, FieldType = field.Type, Output = false, SortType = string.Empty, SortOrder = string.Empty, Filter1 = string.Empty, Filter2 = string.Empty, Filter3 = string.Empty, Filter4 = string.Empty, IsPrimary = field.IsPrimary};
 
             List<CriteriaPaneItem> items = query.ToList();
             List<string> sortOrders = new List<string>();
@@ -67,12 +68,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             sortOrders.Add("Unsorted");
             SortOrderColumn.ItemsSource = sortOrders;
             CriteriaGrid.ItemsSource = items;
-            isInitialized = true;
         }
 
         public void Initialize(Folder selectedObject, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, List<CamlOrderBy> orderBys, CamlFilters filters)
         { 
         
+        }
+
+        public List<Field> GetPrimaryFields()
+        {
+            return Fields.Where(t => t.IsPrimary == true).ToList();
         }
 
         public List<CamlFieldRef> GetViewFields()

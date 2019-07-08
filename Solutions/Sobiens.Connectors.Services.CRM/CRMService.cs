@@ -393,6 +393,11 @@ namespace Sobiens.Connectors.Services.CRM
                 entity.Fields = ParseFields(entityMetadata.Attributes);
                 entity.PrimaryIdFieldName = entityMetadata.PrimaryIdAttribute;
                 entity.PrimaryNameFieldName = entityMetadata.PrimaryNameAttribute;
+                Field primaryField = entity.Fields.Where(t => t.Name.Equals(entity.PrimaryIdFieldName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+                if(primaryField != null)
+                {
+                    primaryField.IsPrimary = true;
+                }
                 //entity.PrimaryFileReferenceFieldName = entityMetadata.PrimaryImageAttribute;
                 entities.Add(entity);
             }
@@ -521,9 +526,9 @@ namespace Sobiens.Connectors.Services.CRM
 
                             //TODO Display the lookup values of those attributes that do not contain strings.
                             if (attributeDetail.OldValue.Contains(attribute.Key))
-                                oldValue = attributeDetail.OldValue[attribute.Key].ToString();
+                                oldValue = GetEntityFieldValueAsString(attributeDetail.OldValue[attribute.Key]);
 
-                            newValue = attributeDetail.NewValue[attribute.Key].ToString();
+                            newValue = GetEntityFieldValueAsString(attributeDetail.NewValue[attribute.Key]);
 
                             changedData.AppendLine(string.Format("Attribute: {0}, old value: {1}, new value: {2}",
                                 attribute.Key, oldValue, newValue));
@@ -536,7 +541,7 @@ namespace Sobiens.Connectors.Services.CRM
                                 String newValue = "(no value)";
 
                                 //TODO Display the lookup values of those attributes that do not contain strings.
-                                String oldValue = attributeDetail.OldValue[attribute.Key].ToString();
+                                String oldValue = GetEntityFieldValueAsString(attributeDetail.OldValue[attribute.Key]);
 
                                 changedData.AppendLine(string.Format("Attribute: {0}, old value: {1}, new value: {2}",
                                     attribute.Key, oldValue, newValue));
@@ -563,6 +568,16 @@ namespace Sobiens.Connectors.Services.CRM
                 //LogManager.LogAndShowException(methodName, ex);
                 throw ex;
             }
+        }
+
+        private string GetEntityFieldValueAsString(object value)
+        {
+            if (value as EntityReference != null)
+                return ((EntityReference)value).Name;
+            if (value as OptionSetValue != null)
+                return ((OptionSetValue)value).ExtensionData.ToString();
+
+            return value.ToString();
         }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount)

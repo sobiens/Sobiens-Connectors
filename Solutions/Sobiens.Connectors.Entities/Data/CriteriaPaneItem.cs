@@ -17,5 +17,6 @@ namespace Sobiens.Connectors.Entities.Data
         public string Filter2 { get; set; }
         public string Filter3 { get; set; }
         public string Filter4 { get; set; }
+        public bool IsPrimary { get; set; }
     }
 }

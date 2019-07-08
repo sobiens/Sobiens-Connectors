@@ -272,7 +272,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         public void PopulateResults(ISiteSetting siteSetting, string webUrl, string listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath)
         {
-            _ResultPane.PopulateResults(siteSetting, webUrl, listName, _filters, _viewFields, _orderBys, _queryOptions, folderServerRelativePath);
+            _ResultPane.PopulateResults(siteSetting, webUrl, listName, _filters, _viewFields, _orderBys, _queryOptions, folderServerRelativePath, _CriteriaPane.GetPrimaryFields());
         }
 
         public List<CamlFieldRef> GetViewFields() 
