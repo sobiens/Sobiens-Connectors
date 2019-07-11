@@ -688,7 +688,10 @@ namespace Sobiens.Connectors.Services.SharePoint
         private SPListItem ParseSPListItem(ListItem item, Guid siteSettingID, string folderPath, string webUrl, string webApplicationURL, string siteCollectionURL, string listName, string titleFieldName)
         {
             SPListItem listItem = new SPListItem(siteSettingID);
-            listItem.HasUniqueRoleAssignments = item.HasUniqueRoleAssignments;
+            try {
+                listItem.HasUniqueRoleAssignments = item.HasUniqueRoleAssignments;
+            }
+            catch (Exception ec) { }
             listItem.WebURL = webUrl;
             listItem.SiteCollectionURL = siteCollectionURL;
             listItem.ListName = listName;
@@ -1595,7 +1598,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         /// <returns></returns>
         private static DateTime convertISO8601ToDateTime(string dateTime)
         {
-            return DateTime.ParseExact(dateTime, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(dateTime, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture).ToLocalTime();
         }
 
         /// <summary>

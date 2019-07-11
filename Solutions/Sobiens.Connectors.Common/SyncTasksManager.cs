@@ -73,7 +73,7 @@ namespace Sobiens.Connectors.Common
             }
         }
 
-        public void SaveProcessStatus(Guid processID, string status, DateTime? lastRunStartDate)
+        public void SaveProcessStatus(Guid processID, string status, DateTime? lastRunStartDate, DateTime? lastSuccessfullyCompletedStartDate)
         {
             lock (tasksSaveLockObject) {
                 SyncTask syncTask = SyncTasks.Where(t => t.ProcessID == processID).FirstOrDefault();
@@ -83,6 +83,9 @@ namespace Sobiens.Connectors.Common
 
                 if(lastRunStartDate.HasValue == true)
                     syncTask.LastRunStartDate = lastRunStartDate.Value;
+
+                if (lastSuccessfullyCompletedStartDate.HasValue == true)
+                    syncTask.LastSuccessfullyCompletedStartDate = lastSuccessfullyCompletedStartDate.Value;
 
                 SaveSyncTasks();
             }
@@ -1100,6 +1103,25 @@ namespace Sobiens.Connectors.Common
             }
         }
 
+        private string GetModifiedFieldName(SiteSetting siteSetting)
+        {
+            if (siteSetting.SiteSettingType == SiteSettingTypes.SharePoint)
+                return "Modified";
+            if (siteSetting.SiteSettingType == SiteSettingTypes.CRM)
+                return "modifiedon";
+
+            throw new NotImplementedException();
+        }
+
+        private string GetDateTimeFilterString(SiteSetting siteSetting, DateTime date)
+        {
+            if (siteSetting.SiteSettingType == SiteSettingTypes.SharePoint)
+                return date.ToString("yyyy-MM-ddTHH:mm:ssZ");
+            if (siteSetting.SiteSettingType == SiteSettingTypes.CRM)
+                return date.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
+
+            throw new NotImplementedException();
+        }
         private void ProcessSyncTaskExport2(SLExcelData data, string documentsFolder, QueryResultMappings queryResultMappings, int queryResultMappingIndex, string[] headers, bool shouldSourceExportDocuments, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, string destionationListName)
         {
             QueryResultMapping queryResultMapping = queryResultMappings.Mappings[queryResultMappingIndex];
@@ -1205,8 +1227,8 @@ namespace Sobiens.Connectors.Common
 
                         if(lastProcessStartDate.HasValue == true)
                         {
-                            string lastProcessStartDateString = lastProcessStartDate.Value.ToString("yyyy-MM-ddTHH:mm:ssZ");
-                            currentFilters.Add(new CamlFilter("Modified", FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
+                            string lastProcessStartDateString = GetDateTimeFilterString(siteSetting, lastProcessStartDate.Value);
+                            currentFilters.Add(new CamlFilter(GetModifiedFieldName(siteSetting), FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
                         }
 
                         List<Entities.Interfaces.IItem> _items = serviceManager.GetListItems(siteSetting, orderBys, currentFilters, viewFields, queryOptions, siteSetting.Url, queryResult.ListName, out listItemCollectionPositionNext, out itemCount);
@@ -1232,8 +1254,10 @@ namespace Sobiens.Connectors.Common
 
                     if (lastProcessStartDate.HasValue == true)
                     {
-                        string lastProcessStartDateString = lastProcessStartDate.Value.ToString("yyyy-MM-ddTHH:mm:ssZ");
-                        currentFilters.Add(new CamlFilter("Modified", FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
+                        //var result = new DateTimeOffset(input.DateTime, TimeZoneInfo.FindSystemTimeZoneById(input.TimeZoneId).GetUtcOffset(input.DateTime));
+
+                        string lastProcessStartDateString = GetDateTimeFilterString(siteSetting, lastProcessStartDate.Value);
+                        currentFilters.Add(new CamlFilter(GetModifiedFieldName(siteSetting), FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
                     }
 
                     string webUrl = siteSetting.Url;

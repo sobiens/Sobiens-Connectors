@@ -127,7 +127,9 @@ namespace Sobiens.Connectors.Entities
             string caml = String.Empty;
             string fieldTypeString = GetCamlFieldTypeString(this.FieldType);
             string filterTypeString = GetCamlFilterTypeString(this.FilterType);
-            caml = "<" + filterTypeString + "><FieldRef Name=\"" + this.FieldName + "\"/><Value Type=\"" + fieldTypeString + "\">" + ReplaceSpecialCharachters(this.FilterValue) + "</Value></" + filterTypeString + ">";
+            caml = "<" + filterTypeString + "><FieldRef Name=\"" + this.FieldName + "\"/><Value " +
+                (this.FieldType == FieldTypes.DateTime ? " IncludeTimeValue = 'TRUE' ":"")
+                + " Type=\"" + fieldTypeString + "\">" + ReplaceSpecialCharachters(this.FilterValue) + "</Value></" + filterTypeString + ">";
             return caml;
         }
     }

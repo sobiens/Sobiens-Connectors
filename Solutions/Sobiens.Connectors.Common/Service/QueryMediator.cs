@@ -22,13 +22,21 @@ namespace Sobiens.Connectors.Common.Service
                 QueryRunner queryRunner = QueuedRequests.Where(t => t.Task.ID == synctask.ID).FirstOrDefault();
                 if (queryRunner == null)
                 {
-                    SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime);
+                    SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime, null);
                     EnqueAction(synctask);
                 }
                 else if(queryRunner.Task.LastRunStartDate.AddSeconds(synctask.ScheduleInterval) < DateTime.Now && queryRunner.State == RunnerState.Complete)
                 {
                     QueuedRequests.Remove(queryRunner);
-                    SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Completed", referenceTime);
+                    /*
+                    SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(synctask);
+                    if(syncTaskStatus.Successful == true)
+                    {
+                        synctask.LastSuccessfullyCompletedStartDate = synctask.LastRunStartDate;
+                        SyncTasksManager.GetInstance().SaveSyncTasks();
+                    }
+                    */
+                    SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Completed", referenceTime, null);
                     EnqueAction(synctask);
                 }
 
@@ -55,7 +63,7 @@ namespace Sobiens.Connectors.Common.Service
                                               select runner).Count() > 0 ? true : false;
                     if (isTaskInProgress == true)
                         continue;
-                    SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null);
+                    SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null, null);
 
                     //logger.Info(String.Format("Performing request for {0} RetriedCount:{1}...", runner.Request.TargetMeter.ToLogString(), runner.RetryCount));
                     runner.RunAsync();

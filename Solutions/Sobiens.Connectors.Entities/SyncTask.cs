@@ -54,6 +54,7 @@ namespace Sobiens.Connectors.Entities
 
         public DateTime LastRunStartDate { get; set; }
         public DateTime LastRunEndDate { get; set; }
+        public DateTime? LastSuccessfullyCompletedStartDate { get; set; }
         public int ScheduleInterval { get; set; }
         public int ScheduleIntervalAsMinute {
             get

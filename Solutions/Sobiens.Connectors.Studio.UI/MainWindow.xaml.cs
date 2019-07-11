@@ -162,7 +162,7 @@ namespace Sobiens.Connectors.Studio.UI
             //    ostrm.Close();
             //}
 
-            System.Console.WriteLine("Site provisioning has ended");
+            //System.Console.WriteLine("Site provisioning has ended");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

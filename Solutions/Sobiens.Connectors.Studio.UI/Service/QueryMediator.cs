@@ -31,21 +31,21 @@ namespace Sobiens.Connectors.UI.Service
                     QueryRunner queryRunner = QueuedRequests.Where(t => t.Task.ID == synctask.ID).FirstOrDefault();
                     if (queryRunner == null)
                     {
-                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime);
+                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime, null);
                         EnqueAction(synctask);
                     }
                     else if (synctask.ScheduleInterval == 0 && queryRunner.State == RunnerState.Complete)
                     {
                         QueuedRequests.Remove(queryRunner);
                         SyncTasksManager.GetInstance().AddSyncTaskHistory(synctask);
-                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Completed", referenceTime);
+                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Completed", referenceTime, null);
                         SyncTasksManager.GetInstance().RemoveProcess(synctask.ProcessID);
                     }
                     else if (queryRunner.Task.LastRunStartDate.AddSeconds(synctask.ScheduleInterval) < DateTime.Now && queryRunner.State == RunnerState.Complete)
                     {
                         SyncTasksManager.GetInstance().AddSyncTaskHistory(synctask);
                         QueuedRequests.Remove(queryRunner);
-                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime);
+                        SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime, null);
                         EnqueAction(synctask);
                     }
                 }
@@ -79,7 +79,7 @@ namespace Sobiens.Connectors.UI.Service
                     if (isTaskInProgress == true)
                         continue;
 
-                    SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null);
+                    SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null, null);
                     //logger.Info(String.Format("Performing request for {0} RetriedCount:{1}...", runner.Request.TargetMeter.ToLogString(), runner.RetryCount));
                     runner.RunAsync();
                 }
@@ -122,7 +122,15 @@ namespace Sobiens.Connectors.UI.Service
 
         private static void EnqueAction(SyncTask task)
         {
+            //string previousSyncTaskStatusFilePath = ConfigurationManager.GetInstance().GetSyncTaskStatusFilePath(task);
             task.ProcessID = Guid.NewGuid();
+            /*
+            if (System.IO.File.Exists(previousSyncTaskStatusFilePath) == true)
+            {
+                string currentSyncTaskStatusFilePath = ConfigurationManager.GetInstance().GetSyncTaskStatusFilePath(task);
+                System.IO.File.Copy(previousSyncTaskStatusFilePath, currentSyncTaskStatusFilePath);
+            }
+            */
             Enque(task);
         }
 

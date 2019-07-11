@@ -548,6 +548,7 @@ namespace Sobiens.Connectors.Services.CRM
                             }
                         }
 
+                        crmRecord.Properties.Add("Createdon", record.FormattedValues["createdon"]);
                         crmRecord.Properties.Add("Action", record.FormattedValues["action"]);
                         crmRecord.Properties.Add("Operation", record.FormattedValues["operation"]);
                         crmRecord.Properties.Add("ChangedData", changedData.ToString());
@@ -575,7 +576,7 @@ namespace Sobiens.Connectors.Services.CRM
             if (value as EntityReference != null)
                 return ((EntityReference)value).Name;
             if (value as OptionSetValue != null)
-                return ((OptionSetValue)value).ExtensionData.ToString();
+                return ((OptionSetValue)value).Value.ToString();
 
             return value.ToString();
         }

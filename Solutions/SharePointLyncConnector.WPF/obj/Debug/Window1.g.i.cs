@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Microsoft.Lync.Controls;
-using Sobiens.Connectors.WPF.Controls;
 using System;
 using System.Diagnostics;
 using System.Windows;

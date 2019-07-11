@@ -50,9 +50,10 @@ namespace Sobiens.Connectors.Common.Service
             DateTime processStartDate = DateTime.Now;
             DateTime? lastProcessStartDate = null;
             QueryRunner queryRunner = (QueryRunner)e.Argument;
-            SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(queryRunner.Task);
-            if (syncTaskStatus != null)
-                lastProcessStartDate = syncTaskStatus.StartTime;
+
+            //SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(queryRunner.Task);
+            //if (syncTaskStatus != null)
+                lastProcessStartDate = queryRunner.Task.LastSuccessfullyCompletedStartDate;
             SyncTasksManager.GetInstance().ExportSyncTaskItems(queryRunner.Task, true, true, true, queryRunner.backgroundWorker, lastProcessStartDate, 0);
             SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(queryRunner.Task, queryRunner.backgroundWorker);
             SyncTasksManager.GetInstance().ImportSyncTaskItems(queryRunner.Task, queryRunner.Task.ShouldSkipUpdates, new string[] { }, queryRunner.backgroundWorker);
