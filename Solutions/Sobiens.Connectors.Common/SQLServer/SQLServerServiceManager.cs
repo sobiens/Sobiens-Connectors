@@ -186,11 +186,16 @@ namespace Sobiens.Connectors.Common.SQLServer
         {
             return new SQLServerService().GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
         }
-
-        public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
         {
-            throw new Exception("Not implemented yet");
+            throw new NotImplementedException();
         }
+
+
+        //public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        //{
+        //    throw new Exception("Not implemented yet");
+        //}
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
         {

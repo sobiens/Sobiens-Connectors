@@ -141,7 +141,33 @@ namespace Sobiens.Connectors.Common
             listItemCollectionPositionNext = String.Empty;
             itemCount = 0;
             GFolder _folder = folder as GFolder;
-            return this.GetListItems(siteSetting, folder.GetUrl(), string.Empty, false);
+            string webUrl = folder.GetUrl();
+            //return this.GetListItems(siteSetting, folder.GetUrl(), string.Empty, false);
+
+            Login(siteSetting.Username, siteSetting.Password);
+            List<IItem> items = new List<IItem>();
+
+            DocumentsListQuery query = new DocumentsListQuery();
+            if (string.IsNullOrEmpty(webUrl) == false)
+                query = new FolderQuery(webUrl);
+            DocumentsFeed feed = service.Query(query);
+            foreach (DocumentEntry entry in feed.Entries)
+            {
+                if (entry.IsFolder == false)
+                {
+                    if (String.IsNullOrEmpty(webUrl) == true)
+                    {
+                        if (entry.ParentFolders.Count > 0)
+                            continue;
+                    }
+                    IItem item = new GItem(siteSetting.ID, entry.ResourceId, entry.Title.Text, entry.AlternateUri.ToString());
+                    item.Properties.Add("ows_Editor", entry.LastModified.Name);
+                    item.Properties.Add("ows_Modified", entry.Edited.DateValue.ToString());
+                    items.Add(item);
+                }
+            }
+            return items;
+
         }
 
         public Folder GetFolderByBasicFolderDefinition(ISiteSetting siteSetting, BasicFolderDefinition basicFolderDefinition, bool returnAll)
@@ -169,32 +195,32 @@ namespace Sobiens.Connectors.Common
             throw new Exception("Not implemented yet");
         }
 
-        public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
-        {
-            Login(siteSetting.Username, siteSetting.Password);
-            List<IItem> items = new List<IItem>();
+        //public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        //{
+        //    Login(siteSetting.Username, siteSetting.Password);
+        //    List<IItem> items = new List<IItem>();
 
-            DocumentsListQuery query = new DocumentsListQuery();
-            if (string.IsNullOrEmpty(webUrl) ==false)
-                query = new FolderQuery(webUrl);
-            DocumentsFeed feed = service.Query(query);
-            foreach (DocumentEntry entry in feed.Entries)
-            {
-                if (entry.IsFolder == false)
-                {
-                    if (String.IsNullOrEmpty(webUrl) == true)
-                    {
-                        if (entry.ParentFolders.Count > 0)
-                            continue;
-                    }
-                    IItem item = new GItem(siteSetting.ID, entry.ResourceId, entry.Title.Text, entry.AlternateUri.ToString());
-                    item.Properties.Add("ows_Editor", entry.LastModified.Name);
-                    item.Properties.Add("ows_Modified", entry.Edited.DateValue.ToString());
-                    items.Add(item);
-                }
-            }
-            return items;
-        }
+        //    DocumentsListQuery query = new DocumentsListQuery();
+        //    if (string.IsNullOrEmpty(webUrl) ==false)
+        //        query = new FolderQuery(webUrl);
+        //    DocumentsFeed feed = service.Query(query);
+        //    foreach (DocumentEntry entry in feed.Entries)
+        //    {
+        //        if (entry.IsFolder == false)
+        //        {
+        //            if (String.IsNullOrEmpty(webUrl) == true)
+        //            {
+        //                if (entry.ParentFolders.Count > 0)
+        //                    continue;
+        //            }
+        //            IItem item = new GItem(siteSetting.ID, entry.ResourceId, entry.Title.Text, entry.AlternateUri.ToString());
+        //            item.Properties.Add("ows_Editor", entry.LastModified.Name);
+        //            item.Properties.Add("ows_Modified", entry.Edited.DateValue.ToString());
+        //            items.Add(item);
+        //        }
+        //    }
+        //    return items;
+        //}
 
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes)
@@ -325,6 +351,10 @@ namespace Sobiens.Connectors.Common
         }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount)
+        {
+            throw new NotImplementedException();
+        }
+        public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
         {
             throw new NotImplementedException();
         }

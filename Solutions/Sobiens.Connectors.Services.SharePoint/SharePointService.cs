@@ -1147,7 +1147,6 @@ namespace Sobiens.Connectors.Services.SharePoint
                     viewFields.Add(new CamlFieldRef("Editor", "Editor"));
 
                 listItemCollectionPositionNext = string.Empty;
-                itemCount = 0;
                 Logger.Info("GetListItems method is started", "Service");
                 List<IItem> items = new List<IItem>();
 
@@ -1172,6 +1171,12 @@ namespace Sobiens.Connectors.Services.SharePoint
 
 
                     CamlQuery camlQuery = new CamlQuery();
+                    if(string.IsNullOrEmpty(queryOptions.ListItemCollectionPositionNext) == false)
+                    {
+                        camlQuery.ListItemCollectionPosition = new ListItemCollectionPosition();
+                        camlQuery.ListItemCollectionPosition.PagingInfo = queryOptions.ListItemCollectionPositionNext;
+                    }
+
                     camlQuery.ViewXml = "<View>" + query.OuterXml + queryOptionsNode.OuterXml + "<RowLimit>" + queryOptions.RowLimit.ToString() + "</RowLimit>" + viewFieldsNode.OuterXml + "</View>";
                     ListItemCollection collListItem = list.GetItems(camlQuery);
                     context.Load(collListItem);
@@ -1212,6 +1217,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                         }
                     }
                 }
+                itemCount = items.Count;
                 return items;
             }
             catch (Exception ex)

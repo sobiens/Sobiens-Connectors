@@ -307,10 +307,28 @@ namespace Sobiens.Connectors.Common.CRM
             return (new CRMService()).GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
         }
 
-        public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
         {
-            return new List<IItem>();
+            CRMService spService = new CRMService();
+            string listItemCollectionPositionNext = string.Empty;
+            int itemCount = 0;
+
+            List<IItem> items = spService.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
+            Logger.Info("webUrl:" + webUrl + " - listName:" + listName + " - itemCount:" + itemCount + " - listItemCollectionPositionNext:" + listItemCollectionPositionNext, "CRMServiceManager.GetListItemsWithoutPaging");
+            while (string.IsNullOrEmpty(listItemCollectionPositionNext) == false)
+            {
+                queryOptions.ListItemCollectionPositionNext = listItemCollectionPositionNext;
+                List<IItem> _items = spService.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
+                Logger.Info("webUrl:" + webUrl + " - listName:" + listName + " - itemCount:" + itemCount + " - listItemCollectionPositionNext:" + listItemCollectionPositionNext, "CRMServiceManager.GetListItemsWithoutPaging");
+                items.AddRange(_items);
+            }
+
+            return items;
         }
+        //public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        //{
+        //    return new List<IItem>();
+        //}
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
         {

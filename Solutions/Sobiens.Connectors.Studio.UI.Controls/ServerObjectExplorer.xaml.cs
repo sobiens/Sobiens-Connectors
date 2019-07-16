@@ -590,8 +590,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             if(ShowPropertiesPanel == false)
             {
+                ShowPropertiesButton.Visibility = Visibility.Hidden;
                 ObjectExplorerGridSplitter.Visibility = Visibility.Hidden;
                 ObjectPropertiesControl.Visibility = Visibility.Hidden;
+                MainGrid.RowDefinitions.RemoveAt(2);
+                MainGrid.RowDefinitions.RemoveAt(1);
             }
         }
 

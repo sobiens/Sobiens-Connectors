@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 54911222519
 6-746713911
-73961684658
+72-604506250
 27353147119
 CamlPane.xaml;CamlTextEditorPane.xaml;CloseableHeader.xaml;CodeWizardForm.xaml;CompareWizardForm.xaml;CriteriaPane.xaml;ValueTransformationForm.xaml;FilterGroupEditControl.xaml;FilterEditControl.xaml;EditItemPropertiesControl.xaml;EditItems\CheckInForm.xaml;EditItems\EditItemBooleanControl.xaml;EditItems\EditItemCheckedListBoxControl.xaml;EditItems\EditItemComboBoxControl.xaml;EditItems\EditItemDateTimeControl.xaml;EditItems\EditItemFileControl.xaml;EditItems\EditItemLabelControl.xaml;EditItems\EditItemMultiLineTextBoxControl.xaml;EditItems\EditItemNumberTextBoxControl.xaml;EditItems\EditItemRichTextBoxControl.xaml;EditItems\EditItemTaxonomyControl.xaml;EditItems\EditItemTextBoxControl.xaml;EditItems\FieldMappingControl.xaml;EditItems\FileCopyNameForm.xaml;EditItems\FileExistConfirmationForm.xaml;EditItems\ItemVersionHistoryForm.xaml;ExportWizardForm.xaml;HostWindow.xaml;ImportWizardForm.xaml;LoadingWindow.xaml;MMSCopyWizardForm.xaml;AuditLogForm.xaml;Selectors\TermObjectSelector.xaml;WebPartPropertiesForm.xaml;ObjectPropertiesControl.xaml;ObjectAccessMaintenanceForm.xaml;ProjectEditForm.xaml;ProjectLoadForm.xaml;QueriesPanel.xaml;QueryDesignerToolbar.xaml;QueryFilterGeneratorControl.xaml;QueryGeneratorControl.xaml;ResultPane.xaml;SelectEntityForm.xaml;Selectors\TermSetSelector.xaml;ServerObjectExplorer.xaml;Settings\CRMSiteSettingForm.xaml;Settings\SiteSettingForm.xaml;Settings\SQLServerSettingForm.xaml;SyncCopyListWizardForm.xaml;SyncDataWizardForm.xaml;SyncTaskProgressForm.xaml;SyncTaskListForm.xaml;ViewRelationForm.xaml;
 
-True
+False
 

@@ -380,13 +380,13 @@ namespace Sobiens.Connectors.Common.SharePoint
             return items;
         }
 
-        public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
-        {
-            ISharePointService spService = new SharePointService();
-            string next;
-            int count;
-            return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count); 
-        }
+        //public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        //{
+        //    ISharePointService spService = new SharePointService();
+        //    string next;
+        //    int count;
+        //    return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count); 
+        //}
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
         {
@@ -511,6 +511,11 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
+        public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, Dictionary<object, object> fields, Dictionary<string, object> auditInformation)
         {

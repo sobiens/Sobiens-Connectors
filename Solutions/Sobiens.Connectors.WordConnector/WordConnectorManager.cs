@@ -338,10 +338,6 @@ namespace Sobiens.Connectors.WordConnector
         {
             return null;
         }
-        public override List<IItem> GetAuditLog(ISiteSetting siteSetting, string listName, string itemId)
-        {
-            throw new NotImplementedException();
-        }
 
         public override List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount)
         {
@@ -444,6 +440,12 @@ namespace Sobiens.Connectors.WordConnector
         public override void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields)
         {
             throw new NotImplementedException();
+        }
+
+        public override List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetAuditLogs(siteSetting, listName, itemId);
         }
     }
 }

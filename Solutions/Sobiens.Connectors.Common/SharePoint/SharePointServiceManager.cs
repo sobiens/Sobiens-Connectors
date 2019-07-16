@@ -371,6 +371,24 @@ namespace Sobiens.Connectors.Common.SharePoint
             ISharePointService spService = new SharePointService();
             return spService.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
         }
+        public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
+        {
+            ISharePointService spService = new SharePointService();
+            string listItemCollectionPositionNext = string.Empty;
+            int itemCount = 0;
+
+            List<IItem> items = spService.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
+            Logger.Info("webUrl:" + webUrl + " - listName:" + listName + " - itemCount:" + itemCount + " - listItemCollectionPositionNext:" + listItemCollectionPositionNext, "SharePointServiceManager.GetListItemsWithoutPaging");
+            while (string.IsNullOrEmpty(listItemCollectionPositionNext) == false)
+            {
+                queryOptions.ListItemCollectionPositionNext = listItemCollectionPositionNext;
+                List<IItem> _items = spService.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
+                Logger.Info("webUrl:" + webUrl + " - listName:" + listName + " - itemCount:" + itemCount + " - listItemCollectionPositionNext:" + listItemCollectionPositionNext, "SharePointServiceManager.GetListItemsWithoutPaging");
+                items.AddRange(_items);
+            }
+
+            return items;
+        }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount)
         {
@@ -392,13 +410,13 @@ namespace Sobiens.Connectors.Common.SharePoint
             return spService.GetListItems(siteSetting, view, sortField, isAsc, _folder.IsDocumentLibrary, _folder.WebUrl, _folder.ListName, folderPath, currentListItemCollectionPositionNext, filters, isRecursive, out listItemCollectionPositionNext, out itemCount);
         }
 
-        public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
-        {
-            ISharePointService spService = new SharePointService();
-            string next;
-            int count;
-            return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count);
-        }
+        //public List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive)
+        //{
+        //    ISharePointService spService = new SharePointService();
+        //    string next;
+        //    int count;
+        //    return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count);
+        //}
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
         {

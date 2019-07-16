@@ -47,7 +47,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.EditItems
             else if (field.Type == FieldTypes.Lookup)
             {
                 IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-                List<IItem> items = serviceManager.GetListItems(siteSetting, rootFolder, field.List.ToString(), false);
+                List<IItem> items = serviceManager.GetListItemsWithoutPaging(siteSetting, new List<CamlOrderBy>(), new CamlFilters(), new List<CamlFieldRef>(), new CamlQueryOptions(), rootFolder, field.List.ToString());
                 foreach (IItem item in items)
                 {
                     TheList.Add(new BoolStringClass { TheText = item.Title, TheValue = item.GetID() });

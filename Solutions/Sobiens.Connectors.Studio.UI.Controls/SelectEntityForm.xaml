@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="Red">
-    <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Bisque"  >
-        <TabControl HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.841,0.512" Background="Yellow">
+             d:DesignHeight="500" d:DesignWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TabControl HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.841,0.512">
             <TabItem Header="Sync Data">
-                <Grid Background="Red">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <wpfc:ServerObjectExplorer x:Name="SourceDataFoldersSelector" ShowPropertiesPanel="False"  ShowCheckBoxes="True" HorizontalAlignment="Stretch" Margin="0,0,10,80" VerticalAlignment="Stretch"  Grid.Column="0" Grid.Row="0" Background="Purple"/>
+                    <wpfc:ServerObjectExplorer x:Name="SourceDataFoldersSelector" ShowPropertiesPanel="False"  ShowCheckBoxes="True" HorizontalAlignment="Stretch" Margin="0,0,10,10" VerticalAlignment="Stretch"  Grid.Column="0" Grid.Row="0" />
                 </Grid>
             </TabItem>
         </TabControl>

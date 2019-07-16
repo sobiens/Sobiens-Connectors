@@ -255,7 +255,7 @@ namespace Sobiens.Connectors.Common
                 if (string.IsNullOrEmpty(queryResultMappingSelectField.FieldName) == true)
                     continue;
 
-                queryResultMappingSelectFields.Add(new QueryResultMappingSelectField(queryResultMappingSelectField.FieldName, queryResultMappingSelectField.FieldName));
+                queryResultMappingSelectFields.Add(new QueryResultMappingSelectField(queryResultMappingSelectField.FieldName, string.Empty, queryResultMappingSelectField.FieldName, queryResultMappingSelectField.ValueTransformationSyntax));
             }
             QueryResult queryResult = new QueryResult()
             {
@@ -545,6 +545,15 @@ namespace Sobiens.Connectors.Common
                     if (excludeFields.Contains(destinationFieldName) == true)
                         continue;
 
+                    if (string.IsNullOrEmpty(syncTask.DestinationFieldMappings[i].ValueTransformationSyntax) == false)
+                    {
+                        object transformedValue = ValueTransformationHelper.Transform(value, syncTask.DestinationFieldMappings[i].ValueTransformationSyntax);
+                        if (transformedValue != null)
+                            value = transformedValue.ToString();
+                        else
+                            value = string.Empty;
+                    }
+
                     if (currentField == null)
                     {
                         // no need to do anything
@@ -557,8 +566,6 @@ namespace Sobiens.Connectors.Common
                             string newValue = string.Empty;
                             for (int x = 0; x < lookupValues.Length; x = x + 2)
                             {
-                                string listItemCollectionPositionNext = string.Empty;
-                                int itemCount = 0;
                                 List<CamlFieldRef> viewFields = new List<CamlFieldRef>();
                                 viewFields.Add(new CamlFieldRef("ID", "ID"));
                                 viewFields.Add(new CamlFieldRef("Title", "Title"));
@@ -566,7 +573,7 @@ namespace Sobiens.Connectors.Common
                                 CamlQueryOptions queryOptions = new CamlQueryOptions() { RowLimit = 10000 };
                                 CamlFilters filters = new CamlFilters();
                                 filters.Add(new CamlFilter("Title", FieldTypes.Text, CamlFilterTypes.Equals, lookupValues[x + 1]));
-                                List<Entities.Interfaces.IItem> items = serviceManager.GetListItems(syncTask.DestinationSiteSetting, orderBys, filters, viewFields, queryOptions, syncTask.DestinationSiteSetting.Url, currentField.List, out listItemCollectionPositionNext, out itemCount);
+                                List<Entities.Interfaces.IItem> items = serviceManager.GetListItemsWithoutPaging(syncTask.DestinationSiteSetting, orderBys, filters, viewFields, queryOptions, syncTask.DestinationSiteSetting.Url, currentField.List);
                                 if (items.Count > 0)
                                 {
                                     if (string.IsNullOrEmpty(newValue) == false)
@@ -936,8 +943,6 @@ namespace Sobiens.Connectors.Common
             SiteSetting siteSetting = queryResultMapping.QueryResult.SiteSetting;
             QueryResult queryResult = queryResultMapping.QueryResult;
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            string listItemCollectionPositionNext = string.Empty;
-            int itemCount = 0;
             List<CamlFieldRef> viewFields = new List<CamlFieldRef>();
             foreach (string fieldName in queryResultMapping.QueryResult.Fields)
             {
@@ -976,7 +981,7 @@ namespace Sobiens.Connectors.Common
 
             if (shouldSkip == false)
             {
-                List<Entities.Interfaces.IItem> items = serviceManager.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, siteSetting.Url, queryResult.ListName, out listItemCollectionPositionNext, out itemCount);
+                List<Entities.Interfaces.IItem> items = serviceManager.GetListItemsWithoutPaging(siteSetting, orderBys, filters, viewFields, queryOptions, siteSetting.Url, queryResult.ListName);
 
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -1132,8 +1137,6 @@ namespace Sobiens.Connectors.Common
             //Folder rootFolder = serviceManager.GetRootFolder(siteSetting);
             //Folder rootFolder = serviceManager.get
 
-            string listItemCollectionPositionNext = string.Empty;
-            int itemCount = 0;
             List<CamlFieldRef> viewFields = new List<CamlFieldRef>();
             foreach (string fieldName in queryResultMapping.QueryResult.Fields)
             {
@@ -1231,7 +1234,7 @@ namespace Sobiens.Connectors.Common
                             currentFilters.Add(new CamlFilter(GetModifiedFieldName(siteSetting), FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
                         }
 
-                        List<Entities.Interfaces.IItem> _items = serviceManager.GetListItems(siteSetting, orderBys, currentFilters, viewFields, queryOptions, siteSetting.Url, queryResult.ListName, out listItemCollectionPositionNext, out itemCount);
+                        List<Entities.Interfaces.IItem> _items = serviceManager.GetListItemsWithoutPaging(siteSetting, orderBys, currentFilters, viewFields, queryOptions, siteSetting.Url, queryResult.ListName);
                         items.AddRange(_items);
                     }
                 }
@@ -1266,7 +1269,7 @@ namespace Sobiens.Connectors.Common
                         webUrl = queryResult.FolderPath.Substring(0, queryResult.FolderPath.LastIndexOf(queryResult.ListName) - 1);
                     }
 
-                    items = serviceManager.GetListItems(siteSetting, orderBys, currentFilters, viewFields, queryOptions, webUrl, queryResult.ListName, out listItemCollectionPositionNext, out itemCount);
+                    items = serviceManager.GetListItemsWithoutPaging(siteSetting, orderBys, currentFilters, viewFields, queryOptions, webUrl, queryResult.ListName);
                 }
 
                 ApplyReferenceFieldValues(items, queryResultMapping);
@@ -1409,8 +1412,6 @@ namespace Sobiens.Connectors.Common
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(SiteSettingTypes.SharePoint);
             List<CamlOrderBy> orderBys1 = new List<CamlOrderBy>();
             CamlQueryOptions queryOptions1 = new CamlQueryOptions() { RowLimit = 10000 };
-            string listItemCollectionPositionNext;
-            int itemCount;
 
             foreach (QueryResultReferenceField refField in queryResultMapping.QueryResult.ReferenceFields)
             {
@@ -1434,7 +1435,7 @@ namespace Sobiens.Connectors.Common
 
                     if(filters1.Filters.Count> 100 || i == items.Count - 1)
                     {
-                        List<Entities.Interfaces.IItem> items1 = serviceManager.GetListItems(refField.SiteSetting, orderBys1, filters1, viewFields1, queryOptions1, refField.SiteSetting.Url, refField.ReferenceListName, out listItemCollectionPositionNext, out itemCount);
+                        List<Entities.Interfaces.IItem> items1 = serviceManager.GetListItemsWithoutPaging(refField.SiteSetting, orderBys1, filters1, viewFields1, queryOptions1, refField.SiteSetting.Url, refField.ReferenceListName);
                         foreach (Entities.Interfaces.IItem item1 in items1)
                         {
                             string filteredValue = item1.Properties[refField.ReferenceFilterFieldName];

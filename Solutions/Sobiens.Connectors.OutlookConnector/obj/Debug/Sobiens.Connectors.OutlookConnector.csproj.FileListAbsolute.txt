@@ -92,7 +92,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnec
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Google.GData.Extensions.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Sobiens.Connectors.Services.CRM.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\NLog.dll
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.Lync.Model.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Google.GData.AccessControl.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.IdentityModel.dll

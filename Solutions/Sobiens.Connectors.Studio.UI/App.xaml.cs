@@ -17,7 +17,6 @@ namespace Sobiens.Connectors.Studio.UI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            object returnValue = ValueTransformationHelper.Transform("Hello World!", "return value.Replace(\"World\", \"coni\")");
             Application.Current.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(Current_DispatcherUnhandledException);
             base.OnStartup(e);
             if(System.Configuration.ConfigurationManager.AppSettings["RunAs"] == "RunOnlyScheduledTasks")

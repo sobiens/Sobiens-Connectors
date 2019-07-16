@@ -70,12 +70,10 @@ namespace Sobiens.Connectors.Common.Interfaces
         List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
         List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView selectedView, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters customFilters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount);
 
-        List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive);
+        //List<IItem> GetListItems(ISiteSetting siteSetting, string webUrl, string listName, bool isRecursive);
 
         List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount);
-
-
-
+        List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName);
         List<ItemVersion> GetListItemVersions(ISiteSetting siteSetting, IItem item); //string webUrl, string fileURL
 
         List<ItemVersion> RestoreVersion(ISiteSetting siteSetting, ItemVersion itemVersion); //string webUrl, string fileURL

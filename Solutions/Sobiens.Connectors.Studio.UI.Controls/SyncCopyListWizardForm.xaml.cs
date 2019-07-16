@@ -197,6 +197,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                     string textboxName = destionationField.Name + "_ManuelValueTextBox";
                     string comboBoxName = destionationField.Name + "_SourceComboBox";
+                    string valueTransformationButtonName = destionationField.Name + "_FieldValueTransformationButton";
                     string manuelValue = string.Empty;
 
                     foreach (UIElement element in FieldMappingsStackPanel.Children)
@@ -238,6 +239,26 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                             }
                         }
                     }
+
+                    foreach (UIElement element in FieldMappingsStackPanel.Children)
+                    {
+                        if (element is Button == true && element.Visibility == Visibility.Visible)
+                        {
+                            if (((Button)element).Name == valueTransformationButtonName)
+                            {
+                                Button button = (Button)element;
+                                if(button.Tag != null && button.Tag != string.Empty)
+                                {
+                                    QueryResultMappingSelectField matchField1 = destinationFieldMappings.Where(t => t.FieldName == destionationField.Name).FirstOrDefault();
+                                    if(matchField1!= null)
+                                    {
+                                        matchField1.ValueTransformationSyntax = button.Tag.ToString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                 }
                 Logger.Error("13", "SyncCopyListWizardForm");
 
@@ -470,11 +491,37 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 manuelValueTextBox.Visibility = Visibility.Hidden;
                 FieldMappingsStackPanel.Children.Add(manuelValueTextBox);
 
+                Button valueTransformationButton = new Button();
+                valueTransformationButton.Name = field.Name + "_FieldValueTransformationButton";
+                valueTransformationButton.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                valueTransformationButton.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                valueTransformationButton.Tag = string.Empty;
+                if (matchField != null)
+                {
+                    valueTransformationButton.Tag = matchField.ValueTransformationSyntax;
+                }
+                valueTransformationButton.Content = "Expression editor...";
+                valueTransformationButton.Click += ValueTransformationButton_Click;
+                valueTransformationButton.Margin = new Thickness(350, top, 5, 0);
+                valueTransformationButton.Height = height;
+                FieldMappingsStackPanel.Children.Add(valueTransformationButton);
+
                 top += height + 5;
             }
 
             FieldMappingsStackPanel.Height = top;
 
+        }
+
+        private void ValueTransformationButton_Click(object sender, RoutedEventArgs e)
+        {
+            ValueTransformationForm vtf = new ValueTransformationForm();            
+            bool? result = vtf.ShowDialog(this.ParentWindow, "Value expression editor");
+            if(result == true)
+            {
+                Button button = (Button)sender;
+                button.Tag = vtf.ValueTransformationSyntax;
+            }
         }
 
         private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

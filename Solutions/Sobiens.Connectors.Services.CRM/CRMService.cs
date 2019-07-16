@@ -618,7 +618,8 @@ namespace Sobiens.Connectors.Services.CRM
                 query.Criteria = GetFilterExpression(filters);
                 //query.Criteria.Filters[0].FilterOperator = LogicalOperator.
                 EntityCollection entities = organizationService.RetrieveMultiple(query);
-                itemCount = entities.TotalRecordCount;
+                itemCount = entities.TotalRecordCount==-1? entities.Entities.Count:entities.TotalRecordCount;
+                
                 listItemCollectionPositionNext = string.Empty;
 
                 foreach(Entity entity in entities.Entities)

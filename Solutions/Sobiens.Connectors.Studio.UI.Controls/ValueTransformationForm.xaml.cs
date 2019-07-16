@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Entities.Interfaces;
+using Sobiens.Connectors.Common;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -22,6 +23,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
     /// </summary>
     public partial class ValueTransformationForm : HostControl
     {
+        public string ValueTransformationSyntax { get; set; }
         public ValueTransformationForm()
         {
             InitializeComponent();
@@ -29,14 +31,32 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         private void CodeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            updateValues();
         }
 
         private void TestValueTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            updateValues();
         }
 
+        private void updateValues()
+        {
+            if (OutputTextBox == null)
+                return;
+
+            //object returnValue = ValueTransformationHelper.Transform("Hello World!", "return value.Replace(\"World\", \"coni\")");
+            try
+            {
+                object returnValue = ValueTransformationHelper.Transform(TestValueTextBox.Text, CodeTextBox.Text);
+                OutputTextBox.Text = returnValue.ToString();
+                ValueTransformationSyntax = CodeTextBox.Text;
+            }
+            catch(Exception ex)
+            {
+                OutputTextBox.Text = "Invalid syntax";
+                ValueTransformationSyntax = string.Empty;
+            }
+        }
 
     }
 }

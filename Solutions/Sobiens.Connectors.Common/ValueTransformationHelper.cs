@@ -46,9 +46,11 @@ namespace Sobiens.Connectors.Common
             CompilerResults cr = icc.CompileAssemblyFromSource(cp, sb.ToString());
             if (cr.Errors.Count > 0)
             {
+                /*
                 MessageBox.Show("ERROR: " + cr.Errors[0].ErrorText,
                    "Error evaluating cs code");
-                return null;
+                   */
+                throw new Exception("ERROR: " + cr.Errors[0].ErrorText);
             }
 
             System.Reflection.Assembly a = cr.CompiledAssembly;
