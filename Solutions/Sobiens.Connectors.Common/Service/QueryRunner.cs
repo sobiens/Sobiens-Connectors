@@ -28,6 +28,17 @@ namespace Sobiens.Connectors.Common.Service
             set;
         }
         BackgroundWorker backgroundWorker = new BackgroundWorker();
+        public void RunSync()
+        {
+            State = RunnerState.InProgress;
+            TriggerTime = DateTime.Now;
+            DoWorkEventArgs args = new DoWorkEventArgs(this);
+            backgroundWorker.WorkerReportsProgress = true;
+            backgroundWorker.WorkerSupportsCancellation = true;
+            backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            BackgroundWorker_DoWork(null, args);
+        }
 
         public void RunAsync()
         {

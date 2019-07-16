@@ -59,6 +59,19 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         private List<Folder> DataSource { get; set; }
         public bool ShowCheckBoxes { get; set; }
+
+        public bool _ShowPropertiesPanel = true;
+        public bool ShowPropertiesPanel
+        {
+            get
+            {
+                return _ShowPropertiesPanel;
+            }
+            set
+            {
+                _ShowPropertiesPanel = value;
+            }
+        }
         public bool AdministrativeView { get; set; }
         new public bool Initialized { get; set; }
         public int[] IncludedFolderTypes { get; set; }
@@ -573,6 +586,12 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             if (ShowConnectMenu == false)
             {
                 ConnectMenu.Visibility = Visibility.Collapsed;
+            }
+
+            if(ShowPropertiesPanel == false)
+            {
+                ObjectExplorerGridSplitter.Visibility = Visibility.Hidden;
+                ObjectPropertiesControl.Visibility = Visibility.Hidden;
             }
         }
 

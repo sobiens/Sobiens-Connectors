@@ -146,9 +146,10 @@ namespace Sobiens.Connectors.Services.SharePoint
                             continue;
                         if (includedFolderTypes != null && includedFolderTypes.Contains(list.ServerTemplate) == false)
                             continue;
+                        /*
                         if (includedFolderTypes == null && list.ServerTemplate != 101 && list.ServerTemplate != 100 && list.BaseType != 1)
                             continue;
-
+                            */
                         subFolders.Add(list);
                     }
                 }

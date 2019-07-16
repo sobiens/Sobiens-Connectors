@@ -117,6 +117,7 @@
     <Compile Include="ContextMenuManager.cs" />
     <Compile Include="CRM\CRMServiceManager.cs" />
     <Compile Include="EDMX\EDMXManager.cs" />
+    <Compile Include="ValueTransformationHelper.cs" />
     <Compile Include="FileSystem\FileSystemServiceManager.cs" />
     <Compile Include="Logging\DebugTraceListener.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

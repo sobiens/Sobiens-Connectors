@@ -421,6 +421,12 @@ namespace Sobiens.Connectors.Services.CRM
                     displayFieldName = attributeMetadata.DisplayName.LocalizedLabels[0].Label;
                 }
                 string internalFieldName = attributeMetadata.LogicalName.ToString();
+                bool isRetrievable = attributeMetadata.IsRetrievable.HasValue?attributeMetadata.IsRetrievable.Value:true;
+                if(attributeMetadata.AttributeType.ToString().ToLower() == "state")
+                {
+                    isRetrievable = true;
+                }
+
                 bool required = (attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.ApplicationRequired || attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.SystemRequired) ? true : false;
                 int maxLength = 2500;
                 FieldTypes fieldType = FieldTypes.Text;
@@ -451,7 +457,11 @@ namespace Sobiens.Connectors.Services.CRM
                     case "lookup":
                         fieldType = FieldTypes.Lookup;
                         break;
+                    case "virtual":
+                        fieldType = FieldTypes.Virtual;
+                        break;
                 }
+
 
                 Field field = new Field();
                 field.Name = internalFieldName;
@@ -459,6 +469,21 @@ namespace Sobiens.Connectors.Services.CRM
                 field.Required = required;
                 field.MaxLength = maxLength;
                 field.Type = fieldType;
+                field.IsRetrievable = isRetrievable;
+
+                if (attributeMetadata as StateAttributeMetadata != null)
+                {
+                    StateAttributeMetadata stateAttributeMetadata = (StateAttributeMetadata)attributeMetadata;
+                    if (stateAttributeMetadata.OptionSet != null && stateAttributeMetadata.OptionSet.Options != null)
+                    {
+                        field.ChoiceItems = new List<ChoiceDataItem>();
+                        foreach (var option in stateAttributeMetadata.OptionSet.Options)
+                        {
+                            field.ChoiceItems.Add(new ChoiceDataItem(option.Value.ToString(), option.Label.LocalizedLabels[0].Label));
+                        }
+                    }
+                }
+
                 fields.Add(field);
             }
 
@@ -627,6 +652,10 @@ namespace Sobiens.Connectors.Services.CRM
                                 else if (objValue is DateTime)
                                 {
                                     value = ((DateTime)objValue).ToString("yyyy-MM-ddTHH:mm:ssZ");
+                                }
+                                else if (objValue is OptionSetValue)
+                                {
+                                    value = ((OptionSetValue)objValue).Value.ToString() + ";#" + entity.FormattedValues[viewFieldName];
                                 }
                                 else
                                 {

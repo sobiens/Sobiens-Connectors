@@ -35,7 +35,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.sobiens.com/Sobiens.Connectors.Studio.UI/</UpdateUrl>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.6.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

@@ -77,7 +77,7 @@ namespace Sobiens.Connectors.Common.Service
                         LastQueuePerformed = DateTime.Now;
                     }
 
-                    QueryMediator.PerformRequests();
+                    QueryMediator.PerformRequests(true);
                     QueryMediator.TimeOutRequests();
                     Thread.Sleep(30000);
                 }

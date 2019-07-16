@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Sobiens.Connectors.Common;
+using Sobiens.Connectors.Common.Service;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,8 +17,15 @@ namespace Sobiens.Connectors.Studio.UI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            object returnValue = ValueTransformationHelper.Transform("Hello World!", "return value.Replace(\"World\", \"coni\")");
             Application.Current.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(Current_DispatcherUnhandledException);
             base.OnStartup(e);
+            if(System.Configuration.ConfigurationManager.AppSettings["RunAs"] == "RunOnlyScheduledTasks")
+            {
+                QueryMediator.EnqueueRequests(DateTime.Now);
+                QueryMediator.PerformRequests(false);
+                this.Shutdown();
+            }
         }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

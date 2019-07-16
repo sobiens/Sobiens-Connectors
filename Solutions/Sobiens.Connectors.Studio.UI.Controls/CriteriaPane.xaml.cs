@@ -57,6 +57,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[selectedObject.SiteSettingID];
             Fields = ApplicationContext.Current.GetFields(siteSetting, selectedObject);
             var query = from field in Fields
+                        where field.IsRetrievable == true
                         select new CriteriaPaneItem() { FieldInternalName = field.Name, FieldName = field.DisplayName, FieldType = field.Type, Output = false, SortType = string.Empty, SortOrder = string.Empty, Filter1 = string.Empty, Filter2 = string.Empty, Filter3 = string.Empty, Filter4 = string.Empty, IsPrimary = field.IsPrimary};
 
             List<CriteriaPaneItem> items = query.ToList();

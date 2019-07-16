@@ -181,7 +181,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                 foreach (Field destionationField in DestinationFolderFields)
                 {
-                    if (destionationField.FromBaseType == true && destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false)
+                    if (destionationField.ReadOnly == true && destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false)
                         continue;
 
                     /*
@@ -402,7 +402,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             foreach (Field field in destinationFields)
             {
-                if (field.FromBaseType == true && field.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false)
+                if (field.ReadOnly == true && field.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false)
                     continue;
 
                 Label label = new Label() { Content = field.DisplayName.removeTextInsideParenthesis() };

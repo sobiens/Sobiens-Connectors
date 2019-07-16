@@ -43,7 +43,7 @@ namespace Sobiens.Connectors.Common.Service
             }
         }
 
-        public static void PerformRequests()
+        public static void PerformRequests(bool isAsync)
         {
             lock (lockObject)
             {
@@ -66,7 +66,10 @@ namespace Sobiens.Connectors.Common.Service
                     SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null, null);
 
                     //logger.Info(String.Format("Performing request for {0} RetriedCount:{1}...", runner.Request.TargetMeter.ToLogString(), runner.RetryCount));
-                    runner.RunAsync();
+                    if(isAsync == true)
+                        runner.RunAsync();
+                    else
+                        runner.RunSync();
                 }
             }
         }

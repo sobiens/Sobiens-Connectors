@@ -27,6 +27,7 @@ namespace Sobiens.Connectors.Entities
         public int NumLines = 0;
         public int MaxLength=255;
         public bool IsPrimary = false;
+        public bool IsRetrievable = true;
         public bool Required = false;
         public bool ReadOnly = true;
         public bool FromBaseType = true; 
@@ -55,6 +56,7 @@ namespace Sobiens.Connectors.Entities
         Choice=11,
         Number=12,
         Unknown=13,
-        TaxonomyFieldType=14
+        TaxonomyFieldType=14,
+        Virtual= 15
     }
 }
