@@ -96,6 +96,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 SiteSetting siteSetting = (SiteSetting)QueryResult.SiteSetting;
                 SourceFolder = ApplicationContext.Current.GetFolder((SiteSetting)QueryResult.SiteSetting, new BasicFolderDefinition() {
                     FolderUrl = siteSetting.Url + "/" + QueryResult.FolderPath,
+                    Title= QueryResult.FolderPath,
                     SiteSettingID = QueryResult.SiteSetting.ID
                 });
 

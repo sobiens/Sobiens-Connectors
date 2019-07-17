@@ -7,9 +7,12 @@ using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.SQLServer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -162,173 +165,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             try
             {
-                List<QueryResultMappingSelectField> destinationFieldMappings = new List<QueryResultMappingSelectField>();
-                //sourceSelectFieldNames.Add(new QueryResultMappingSelectField("ID", "ID"));
-                //sourceSelectFieldNames.Add(new QueryResultMappingSelectField("Title", "Title"));
-                //sourceSelectFieldNames.Add(new QueryResultMappingSelectField("FileRef", "FileRef"));
-
-                List<string> sourceFieldNames = new List<string>();
-                //sourceFieldNames.Add("ID");
-                //sourceFieldNames.Add("Title");
-                //sourceFieldNames.Add("FileRef");
-
-                List<string> destinationFieldNames = new List<string>();
-                //destinationFieldNames.Add("SourceItemID");
-                //destinationFieldNames.Add("Title");
-                //destinationFieldNames.Add("FileRef");
-
-                Logger.Error("12", "SyncCopyListWizardForm");
-
-                foreach (Field destionationField in DestinationFolderFields)
-                {
-                    if (destionationField.ReadOnly == true && destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false)
-                        continue;
-
-                    /*
-                    if (destionationField.Name.Equals("SourceItemID", StringComparison.InvariantCultureIgnoreCase) == true)
-                        continue;
-
-                    if (destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == true)
-                        continue;
-
-                    if (destionationField.Name.Equals("FileRef", StringComparison.InvariantCultureIgnoreCase) == true)
-                        continue;
-                        */
-
-                    string textboxName = destionationField.Name + "_ManuelValueTextBox";
-                    string comboBoxName = destionationField.Name + "_SourceComboBox";
-                    string valueTransformationButtonName = destionationField.Name + "_FieldValueTransformationButton";
-                    string manuelValue = string.Empty;
-
-                    foreach (UIElement element in FieldMappingsStackPanel.Children)
-                    {
-                        if (element is TextBox == true)
-                        {
-                            if (((TextBox)element).Name == textboxName)
-                            {
-                                manuelValue = ((TextBox)element).Text;
-                            }
-                        }
-                    }
-
-                    foreach (UIElement element in FieldMappingsStackPanel.Children)
-                    {
-                        if (element is ComboBox == true)
-                        {
-                            if (((ComboBox)element).Name == comboBoxName)
-                            {
-                                ComboBox comboBox = (ComboBox)element;
-                                if (((QueryResultMappingSelectField)comboBox.SelectedItem).OutputHeaderName == "--- Not Mapped")
-                                {
-                                    continue;
-                                }
-                                else if (((QueryResultMappingSelectField)comboBox.SelectedItem).OutputHeaderName == "--- Apply Manuel Value")
-                                {
-                                    //sourceFieldNames.Add(destionationField.Name);
-                                    destinationFieldNames.Add(destionationField.Name);
-                                    destinationFieldMappings.Add(new QueryResultMappingSelectField(string.Empty, manuelValue, destionationField.Name));
-                                }
-                                else
-                                {
-                                    QueryResultMappingSelectField sourceField = ((QueryResultMappingSelectField)comboBox.SelectedItem);
-                                    sourceFieldNames.Add(sourceField.OutputHeaderName);
-                                    destinationFieldNames.Add(destionationField.Name);
-                                    destinationFieldMappings.Add(new QueryResultMappingSelectField(destionationField.Name, sourceField.StaticValue, destionationField.Name));
-                                    //destinationFieldMappings.Add(new QueryResultMappingSelectField(sourceField.FieldName, sourceField.StaticValue, sourceField.OutputHeaderName));
-                                }
-                            }
-                        }
-                    }
-
-                    foreach (UIElement element in FieldMappingsStackPanel.Children)
-                    {
-                        if (element is Button == true && element.Visibility == Visibility.Visible)
-                        {
-                            if (((Button)element).Name == valueTransformationButtonName)
-                            {
-                                Button button = (Button)element;
-                                if(button.Tag != null && button.Tag != string.Empty)
-                                {
-                                    QueryResultMappingSelectField matchField1 = destinationFieldMappings.Where(t => t.FieldName == destionationField.Name).FirstOrDefault();
-                                    if(matchField1!= null)
-                                    {
-                                        matchField1.ValueTransformationSyntax = button.Tag.ToString();
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                }
-                Logger.Error("13", "SyncCopyListWizardForm");
-
-                Logger.Error("14", "SyncCopyListWizardForm");
-
-                SyncTask.DestinationListName = DestinationFolder.GetListName();
-                SyncTask.DestinationRootFolderPath = DestinationFolder.GetPath();
-                SyncTask.DestinationFolderPath = DestinationFolder.GetPath();
-                SyncTask.Name = DestinationFolder.GetListName();
-                SyncTask.DestinationPrimaryIdFieldName = DestinationFolder.PrimaryIdFieldName;
-                SyncTask.DestinationPrimaryNameFieldName = DestinationFolder.PrimaryNameFieldName;
-                SyncTask.DestinationPrimaryFileReferenceFieldName = DestinationFolder.PrimaryFileReferenceFieldName;
-                //if (string.IsNullOrEmpty(SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName) == false)
-                if (AllowUpdateCheckBox.IsChecked == true)
-                {
-                    QueryResultMappingSelectField sourceQueryResultMappingSelectField = (QueryResultMappingSelectField)UpdateSourceFieldComboBox.SelectedItem;
-                    string destinationUniqueFieldName = ((Field)UpdateDestinationFieldComboBox.SelectedItem).Name;
-                    SyncTask.SourceUniqueFieldHeaderNames = new string[] { sourceQueryResultMappingSelectField.OutputHeaderName };
-                    SyncTask.DestinationUniqueFieldNames = new string[] { destinationUniqueFieldName };
-                    //SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName = sourceQueryResultMappingSelectField.FieldName;
-                    if(destinationFieldNames.Contains(destinationUniqueFieldName) == false)
-                    {
-                        destinationFieldNames.Add(destinationUniqueFieldName);
-                        destinationFieldMappings.Add(new QueryResultMappingSelectField(destinationUniqueFieldName, destinationUniqueFieldName));
-                        sourceFieldNames.Add(sourceQueryResultMappingSelectField.FieldName);
-                    }
-                    //SyncTask.DestinationPrimaryIdFieldName = destinationUniqueFieldName;
-/*
-                    if (sourceFieldNames.Contains(sourceQueryResultMappingSelectField.FieldName) == false)
-                    {
-                    }
-                    */
-                    //sourceFieldNames.Add(destionationField.Name);
-/*
-                    if (destinationFieldMappings.Where(t => t.FieldName.Equals(sourceQueryResultMappingSelectField.FieldName, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
-                    {
-                        destinationFieldMappings.Add(sourceQueryResultMappingSelectField);
-                    }
-                    */
-                }
-                else
-                {
-                    SyncTask.SourceUniqueFieldHeaderNames = new string[] {  };
-                    SyncTask.DestinationUniqueFieldNames = new string[] {  };
-                }
-
-                SyncTask.DestinationIDFieldHeaderName = DestinationFolder.PrimaryIdFieldName;
-
-                /*
-                if (DestinationFolder.IsDocumentLibrary == true)
-                {
-                    sourceFieldNames.RemoveAt(2);
-                    destinationFieldNames.RemoveAt(2);
-                    sourceSelectFieldNames.RemoveAt(2);
-                }
-                */
-                Logger.Error("15", "SyncCopyListWizardForm");
-
-                //SyncTask.SourceFieldHeaderMappings = sourceSelectFieldNames.Select(t => t.OutputHeaderName).ToArray();
-                SyncTask.SourceFieldHeaderMappings = sourceFieldNames.ToArray();
-                //destinationFieldNames[0] = "SourceItemID";
-                SyncTask.DestinationFieldMappings = destinationFieldMappings; // destinationFieldNames.ToArray();
-                SyncTask.IsDestinationDocumentLibrary = DestinationFolder.IsDocumentLibrary;
-
-
-                SyncTask.DestinationTermStoreName = "Taxonomy_BrjLUNqY3/3gqp8FAbbKiQ==";
-                SyncTask.DestinationSiteSetting = (SiteSetting)DestinationSiteSetting;
-                //syncTasks.Add(syncTask);
-                //syncTask.ScheduleInterval = 0;
-                Logger.Error("16", "SyncCopyListWizardForm");
+                UpdateSyncTaskOnMappingTab();
                 CurrentTabIndex = 3;
                 WizardTabControl.SelectedIndex = CurrentTabIndex;
             }
@@ -338,6 +175,127 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
         }
 
+        private void UpdateSyncTaskOnMappingTab()
+        {
+            List<QueryResultMappingSelectField> destinationFieldMappings = new List<QueryResultMappingSelectField>();
+            List<string> sourceFieldNames = new List<string>();
+            List<string> destinationFieldNames = new List<string>();
+
+            Logger.Error("12", "SyncCopyListWizardForm");
+
+            foreach (Field destionationField in DestinationFolderFields)
+            {
+                if (destionationField.ReadOnly == true/* && destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false*/)
+                    continue;
+
+                string textboxName = destionationField.Name + "_ManuelValueTextBox";
+                string comboBoxName = destionationField.Name + "_SourceComboBox";
+                string valueTransformationButtonName = destionationField.Name + "_FieldValueTransformationButton";
+                string manuelValue = string.Empty;
+
+                foreach (UIElement element in FieldMappingsStackPanel.Children)
+                {
+                    if (element is TextBox == true)
+                    {
+                        if (((TextBox)element).Name == textboxName)
+                        {
+                            manuelValue = ((TextBox)element).Text;
+                        }
+                    }
+                }
+
+                foreach (UIElement element in FieldMappingsStackPanel.Children)
+                {
+                    if (element is ComboBox == true)
+                    {
+                        if (((ComboBox)element).Name == comboBoxName)
+                        {
+                            ComboBox comboBox = (ComboBox)element;
+                            if (((QueryResultMappingSelectField)comboBox.SelectedItem).OutputHeaderName == "--- Not Mapped")
+                            {
+                                continue;
+                            }
+                            else if (((QueryResultMappingSelectField)comboBox.SelectedItem).OutputHeaderName == "--- Apply Manuel Value")
+                            {
+                                //sourceFieldNames.Add(destionationField.Name);
+                                destinationFieldNames.Add(destionationField.Name);
+                                destinationFieldMappings.Add(new QueryResultMappingSelectField(string.Empty, manuelValue, destionationField.Name));
+                            }
+                            else
+                            {
+                                QueryResultMappingSelectField sourceField = ((QueryResultMappingSelectField)comboBox.SelectedItem);
+                                sourceFieldNames.Add(sourceField.OutputHeaderName);
+                                destinationFieldNames.Add(destionationField.Name);
+                                destinationFieldMappings.Add(new QueryResultMappingSelectField(destionationField.Name, sourceField.StaticValue, destionationField.Name));
+                                //destinationFieldMappings.Add(new QueryResultMappingSelectField(sourceField.FieldName, sourceField.StaticValue, sourceField.OutputHeaderName));
+                            }
+                        }
+                    }
+                }
+
+                foreach (UIElement element in FieldMappingsStackPanel.Children)
+                {
+                    if (element is Button == true && element.Visibility == Visibility.Visible)
+                    {
+                        if (((Button)element).Name == valueTransformationButtonName)
+                        {
+                            Button button = (Button)element;
+                            if (button.Tag != null && button.Tag != string.Empty)
+                            {
+                                QueryResultMappingSelectField matchField1 = destinationFieldMappings.Where(t => t.FieldName == destionationField.Name).FirstOrDefault();
+                                if (matchField1 != null)
+                                {
+                                    matchField1.ValueTransformationSyntax = button.Tag.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            Logger.Error("13", "SyncCopyListWizardForm");
+
+            SyncTask.DestinationListName = DestinationFolder.GetListName();
+            SyncTask.DestinationRootFolderPath = DestinationFolder.GetPath();
+            SyncTask.DestinationFolderPath = DestinationFolder.GetPath();
+            SyncTask.Name = DestinationFolder.GetListName();
+            SyncTask.DestinationPrimaryIdFieldName = DestinationFolder.PrimaryIdFieldName;
+            SyncTask.DestinationPrimaryNameFieldName = DestinationFolder.PrimaryNameFieldName;
+            SyncTask.DestinationPrimaryFileReferenceFieldName = DestinationFolder.PrimaryFileReferenceFieldName;
+            //if (string.IsNullOrEmpty(SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName) == false)
+            if (AllowUpdateCheckBox.IsChecked == true)
+            {
+                QueryResultMappingSelectField sourceQueryResultMappingSelectField = (QueryResultMappingSelectField)UpdateSourceFieldComboBox.SelectedItem;
+                string destinationUniqueFieldName = ((Field)UpdateDestinationFieldComboBox.SelectedItem).Name;
+                SyncTask.SourceUniqueFieldHeaderNames = new string[] { sourceQueryResultMappingSelectField.OutputHeaderName };
+                SyncTask.DestinationUniqueFieldNames = new string[] { destinationUniqueFieldName };
+                //SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName = sourceQueryResultMappingSelectField.FieldName;
+                if (destinationFieldNames.Contains(destinationUniqueFieldName) == false)
+                {
+                    destinationFieldNames.Add(destinationUniqueFieldName);
+                    destinationFieldMappings.Add(new QueryResultMappingSelectField(destinationUniqueFieldName, destinationUniqueFieldName));
+                    sourceFieldNames.Add(sourceQueryResultMappingSelectField.FieldName);
+                }
+            }
+            else
+            {
+                SyncTask.SourceUniqueFieldHeaderNames = new string[] { };
+                SyncTask.DestinationUniqueFieldNames = new string[] { };
+            }
+
+            SyncTask.DestinationIDFieldHeaderName = DestinationFolder.PrimaryIdFieldName;
+
+            Logger.Error("15", "SyncCopyListWizardForm");
+
+            SyncTask.SourceFieldHeaderMappings = sourceFieldNames.ToArray();
+            SyncTask.DestinationFieldMappings = destinationFieldMappings;
+            SyncTask.IsDestinationDocumentLibrary = DestinationFolder.IsDocumentLibrary;
+
+
+            SyncTask.DestinationTermStoreName = "Taxonomy_BrjLUNqY3/3gqp8FAbbKiQ==";
+            SyncTask.DestinationSiteSetting = (SiteSetting)DestinationSiteSetting;
+            Logger.Error("16", "SyncCopyListWizardForm");
+        }
         private void ScheduleNextButton_Click(object sender, RoutedEventArgs e)
         {
             SyncTask.ScheduleInterval = 0;
@@ -496,14 +454,21 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 valueTransformationButton.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 valueTransformationButton.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                 valueTransformationButton.Tag = string.Empty;
+                valueTransformationButton.Visibility = Visibility.Hidden;
                 if (matchField != null)
                 {
+                    valueTransformationButton.Visibility = Visibility.Visible;
                     valueTransformationButton.Tag = matchField.ValueTransformationSyntax;
+                    if (string.IsNullOrEmpty(matchField.ValueTransformationSyntax) == false)
+                    {
+                        valueTransformationButton.Background = Brushes.DarkOrange;
+                    }
                 }
                 valueTransformationButton.Content = "Expression editor...";
                 valueTransformationButton.Click += ValueTransformationButton_Click;
                 valueTransformationButton.Margin = new Thickness(350, top, 5, 0);
                 valueTransformationButton.Height = height;
+
                 FieldMappingsStackPanel.Children.Add(valueTransformationButton);
 
                 top += height + 5;
@@ -521,6 +486,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 Button button = (Button)sender;
                 button.Tag = vtf.ValueTransformationSyntax;
+                if (string.IsNullOrEmpty(vtf.ValueTransformationSyntax) == false)
+                {
+                    button.Background = Brushes.DarkOrange;
+                }
+                else
+                {
+                    button.Background = Brushes.LightGray;
+                }
+                RefreshResultGridOnMapping();
             }
         }
 
@@ -529,6 +503,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             ComboBox comboBox = (ComboBox)e.Source;
             Field destinationField = (Field)comboBox.Tag;
             string textboxName = destinationField.Name + "_ManuelValueTextBox";
+            string valueTransformationButtonName = destinationField.Name + "_FieldValueTransformationButton";
             foreach (UIElement element in FieldMappingsStackPanel.Children)
             {
                 if (element is TextBox == true)
@@ -546,7 +521,24 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                         }
                     }
                 }
+                if (element is Button == true)
+                {
+                    if (((Button)element).Name == valueTransformationButtonName)
+                    {
+                        Button button = (Button)element;
+                        if (((QueryResultMappingSelectField)comboBox.SelectedItem).FieldName != string.Empty)
+                        {
+                            button.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            button.Visibility = Visibility.Hidden;
+                        }
+                    }
+                }
             }
+
+            RefreshResultGridOnMapping();
         }
 
         private void MappingBackButton_Click(object sender, RoutedEventArgs e)
@@ -719,6 +711,57 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
 
             UpdateDestinationFieldComboBox.IsEnabled = AllowUpdateCheckBox.IsChecked.Value;
+        }
+
+        private void RefreshResultGridOnMapping() {
+            UpdateSyncTaskOnMappingTab();
+            QueryResult queryResult = SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult;
+            List<CamlFieldRef> viewFields = (from x in SyncTask.SourceFieldHeaderMappings select new CamlFieldRef(x, x)).ToList();
+            
+            PopulateResults(ResultGridOnMapping, queryResult.SiteSetting, queryResult.SiteSetting.Url, queryResult.ListName, queryResult.Filters, viewFields, new List<CamlOrderBy>(), new CamlQueryOptions() { RowLimit = 30 }, queryResult.FolderPath, new List<Field>(), SyncTask.DestinationFieldMappings);
+        }
+
+        public void PopulateResults(DataGrid grid, ISiteSetting siteSetting, string webUrl, string listName, CamlFilters filters, List<CamlFieldRef> viewFields, List<CamlOrderBy> orderBys, CamlQueryOptions queryOptions, string folderServerRelativePath, List<Field> primaryFields, List<QueryResultMappingSelectField> destinationFieldMappings)
+        {
+            string listItemCollectionPositionNext;
+            int itemCount;
+            List<IItem> items = ApplicationContext.Current.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
+            DataTable dataTable = new DataTable();
+            grid.Columns.Clear();
+            foreach (CamlFieldRef fieldRef in viewFields)
+            {
+                DataGridTextColumn column = new DataGridTextColumn();
+                column.IsReadOnly = true;
+                column.Binding = new Binding(fieldRef.Name);
+                column.Header = fieldRef.DisplayName;
+                grid.Columns.Add(column);
+                dataTable.Columns.Add(fieldRef.Name);
+            }
+            foreach (IItem item in items)
+            {
+                DataRow row = dataTable.NewRow();
+                for (int i=0;i<viewFields.Count;i++)
+                {
+                    CamlFieldRef fieldRef = viewFields[i];
+                    string key = fieldRef.Name;
+                    string value = string.Empty;
+                    if (item.Properties.ContainsKey(key) == true)
+                        value = item.Properties[fieldRef.Name];
+                    if (string.IsNullOrEmpty(destinationFieldMappings[i].ValueTransformationSyntax) == false)
+                    {
+                        object tempValue = ValueTransformationHelper.Transform(value, destinationFieldMappings[i].ValueTransformationSyntax);
+                        if(tempValue!=null)
+                            value = tempValue.ToString();
+                    }
+
+                    if (item.Properties.ContainsKey(key) == true)
+                        row[fieldRef.Name] = value;
+                }
+
+                dataTable.Rows.Add(row);
+            }
+
+            grid.ItemsSource = dataTable.AsDataView();
         }
     }
 }

@@ -58,5 +58,10 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
         }
 
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ValueTransformationSyntax = string.Empty;
+            this.Close(true);
+        }
     }
 }

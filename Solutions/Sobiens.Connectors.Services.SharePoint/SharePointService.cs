@@ -420,7 +420,7 @@ namespace Sobiens.Connectors.Services.SharePoint
 
             XmlNode ndListItems = ws.GetListItems(list.ListName, null, query, viewFields, null, queryOptions, null);
             string message = string.Format("SharePointService GetFolder method returned ListName:{0} queryOptions:{1} \n query:{2} \n xml:{3}", list.ListName, queryOptions.OuterXml, query.OuterXml, ndListItems.OuterXml);
-            Logger.Info(message, "Service");
+            //Logger.Info(message, "Service");
 
             xmlDoc.LoadXml(ndListItems.OuterXml);
             XmlNodeList _folders = xmlDoc.GetElementsByTagName("z:row");

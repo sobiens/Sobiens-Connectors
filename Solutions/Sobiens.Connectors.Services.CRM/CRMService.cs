@@ -101,14 +101,6 @@ namespace Sobiens.Connectors.Services.CRM
                     List<CRMEntity> lists = this.GetLists(siteSetting);
                     foreach (CRMEntity list in lists)
                     {
-                        /*
-                        if (list.Hidden == true)
-                            continue;
-                        if (includedFolderTypes != null && includedFolderTypes.Contains(list.ServerTemplate) == false)
-                            continue;
-                        if (includedFolderTypes == null && list.ServerTemplate != 101 && list.ServerTemplate != 100 && list.BaseType != 1 && list.BaseType != 0)
-                            continue;
-                            */
                         subFolders.Add(list);
                     }
                 }
@@ -616,6 +608,12 @@ namespace Sobiens.Connectors.Services.CRM
                 var query = new QueryExpression(listName);
                 query.ColumnSet.AddColumns(viewFields.Select(t=>t.Name).ToArray());
                 query.Criteria = GetFilterExpression(filters);
+                if (queryOptions.RowLimit.HasValue == true)
+                {
+                    query.PageInfo.Count = queryOptions.RowLimit.Value;
+                    query.PageInfo.PageNumber = 1;
+                }
+
                 //query.Criteria.Filters[0].FilterOperator = LogicalOperator.
                 EntityCollection entities = organizationService.RetrieveMultiple(query);
                 itemCount = entities.TotalRecordCount==-1? entities.Entities.Count:entities.TotalRecordCount;

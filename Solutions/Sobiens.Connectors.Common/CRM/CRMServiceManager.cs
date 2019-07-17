@@ -10,6 +10,7 @@ using Sobiens.Connectors.Entities.Workflows;
 using System.Net;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Services.CRM;
+using System.Linq;
 
 namespace Sobiens.Connectors.Common.CRM
 {
@@ -338,8 +339,8 @@ namespace Sobiens.Connectors.Common.CRM
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder)
         {
-            ICRMService spService = new CRMService();
-            return null;
+            ICRMService crmService = new CRMService();
+            return crmService.GetFolders(siteSetting, folder, null);
         }
 
         public Folder GetRootFolder(ISiteSetting siteSetting)
@@ -372,8 +373,14 @@ namespace Sobiens.Connectors.Common.CRM
 
         public Folder GetFolder(ISiteSetting siteSetting, BasicFolderDefinition folderDefinition)
         {
-            ICRMService spService = new CRMService();
-            return null;
+            ICRMService crmService = new CRMService();
+            CRMWeb crmWeb = new CRMWeb();
+            crmWeb.SiteSettingID = siteSetting.ID;
+            crmWeb.Url = siteSetting.Url;
+            crmWeb.WebUrl = siteSetting.Url;
+            List<Folder> folders = crmService.GetFolders(siteSetting, crmWeb, null);
+            Folder folder = (from x in folders where x.Title == folderDefinition.Title select x).FirstOrDefault();
+            return folder;
 
         }
 

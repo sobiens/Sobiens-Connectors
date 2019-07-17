@@ -48,7 +48,8 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="50*"></RowDefinition>
+                        <RowDefinition Height="50*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Margin="12,5,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.Row="0" >
@@ -58,12 +59,17 @@
                         <Label Margin="220,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Destination field:" Height="30"></Label>
                         <ComboBox Name="UpdateDestinationFieldComboBox" Margin="350,30,0,0" HorizontalAlignment="Left" Width="100" Height="30" IsEnabled="False"></ComboBox>
                     </Grid>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.ColumnSpan="3" Grid.Row="1">
-                        <Grid Margin="12,0,12,32" Name="FieldMappingsStackPanel" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.ColumnSpan="3" Grid.Row="1" Background="Aqua">
+                        <Grid Margin="12,0,12,32" Name="FieldMappingsStackPanel" VerticalAlignment="Top" HorizontalAlignment="Left" />
                     </ScrollViewer>
 
-                    <Button x:Name="MappingBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="2"  Grid.Column="2" Click="MappingBackButton_Click"/>
-                    <Button x:Name="MappingNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="2"  Grid.Column="2" Click="MappingNextButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.ColumnSpan="3" Grid.Row="2" Background="Aqua">
+                        <DataGrid CanUserAddRows="False"  Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="ResultGridOnMapping" AutoGenerateColumns="False" Background="Purple">
+                        </DataGrid>
+                    </ScrollViewer>
+
+                    <Button x:Name="MappingBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingBackButton_Click"/>
+                    <Button x:Name="MappingNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingNextButton_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Schedule">
