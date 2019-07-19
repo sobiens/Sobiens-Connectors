@@ -424,6 +424,10 @@ namespace Sobiens.Connectors.Services.CRM
                 FieldTypes fieldType = FieldTypes.Text;
                 switch (attributeMetadata.AttributeType.ToString().ToLower())
                 {
+                    case "string":
+                        fieldType = FieldTypes.Text;
+                        isRetrievable = true;
+                        break;
                     case "money":
                     case "integer":
                     case "int":
@@ -452,6 +456,12 @@ namespace Sobiens.Connectors.Services.CRM
                     case "virtual":
                         fieldType = FieldTypes.Virtual;
                         break;
+                    case "picklist":
+                    case "status":
+                        fieldType = FieldTypes.Choice;
+                        isRetrievable = true;
+                        break;
+                        
                 }
 
 
@@ -466,6 +476,18 @@ namespace Sobiens.Connectors.Services.CRM
                 if (attributeMetadata as StateAttributeMetadata != null)
                 {
                     StateAttributeMetadata stateAttributeMetadata = (StateAttributeMetadata)attributeMetadata;
+                    if (stateAttributeMetadata.OptionSet != null && stateAttributeMetadata.OptionSet.Options != null)
+                    {
+                        field.ChoiceItems = new List<ChoiceDataItem>();
+                        foreach (var option in stateAttributeMetadata.OptionSet.Options)
+                        {
+                            field.ChoiceItems.Add(new ChoiceDataItem(option.Value.ToString(), option.Label.LocalizedLabels[0].Label));
+                        }
+                    }
+                }
+                if (attributeMetadata as PicklistAttributeMetadata != null)
+                {
+                    PicklistAttributeMetadata stateAttributeMetadata = (PicklistAttributeMetadata)attributeMetadata;
                     if (stateAttributeMetadata.OptionSet != null && stateAttributeMetadata.OptionSet.Options != null)
                     {
                         field.ChoiceItems = new List<ChoiceDataItem>();
@@ -623,6 +645,14 @@ namespace Sobiens.Connectors.Services.CRM
                 foreach(Entity entity in entities.Entities)
                 {
                     CRMRecord record = new CRMRecord(siteSetting.ID);
+                    for(int i= viewFields.Count - 1; i > -1; i--)
+                    {
+                        if(viewFields.Where(t=>t.Name.Equals(viewFields[i].Name) == true).Count() > 1)
+                        {
+                            viewFields.RemoveAt(i);
+                        }
+                    }
+
                     foreach(CamlFieldRef viewField in viewFields)
                     {
                         string viewFieldName = viewField.Name;

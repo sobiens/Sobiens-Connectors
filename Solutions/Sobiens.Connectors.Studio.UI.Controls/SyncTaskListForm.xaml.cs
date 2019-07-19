@@ -114,7 +114,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             SyncTaskProgressForm form = new SyncTaskProgressForm();
             form.SyncTask = syncTask;
-            form.IsCompleted = true;
+            form.IsCompleted = false;
             form.ShowDialog(this.ParentWindow, "Progress", false, true);
         }
 

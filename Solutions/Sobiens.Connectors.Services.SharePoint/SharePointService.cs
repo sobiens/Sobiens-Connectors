@@ -868,7 +868,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                    </Where>";
 
                 //query.InnerXml = orderBy + SPCamlManager.GetCamlString(filters);
-                camlQuery.ViewXml = "<View>" + query.OuterXml + queryOptions.OuterXml + "</View>";
+                camlQuery.ViewXml = "<View>" + query.OuterXml + queryOptions.OuterXml + "<RowLimit>50000</RowLimit></View>";
                 ListItemCollection collListItem = list.GetItems(camlQuery);
                 context.Load(collListItem, a => a.IncludeWithDefaultProperties(b => b.HasUniqueRoleAssignments));
                 //context.Load(collListItem);
@@ -1685,8 +1685,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                 {
                     element.Attributes["Type"].Value = "Text";
                 }
-                else if (element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden")
-                    continue;
+                //else if (element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden")
+                //    continue;
                 else if (element.Attributes["Hidden"] != null && element.Attributes["Hidden"].Value.ToLower() == "true")
                 {//JD
                     if (element.Attributes["Type"].Value.ToLower() == "note")//taxonomy field has hidden note field attached with same name
@@ -1812,6 +1812,9 @@ namespace Sobiens.Connectors.Services.SharePoint
                         break;
                     case "file":
                         fieldType = FieldTypes.File;
+                        break;
+                    case "url":
+                        fieldType = FieldTypes.URL;
                         break;
                     default:
                         fieldType = FieldTypes.Unknown;
@@ -3222,9 +3225,9 @@ namespace Sobiens.Connectors.Services.SharePoint
             if (applyToAllSubItems == true)
             {
                 string listItemCollectionPositionNext = string.Empty;
-                int itemCount = 5000;
+                int itemCount = 50000;
                 IView view = new SPView(siteSetting.ID);
-                view.RowLimit = 5000;
+                view.RowLimit = 50000;
                 List<IItem> items = GetListItems(siteSetting, view, string.Empty, true, false, siteSetting.Url, folder.GetListName(), folder.GetPath(), listItemCollectionPositionNext, new CamlFilters(), false, out listItemCollectionPositionNext, out itemCount);
                 foreach (IItem item in items)
                 {

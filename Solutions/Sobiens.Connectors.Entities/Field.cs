@@ -57,6 +57,7 @@ namespace Sobiens.Connectors.Entities
         Number=12,
         Unknown=13,
         TaxonomyFieldType=14,
-        Virtual= 15
+        Virtual= 15,
+        URL = 16
     }
 }

@@ -17,6 +17,12 @@ namespace Sobiens.Connectors.Studio.UI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            /*
+            System.ComponentModel.BackgroundWorker bw = new System.ComponentModel.BackgroundWorker();
+            bw.WorkerReportsProgress = true;
+            Entities.SyncTask syncTask = SyncTasksManager.GetInstance().SyncTasks[0];
+            SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(syncTask, bw);
+            */
             Application.Current.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(Current_DispatcherUnhandledException);
             base.OnStartup(e);
             if(System.Configuration.ConfigurationManager.AppSettings["RunAs"] == "RunOnlyScheduledTasks")

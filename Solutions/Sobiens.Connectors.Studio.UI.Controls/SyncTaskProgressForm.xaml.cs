@@ -95,8 +95,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                         });
                     }
 
+                    int totalCount = progressItems.Count;
+                    int completedCount = progressItems.Where(t => t.Status.Equals("Completed", StringComparison.InvariantCultureIgnoreCase) == true).Count();
+                    int completionPercentage = (completedCount * 100) / totalCount;
+                    progressItems.OrderByDescending(t => t.Status);
+
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
+                        StatusProgressBar.Value = completionPercentage;
+                        StatusTextBlock.Text = completedCount + "/" + totalCount;
+
                         TasksDataGrid.ItemsSource = null;
                         TasksDataGrid.ItemsSource = progressItems;
                     }));
