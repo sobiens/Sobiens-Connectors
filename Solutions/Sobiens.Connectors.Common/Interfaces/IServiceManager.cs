@@ -31,8 +31,10 @@ namespace Sobiens.Connectors.Common.Interfaces
 
         string GetKeywordTermsByGuids(ISiteSetting siteSetting, string webUrl, int lcid, string termIds);
 
-        TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds);
+        //        TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds);
+        SPTermSet GetTermSet(ISiteSetting siteSetting, Guid termSetId);
 
+        SPTermStore GetTermStore(ISiteSetting siteSetting);
         List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting);
         List<SPTermSet> GetGroupTermSets(ISiteSetting siteSetting, Guid termGroupId);
         List<SPTerm> GetTerms(ISiteSetting siteSetting, Guid termSetId);
@@ -46,8 +48,9 @@ namespace Sobiens.Connectors.Common.Interfaces
         void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields);
 
         string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
+        List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder, bool includeReadOnly);
-
+        List<ContentType> GetContentTypes(ISiteSetting siteSetting);
         ContentType GetContentType(ISiteSetting siteSetting, Folder folder, string contentTypeID, bool includeReadOnly);
 
         Folder GetFolderByBasicFolderDefinition(ISiteSetting siteSetting, BasicFolderDefinition basicFolderDefinition, bool returnAll);
@@ -111,5 +114,8 @@ namespace Sobiens.Connectors.Common.Interfaces
         SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet);
         SPTermGroup CreateTermGroup(ISiteSetting siteSetting, SPTermGroup termGroup);
         SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term);
+        //void SyncSchema(ISiteSetting sourceSiteSetting, Entities.Folder sourceObject, ISiteSetting destinationSiteSetting, Entities.Folder destinationObject);
+        Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType);
+
     }
 }

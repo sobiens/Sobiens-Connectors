@@ -10,6 +10,7 @@ using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -179,6 +180,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     AddNode(item.Items, view.Name, view, Brushes.Black);
                 }
             }
+            if (item.Tag.ToString() == "Content Types")
+            {
+                List<ContentType> contentTypes = ApplicationContext.Current.GetContentTypes(sourceObjectSiteSetting, SourceObject);
+                item.Items.Clear();
+                foreach (ContentType contentType in contentTypes)
+                {
+                    AddNode(item.Items, contentType.Name, contentType, Brushes.Black);
+                }
+            }
             int c = 3;
 
         }
@@ -193,16 +203,28 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 SiteSetting sourceObjectSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
                 FoldersTreeView.Items.Clear();
-                //TreeViewItem rootNode = AddNode(FoldersTreeView.Items, "Items", "Items", Brushes.DarkBlue);
                 TreeViewItem listNode = AddNode(FoldersTreeView.Items, SourceObject.Title, SourceObject, Brushes.Black);
-                TreeViewItem fieldsNode = AddNode(listNode.Items, "Fields", "Fields", Brushes.Black);
-                AddLoadingNode(fieldsNode);
 
-                TreeViewItem viewsNode = AddNode(listNode.Items, "Views", null, Brushes.Black);
-                TreeViewItem sharedWithMeViewsNode = AddNode(viewsNode.Items, "Shared with me", "Shared with me", Brushes.Black);
-                TreeViewItem personalViewsNode = AddNode(viewsNode.Items, "Personal views", "Personal views", Brushes.Black);
-                AddLoadingNode(sharedWithMeViewsNode);
-                AddLoadingNode(personalViewsNode);
+                if (SourceObject as SPWeb != null || SourceObject as SPFolder != null || SourceObject as SPList != null)
+                {
+                    TreeViewItem fieldsNode = AddNode(listNode.Items, "Content Types", "Content Types", Brushes.Black);
+                    AddLoadingNode(fieldsNode);
+                }
+
+                if (SourceObject as SPWeb != null || SourceObject as SPFolder != null || SourceObject as SPList != null || SourceObject as CRMEntity != null || SourceObject as SQLTable != null)
+                {
+                    TreeViewItem fieldsNode = AddNode(listNode.Items, "Fields", "Fields", Brushes.Black);
+                    AddLoadingNode(fieldsNode);
+                }
+
+                if (SourceObject as SPFolder != null || SourceObject as SPList != null || SourceObject as CRMEntity != null || SourceObject as SQLTable != null)
+                {
+                    TreeViewItem viewsNode = AddNode(listNode.Items, "Views", null, Brushes.Black);
+                    TreeViewItem sharedWithMeViewsNode = AddNode(viewsNode.Items, "Shared with me", "Shared with me", Brushes.Black);
+                    TreeViewItem personalViewsNode = AddNode(viewsNode.Items, "Personal views", "Personal views", Brushes.Black);
+                    AddLoadingNode(sharedWithMeViewsNode);
+                    AddLoadingNode(personalViewsNode);
+                }
             }
             catch(Exception ex)
             {

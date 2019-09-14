@@ -173,5 +173,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
             }
         }
+
+        private void CopySchemaWizardButton_Click(object sender, RoutedEventArgs e)
+        {
+            SyncSchemaWizardForm syncSchemaWizardForm = new SyncSchemaWizardForm();
+            //syncCopyListWizardForm.Initialize();
+            if (syncSchemaWizardForm.ShowDialog(this.ParentWindow, "Copy Schema Wizard", false, true) == true)
+            {
+            }
+        }
     }
 }

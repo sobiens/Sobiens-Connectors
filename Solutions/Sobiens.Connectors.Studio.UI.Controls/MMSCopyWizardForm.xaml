@@ -18,9 +18,9 @@
                         <RowDefinition Height="100*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label x:Name="label1" Content="Source:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Row="0"/>
-                    <Button x:Name="SourceSelectButton" Grid.Row="0" Content="Please select..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="SourceSelectButton_Click" Margin="125,3,0,0"/>
-                    <wpfcs:TermObjectSelector x:Name="SourceTermObjectSelectorControl" Margin="10,30,0,0"/>
+                    <Label x:Name="label1" Content="Source:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Row="0" Margin="20,30,0,0"/>
+                    <Button x:Name="SourceSelectButton" Grid.Row="0" Content="Please select..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.601,-2.3" Click="SourceSelectButton_Click" Margin="125,30,0,0"/>
+                    <wpfcs:TermObjectSelector x:Name="SourceTermObjectSelectorControl" Margin="10,60,0,0"/>
 
                     <Button x:Name="SourceNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="SourceNextButton_Click"/>
                 </Grid>
@@ -34,13 +34,16 @@
                         <RowDefinition Height="100*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
+                    <CheckBox x:Name="CopyWithIDsCheckBox" Content="Copy with same unique IDs as source" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Row="0" Margin="20,10,0,0"/>
 
-                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Column="0" Grid.Row="0"/>
-                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="125,3,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="0" Grid.Row="0"/>
-                    <wpfcs:TermObjectSelector x:Name="DestinationTermObjectSelectorControl" Margin="10,30,0,0" Grid.Column="0" Grid.Row="0"/>
+                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Column="0" Grid.Row="0" Margin="20,30,0,0"/>
+                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="125,30,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="0" Grid.Row="0"/>
+                    <wpfcs:TermObjectSelector x:Name="DestinationTermObjectSelectorControl" Margin="10,60,0,0" Grid.Column="0" Grid.Row="0"/>
+
+                    <Label x:Name="StatusLabel" Content="Done" HorizontalAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="0,0" Grid.Column="0" Grid.Row="1" Margin="0,0,230,0"/>
 
                     <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="0" Click="DestinationBackButton_Click"/>
-                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="0" Click="DestinationNextButton_Click"/>
+                    <Button x:Name="DestinationNextButton" Content="Synchronize" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="0" Click="DestinationNextButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

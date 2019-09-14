@@ -15,6 +15,7 @@ using Sobiens.Connectors.Entities.Interfaces;
 using Microsoft.SharePoint.Client;
 using Sobiens.Connectors.Entities.SQLServer;
 using Sobiens.Connectors.Entities.CRM;
+using Field = Sobiens.Connectors.Entities.Field;
 
 namespace Sobiens.Connectors.Common
 {
@@ -116,7 +117,7 @@ namespace Sobiens.Connectors.Common
 
         /// <summary>
         /// Saves the settings.
-        /// </summary>
+        /// </summary> 
         public void SaveSyncTasks()
         {
             string configurationFilePath = ConfigurationManager.GetInstance().GetSyncTasksFilePath();
@@ -217,7 +218,7 @@ namespace Sobiens.Connectors.Common
             return configuration;
         }
 
-        public void ExportSyncTaskItems(SyncTask syncTask, bool shouldExportSourceListItems, bool shouldSourceExportDocuments, bool shouldExportDestinationtListItems, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, int includeVersionsLimit)
+        public void ExportSyncTaskItems(SyncTaskListItemsCopy syncTask, bool shouldExportSourceListItems, bool shouldSourceExportDocuments, bool shouldExportDestinationtListItems, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, int includeVersionsLimit)
         {
             string folderPath = ConfigurationManager.GetInstance().GetSyncTaskFolder(syncTask);
             string sourceExportFilePath = folderPath + "\\SourceExport.xlsx";
@@ -279,7 +280,7 @@ namespace Sobiens.Connectors.Common
             backgroundWorker.ReportProgress(100, "Exporting destination items completed");
         }
 
-        public void ProcessSyncTaskExportFiles(SyncTask syncTask, BackgroundWorker backgroundWorker)
+        public void ProcessSyncTaskExportFiles(SyncTaskListItemsCopy syncTask, BackgroundWorker backgroundWorker)
         {
             backgroundWorker.ReportProgress(1, "Processing source and destination exports...");
             string folderPath = ConfigurationManager.GetInstance().GetSyncTaskFolder(syncTask);
@@ -418,7 +419,133 @@ namespace Sobiens.Connectors.Common
             return sourceUniqueString;
         }
 
-        public void ImportSyncTaskItems(SyncTask syncTask, bool shouldSkipUpdates, string[] excludeFields, BackgroundWorker backgroundWorker)
+        public void SyncSchema(BackgroundWorker backgroundWorker, List<Entities.Folder> sourceObjects, Entities.Folder destinationObject) {
+            foreach(Entities.Folder sourceObject in sourceObjects)
+            {
+                SyncSchema(backgroundWorker, sourceObject, destinationObject);
+            }
+        }
+
+        public void SyncSchema(BackgroundWorker backgroundWorker, Entities.Folder sourceObject, Entities.Folder destinationObject)
+        {
+            ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(sourceObject.SiteSettingID);
+            ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(destinationObject.SiteSettingID);
+            IServiceManager sourceServiceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
+            IServiceManager destinationServiceManager = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType);
+
+            List<Entities.Folder> destinationLists = destinationServiceManager.GetFolders(destinationSiteSetting, destinationObject);
+            List<Entities.Folder> sourceLists;
+            if (sourceObject as SPWeb != null)
+            {
+                sourceLists = sourceServiceManager.GetFolders(sourceSiteSetting, sourceObject);
+            }
+            else
+            {
+                sourceLists = new List<Entities.Folder>();
+                sourceLists.Add((SPList)sourceObject);
+            }
+
+            foreach (SPList sourceList in sourceLists)
+            {
+                Entities.Folder matchList = destinationLists.Where(t => t.GetListName() == sourceList.GetListName()).FirstOrDefault();
+                if (matchList == null)
+                {
+                    matchList = destinationServiceManager.CreateFolder(destinationSiteSetting, sourceList.Title, ((SPList)sourceList).ServerTemplate);
+                    destinationLists.Add(matchList);
+                }
+
+                SyncFields(sourceSiteSetting, sourceList, destinationSiteSetting, matchList);
+            }
+
+            foreach (SPList sourceList in sourceLists)
+            {
+                Entities.Folder destinationList = destinationLists.Where(t => t.GetListName() == sourceList.GetListName()).FirstOrDefault();
+                SyncData(backgroundWorker, sourceSiteSetting, sourceList, destinationSiteSetting, destinationList);
+            }
+        }
+
+        public void SyncData(BackgroundWorker backgroundWorker, ISiteSetting sourceSiteSetting, Entities.Folder sourceObject, ISiteSetting destinationSiteSetting, Entities.Folder destinationObject)
+        {
+            IServiceManager sourceServiceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
+            IServiceManager destinationServiceManager = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType);
+
+            List<Entities.Field> destinationFields = destinationServiceManager.GetFields(destinationSiteSetting, destinationObject);
+            List<Entities.Field> sourceFields = sourceServiceManager.GetFields(sourceSiteSetting, sourceObject);
+
+
+            List<QueryResultMappingSelectField> destinationFieldMappings = new List<QueryResultMappingSelectField>();
+            List<string> sourceFieldNames = new List<string>();
+            List<string> destinationFieldNames = new List<string>();
+            foreach (Field destionationField in destinationFields)
+            {
+                if (destionationField.ReadOnly == true/* && destionationField.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == false*/)
+                    continue;
+
+                Field sourceField = sourceFields.Where(t=>t.Name==destionationField.Name).FirstOrDefault();
+                sourceFieldNames.Add(sourceField.Name);
+                destinationFieldNames.Add(destionationField.Name);
+                destinationFieldMappings.Add(new QueryResultMappingSelectField(destionationField.Name, string.Empty, destionationField.Name));
+            }
+            SyncTaskListItemsCopy syncTaskListItemsCopy = SyncTaskListItemsCopy.NewSyncTask();
+            syncTaskListItemsCopy.DestinationListName = destinationObject.GetListName();
+            syncTaskListItemsCopy.DestinationRootFolderPath = destinationObject.GetPath();
+            syncTaskListItemsCopy.DestinationFolderPath = destinationObject.GetPath();
+            syncTaskListItemsCopy.Name = destinationObject.GetListName();
+            syncTaskListItemsCopy.DestinationPrimaryIdFieldName = destinationObject.PrimaryIdFieldName;
+            syncTaskListItemsCopy.DestinationPrimaryNameFieldName = destinationObject.PrimaryNameFieldName;
+            syncTaskListItemsCopy.DestinationPrimaryFileReferenceFieldName = destinationObject.PrimaryFileReferenceFieldName;
+            syncTaskListItemsCopy.SourceUniqueFieldHeaderNames = new string[] { };
+            syncTaskListItemsCopy.DestinationUniqueFieldNames = new string[] { };
+            syncTaskListItemsCopy.DestinationIDFieldHeaderName = destinationObject.PrimaryIdFieldName;
+            syncTaskListItemsCopy.SourceFieldHeaderMappings = sourceFieldNames.ToArray();
+            syncTaskListItemsCopy.DestinationFieldMappings = destinationFieldMappings;
+            syncTaskListItemsCopy.IsDestinationDocumentLibrary = destinationObject.IsDocumentLibrary;
+            syncTaskListItemsCopy.DestinationTermStoreName = "Taxonomy_BrjLUNqY3/3gqp8FAbbKiQ==";
+            syncTaskListItemsCopy.DestinationSiteSetting = (SiteSetting)destinationSiteSetting;
+
+            QueryResultMapping test1QueryResultMapping = new QueryResultMapping();
+            test1QueryResultMapping.QueryResult = new QueryResult();
+            test1QueryResultMapping.QueryResult.Fields = sourceFieldNames.ToArray();
+            test1QueryResultMapping.QueryResult.ListName = sourceObject.GetListName();
+            test1QueryResultMapping.QueryResult.Name = sourceObject.GetListName();
+            test1QueryResultMapping.QueryResult.SiteSetting = (SiteSetting)sourceSiteSetting;
+
+            List<QueryResultMappingSelectField> _fields = new List<QueryResultMappingSelectField>();
+            foreach (string fieldName in sourceFieldNames)
+            {
+                _fields.Add(new QueryResultMappingSelectField(fieldName, fieldName));
+            }
+            test1QueryResultMapping.SelectFields = _fields.ToArray();
+            syncTaskListItemsCopy.SourceQueryResultMapping.Mappings.Add(test1QueryResultMapping);
+
+            SyncTasksManager.GetInstance().ExportSyncTaskItems(syncTaskListItemsCopy, true, true, true, backgroundWorker, null, 0);
+            SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(syncTaskListItemsCopy, backgroundWorker);
+            SyncTasksManager.GetInstance().ImportSyncTaskItems(syncTaskListItemsCopy, syncTaskListItemsCopy.ShouldSkipUpdates, new string[] { }, backgroundWorker);
+
+        }
+
+        public void SyncFields(ISiteSetting sourceSiteSetting, Entities.Folder sourceObject, ISiteSetting destinationSiteSetting, Entities.Folder destinationObject)
+        {
+            IServiceManager sourceServiceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
+            IServiceManager destinationServiceManager = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType);
+
+            List<Entities.Field> destinationFields = destinationServiceManager.GetFields(destinationSiteSetting, destinationObject);
+            List<Entities.Field> sourceFields = sourceServiceManager.GetFields(sourceSiteSetting, sourceObject);
+
+            List<Entities.Field> fieldsToBeAdded = new List<Entities.Field>();
+            foreach (Entities.Field sourceField in sourceFields)
+            {
+                Entities.Field matchField = destinationFields.Where(t => t.Name == sourceField.Name).FirstOrDefault();
+                if (matchField == null)
+                {
+                    fieldsToBeAdded.Add(sourceField);
+                }
+            }
+
+            destinationServiceManager.CreateFields(destinationSiteSetting, sourceObject, fieldsToBeAdded);
+        }
+
+        public void ImportSyncTaskItems(SyncTaskListItemsCopy syncTask, bool shouldSkipUpdates, string[] excludeFields, BackgroundWorker backgroundWorker)
         {
             backgroundWorker.ReportProgress(1, "Importing items...");
             string folderPath = ConfigurationManager.GetInstance().GetSyncTaskFolder(syncTask);
@@ -515,7 +642,7 @@ namespace Sobiens.Connectors.Common
             try
             {
                 object[] args = (object[])_args;
-                SyncTask syncTask = (SyncTask)args[0];
+                SyncTaskListItemsCopy syncTask = (SyncTaskListItemsCopy)args[0];
                 bool shouldSkipUpdates = (bool)args[1];
                 List<string> dataRow = (List<string>)args[2];
                 SLExcelData processedData = (SLExcelData)args[3];
@@ -695,11 +822,11 @@ namespace Sobiens.Connectors.Common
             };
         }
 
-        public List<SyncTask> GetTestListItemSyncTasks()
+        public List<SyncTaskListItemsCopy> GetTestListItemSyncTasks()
         {
             //List<SyncTask> syncTasks = SyncTasksManager.GetInstance().SyncTasks;
-            List<SyncTask> syncTasks = new List<SyncTask>();
-            SyncTask syncTask = SyncTask.NewSyncTask();
+            List<SyncTaskListItemsCopy> syncTasks = new List<SyncTaskListItemsCopy>();
+            SyncTaskListItemsCopy syncTask = SyncTaskListItemsCopy.NewSyncTask();
             syncTask.ID = new Guid("{8AD5BE50-1DB4-4C64-B8F2-833A48F02EC2}");
             syncTask.ScheduleInterval = 240;
 
@@ -764,11 +891,11 @@ namespace Sobiens.Connectors.Common
             return syncTasks;
         }
 
-        public List<SyncTask> GetTestDocumentSyncTasks()
+        public List<SyncTaskListItemsCopy> GetTestDocumentSyncTasks()
         {
             //List<SyncTask> syncTasks = SyncTasksManager.GetInstance().SyncTasks;
-            List<SyncTask> syncTasks = new List<SyncTask>();
-            SyncTask syncTask = SyncTask.NewSyncTask();
+            List<SyncTaskListItemsCopy> syncTasks = new List<SyncTaskListItemsCopy>();
+            SyncTaskListItemsCopy syncTask = SyncTaskListItemsCopy.NewSyncTask();
 
             QueryResult test1QueryResult = new QueryResult();
             test1QueryResult.Fields = new string[] { "ID", "Title", "DocumentLocation" };

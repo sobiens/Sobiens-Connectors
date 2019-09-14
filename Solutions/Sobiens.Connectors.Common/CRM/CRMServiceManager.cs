@@ -53,9 +53,9 @@ namespace Sobiens.Connectors.Common.CRM
             //return new CRMService().GetKeywordTermsByGuids(siteSetting, webUrl, lcid, termIds);
         }
 
-        public TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)//JD
+        public SPTermSet GetTermSet(ISiteSetting siteSetting, Guid termSetId)
         {
-            return new TermSet();
+            return new SPTermSet();
             //return new CRMService().GetTermSets(siteSetting, webUrl, lcid, sspIds, termIds);
         }
 
@@ -135,7 +135,7 @@ namespace Sobiens.Connectors.Common.CRM
         public CookieContainer GetCookieContainer(string url, string userName, string password)
         {
             return null;
-                        //return CRMService.GetCookieContainer(url, userName, password);
+            //return CRMService.GetCookieContainer(url, userName, password);
         }
 
         public void StartWorkflow(ISiteSetting siteSetting, IItem item, WorkflowTemplate workflow)
@@ -185,7 +185,7 @@ namespace Sobiens.Connectors.Common.CRM
                     folderName = folderName.Substring(folderName.LastIndexOf("/") + 1);
                 }
 
-                if (folderName.Equals(currentFolderName,StringComparison.OrdinalIgnoreCase) == true)
+                if (folderName.Equals(currentFolderName, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     currentFolder = tempFolder;
                     break;
@@ -483,6 +483,24 @@ namespace Sobiens.Connectors.Common.CRM
             throw new NotImplementedException();
         }
         public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SPTermStore GetTermStore(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)
         {
             throw new NotImplementedException();
         }

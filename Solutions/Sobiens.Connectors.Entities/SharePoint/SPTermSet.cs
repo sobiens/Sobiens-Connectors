@@ -30,7 +30,8 @@ namespace Sobiens.Connectors.Entities.SharePoint
         public Guid ID  { get; set; }
         public Guid GroupID { get; set; }
         public int LCID { get; set; }
-        
+
+        public string Path { get; set; }
         public string Title { get; set; }
         public IDictionary<string, string> Names { get; set; }
 

@@ -129,7 +129,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
 
             SyncCopyListWizardForm syncCopyListWizardForm = new SyncCopyListWizardForm();
-            syncCopyListWizardForm.Initialize(syncTask);
+            syncCopyListWizardForm.Initialize((SyncTaskListItemsCopy)syncTask);
             if (syncCopyListWizardForm.ShowDialog(this.ParentWindow, "Data Import Wizard", false, true) == true)
             {
             }

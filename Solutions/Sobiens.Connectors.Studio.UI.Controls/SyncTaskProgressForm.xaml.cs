@@ -67,7 +67,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     progressItems.Add(new ProgressItem()
                     {
                         Action = "Synchronization",
-                        Message = SyncTask.DestinationListName,
+                        //Message = SyncTask.DestinationListName,
                         Status = syncTask.Status,
                         Path = ""
                     });

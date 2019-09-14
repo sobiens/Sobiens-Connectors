@@ -297,6 +297,61 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
+        public SPList GetListById(ISiteSetting siteSetting, Guid listId)
+        {
+            try
+            {
+                ClientContext context = GetClientContext(siteSetting);
+                Web web = context.Web;
+                Site site = context.Site;
+                List _list = web.Lists.GetById(listId);
+                Microsoft.SharePoint.Client.Folder rootFolder = _list.RootFolder;
+
+                context.Load(site);
+                context.Load(web);
+                context.Load(_list);
+                context.Load(rootFolder);
+                context.ExecuteQuery();
+
+                string folderPath = rootFolder.ServerRelativeUrl.Replace(site.ServerRelativeUrl, string.Empty).TrimStart(new char[] { '/' });
+                string webApplicationUrl = site.Url.Replace(site.ServerRelativeUrl, string.Empty);
+                SPList list = ParseSPList(_list, siteSetting.ID, site.Url, web.Url, folderPath, webApplicationUrl);
+                list.ServerRelativePath = rootFolder.ServerRelativeUrl;
+                return list;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public SPList GetListByTitle(ISiteSetting siteSetting, string title)
+        {
+            try
+            {
+                ClientContext context = GetClientContext(siteSetting);
+                Web web = context.Web;
+                Site site = context.Site;
+                List _list = web.Lists.GetByTitle(title);
+                Microsoft.SharePoint.Client.Folder rootFolder = _list.RootFolder;
+
+                context.Load(site);
+                context.Load(web);
+                context.Load(_list);
+                context.Load(rootFolder);
+                context.ExecuteQuery();
+
+                string folderPath = rootFolder.ServerRelativeUrl.Replace(site.ServerRelativeUrl, string.Empty).TrimStart(new char[] { '/' });
+                string webApplicationUrl = site.Url.Replace(site.ServerRelativeUrl, string.Empty);
+                SPList list = ParseSPList(_list, siteSetting.ID, site.Url, web.Url, folderPath, webApplicationUrl);
+                list.ServerRelativePath = rootFolder.ServerRelativeUrl;
+                return list;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public SPList GetList(ISiteSetting siteSetting, string listRootFolderUrl)
         {
             try
@@ -1658,7 +1713,222 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
+        private static Sobiens.Connectors.Entities.FieldCollection ParseToFieldCollection(Microsoft.SharePoint.Client.FieldCollection _fields, ISiteSetting siteSetting, bool includeReadOnly)
+        {
+            Sobiens.Connectors.Entities.FieldCollection fields = new Sobiens.Connectors.Entities.FieldCollection();
+            foreach (Microsoft.SharePoint.Client.Field _field in _fields)
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(_field.SchemaXml);
+                XmlElement element = xmlDoc.DocumentElement;
+                string type = element.Attributes["Type"].Value;
+                Sobiens.Connectors.Entities.Field field = new Sobiens.Connectors.Entities.Field();
 
+                if (type.Equals("TaxonomyFieldType", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    field = new SPTaxonomyField();
+                }
+
+                if (element.Attributes["StaticName"].Value.StartsWith("Email") && element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden" &&
+                    (element.Attributes["Type"].Value.ToLower() == "note" || element.Attributes["Type"].Value.ToLower() == "text") &&
+                    (element.Attributes["StaticName"].Value == "EmailCc" ||
+                    element.Attributes["StaticName"].Value == "EmailTo" ||
+                    element.Attributes["StaticName"].Value == "EmailSubject" ||
+                    element.Attributes["StaticName"].Value == "EmailSender" ||
+                    element.Attributes["StaticName"].Value == "EmailFrom")
+                    )
+                {
+                    element.Attributes["Type"].Value = "Text";
+                }
+                //else if (element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden")
+                //    continue;
+                else if (element.Attributes["Hidden"] != null && element.Attributes["Hidden"].Value.ToLower() == "true")
+                {//JD
+                    if (element.Attributes["Type"].Value.ToLower() == "note")//taxonomy field has hidden note field attached with same name
+                    {
+                        for (int i = 0; i < fields.Count; i++)
+                        {
+                            if (fields[i].Type == FieldTypes.TaxonomyFieldType &&
+                                element.Attributes["DisplayName"].Value.StartsWith(fields[i].DisplayName.Trim()))
+                            {
+                                fields[i].attachedField = element.Attributes["Name"].Value;
+                                break;
+                            }
+                        }
+                    }
+                    continue;
+                }
+                if (element.Attributes["MaxLength"] != null && element.Attributes["MaxLength"].Value != String.Empty)
+                {
+                    field.MaxLength = int.Parse(element.Attributes["MaxLength"].Value);
+                }
+                if (element.Attributes["NumLines"] != null && element.Attributes["NumLines"].Value != String.Empty)
+                {
+                    field.NumLines = int.Parse(element.Attributes["NumLines"].Value);
+                }
+                if (element.Attributes["AppendOnly"] != null && element.Attributes["AppendOnly"].Value != String.Empty)
+                {
+                    field.AppendOnly = element.Attributes["AppendOnly"].Value.ToLower() == "true" ? true : false;
+                }
+
+                if (element.Attributes["RichText"] != null && element.Attributes["RichText"].Value != String.Empty)
+                {
+                    field.RichText = bool.Parse(element.Attributes["RichText"].Value);
+                }
+
+                if (element.Attributes["RichTextMode"] != null && element.Attributes["RichTextMode"].Value != String.Empty)
+                {
+                    field.RichTextMode = element.Attributes["RichTextMode"].Value;
+                }
+
+                if (element.Attributes["Decimals"] != null && element.Attributes["Decimals"].Value != String.Empty)
+                    field.Decimals = int.Parse(element.Attributes["Decimals"].Value);
+                if (element.Attributes["Min"] != null && element.Attributes["Min"].Value != String.Empty)
+                    field.Min = decimal.Parse(element.Attributes["Min"].Value);
+                if (element.Attributes["Max"] != null && element.Attributes["Max"].Value != String.Empty)
+                    field.Max = decimal.Parse(element.Attributes["Max"].Value);
+
+                if (element.Attributes["Description"] != null && element.Attributes["Description"].Value != String.Empty)
+                    field.Description = element.Attributes["Description"].Value;
+
+                field.ID = new Guid(element.Attributes["ID"].Value);
+                string authoringInfo = String.Empty;
+                if (element.Attributes["AuthoringInfo"] != null)
+                    authoringInfo = element.Attributes["AuthoringInfo"].Value;
+                field.DisplayName = element.Attributes["DisplayName"].Value + (string.IsNullOrEmpty(authoringInfo) == false? " " + authoringInfo:"");
+                field.Name = element.Attributes["Name"].Value;
+                if (element.Attributes["Required"] != null)
+                    field.Required = bool.Parse(element.Attributes["Required"].Value);
+                if (element.Attributes["FromBaseType"] != null)
+                    field.FromBaseType = bool.Parse(element.Attributes["FromBaseType"].Value);
+                else
+                    field.FromBaseType = false;
+                if (element.Attributes["ReadOnly"] != null)
+                    field.ReadOnly = bool.Parse(element.Attributes["ReadOnly"].Value);
+                else
+                    field.ReadOnly = false;
+                if (element["Default"] != null)
+                    field.DefaultValue = element["Default"].InnerText;
+
+                if (element.Attributes["Mult"] == null || element.Attributes["Mult"].Value.ToString() == String.Empty)
+                    field.Mult = false;
+                else
+                    field.Mult = bool.Parse(element.Attributes["Mult"].Value);
+                if (field.Required == true)
+                    field.ReadOnly = false;
+
+                FieldTypes fieldType;
+                switch (type.ToLower())
+                {
+                    case "text":
+                        fieldType = FieldTypes.Text;
+                        break;
+                    case "note":
+                        fieldType = FieldTypes.Note;
+                        break;
+                    case "boolean":
+                        fieldType = FieldTypes.Boolean;
+                        break;
+                    case "datetime":
+                        fieldType = FieldTypes.DateTime;
+                        break;
+                    case "number":
+                        fieldType = FieldTypes.Number;
+                        break;
+                    case "taxonomyfieldtype":
+                        fieldType = FieldTypes.TaxonomyFieldType;
+                        var xmlNsM = new XmlNamespaceManager(element.OwnerDocument.NameTable);
+                        //xmlNsM.AddNamespace("foo", "http://schemas.microsoft.com/sharepoint/soap/");
+                        Guid termSetId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='TermSetId']", xmlNsM)["Value"].InnerText);
+                        Guid sspId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='SspId']", xmlNsM)["Value"].InnerText);
+                        Guid anchorId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='AnchorId']", xmlNsM)["Value"].InnerText);
+
+                        ((SPTaxonomyField)field).TermSetId = termSetId;
+                        ((SPTaxonomyField)field).SspId = sspId;
+                        ((SPTaxonomyField)field).AnchorId = anchorId;
+
+
+                        string lcidString = element.Attributes["ShowField"].Value.Replace("Term", string.Empty);
+                        int lcid;
+                        if (int.TryParse(lcidString, out lcid) == false)
+                        {
+                            lcid = 1033;
+                        }
+
+                        if(anchorId == Guid.Empty)
+                        {
+                            SPTermSet termSet = new SharePointService().GetTermSet(siteSetting, termSetId);
+                            ((SPTaxonomyField)field).Path = termSet.Path;
+                        }
+                        else
+                        {
+                            SPTerm term = new SharePointService().GetTerm(siteSetting, anchorId);
+                            ((SPTaxonomyField)field).Path = term.Path;
+                        }
+
+                        ((SPTaxonomyField)field).LCID = lcid;
+                        //field.List = element.Attributes["List"].Value;
+                        //field.ShowField = element.Attributes["ShowField"].Value;
+                        break;
+                    case "lookup":
+                        fieldType = FieldTypes.Lookup;
+                        field.List = element.Attributes["List"].Value;
+                        Guid listId;
+                        if(Guid.TryParse(field.List, out listId) == true)
+                        {
+                            SPList referenceList = new SharePointService().GetListById(siteSetting, listId);
+                            field.List = referenceList.Title;
+                        }
+                        field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
+                        break;
+                    case "lookupmulti":
+                        fieldType = FieldTypes.Lookup;
+                        field.List = element.Attributes["List"].Value;
+                        field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
+                        field.Mult = true;
+                        break;
+                    case "choice":
+                        fieldType = FieldTypes.Choice;
+                        field.ChoiceItems = GetChoiceDataItems(element);
+                        break;
+                    case "multichoice":
+                        fieldType = FieldTypes.Choice;
+                        field.ChoiceItems = GetChoiceDataItems(element);
+                        field.Mult = true;
+                        break;
+                    case "file":
+                        fieldType = FieldTypes.File;
+                        break;
+                    case "url":
+                        fieldType = FieldTypes.URL;
+                        break;
+                    case "user":
+                        fieldType = FieldTypes.User;
+                        break;
+                    case "currency":
+                        fieldType = FieldTypes.Currency;
+                        break;
+                    case "calculated":
+                        fieldType = FieldTypes.Calculated;
+                        field.Formula = element.InnerXml;
+                        break;
+                    case "outcomechoice":
+                        fieldType = FieldTypes.OutcomeChoice;
+                        field.ChoiceItems = GetChoiceDataItems(element);
+                        break;
+                    default:
+                        fieldType = FieldTypes.Unknown;
+                        field.ReadOnly = true;
+                        break;
+                }
+                field.Type = fieldType;
+                if (field.ReadOnly == false || includeReadOnly == true)
+                {
+                    fields.Add(field);
+                }
+            }
+            return fields;
+        }
 
         private static Sobiens.Connectors.Entities.FieldCollection XmlNodeToFieldCollection(XmlElement fieldElement, bool includeReadOnly)
         {
@@ -1829,6 +2099,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
             return fields;
         }
+        
 
         private static Sobiens.Connectors.Entities.TermSet XmlNodeToTermSet(XmlElement termSetElement, bool includeDisabled, bool includeDeprecated)
         {
@@ -2088,15 +2359,28 @@ namespace Sobiens.Connectors.Services.SharePoint
             TermStore termStore = null;
             try
             {
-                termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
-                context.Load(termStore);
-                context.ExecuteQuery();
-            }
-            catch (Exception ex) {
                 context.Load(taxonomySession.TermStores);
                 context.ExecuteQuery();
+                termStore = taxonomySession.TermStores[0];// taxonomySession.GetDefaultSiteCollectionTermStore();
+            }
+            catch (Exception ex) {
+                Logger.Info("Error:" + ex.Message + (ex.InnerException!=null?"-Inner exception:" + ex.InnerException.Message:string.Empty), "GetDefaultSiteCollectionTermStore");
                 termStore = taxonomySession.TermStores[0];
             }
+
+            return termStore;
+        }
+
+        public SPTermStore GetTermStore(ISiteSetting siteSetting)
+        {
+            SPTermStore termStore = new SPTermStore();
+
+            ClientContext context = GetClientContext(siteSetting);
+            var _termStore = GetDefaultSiteCollectionTermStore(context);
+            //context.Load(_termStore);
+            //context.ExecuteQuery();
+            termStore.Title = _termStore.Name;
+            termStore.ID = _termStore.Id;
 
             return termStore;
         }
@@ -2126,11 +2410,13 @@ namespace Sobiens.Connectors.Services.SharePoint
             var termStore = GetDefaultSiteCollectionTermStore(context);
             Microsoft.SharePoint.Client.Taxonomy.Term term = termStore.GetTerm(termId);
             Microsoft.SharePoint.Client.Taxonomy.TermCollection terms = term.Terms;
+            context.Load(term);
+            context.Load(term.TermSet);
             context.Load(terms);
             context.ExecuteQuery();
             foreach (var _term in terms)
             {
-                _terms.Add(new SPTerm(_term.Id, _term.Name, _term.TermSet.Id, termId, 1033));
+                _terms.Add(new SPTerm(_term.Id, _term.Name, term.TermSet.Id, termId, 1033));
             }
 
             return _terms;
@@ -2159,7 +2445,10 @@ namespace Sobiens.Connectors.Services.SharePoint
             ClientContext context = GetClientContext(siteSetting);
             var taxonomySession = TaxonomySession.GetTaxonomySession(context);
             var termStore = GetDefaultSiteCollectionTermStore(context);
-            Microsoft.SharePoint.Client.Taxonomy.TermGroup _termGroup = termStore.CreateGroup(termGroup.Title, termGroup.ID);
+            Guid termGroupGuid = termGroup.ID ;
+            Microsoft.SharePoint.Client.Taxonomy.TermGroup _termGroup = termStore.CreateGroup(termGroup.Title, termGroupGuid);
+            context.ExecuteQuery();
+            context.Load(_termGroup );
             context.ExecuteQuery();
 
             return new SPTermGroup(_termGroup.Id, _termGroup.Name, _termGroup.IsSystemGroup, _termGroup.IsSiteCollectionGroup);
@@ -2170,10 +2459,16 @@ namespace Sobiens.Connectors.Services.SharePoint
             ClientContext context = GetClientContext(siteSetting);
             var termStore = GetDefaultSiteCollectionTermStore(context);
             TermGroup termGroup = termStore.GetGroup(termSet.GroupID);
-            Microsoft.SharePoint.Client.Taxonomy.TermSet _termSet = termGroup.CreateTermSet(termSet.Title, termSet.ID, termSet.LCID);
+            context.Load(termGroup);
+            context.ExecuteQuery();
+            Guid termSetGuid = termSet.ID;
+            Microsoft.SharePoint.Client.Taxonomy.TermSet _termSet = termGroup.CreateTermSet(termSet.Title, termSetGuid, termSet.LCID);
+            context.ExecuteQuery();
+            context.Load(_termSet);
             context.ExecuteQuery();
 
-            return new SPTermSet(_termSet.Id, _termSet.Name, _termSet.Group.Id, termSet.LCID, _termSet.Names);
+
+            return new SPTermSet(_termSet.Id, _termSet.Name, termSet.GroupID , termSet.LCID, _termSet.Names);
         }
 
         public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
@@ -2181,19 +2476,40 @@ namespace Sobiens.Connectors.Services.SharePoint
             ClientContext context = GetClientContext(siteSetting);
             var termStore = GetDefaultSiteCollectionTermStore(context);
             Microsoft.SharePoint.Client.Taxonomy.Term _term = null;
+            Guid termGuid = term.ID ;
             if (term.ParentTermID != null) {
                 Microsoft.SharePoint.Client.Taxonomy.Term parentTerm = termStore.GetTerm(term.ParentTermID.Value);
-                _term = parentTerm.CreateTerm(term.Title, term.LCID, term.ID);
+                _term = parentTerm.CreateTerm(term.Title, term.LCID, termGuid);
             }
             else
             {
                 Microsoft.SharePoint.Client.Taxonomy.TermSet termSet = termStore.GetTermSet(term.TermSetID);
-                _term = termSet.CreateTerm(term.Title, term.LCID, term.ID);
+                _term = termSet.CreateTerm(term.Title, term.LCID, termGuid);
             }
 
             context.ExecuteQuery();
+            context.Load(_term);
+            context.ExecuteQuery();
 
             return new SPTerm(_term.Id, _term.Name, term.TermSetID, term.ParentTermID, term.LCID);
+        }
+
+        public SPFolder CreateList(ISiteSetting siteSetting, string title, int templateType)
+        {
+            ClientContext clientContext = GetClientContext(siteSetting);
+            ListCreationInformation creationInfo = new ListCreationInformation();
+            creationInfo.Title = title;
+            creationInfo.Description = title;
+            creationInfo.TemplateType = (int)templateType;// ListTemplateType.GenericList;
+            // Create a new custom list    
+
+            List newList = clientContext.Web.Lists.Add(creationInfo);
+            clientContext.Load(newList);
+            clientContext.ExecuteQuery();
+
+            SPFolder folder = new SPFolder(siteSetting.ID, newList.Id.ToString(), title);
+            folder.ListName = title;
+            return folder;
         }
 
         public List<SPTermSet> GetTermSets(ISiteSetting siteSetting, Guid termGroupId)
@@ -2216,11 +2532,114 @@ namespace Sobiens.Connectors.Services.SharePoint
             return _termSets;
         }
 
-        public Entities.TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)
+        public SPTerm GetTerm(ISiteSetting siteSetting, Guid termId)
         {
             try
             {
+                ClientContext context = GetClientContext(siteSetting);
+                var termStore = GetDefaultSiteCollectionTermStore(context);
+                Microsoft.SharePoint.Client.Taxonomy.Term term = termStore.GetTerm(termId);
+                ClientResult<string> path = term.GetPath(1033);
 
+                context.Load(term);
+                context.Load(term.TermSet);
+                context.Load(term.TermSet.Group);
+                context.ExecuteQuery();
+                string pathString = term.TermSet.Group.Name + ";" + term.TermSet.Name + ";" + path.Value;
+
+                SPTerm _term = new SPTerm(term.Id, term.Name, term.TermSet.Id, null, 1033);
+                _term.Path = pathString;
+                return _term;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public void GetTermValuesByPath(ISiteSetting siteSetting, string path, out Guid termStoreId, out Guid groupId, out Guid termSetId, out Guid termId)
+        {
+            groupId = Guid.Empty;
+            termSetId = Guid.Empty;
+            termId = Guid.Empty;
+            termStoreId = Guid.Empty;
+            if (string.IsNullOrEmpty(path) == true)
+                return;
+
+            string[] pathValues = path.Split(new char[] { ';' });
+
+            ClientContext context = GetClientContext(siteSetting);
+            var termStore = GetDefaultSiteCollectionTermStore(context);
+            termStoreId = termStore.Id;
+            Microsoft.SharePoint.Client.Taxonomy.TermGroupCollection termGroups = termStore.Groups;
+            context.Load(termGroups);
+            context.ExecuteQuery();
+            Microsoft.SharePoint.Client.Taxonomy.TermGroup termGroup = termGroups.Where(t=>t.Name.Equals(pathValues[0], StringComparison.InvariantCulture)).FirstOrDefault();
+            if (termGroup != null)
+            {
+                groupId = termGroup.Id;
+                if (pathValues.Length > 1) {
+                    Microsoft.SharePoint.Client.Taxonomy.TermSetCollection termSets = termGroup.TermSets;
+                    context.Load(termSets);
+                    context.ExecuteQuery();
+                    Microsoft.SharePoint.Client.Taxonomy.TermSet termSet = termSets.Where(t => t.Name.Equals(pathValues[1], StringComparison.InvariantCulture)).FirstOrDefault();
+                    if (termSet != null)
+                    {
+                        termSetId = termSet.Id;
+                        if (pathValues.Length > 2)
+                        {
+                            Microsoft.SharePoint.Client.Taxonomy.TermCollection terms = termSet.Terms;
+                            context.Load(terms);
+                            context.ExecuteQuery();
+                            Microsoft.SharePoint.Client.Taxonomy.Term rootTerm = terms.Where(t => t.Name.Equals(pathValues[2], StringComparison.InvariantCulture)).FirstOrDefault();
+                            if (rootTerm != null)
+                            {
+                                termId = rootTerm.Id;
+                                Microsoft.SharePoint.Client.Taxonomy.Term tempTerm = rootTerm;
+
+                                for (int i = 3; i < pathValues.Length; i++)
+                                {
+                                    Microsoft.SharePoint.Client.Taxonomy.TermCollection _terms = tempTerm.Terms;
+                                    context.Load(_terms);
+                                    context.ExecuteQuery();
+                                    Microsoft.SharePoint.Client.Taxonomy.Term _tempTerm = _terms.Where(t => t.Name.Equals(pathValues[i], StringComparison.InvariantCulture)).FirstOrDefault();
+                                    if(_tempTerm != null)
+                                    {
+                                        termId = _tempTerm.Id;
+                                        tempTerm = _tempTerm;
+                                    }
+                                    else
+                                    {
+                                        termId = Guid.Empty;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public SPTermSet GetTermSet(ISiteSetting siteSetting, Guid termSetId)
+        {
+            try
+            {
+                ClientContext context = GetClientContext(siteSetting);
+                var termStore = GetDefaultSiteCollectionTermStore(context);
+                Microsoft.SharePoint.Client.Taxonomy.TermSet termSet = termStore.GetTermSet(termSetId);
+                //ClientResult<string> path = termSet.p
+
+                context.Load(termSet);
+                context.Load(termSet.Group);
+                context.ExecuteQuery();
+                SPTermSet _termSet = new SPTermSet(termSet.Id, termSet.Name, termSet.Group.Id, 1033, termSet.Names);
+                string pathString = termSet.Group.Name + ";" + termSet.Name;
+
+                _termSet.Path = pathString;
+                return _termSet;
+/*
                 SharePointTaxonomyWS.Taxonomywebservice ws = GetTaxonomyService(siteSetting, webUrl);
                 string termSetIds = "<termIds><termId>" + termIds + "</termId></termIds>";
                 string ssid = "<sspIds><sspId>" + sspIds + "</sspId></sspIds>";
@@ -2238,6 +2657,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                 xmlDoc.LoadXml(result);
 
                 return XmlNodeToTermSet((XmlElement)xmlDoc.SelectSingleNode("/Container/TermStore"), false, false);
+                */
             }
             catch (Exception ex)
             {
@@ -2317,8 +2737,113 @@ namespace Sobiens.Connectors.Services.SharePoint
 
                 foreach (Entities.Field _field in fields)
                 {
-                    string schemaTextField = "<Field ID='" + Guid.NewGuid().ToString() + "' Type='Text' Name='" + _field.Name + "' StaticName='" + _field.Name + "' DisplayName='" + _field.DisplayName + "' />";
-                    Microsoft.SharePoint.Client.Field simpleTextField = list.Fields.AddFieldAsXml(schemaTextField, true, AddFieldOptions.AddToDefaultContentType);
+                    string fieldTypeString = "Text";
+                    string defaultValueString = "";
+                    if (string.IsNullOrEmpty(_field.DefaultValue) == false)
+                        defaultValueString = "<Default>" + _field.DefaultValue + "</Default>";
+                    string minString = "";
+                    string maxString = "";
+                    string choicesString = "";
+                    string richTextString = "";
+                    string richTextModeString = "";
+                    string requiredString = "Required = '" + _field.Required.ToString().ToUpper() + "'";
+                    string readOnlyString = "ReadOnly = '" + _field.Required.ToString().ToUpper() + "'";
+                    string formulaString = _field.Formula;
+                    string resultTypeString = "";
+                    string lookupListString = "";
+                    string showFieldString = "";
+                    string appendOnlyString = "";
+                    string numLinesString = "";
+                    if (_field.ChoiceItems != null && _field.ChoiceItems.Count > 0)
+                    {
+                        choicesString = "<CHOICES>";
+                        foreach(ChoiceDataItem choiceDataItem in _field.ChoiceItems)
+                        {
+                            choicesString += "<CHOICE>" + choiceDataItem.Value + "</CHOICE>";
+                        }
+                        choicesString += "</CHOICES>";
+                    }
+                    switch (_field.Type)
+                    {
+                        case FieldTypes.Boolean:
+                            fieldTypeString = "Boolean";
+                            break;
+                        case FieldTypes.Choice:
+                            fieldTypeString = "Choice";
+                            break;
+                        case FieldTypes.Computed:
+                            fieldTypeString = "";
+                            break;
+                        case FieldTypes.DateTime:
+                            fieldTypeString = "DateTime";
+                            break;
+                        case FieldTypes.User:
+                            fieldTypeString = "User";
+                            break;
+                        case FieldTypes.Currency:
+                            fieldTypeString = "Currency";
+                            break;
+                        case FieldTypes.Calculated:
+                            fieldTypeString = "Calculated";
+                            resultTypeString = " ResultType = 'Text'";
+                            break;
+                        case FieldTypes.OutcomeChoice:
+                            fieldTypeString = "OutcomeChoice";
+                            break;
+                        case FieldTypes.TaxonomyFieldType:
+                            fieldTypeString = "TaxonomyFieldType";
+                            break;
+                        case FieldTypes.Lookup:
+                            fieldTypeString = "Lookup";
+                            SPList referenceList = new SharePointService().GetListByTitle(siteSetting, _field.List);
+                            lookupListString = " List='" + referenceList.ID + "'";
+                            showFieldString = " ShowField='" + _field.ShowField + "'";
+                            break;
+                        case FieldTypes.URL:
+                            fieldTypeString = "URL";
+                            break;
+                        case FieldTypes.Note:
+                            fieldTypeString = "Note";
+                            richTextString = " RichText='" + (_field.RichText == true ? "TRUE" : "FALSE") + "'";
+                            //richTextModeString = (_field.RichText == true ? " RichTextMode='" + _field.RichTextMode + "'":"");
+                            richTextModeString = " RichTextMode='" + _field.RichTextMode + "'";
+                            appendOnlyString = " AppendOnly = '" + _field.AppendOnly.ToString().ToUpper() + "'";
+                            numLinesString = " NumLines = '" + _field.NumLines.ToString().ToUpper() + "'";
+                            break;
+                        case FieldTypes.Number:
+                            fieldTypeString = "Number";
+                            if (_field.Min != null)
+                                minString = " Min='" + _field.Min + "'";
+                            if (_field.Max != null)
+                                maxString = " Max='" + _field.Max + "'";
+                            break;
+                    }
+                    string schemaTextField = "<Field ID='" + Guid.NewGuid().ToString() + "' " +
+                        " Type='" + fieldTypeString + "' Name='" + _field.Name + "' StaticName='" + _field.Name + "'" +
+                        " DisplayName='" + _field.DisplayName + "' " + minString + " " + maxString + " " + richTextString +
+                        " " + richTextModeString + " " + requiredString + " " + readOnlyString + resultTypeString + 
+                        lookupListString + showFieldString + numLinesString + appendOnlyString + ">" +
+                        defaultValueString +
+                        choicesString +
+                        formulaString +
+                        "</Field>";
+                    Microsoft.SharePoint.Client.Field simpleField = list.Fields.AddFieldAsXml(schemaTextField, true, AddFieldOptions.AddToDefaultContentType);
+                    if(_field.Type == FieldTypes.TaxonomyFieldType)
+                    {
+                        //var termStore = new SharePointService().GetDefaultSiteCollectionTermStore(context);
+                        SPTaxonomyField _taxonomyField = (SPTaxonomyField)_field;
+                        Guid termStoreId, groupId, termSetId, termId;
+
+                        new SharePointService().GetTermValuesByPath(siteSetting, _taxonomyField.Path, out termStoreId, out groupId, out termSetId, out termId);
+
+                        TaxonomyField taxonomyField = context.CastTo<TaxonomyField>(simpleField);
+                        taxonomyField.SspId = termStoreId;
+                        taxonomyField.TermSetId = termSetId;
+                        taxonomyField.TargetTemplate = String.Empty;
+                        taxonomyField.AnchorId = termId;
+                        taxonomyField.Update();
+                    }
+
                     context.ExecuteQuery();
                 }
             }
@@ -2334,13 +2859,20 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
+                ClientContext context = GetClientContext(siteSetting);
+                Microsoft.SharePoint.Client.FieldCollection _fields = context.Web.Lists.GetByTitle(listName).Fields;
+                context.Load(_fields);
+                context.ExecuteQuery();
+                Sobiens.Connectors.Entities.FieldCollection fields = ParseToFieldCollection(_fields, siteSetting, true);
+
+
                 Logger.Info("webUrl:" + webUrl, "Service");
                 Logger.Info("listName:" + webUrl, "listName");
-                SharePointListsWS.Lists ws = GetListsWebService(siteSetting, webUrl);
-                XmlNode web = ws.GetList(listName);
-                string message = string.Format("SharePointService GetFields method returned listName:{0} \n web:{1} ", listName, web.OuterXml);
-                Logger.Info(message, "Service");
-                Sobiens.Connectors.Entities.FieldCollection fields = XmlNodeToFieldCollection(web["Fields"], true);
+//                SharePointListsWS.Lists ws = GetListsWebService(siteSetting, webUrl);
+  //              XmlNode web = ws.GetList(listName);
+                //string message = string.Format("SharePointService GetFields method returned listName:{0} \n web:{1} ", listName, web.OuterXml);
+//                Logger.Info(message, "Service");
+    //            Sobiens.Connectors.Entities.FieldCollection fields = ParseToFieldCollection(web["Fields"], true);
 
                 return fields;
             }
@@ -2755,30 +3287,69 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        private static Sobiens.Connectors.Entities.FieldCollection getContentTypeFieldCollection(SharePointListsWS.Lists ws, string listName, string contentTypeID, bool includeReadOnly)
+        /*
+        private static Sobiens.Connectors.Entities.FieldCollection getContentTypeFieldCollection(ClientContext context, string listName, string contentTypeID, bool includeReadOnly)
         {
+            Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.Lists.GetByTitle(listName).ContentTypes;
+            context.Load(_contentTypes);
+            context.ExecuteQuery();
+
             XmlNode web = ws.GetListContentType(listName, contentTypeID);
             return XmlNodeToFieldCollection(web["Fields"], includeReadOnly);
         }
+        */
 
         public static List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
         {
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
-                SharePointListsWS.Lists ws = GetListsWebService(siteSetting, webUrl);
-                XmlNode web = ws.GetListContentTypes(listName, String.Empty);
-                string message = string.Format("SharePointService GetContentTypes method returned ListName:{0} \n web:{1}", listName, web.OuterXml);
-                Logger.Info(message, "Service");
-
-                foreach (XmlNode element in web.ChildNodes)
+                ClientContext context = GetClientContext(siteSetting);
+                Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.Lists.GetByTitle(listName).ContentTypes;
+                context.Load(_contentTypes);
+                context.ExecuteQuery();
+                foreach (Microsoft.SharePoint.Client.ContentType _contentType in _contentTypes)
                 {
-                    Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(element, siteSetting, webUrl, rootFolderPath, listName, includeReadOnly);
+                    Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, listName, includeReadOnly);
+                    context.Load(_contentType.Fields);
+                    context.ExecuteQuery();
+                    contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
                     if (contentType.Fields != null && contentType.Fields.Count > 0)
                     {
                         contentTypes.Add(contentType);
                     }
                 }
+
+                return contentTypes;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+        public static List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, bool includeReadOnly)
+        {
+            try
+            {
+                List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
+                ClientContext context = GetClientContext(siteSetting);
+                Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.ContentTypes;
+                context.Load(_contentTypes);
+                context.ExecuteQuery();
+                foreach (Microsoft.SharePoint.Client.ContentType _contentType in _contentTypes)
+                {
+                    Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, string.Empty, includeReadOnly);
+                    context.Load(_contentType.Fields);
+                    context.ExecuteQuery();
+                    contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
+                    if (contentType.Fields != null && contentType.Fields.Count > 0)
+                    {
+                        contentTypes.Add(contentType);
+                    }
+                }
+
                 return contentTypes;
             }
             catch (Exception ex)
@@ -2794,16 +3365,15 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
-                SharePointListsWS.Lists ws = GetListsWebService(siteSetting, webUrl);
-                XmlNode web = ws.GetListContentType(listName, contentTypeID);
-                string message = string.Format("SharePointService GetContentType method returned ListName:{0} \n web:{1} \n contentTypeID:{2}", listName, web.OuterXml, contentTypeID);
-                Logger.Info(message, "Service");
+                ClientContext context = GetClientContext(siteSetting);
+                Microsoft.SharePoint.Client.ContentType _contentType = context.Web.Lists.GetByTitle(listName).ContentTypes.GetById(contentTypeID);
+                context.Load(_contentType);
+                context.ExecuteQuery();
 
-                Sobiens.Connectors.Entities.ContentType contentType = null;
-                if (web != null)
-                {
-                    contentType = ParseContentType(web, siteSetting, webUrl, rootFolderPath, listName, includeReadOnly);
-                }
+                Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, string.Empty, includeReadOnly);
+                context.Load(_contentType.Fields);
+                context.ExecuteQuery();
+                contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
                 return contentType;
             }
             catch (Exception ex)
@@ -2813,7 +3383,29 @@ namespace Sobiens.Connectors.Services.SharePoint
                 throw ex;
             }
         }
+        public static Sobiens.Connectors.Entities.ContentType ParseContentType(Microsoft.SharePoint.Client.ContentType _contentType, ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
+        {
+            Sobiens.Connectors.Entities.ContentType contentType = new Sobiens.Connectors.Entities.ContentType();
+            contentType.ID = _contentType.Id.StringValue;// element.Attributes["ID"].Value;
+            contentType.Name = _contentType.Name;
+            contentType.Description = _contentType.Description;
+            contentType.Group = _contentType.Group;
 
+            //contentType.Version = _contentType.
+            //<DocumentTemplate TargetName="Forms/Memo/TS101992348.dotx"/>
+            //if (element["DocumentTemplate"] != null)
+            //{
+            //    if (element["DocumentTemplate"].Attributes["TargetName"] != null)
+            //    {
+            contentType.TemplateURL = _contentType.DocumentTemplateUrl; // webUrl + rootFolderPath + "/" + element["DocumentTemplate"].Attributes["TargetName"].Value;
+            //    }
+            //}
+            contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);//
+
+            return contentType;
+        }
+
+        /*
         public static Sobiens.Connectors.Entities.ContentType ParseContentType(XmlNode element, ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
         {
             SharePointListsWS.Lists ws = GetListsWebService(siteSetting, webUrl);
@@ -2845,6 +3437,7 @@ namespace Sobiens.Connectors.Services.SharePoint
 
             return contentType;
         }
+        */
 
         public string GetUrlContent(ISiteSetting siteSetting, string url)
         {

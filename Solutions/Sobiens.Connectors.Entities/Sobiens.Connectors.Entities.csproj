@@ -138,6 +138,7 @@
     <Compile Include="Settings\TaskListLocations.cs" />
     <Compile Include="SharePoint\SPTaxonomyField.cs" />
     <Compile Include="SharePoint\SPTerm.cs" />
+    <Compile Include="SharePoint\SPTermStore.cs" />
     <Compile Include="SharePoint\SPTermSet.cs" />
     <Compile Include="SharePoint\SPTermGroup.cs" />
     <Compile Include="SharePoint\SPWebpart.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="SQLServer\SQLServer.cs" />
     <Compile Include="SQLServer\SQLTable.cs" />
     <Compile Include="SQLServer\SQLTableRecord.cs" />
+    <Compile Include="SyncTaskListItemsCopy.cs" />
+    <Compile Include="SyncTaskSchemaCopy.cs" />
     <Compile Include="SyncTask.cs" />
     <Compile Include="SyncTaskStatus.cs" />
     <Compile Include="TermSet.cs" />

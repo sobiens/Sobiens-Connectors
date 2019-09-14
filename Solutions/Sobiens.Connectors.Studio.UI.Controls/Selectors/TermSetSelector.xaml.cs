@@ -72,12 +72,12 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Selectors
             
             //http://www.novolocus.com/2012/02/09/working-with-the-taxonomyclientservice-part-2-get-the-termset-and-understand-it/
             //string result = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetKeywordTermsByGuids(siteSetting, webURL, field.LCID, field.TermSetId.ToString());
-            TermSet termSet = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetTermSets(siteSetting, webURL, field.LCID, field.SspId.ToString(), field.TermSetId.ToString());
+            List<SPTerm> terms = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetTerms(siteSetting, field.TermSetId);
 
             treeview.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                         {
 
-                            foreach (Term term in termSet.Terms)
+                            foreach (SPTerm term in terms)
                             {
                                 treeview.Items.Add(term);
                             }

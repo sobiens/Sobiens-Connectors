@@ -27,7 +27,7 @@ namespace Sobiens.Connectors.Common.Service
             get;
             set;
         }
-        BackgroundWorker backgroundWorker = new BackgroundWorker();
+        public BackgroundWorker backgroundWorker = new BackgroundWorker();
         public void RunSync()
         {
             State = RunnerState.InProgress;
@@ -65,9 +65,19 @@ namespace Sobiens.Connectors.Common.Service
             //SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(queryRunner.Task);
             //if (syncTaskStatus != null)
                 lastProcessStartDate = queryRunner.Task.LastSuccessfullyCompletedStartDate;
-            SyncTasksManager.GetInstance().ExportSyncTaskItems(queryRunner.Task, true, true, true, queryRunner.backgroundWorker, lastProcessStartDate, 0);
-            SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(queryRunner.Task, queryRunner.backgroundWorker);
-            SyncTasksManager.GetInstance().ImportSyncTaskItems(queryRunner.Task, queryRunner.Task.ShouldSkipUpdates, new string[] { }, queryRunner.backgroundWorker);
+            if (queryRunner.Task as SyncTaskListItemsCopy != null)
+            {
+                SyncTaskListItemsCopy syncTaskListItemsCopy = queryRunner.Task as SyncTaskListItemsCopy;
+                SyncTasksManager.GetInstance().ExportSyncTaskItems(syncTaskListItemsCopy, true, true, true, queryRunner.backgroundWorker, lastProcessStartDate, 0);
+                SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(syncTaskListItemsCopy, queryRunner.backgroundWorker);
+                SyncTasksManager.GetInstance().ImportSyncTaskItems(syncTaskListItemsCopy, syncTaskListItemsCopy.ShouldSkipUpdates, new string[] { }, queryRunner.backgroundWorker);
+            }
+            else if (queryRunner.Task as SyncTaskSchemaCopy != null)
+            {
+                SyncTaskSchemaCopy syncTaskSchemaCopy = queryRunner.Task as SyncTaskSchemaCopy;
+                SyncTasksManager.GetInstance().SyncSchema(queryRunner.backgroundWorker, syncTaskSchemaCopy.SourceObjects, syncTaskSchemaCopy.DestinationObject);
+            }
+
             SyncTasksManager.GetInstance().SaveSyncTaskStatus(queryRunner.Task, processStartDate, DateTime.Now, true, string.Empty);
             queryRunner.State = RunnerState.Complete;
         }

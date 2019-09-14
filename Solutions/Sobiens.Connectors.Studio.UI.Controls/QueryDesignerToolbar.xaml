@@ -51,7 +51,12 @@
                     <Image Source="Images/CodeWizard.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Copy List Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopyListWizardButton_Click" Background="Transparent" Name="CopyListWizardButton">
+            <Button ToolTip="Copy Schema Wizard" BorderThickness="0" Height="21" Padding="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopySchemaWizardButton_Click" Background="Transparent" Name="CopySchemaWizardButton">
+                <Button.Content>
+                    <Image Source="Images/CopySchema.gif" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Copy List Wizard" BorderThickness="0" Height="21" Padding="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopyListWizardButton_Click" Background="Transparent" Name="CopyListWizardButton">
                 <Button.Content>
                     <Image Source="Images/DataExport.png" Height="18" Width="18" />
                 </Button.Content>

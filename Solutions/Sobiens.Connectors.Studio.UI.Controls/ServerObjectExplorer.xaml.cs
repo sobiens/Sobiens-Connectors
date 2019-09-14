@@ -530,11 +530,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;
+                /*
                 List<Sobiens.Connectors.Entities.Folder> folders = new List<Sobiens.Connectors.Entities.Folder>();
                 SPWeb folder = new SPWeb(siteSetting.Url, siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString(), siteSetting.Url, siteSetting.Url, siteSetting.Url);
                 folder.Selected = false;
                 folders.Add(folder);
                 this.Initialize(folders, null);
+                */
+                this.Initialize();
                 this.RefreshNodes();
             }
         }
@@ -593,8 +596,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 ShowPropertiesButton.Visibility = Visibility.Hidden;
                 ObjectExplorerGridSplitter.Visibility = Visibility.Hidden;
                 ObjectPropertiesControl.Visibility = Visibility.Hidden;
-                MainGrid.RowDefinitions.RemoveAt(2);
-                MainGrid.RowDefinitions.RemoveAt(1);
+                if (MainGrid.RowDefinitions.Count == 3)
+                {
+                    MainGrid.RowDefinitions.RemoveAt(2);
+                    MainGrid.RowDefinitions.RemoveAt(1);
+                }
             }
         }
 

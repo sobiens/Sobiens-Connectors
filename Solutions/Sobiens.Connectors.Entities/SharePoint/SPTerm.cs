@@ -32,6 +32,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
         public Guid? ParentTermID { get; set; }
         public int LCID { get; set; }
         public string Title { get; set; }
+        public string Path { get; set; }
 
         public override string ToString()
         {

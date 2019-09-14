@@ -62,7 +62,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             object[] arguments = (object[])e.Argument;
 
-            SyncTask syncTask = (SyncTask)arguments[0];
+            SyncTaskListItemsCopy syncTask = (SyncTaskListItemsCopy)arguments[0];
 
             try
             {
@@ -112,7 +112,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             sharePointFieldNames.Insert(0, "SourceItemID");
 
             //List<SyncTask> syncTasks = new List<SyncTask>();
-            SyncTask syncTask = SyncTask.NewSyncTask();
+            SyncTaskListItemsCopy syncTask = SyncTaskListItemsCopy.NewSyncTask();
             syncTask.ID = Guid.NewGuid();
             syncTask.ScheduleInterval = 240;
 

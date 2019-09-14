@@ -15,6 +15,7 @@ using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.WPF.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Diagnostics;
+using Sobiens.Connectors.Entities.SharePoint;
 
 namespace Sobiens.Connectors.WordConnector
 {
@@ -447,5 +448,16 @@ namespace Sobiens.Connectors.WordConnector
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
             return serviceManager.GetAuditLogs(siteSetting, listName, itemId);
         }
+        public override List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            if (folder as SPWeb != null)
+                return serviceManager.GetContentTypes(siteSetting, folder, true);
+            else if (folder as SPList != null)
+                return serviceManager.GetContentTypes(siteSetting, folder.GetListName());
+            else
+                throw new NotImplementedException();
+        }
+
     }
 }

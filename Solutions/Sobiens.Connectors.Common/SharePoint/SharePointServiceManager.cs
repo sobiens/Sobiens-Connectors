@@ -51,9 +51,9 @@ namespace Sobiens.Connectors.Common.SharePoint
             return new SharePointService().GetKeywordTermsByGuids(siteSetting, webUrl, lcid, termIds);
         }
 
-        public TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)//JD
+        public SPTermSet GetTermSet(ISiteSetting siteSetting, Guid termSetId)//JD
         {
-            return new SharePointService().GetTermSets(siteSetting, webUrl, lcid, sspIds, termIds);
+            return new SharePointService().GetTermSet(siteSetting, termSetId);
         }
 
         private List<Folder> GetSubFoldersByBasicFolderDefinition(ISiteSetting siteSetting, Folder folder, BasicFolderDefinition basicFolderDefinition, bool returnAll)
@@ -605,7 +605,11 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
-
+        public SPTermStore GetTermStore(ISiteSetting siteSetting)
+        {
+            ISharePointService spService = new SharePointService();
+            return spService.GetTermStore(siteSetting);
+        }
         public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
         {
             ISharePointService spService = new SharePointService();
@@ -641,6 +645,21 @@ namespace Sobiens.Connectors.Common.SharePoint
         public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
         {
             return (new SharePointService()).CreateTerm(siteSetting, term);
+        }
+
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting)
+        {
+            return SharePointService.GetContentTypes(siteSetting, siteSetting.Url, ((SPWeb)siteSetting).GetRoot(), true);
+        }
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName)
+        {
+            return SharePointService.GetContentTypes(siteSetting, siteSetting.Url, ((SPWeb)siteSetting).GetRoot(), listName, true);
+        }
+        public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)
+        {
+            SharePointService sharePointService = new SharePointService();
+            return sharePointService.CreateList(siteSetting, title, templateType);
+
         }
     }
 }

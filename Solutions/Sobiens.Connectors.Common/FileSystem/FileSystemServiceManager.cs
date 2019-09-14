@@ -47,7 +47,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             throw new NotImplementedException();
         }
 
-        public TermSet GetTermSets(ISiteSetting siteSetting, string webUrl, int lcid, string sspIds, string termIds)//JD
+        public SPTermSet GetTermSet(ISiteSetting siteSetting, Guid termSetId)
         {
             throw new NotImplementedException();
         }
@@ -574,6 +574,22 @@ namespace Sobiens.Connectors.Common.SharePoint
             throw new NotImplementedException();
         }
         public SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term)
+        {
+            throw new NotImplementedException();
+        }
+        public SPTermStore GetTermStore(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting)
+        {
+            throw new NotImplementedException();
+        }
+        public List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName)
+        {
+            throw new NotImplementedException();
+        }
+        public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)
         {
             throw new NotImplementedException();
         }

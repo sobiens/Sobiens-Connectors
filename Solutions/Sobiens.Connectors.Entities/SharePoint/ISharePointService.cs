@@ -33,6 +33,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
         uint AddFolder(ISiteSetting siteSetting, string webURL, string folderName, string folderPath, string listName);
         string GetUser(ISiteSetting siteSetting, string UserName);
         void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems);
+        SPTermStore GetTermStore(ISiteSetting siteSetting);
         List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting);
         List<SPTermSet> GetTermSets(ISiteSetting siteSetting, Guid termGroupId);
 

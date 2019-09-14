@@ -61,7 +61,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 SourceWeb = (SPWeb)selectEntityForm.SelectedObject;
                 ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
                 
-                SourceSelectButton.Content = SourceWeb.GetPath();
+                SourceSelectButton.Content = SourceWeb.ToString();
                 SourceTermObjectSelectorControl.Initialize(siteSetting);
             }
         }
@@ -111,6 +111,19 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         private void SourceNextButton_Click(object sender, RoutedEventArgs e)
         {
+            object sourceObject = SourceTermObjectSelectorControl.SelectedObject;
+            if (sourceObject == null)
+            {
+                MessageBox.Show("Please select a source object");
+                return;
+            }
+
+            if (sourceObject as SPTermStore != null)
+            {
+                MessageBox.Show("You can not select termstore!");
+                return;
+            }
+
             CurrentTabIndex = 1;
             WizardTabControl.SelectedIndex = CurrentTabIndex;
         }
@@ -138,7 +151,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 DestinationWeb = (SPWeb)selectEntityForm.SelectedObject;
                 ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
-                DestinationSelectButton.Content = DestinationWeb.GetPath();
+                DestinationSelectButton.Content = DestinationWeb.ToString();
+                if(SourceWeb.SiteUrl == DestinationWeb.SiteUrl)
+                {
+                    CopyWithIDsCheckBox.IsChecked = false;
+                    CopyWithIDsCheckBox.IsEnabled = false;
+                }
+                else
+                {
+                    CopyWithIDsCheckBox.IsEnabled = true;
+                }
                 DestinationTermObjectSelectorControl.Initialize(siteSetting);
             }
         }
@@ -166,7 +188,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 return;
             }
 
-            if(sourceObject.GetType() != destinationObject.GetType())
+            if (sourceObject as SPTermGroup != null && destinationObject as SPTermStore != null)
+            {
+
+            }
+            else if (sourceObject.GetType() != destinationObject.GetType())
             {
                 MessageBox.Show("Please select the same object type from source and destiny");
                 return;
@@ -174,35 +200,59 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             try
             {
-                if (sourceObject as SPTermGroup != null)
-                {
-                    SPTermGroup sourceTermGroup = sourceObject as SPTermGroup;
-                    SPTermGroup destinationTermGroup = destinationObject as SPTermGroup;
-                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
-                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+                StatusLabel.Content = "Synchronizing...";
+                StatusLabel.UpdateLayout();
+                Action emptyDelegate = delegate { };
+                StatusLabel.Dispatcher.Invoke(emptyDelegate, System.Windows.Threading.DispatcherPriority.Render);
 
-                    SynchronizeTermGroup(sourceSiteSetting, sourceTermGroup, destinationSiteSetting, destinationTermGroup);
-                    MessageBox.Show("Completed");
+                try
+                {
+                    if (sourceObject as SPTermGroup != null && destinationObject as SPTermStore != null)
+                    {
+                        SPTermGroup sourceTermGroup = sourceObject as SPTermGroup;
+                        SPTermStore destinationTermStore = destinationObject as SPTermStore;
+                        ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                        ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                        SynchronizeTermGroup(sourceSiteSetting, sourceTermGroup, destinationSiteSetting, destinationTermStore, CopyWithIDsCheckBox.IsChecked.Value);
+                        MessageBox.Show("Completed");
+                    }
+                    else if (sourceObject as SPTermGroup != null)
+                    {
+                        SPTermGroup sourceTermGroup = sourceObject as SPTermGroup;
+                        SPTermGroup destinationTermGroup = destinationObject as SPTermGroup;
+                        ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                        ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                        SynchronizeTermGroup(sourceSiteSetting, sourceTermGroup, destinationSiteSetting, destinationTermGroup, CopyWithIDsCheckBox.IsChecked.Value);
+                        MessageBox.Show("Completed");
+                    }
+                    else if (sourceObject as SPTermSet != null)
+                    {
+                        SPTermSet sourceTermSet = sourceObject as SPTermSet;
+                        SPTermSet destinationTermSet = destinationObject as SPTermSet;
+                        ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                        ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                        SynchronizeTermSet(sourceSiteSetting, sourceTermSet, destinationSiteSetting, destinationTermSet, CopyWithIDsCheckBox.IsChecked.Value);
+                        MessageBox.Show("Completed");
+                    }
+                    else if (sourceObject as SPTerm != null)
+                    {
+                        SPTerm sourceTerm = sourceObject as SPTerm;
+                        SPTerm destinationTerm = destinationObject as SPTerm;
+                        ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
+                        ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
+
+                        SynchronizeTerm(sourceSiteSetting, sourceTerm, destinationSiteSetting, destinationTerm, CopyWithIDsCheckBox.IsChecked.Value);
+                        MessageBox.Show("Completed");
+                    }
+                    StatusLabel.Content = "Synchronized successfully.";
                 }
-                else if (sourceObject as SPTermSet != null)
+                catch(Exception ex)
                 {
-                    SPTermSet sourceTermSet = sourceObject as SPTermSet;
-                    SPTermSet destinationTermSet = destinationObject as SPTermSet;
-                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
-                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
-
-                    SynchronizeTermSet(sourceSiteSetting, sourceTermSet, destinationSiteSetting, destinationTermSet);
-                    MessageBox.Show("Completed");
-                }
-                else if (sourceObject as SPTerm != null)
-                {
-                    SPTerm sourceTerm = sourceObject as SPTerm;
-                    SPTerm destinationTerm = destinationObject as SPTerm;
-                    ISiteSetting sourceSiteSetting = ApplicationContext.Current.GetSiteSetting(SourceWeb.SiteSettingID);
-                    ISiteSetting destinationSiteSetting = ApplicationContext.Current.GetSiteSetting(DestinationWeb.SiteSettingID);
-
-                    SynchronizeTerm(sourceSiteSetting, sourceTerm, destinationSiteSetting, destinationTerm);
-                    MessageBox.Show("Completed");
+                    StatusLabel.Content = "Synchronization failed.";
+                    StatusLabel.ToolTip = ex.Message;
                 }
             }
             catch (Exception ex)
@@ -214,8 +264,26 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             WizardTabControl.SelectedIndex = CurrentTabIndex;
 
         }
+        private void SynchronizeTermGroup(ISiteSetting sourceSiteSetting, SPTermGroup sourceTermGroup, ISiteSetting destinationSiteSetting, SPTermStore destinationTermStore, bool copyWithSameIDs)
+        {
+            List<SPTermGroup> destinationTermGroups = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetTermGroups(destinationSiteSetting);
 
-        private void SynchronizeTermGroup(ISiteSetting sourceSiteSetting, SPTermGroup sourceTermGroup, ISiteSetting destinationSiteSetting, SPTermGroup destinationTermGroup)
+            SPTermGroup termGroupFound = destinationTermGroups.Where(t => t.Title.Equals(sourceTermGroup.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            if (termGroupFound == null)
+            {
+                // Create termgroup
+                Guid termGroupSourceID = sourceTermGroup.ID;
+                if (copyWithSameIDs == false)
+                    termGroupFound.ID = Guid.NewGuid();
+                termGroupFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTermGroup(destinationSiteSetting, sourceTermGroup);
+                sourceTermGroup.ID = termGroupSourceID;
+            }
+
+            SynchronizeTermGroup(sourceSiteSetting, sourceTermGroup, destinationSiteSetting, termGroupFound, copyWithSameIDs);
+
+        }
+
+        private void SynchronizeTermGroup(ISiteSetting sourceSiteSetting, SPTermGroup sourceTermGroup, ISiteSetting destinationSiteSetting, SPTermGroup destinationTermGroup, bool copyWithSameIDs)
         {
             List<SPTermSet> sourceTermSets = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetGroupTermSets(sourceSiteSetting, sourceTermGroup.ID);
             List<SPTermSet> destinationTermSets = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetGroupTermSets(destinationSiteSetting, destinationTermGroup.ID);
@@ -226,15 +294,20 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 if(termSetFound == null)
                 {
                     // Create termset
+                    termSetToSynch.GroupID = destinationTermGroup.ID;
+                    Guid termSetSourceID = termSetToSynch.ID;
+                    if (copyWithSameIDs == false)
+                        termSetToSynch.ID = Guid.NewGuid();
                     termSetFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTermSet(destinationSiteSetting, termSetToSynch);
+                    termSetToSynch.ID = termSetSourceID;
                 }
 
-                SynchronizeTermSet(sourceSiteSetting, termSetToSynch, destinationSiteSetting, termSetFound);
+                SynchronizeTermSet(sourceSiteSetting, termSetToSynch, destinationSiteSetting, termSetFound, copyWithSameIDs);
             }
 
         }
 
-        private void SynchronizeTermSet(ISiteSetting sourceSiteSetting, SPTermSet sourceTermSet, ISiteSetting destinationSiteSetting, SPTermSet destinationTermSet)
+        private void SynchronizeTermSet(ISiteSetting sourceSiteSetting, SPTermSet sourceTermSet, ISiteSetting destinationSiteSetting, SPTermSet destinationTermSet, bool copyWithSameIDs)
         {
             List<SPTerm> sourceTerms = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetTerms(sourceSiteSetting, sourceTermSet.ID);
             List<SPTerm> destinationTerms = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetTerms(destinationSiteSetting, destinationTermSet.ID);
@@ -244,15 +317,20 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 SPTerm termFound = destinationTerms.Where(t => t.Title.Equals(termToSynch.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                 if (termFound == null)
                 {
+                    termToSynch.TermSetID = destinationTermSet.ID;
+                    Guid termSourceID = termToSynch.ID;
+                    if (copyWithSameIDs == false)
+                        termToSynch.ID = Guid.NewGuid();
                     termFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTerm(destinationSiteSetting, termToSynch);
+                    termToSynch.ID = termSourceID;
                 }
 
-                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);
+                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound, copyWithSameIDs);
             }
 
         }
 
-        private void SynchronizeTerm(ISiteSetting sourceSiteSetting, SPTerm sourceTerm, ISiteSetting destinationSiteSetting, SPTerm destinationTerm)
+        private void SynchronizeTerm(ISiteSetting sourceSiteSetting, SPTerm sourceTerm, ISiteSetting destinationSiteSetting, SPTerm destinationTerm, bool copyWithSameIDs)
         {
             List<SPTerm> sourceTerms = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType).GetTermTerms(sourceSiteSetting, sourceTerm.ID);
             List<SPTerm> destinationTerms = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).GetTermTerms(destinationSiteSetting, destinationTerm.ID);
@@ -263,10 +341,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 if (termFound == null)
                 {
                     // Create term
+                    termToSynch.ParentTermID = destinationTerm.ID;
+                    Guid termSourceID = termToSynch.ID;
+                    if (copyWithSameIDs == false)
+                        termToSynch.ID = Guid.NewGuid();
                     termFound = ServiceManagerFactory.GetServiceManager(destinationSiteSetting.SiteSettingType).CreateTerm(destinationSiteSetting, termToSynch);
+                    termToSynch.ID = termSourceID;
                 }
 
-                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound);
+                SynchronizeTerm(sourceSiteSetting, termToSynch, destinationSiteSetting, termFound, copyWithSameIDs);
             }
         }
 

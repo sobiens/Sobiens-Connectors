@@ -39,7 +39,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private ISiteSetting DestinationSiteSetting = null;
         private FieldCollection DestinationFolderFields = null;
         //private FieldCollection SourceFolderFields = null;
-        private SyncTask SyncTask = null;
+        private SyncTaskListItemsCopy SyncTask = null;
         private bool IsInEditMode = false;
 
         public SyncCopyListWizardForm()
@@ -67,7 +67,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         }
 
-        public void Initialize(SyncTask syncTask)
+        public void Initialize(SyncTaskListItemsCopy syncTask)
         {
             SyncTask = syncTask;
             IsInEditMode = true;
@@ -582,7 +582,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             if (SyncTask == null)
             {
-                SyncTask = SyncTask.NewSyncTask();
+                SyncTask = SyncTaskListItemsCopy.NewSyncTask();
             }
             else
             {

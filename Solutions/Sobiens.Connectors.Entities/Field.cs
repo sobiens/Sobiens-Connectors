@@ -26,6 +26,7 @@ namespace Sobiens.Connectors.Entities
 
         public int NumLines = 0;
         public int MaxLength=255;
+        public bool AppendOnly = false;
         public bool IsPrimary = false;
         public bool IsRetrievable = true;
         public bool Required = false;
@@ -33,6 +34,7 @@ namespace Sobiens.Connectors.Entities
         public bool FromBaseType = true; 
         public FieldTypes Type = FieldTypes.Text;
         public string DefaultValue = String.Empty;
+        public string Formula = String.Empty;
         public List<ChoiceDataItem> ChoiceItems { get; set; }
         public override string ToString()
         {
@@ -42,22 +44,25 @@ namespace Sobiens.Connectors.Entities
 
     public enum FieldTypes
     {
-        ContentTypeId =0,
-        Text=1,
-        Note=2,
-        File=3,
-        Boolean=4,
-        Counter=5,
-        ContentType=6,
-        DateTime=7,
-        User=8,
-        Lookup=9,
-        Computed=10,
-        Choice=11,
-        Number=12,
-        Unknown=13,
-        TaxonomyFieldType=14,
-        Virtual= 15,
-        URL = 16
+        ContentTypeId = 0,
+        Text = 1,
+        Note = 2,
+        File = 3,
+        Boolean = 4,
+        Counter = 5,
+        ContentType = 6,
+        DateTime = 7,
+        User = 8,
+        Lookup = 9,
+        Computed = 10,
+        Choice = 11,
+        Number = 12,
+        Unknown = 13,
+        TaxonomyFieldType = 14,
+        Virtual = 15,
+        URL = 16,
+        Currency = 17,
+        Calculated = 18,
+        OutcomeChoice = 19
     }
 }

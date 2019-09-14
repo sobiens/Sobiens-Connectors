@@ -1,0 +1,43 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.SyncSchemaWizardForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Loaded="HostControl_Loaded">
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Name="WizardTabControl">
+            <TabItem Header="Source">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="409*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <wpfc:SelectEntityForm Margin="0,5,5,5" Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SourceSelectEntityForm" Grid.ColumnSpan="2" />
+                    <Button x:Name="SourceNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="SourceNextButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Destination">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="CopyDataCheckBox" Content="Include Data" Margin="0,5,10,5" Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right"></CheckBox>
+                    <wpfc:SelectEntityForm Margin="0,5,5,5" Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" x:Name="DestinationSelectEntityForm" />
+                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="DestinationBackButton_Click"/>
+                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="DestinationNextButton_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</wpfc:HostControl>

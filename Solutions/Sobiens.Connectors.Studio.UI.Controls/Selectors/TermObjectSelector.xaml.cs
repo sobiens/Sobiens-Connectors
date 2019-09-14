@@ -49,6 +49,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Selectors
         {
             SiteSetting = siteSetting;
             TermSetTreeView.AddHandler(TreeViewItem.ExpandedEvent, new RoutedEventHandler(rootNode_Expanded));
+            AddLoadingNode(TermSetTreeView.Items);
             PopulateTermSets();
         }
 
@@ -72,6 +73,32 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Selectors
 
             if (treeview != null)
             {
+                SPTermStore termStore = null;
+                try
+                {
+                    termStore = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetTermStore(siteSetting);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("It needs to be SharePoint 2013 or above");
+                    return;
+                }
+
+                treeview.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
+                {
+                    treeview.Items.Clear();
+
+                    TreeViewItem termStoreNode = new TreeViewItem();
+                    termStoreNode.Header = termStore.Title;
+                    termStoreNode.Tag = termStore;
+
+                    int index = treeview.Items.Add(termStoreNode);
+                    AddLoadingNode(termStoreNode);
+
+                }));
+            }
+            else if (treeview != null)
+            {
                 List<SPTermGroup> termGroups = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetTermGroups(siteSetting);
                 treeview.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                             {
@@ -91,7 +118,23 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Selectors
                 TreeViewItem treeViewItem = arguments[1] as TreeViewItem;
                 treeViewItem.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {
-                    if (treeViewItem.Tag as SPTermGroup != null)
+                    if (treeViewItem.Tag as SPTermStore != null)
+                    {
+                        treeViewItem.Items.Clear();
+
+                        //SPTermGroup termGroup = treeViewItem.Tag as SPTermGroup;
+                        List<SPTermGroup> termGroups = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).GetTermGroups(siteSetting);
+                        foreach (SPTermGroup term in termGroups)
+                        {
+                            TreeViewItem termGroupNode = new TreeViewItem();
+                            termGroupNode.Header = term.Title;
+                            termGroupNode.Tag = term;
+
+                            int index = treeViewItem.Items.Add(termGroupNode);
+                            AddLoadingNode(termGroupNode);
+                        }
+                    }
+                    else if (treeViewItem.Tag as SPTermGroup != null)
                     {
                         treeViewItem.Items.Clear();
 
@@ -162,6 +205,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Selectors
             childNode.Header = Languages.Translate("Loading...");
             childNode.Tag = LoadingNodeTagValue;
             node.Items.Add(childNode);
+        }
+
+        private void AddLoadingNode(ItemCollection items)
+        {
+            TreeViewItem childNode = new TreeViewItem();
+            childNode.Header = Languages.Translate("Loading...");
+            childNode.Tag = LoadingNodeTagValue;
+            items.Add(childNode);
         }
 
         void rootNode_Expanded(object sender, RoutedEventArgs e)

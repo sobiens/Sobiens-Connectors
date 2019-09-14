@@ -51,7 +51,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             object[] arguments = (object[])e.Argument;
 
-            SyncTask syncTask = (SyncTask)arguments[0];
+            SyncTaskListItemsCopy syncTask = (SyncTaskListItemsCopy)arguments[0];
             bool shouldImportListItems = (bool)arguments[1];
             bool shouldExportListItems = (bool)arguments[2];
             bool shouldImportDocuments = (bool)arguments[3];

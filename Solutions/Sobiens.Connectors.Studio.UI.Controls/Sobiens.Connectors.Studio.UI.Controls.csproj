@@ -101,6 +101,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WebAPIConfigClassTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="SyncSchemaWizardForm.xaml.cs">
+      <DependentUpon>SyncSchemaWizardForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueTransformationForm.xaml.cs">
       <DependentUpon>ValueTransformationForm.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CriteriaPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncSchemaWizardForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -582,6 +589,7 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIConfigClassTemplate.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\CopySchema.gif" />
     <Resource Include="Images\EMMGroup.png" />
     <Resource Include="Images\Filter.png" />
     <Resource Include="Images\ArrowDown.png" />

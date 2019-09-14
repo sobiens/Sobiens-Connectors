@@ -60,13 +60,23 @@ namespace Sobiens.Connectors.UI.Service
                 //SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(queryRunner.Task);
                 if (queryRunner.Task.LastSuccessfullyCompletedStartDate != DateTime.MinValue && queryRunner.Task.LastSuccessfullyCompletedStartDate != DateTime.MaxValue)
                     lastProcessStartDate = queryRunner.Task.LastSuccessfullyCompletedStartDate;
-                SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Exporting items", null, null);
-                SyncTasksManager.GetInstance().ExportSyncTaskItems(queryRunner.Task, true, true, true, queryRunner.backgroundWorker, lastProcessStartDate, 0);
-                SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Processing export items", null, null);
-                SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(queryRunner.Task, queryRunner.backgroundWorker);
-                SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Importing items", null, null);
-                SyncTasksManager.GetInstance().ImportSyncTaskItems(queryRunner.Task, queryRunner.Task.ShouldSkipUpdates, new string[] { }, queryRunner.backgroundWorker);
-                SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Completed", null, queryRunner.Task.LastRunStartDate);
+                if (queryRunner.Task as SyncTaskListItemsCopy != null)
+                {
+                    SyncTaskListItemsCopy syncTaskListItemsCopy = queryRunner.Task as SyncTaskListItemsCopy;
+                    SyncTasksManager.GetInstance().SaveProcessStatus(syncTaskListItemsCopy.ProcessID, "Exporting items", null, null);
+                    SyncTasksManager.GetInstance().ExportSyncTaskItems(syncTaskListItemsCopy, true, true, true, queryRunner.backgroundWorker, lastProcessStartDate, 0);
+                    SyncTasksManager.GetInstance().SaveProcessStatus(syncTaskListItemsCopy.ProcessID, "Processing export items", null, null);
+                    SyncTasksManager.GetInstance().ProcessSyncTaskExportFiles(syncTaskListItemsCopy, queryRunner.backgroundWorker);
+                    SyncTasksManager.GetInstance().SaveProcessStatus(syncTaskListItemsCopy.ProcessID, "Importing items", null, null);
+                    SyncTasksManager.GetInstance().ImportSyncTaskItems(syncTaskListItemsCopy, syncTaskListItemsCopy.ShouldSkipUpdates, new string[] { }, queryRunner.backgroundWorker);
+                }
+                else if (queryRunner.Task as SyncTaskSchemaCopy != null)
+                {
+                    SyncTaskSchemaCopy syncTaskSchemaCopy = queryRunner.Task as SyncTaskSchemaCopy;
+                    SyncTasksManager.GetInstance().SyncSchema(queryRunner.backgroundWorker, syncTaskSchemaCopy.SourceObjects, syncTaskSchemaCopy.DestinationObject);
+                }
+
+            SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Completed", null, queryRunner.Task.LastRunStartDate);
                 SyncTasksManager.GetInstance().SaveSyncTaskStatus(queryRunner.Task, processStartDate, DateTime.Now, true, string.Empty);
             }
             catch(Exception ex)
