@@ -102,6 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FeatureHelpManager.cs" />
     <Compile Include="Service\BackgroundDataService.cs" />
     <Compile Include="Service\QueryMediator.cs" />
     <Compile Include="Service\QueryRunner.cs" />
@@ -163,9 +164,17 @@
       <Project>{5a43acc0-1bf6-4fb4-b990-9c681bc705fb}</Project>
       <Name>Sobiens.Connectors.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.Services.SharePoint\Sobiens.Connectors.Services.SharePoint.csproj">
+      <Project>{C21E377F-CC1A-439F-B80D-B1961B1BE6AC}</Project>
+      <Name>Sobiens.Connectors.Services.SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sobiens.Connectors.Studio.UI.Controls\Sobiens.Connectors.Studio.UI.Controls.csproj">
       <Project>{2e6d5f4a-65d7-4c7a-a116-58c6bd8a2048}</Project>
       <Name>Sobiens.Connectors.Studio.UI.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sobiens.Connectors.WPF.Controls\Sobiens.Connectors.WPF.Controls.csproj">
+      <Project>{110D90E6-3E8A-478C-AEB8-940315E2CBE9}</Project>
+      <Name>Sobiens.Connectors.WPF.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

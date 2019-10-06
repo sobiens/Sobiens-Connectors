@@ -38,7 +38,7 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Shar
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\bin\Debug\Sobiens.Connectors.Entities.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\bin\Debug\NLog.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\obj\Debug\Sobiens.Connectors.Services.SharePoint.csprojAssemblyReference.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\obj\Debug\Sobiens.Connectors.Services.SharePoint.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\obj\Debug\Sobiens.Connectors.Services.SharePoint.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\obj\Debug\Sobiens.Connectors.Services.SharePoint.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\obj\Debug\Sobiens.Connectors.Services.SharePoint.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll

@@ -93,7 +93,8 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\De
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csprojAssemblyReference.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll

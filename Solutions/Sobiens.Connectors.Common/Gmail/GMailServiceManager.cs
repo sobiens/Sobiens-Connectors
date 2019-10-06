@@ -431,6 +431,11 @@ namespace Sobiens.Connectors.Common
         {
             throw new NotImplementedException();
         }
+        public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        {
+            return null;
+        }
+
         public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)
         {
             throw new NotImplementedException();

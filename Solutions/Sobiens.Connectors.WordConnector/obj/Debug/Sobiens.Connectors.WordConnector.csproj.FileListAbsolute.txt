@@ -64,7 +64,6 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csprojAssemblyReference.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Sobiens.Connectors.WordConnector.dll

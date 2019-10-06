@@ -11,6 +11,7 @@ using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.SQLServer;
+using Sobiens.Connectors.Entities.Workflows;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -83,8 +84,27 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 grantAccessMenuItem.Click += GrantAccessMenuItem_Click; ;
                 this.FoldersTreeView.ContextMenu.Items.Add(grantAccessMenuItem);
             }
+            else if (item.Tag is Workflow)
+            {
+                MenuItem copyWorkflowMenuItem = new MenuItem() { Header = "Copy workflow", Tag = item };
+                copyWorkflowMenuItem.Click += CopyWorkflowMenuItem_Click; ;
+                this.FoldersTreeView.ContextMenu.Items.Add(copyWorkflowMenuItem);
+            }
         }
 
+        private void CopyWorkflowMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.OriginalSource as MenuItem;
+            Workflow workflow = ((TreeViewItem)menuItem.Tag).Tag as Workflow;
+            SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[workflow.SiteSettingID];
+
+            Folder folder = ((TreeViewItem)((TreeViewItem)((TreeViewItem)menuItem.Tag).Parent).Parent).Tag as Folder;
+
+            WorkflowCopyForm workflowCopyForm = new WorkflowCopyForm();
+            workflowCopyForm.Initialize(siteSetting, workflow.Name, new Guid(workflow.Id), folder);
+            workflowCopyForm.ShowDialog(null, "Copy Workflow Wizard");
+
+        }
         private void GrantAccessMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = e.OriginalSource as MenuItem;
@@ -189,6 +209,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     AddNode(item.Items, contentType.Name, contentType, Brushes.Black);
                 }
             }
+            else if (item.Tag.ToString() == "Workflows")
+            {
+                List<Workflow> workflows = ApplicationContext.Current.GetWorkflows(sourceObjectSiteSetting, SourceObject);
+                item.Items.Clear();
+                foreach (Workflow workflow in workflows)
+                {
+                    AddNode(item.Items, workflow.Name, workflow, Brushes.Black);
+                }
+            }
             int c = 3;
 
         }
@@ -207,6 +236,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                 if (SourceObject as SPWeb != null || SourceObject as SPFolder != null || SourceObject as SPList != null)
                 {
+                    TreeViewItem workflowsNode = AddNode(listNode.Items, "Workflows", "Workflows", Brushes.Black);
+                    AddLoadingNode(workflowsNode);
                     TreeViewItem fieldsNode = AddNode(listNode.Items, "Content Types", "Content Types", Brushes.Black);
                     AddLoadingNode(fieldsNode);
                 }

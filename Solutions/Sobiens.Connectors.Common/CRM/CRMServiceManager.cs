@@ -286,6 +286,12 @@ namespace Sobiens.Connectors.Common.CRM
             return null;
         }
 
+        public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        {
+            return null;
+        }
+
+
         public List<IView> GetViews(ISiteSetting siteSetting, Folder folder)
         {
             SPFolder spFolder = folder as SPFolder;

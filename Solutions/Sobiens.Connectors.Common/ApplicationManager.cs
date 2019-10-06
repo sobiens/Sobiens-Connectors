@@ -54,6 +54,7 @@ namespace Sobiens.Connectors.Common
         public abstract void Load();
         public IConnectorMainView ConnectorExplorer { get; set; }
         public abstract List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder);
+        public abstract List<Workflow> GetWorkflows(ISiteSetting siteSetting, Folder folder);
 
 
         public void MoveFile(ISiteSetting siteSetting, IItem item, Folder folder, string newFileName)

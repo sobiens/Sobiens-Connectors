@@ -14,14 +14,14 @@
     <framework targetVersion="4.6" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Sobiens.Connectors.Studio.UI.exe.manifest" size="15382">
+    <dependentAssembly dependencyType="install" codebase="Sobiens.Connectors.Studio.UI.exe.manifest" size="20275">
       <assemblyIdentity name="Sobiens.Connectors.Studio.UI.exe" version="1.6.4.31" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X8Mpq5oBp8ehR+N9Dj8ywwFB5E7EZT48c/WnKHwnnGw=</dsig:DigestValue>
+        <dsig:DigestValue>S1BAyC4nyrlToRebVgK/0ZalsP8QKV11SZJzYFfgCLA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

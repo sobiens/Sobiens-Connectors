@@ -53,7 +53,7 @@ namespace Sobiens.Connectors.WPF.Controls
             this.myBrowser.Navigated += new NavigatedEventHandler(myBrowser_Navigated);
             this.myBrowser.LoadCompleted += new LoadCompletedEventHandler(myBrowser_LoadCompleted);
 
-            if (this.SiteSetting.UseClaimAuthentication == true)
+            if (this.SiteSetting != null && this.SiteSetting.UseClaimAuthentication == true)
             {
                 CookieContainer cookieContainer = ServiceManagerFactory.GetServiceManager(this.SiteSetting.SiteSettingType).GetCookieContainer(this.SiteSetting.Url, this.SiteSetting.Username, this.SiteSetting.Password);
                 foreach (Cookie cookie in cookieContainer.GetCookies(new Uri(this.SiteSetting.Url)))

@@ -733,13 +733,13 @@ namespace Sobiens.Connectors.Common
                             value = newValue;
                         }
                     }
-                    /*
                     else if (currentField.Type == FieldTypes.TaxonomyFieldType)
                     {
-                        ClientContext ctx = GetToken(syncTask.DestinationSiteSetting.Url, syncTask.DestinationSiteSetting.Username, syncTask.DestinationSiteSetting.Password, string.Empty);
-                        string taxValue = GetTaxonomyValue(ctx, syncTask.DestinationTermStoreName, ((SPTaxonomyField)currentField).TermSetId, value);
+                        Guid termStoreId, termGroupId, termSetId, termId;
+                        new Services.SharePoint.SharePointService().GetTermValuesByPath(syncTask.DestinationSiteSetting, value, out termStoreId, out termGroupId, out termSetId, out termId);
+                        string termLabel = value.Split(new char[] { ';' })[0];
+                        value = "-1;#" + termLabel + "|" + termId; // GetTaxonomyValue(ctx, syncTask.DestinationTermStoreName, ((SPTaxonomyField)currentField).TermSetId, value);
                     }
-                    */
                     else if (currentField.Type == FieldTypes.Text || currentField.Type == FieldTypes.Note || currentField.Type == FieldTypes.Choice)
                     {
                         if (currentField.Mult == false && value.IndexOf(";#") > -1)

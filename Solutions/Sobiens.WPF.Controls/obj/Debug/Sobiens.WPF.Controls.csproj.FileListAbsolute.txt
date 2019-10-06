@@ -34,6 +34,7 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\So
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\bin\Debug\Sobiens.WPF.Controls.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\bin\Debug\Sobiens.WPF.Controls.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csprojAssemblyReference.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Styles\Brushes.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\UserControls\FilterableHeader.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\UserControls\FilterableHeader.g.cs
@@ -45,6 +46,5 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\T
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.g.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.WPF.Controls\obj\Debug\Sobiens.WPF.Controls.pdb

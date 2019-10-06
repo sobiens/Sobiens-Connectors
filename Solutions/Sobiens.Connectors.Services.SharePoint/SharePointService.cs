@@ -15,6 +15,8 @@ using Microsoft.SharePoint.Client;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Globalization;
 using Microsoft.SharePoint.Client.Taxonomy;
+using Microsoft.SharePoint.Client.WorkflowServices;
+//using Microsoft.SharePoint.Client.Workflow;
 
 namespace Sobiens.Connectors.Services.SharePoint
 {
@@ -75,6 +77,124 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
 
             return context;
+        }
+
+        public static void CopyWorkflow(ISiteSetting sourceSiteSetting, Guid sourceListId, Guid sourceWorkflowDefinitionId, ISiteSetting targetSiteSetting, Guid targetListId, Guid taskListId, Guid historyListId) {
+            ClientContext sourceContext = GetClientContext(sourceSiteSetting);
+            var sourceWorkflowServicesManager = new WorkflowServicesManager(sourceContext, sourceContext.Web);
+            var sourceWorkflowDeploymentService = sourceWorkflowServicesManager.GetWorkflowDeploymentService();
+
+            ClientContext targetContext = GetClientContext(targetSiteSetting);
+            var targetWorkflowServicesManager = new WorkflowServicesManager(targetContext, targetContext.Web);
+            var targetWorkflowDeploymentService = targetWorkflowServicesManager.GetWorkflowDeploymentService();
+            WorkflowSubscriptionService targetWFSubscriptionService = targetWorkflowServicesManager.GetWorkflowSubscriptionService();
+
+            // get all installed workflows
+            var publishedWorkflowDefinition = sourceWorkflowDeploymentService.GetDefinition(sourceWorkflowDefinitionId);
+            sourceContext.Load(publishedWorkflowDefinition);
+            sourceContext.ExecuteQuery();
+
+            /*
+            List workflowHistoryList = targetContext.Web.Lists.GetByTitle("Workflow Tasks");
+            List taskList = targetContext.Web.Lists.GetByTitle("Workflow History");
+            List associatedList = targetContext.Web.Lists.GetByTitle(targetListName);
+            targetContext.Load(workflowHistoryList);
+            targetContext.Load(taskList);
+            targetContext.Load(associatedList);
+            targetContext.ExecuteQuery();
+            */
+
+            WorkflowDefinition wf = CloneWorkflowDefinition(publishedWorkflowDefinition, targetContext, targetListId);
+            ClientResult<Guid> result = targetWorkflowDeploymentService.SaveDefinition(wf);
+            targetContext.ExecuteQuery();
+
+            targetWorkflowDeploymentService.PublishDefinition(result.Value);
+            targetContext.ExecuteQuery();
+
+            WorkflowSubscription wfSubscription = new WorkflowSubscription(targetContext);
+            wfSubscription.DefinitionId = result.Value;
+            wfSubscription.Enabled = true;
+            wfSubscription.Name = wf.DisplayName;
+            wfSubscription.EventSourceId = targetListId;
+
+            var startupOptions = new List<string>();
+            // automatic start
+            //startupOptions.Add("ItemAdded");
+            //startupOptions.Add("ItemUpdated");
+            // manual start
+            startupOptions.Add("WorkflowStart");
+
+            // set the workflow start settings
+            wfSubscription.EventTypes = startupOptions;
+
+            // set the associated task and history lists
+            wfSubscription.SetProperty("HistoryListId", historyListId.ToString());
+
+            wfSubscription.SetProperty("TaskListId", taskListId.ToString());
+
+            //Create the Association
+            ClientResult<Guid> result1 = targetWFSubscriptionService.PublishSubscriptionForList(wfSubscription, targetListId);
+
+            targetContext.ExecuteQuery();
+            /*
+            // find the first workflow definition
+            var firstWorkflowDefinition = publishedWorkflowDefinitions.First();
+
+            // connect to the subscription service
+            var workflowSubscriptionService = workflowServicesManager.GetWorkflowSubscriptionService();
+
+            // get all workflow associations
+            var workflowAssociations = workflowSubscriptionService.EnumerateSubscriptionsByDefinition(firstWorkflowDefinition.Id);
+            sourceContext.Load(workflowAssociations);
+            sourceContext.ExecuteQuery();
+
+            foreach (var association in workflowAssociations)
+            {
+                Console.WriteLine("{0} - {1}", association.Id, association.Name);
+            }
+            */
+            //workflowServicesManager.
+            /*
+            Web web = sourceContext.Web;
+            sourceContext.Load(web);
+            List sourceList = web.Lists.GetByTitle(sourceListName);
+            //Microsoft.SharePoint.Client.Workflow.WorkflowAssociationCollection workflowAssociations = sourceList.WorkflowAssociations;
+            sourceContext.Load(sourceList);
+            sourceContext.Load(sourceList.WorkflowAssociations);
+            sourceContext.Load(web.WorkflowAssociations);
+
+            sourceContext.ExecuteQuery();
+
+            Microsoft.SharePoint.Client.Workflow.WorkflowAssociation workflowAssociation = web.WorkflowAssociations[0];
+            string data = workflowAssociation.AssociationData;
+            int x = 3;
+            */
+            //sourceContext.Load($web.Webs);
+        }
+
+        private static WorkflowDefinition CloneWorkflowDefinition(WorkflowDefinition wf, ClientContext context, Guid listId)
+        {
+            WorkflowDefinition newWFDefinition = new WorkflowDefinition(context);
+            newWFDefinition.AssociationUrl = wf.AssociationUrl;
+            newWFDefinition.Description = wf.Description;
+            newWFDefinition.DisplayName = wf.DisplayName;
+            newWFDefinition.DraftVersion = wf.DraftVersion;
+            newWFDefinition.FormField = wf.FormField;
+            newWFDefinition.Id = wf.Id;
+            newWFDefinition.InitiationUrl = wf.InitiationUrl;
+            foreach (string key in wf.Properties.Keys)
+            {
+                newWFDefinition.SetProperty(key, wf.Properties[key]);
+            }
+            //newWFDefinition.Published = wf.Published;
+            newWFDefinition.RequiresAssociationForm = wf.RequiresAssociationForm;
+            newWFDefinition.RequiresInitiationForm = wf.RequiresInitiationForm;
+            newWFDefinition.RestrictToScope = listId.ToString();
+            newWFDefinition.RestrictToType = wf.RestrictToType;
+            newWFDefinition.Tag = wf.Tag;
+            newWFDefinition.Xaml = wf.Xaml;
+
+            return newWFDefinition;
         }
 
         public static void DeleteListItem(ISiteSetting siteSetting, string webUrl, string listName, string fileRef, int listItemID)
@@ -741,9 +861,9 @@ namespace Sobiens.Connectors.Services.SharePoint
             return _folder;
         }
 
-        private SPListItem ParseSPListItem(ListItem item, Guid siteSettingID, string folderPath, string webUrl, string webApplicationURL, string siteCollectionURL, string listName, string titleFieldName)
+        private SPListItem ParseSPListItem(ListItem item, ISiteSetting siteSetting, string folderPath, string webUrl, string webApplicationURL, string siteCollectionURL, string listName, string titleFieldName)
         {
-            SPListItem listItem = new SPListItem(siteSettingID);
+            SPListItem listItem = new SPListItem(siteSetting.ID);
             try {
                 listItem.HasUniqueRoleAssignments = item.HasUniqueRoleAssignments;
             }
@@ -825,6 +945,23 @@ namespace Sobiens.Connectors.Services.SharePoint
                     else if (objValue is DateTime == true)
                     {
                         value = ((DateTime)objValue).ToString("yyyy-MM-ddTHH:mm:ssZ");
+                    }
+                    else if (objValue is TaxonomyFieldValue == true)
+                    {
+                        TaxonomyFieldValue taxonomyFieldValue = (TaxonomyFieldValue)objValue;
+                        SPTerm term = GetTerm(siteSetting, new Guid(taxonomyFieldValue.TermGuid));
+                        value = term.Path;
+                    }
+                    else if (objValue is TaxonomyFieldValueCollection == true)
+                    {
+                        TaxonomyFieldValueCollection taxonomyFieldValues = (TaxonomyFieldValueCollection)objValue;
+                        value = string.Empty;
+                        foreach (TaxonomyFieldValue taxonomyFieldValue in taxonomyFieldValues) {
+                            SPTerm term = GetTerm(siteSetting, new Guid(taxonomyFieldValue.TermGuid));
+                            if(string.IsNullOrEmpty(value) == false)
+                                value += ";#";
+                            value += term.Path;
+                        }
                     }
                     else
                     {
@@ -1015,7 +1152,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
 
             string titleFieldName = "LinkFilename";
-            SPListItem listItem = ParseSPListItem(collListItem[0], siteSetting.ID, folder.FolderPath, folder.WebUrl,webApplicationURL, siteCollectionURL, folder.ListName, titleFieldName);
+            SPListItem listItem = ParseSPListItem(collListItem[0], siteSetting, folder.FolderPath, folder.WebUrl,webApplicationURL, siteCollectionURL, folder.ListName, titleFieldName);
             return listItem;
 
             /*
@@ -1145,7 +1282,7 @@ namespace Sobiens.Connectors.Services.SharePoint
 
                 foreach (ListItem oListItem in collListItem)
                 {
-                    SPListItem listItem = ParseSPListItem(oListItem, siteSetting.ID, folderName, webUrl, webApplicationURL, siteCollectionURL, listName, string.Empty);
+                    SPListItem listItem = ParseSPListItem(oListItem, siteSetting, folderName, webUrl, webApplicationURL, siteCollectionURL, listName, string.Empty);
                     items.Add(listItem);
                 }
 
@@ -1247,7 +1384,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                     foreach (ListItem oListItem in collListItem)
                     {
 
-                        SPListItem listItem = ParseSPListItem(oListItem, siteSetting.ID, queryOptions.Folder, webUrl,webApplicationURL, siteCollectionURL, listName, string.Empty);
+                        SPListItem listItem = ParseSPListItem(oListItem, siteSetting, queryOptions.Folder, webUrl,webApplicationURL, siteCollectionURL, listName, string.Empty);
                         if (i > 0)
                         {
                             IItem foundListItem = items.Where(t => t.GetID().Equals(listItem.ID.ToString())).FirstOrDefault();
@@ -1724,7 +1861,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                 string type = element.Attributes["Type"].Value;
                 Sobiens.Connectors.Entities.Field field = new Sobiens.Connectors.Entities.Field();
 
-                if (type.Equals("TaxonomyFieldType", StringComparison.InvariantCultureIgnoreCase) == true)
+                if (type.Equals("TaxonomyFieldType", StringComparison.InvariantCultureIgnoreCase) == true
+                    || type.Equals("TaxonomyFieldTypeMulti", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
                     field = new SPTaxonomyField();
                 }
@@ -1836,6 +1974,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                         fieldType = FieldTypes.Number;
                         break;
                     case "taxonomyfieldtype":
+                    case "taxonomyfieldtypemulti":
                         fieldType = FieldTypes.TaxonomyFieldType;
                         var xmlNsM = new XmlNamespaceManager(element.OwnerDocument.NameTable);
                         //xmlNsM.AddNamespace("foo", "http://schemas.microsoft.com/sharepoint/soap/");
@@ -1869,6 +2008,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                         ((SPTaxonomyField)field).LCID = lcid;
                         //field.List = element.Attributes["List"].Value;
                         //field.ShowField = element.Attributes["ShowField"].Value;
+                        if(type.ToLower() == "taxonomyfieldtypemulti")
+                            field.Mult = true;
                         break;
                     case "lookup":
                         fieldType = FieldTypes.Lookup;
@@ -2746,8 +2887,9 @@ namespace Sobiens.Connectors.Services.SharePoint
                     string choicesString = "";
                     string richTextString = "";
                     string richTextModeString = "";
-                    string requiredString = "Required = '" + _field.Required.ToString().ToUpper() + "'";
-                    string readOnlyString = "ReadOnly = '" + _field.Required.ToString().ToUpper() + "'";
+                    string requiredString = " Required = '" + _field.Required.ToString().ToUpper() + "'";
+                    string readOnlyString = " ReadOnly = '" + _field.Required.ToString().ToUpper() + "'";
+                    string multiString = " Mult = '" + _field.Mult.ToString().ToUpper() + "'";
                     string formulaString = _field.Formula;
                     string resultTypeString = "";
                     string lookupListString = "";
@@ -2791,7 +2933,10 @@ namespace Sobiens.Connectors.Services.SharePoint
                             fieldTypeString = "OutcomeChoice";
                             break;
                         case FieldTypes.TaxonomyFieldType:
-                            fieldTypeString = "TaxonomyFieldType";
+                            if (_field.Mult == true)
+                                fieldTypeString = "TaxonomyFieldTypeMulti";
+                            else
+                                fieldTypeString = "TaxonomyFieldType";
                             break;
                         case FieldTypes.Lookup:
                             fieldTypeString = "Lookup";
@@ -2821,7 +2966,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                     string schemaTextField = "<Field ID='" + Guid.NewGuid().ToString() + "' " +
                         " Type='" + fieldTypeString + "' Name='" + _field.Name + "' StaticName='" + _field.Name + "'" +
                         " DisplayName='" + _field.DisplayName + "' " + minString + " " + maxString + " " + richTextString +
-                        " " + richTextModeString + " " + requiredString + " " + readOnlyString + resultTypeString + 
+                        " " + richTextModeString + " " + requiredString + " " + readOnlyString + resultTypeString + multiString +
                         lookupListString + showFieldString + numLinesString + appendOnlyString + ">" +
                         defaultValueString +
                         choicesString +
@@ -3298,6 +3443,42 @@ namespace Sobiens.Connectors.Services.SharePoint
             return XmlNodeToFieldCollection(web["Fields"], includeReadOnly);
         }
         */
+        public static List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        {
+            try
+            {
+                List<Workflow> workflows = new List<Workflow>();
+                ClientContext sourceContext = GetClientContext(siteSetting);
+                var sourceWorkflowServicesManager = new WorkflowServicesManager(sourceContext, sourceContext.Web);
+                List list = sourceContext.Web.Lists.GetByTitle(listName);
+                sourceContext.Load(list);
+                sourceContext.ExecuteQuery();
+
+                var workflowSubscriptionService = sourceWorkflowServicesManager.GetWorkflowSubscriptionService();
+
+                // get all workflow associations
+                var workflowAssociations = workflowSubscriptionService.EnumerateSubscriptionsByList(list.Id);
+                sourceContext.Load(workflowAssociations);
+                sourceContext.ExecuteQuery();
+
+                foreach(WorkflowSubscription subscription in workflowAssociations)
+                {
+                    Workflow wf = new Workflow();
+                    wf.Id = subscription.DefinitionId.ToString();
+                    wf.Name = subscription.Name;
+                    wf.SiteSettingID = siteSetting.ID;
+                    workflows.Add(wf);
+                }
+
+                return workflows;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
 
         public static List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
         {

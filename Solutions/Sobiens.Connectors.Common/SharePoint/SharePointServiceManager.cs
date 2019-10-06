@@ -655,6 +655,11 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             return SharePointService.GetContentTypes(siteSetting, siteSetting.Url, ((SPWeb)siteSetting).GetRoot(), listName, true);
         }
+        public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        {
+            return SharePointService.GetWorkflows(siteSetting, listName);
+        }
+
         public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)
         {
             SharePointService sharePointService = new SharePointService();

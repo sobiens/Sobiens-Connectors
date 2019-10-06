@@ -21,11 +21,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         public static bool? ShowDialog(Window owner, UserControl control, string title, double? height, double? width, bool showActionButtons, bool showLogo)
         {
             HostWindow hostWindow = new HostWindow();
-            hostWindow.SetHostControl(control);
             if (height.HasValue == true)
                 hostWindow.Height = height.Value;
             if (width.HasValue == true)
                 hostWindow.Width = width.Value;
+            hostWindow.SetHostControl(control);
             hostWindow.Title = title;
             hostWindow.ShowActionButtons = showActionButtons;
             hostWindow.ShowLogo = showLogo;

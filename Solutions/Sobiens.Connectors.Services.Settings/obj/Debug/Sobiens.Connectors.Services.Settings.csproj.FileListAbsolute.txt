@@ -26,7 +26,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Sett
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csprojAssemblyReference.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.pdb

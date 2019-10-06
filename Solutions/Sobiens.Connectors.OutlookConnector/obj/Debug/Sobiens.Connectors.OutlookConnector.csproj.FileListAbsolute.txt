@@ -65,7 +65,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnec
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.ManageTaskPaneRibbonExt.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Sobiens.Connectors.OutlookConnector.dll.config

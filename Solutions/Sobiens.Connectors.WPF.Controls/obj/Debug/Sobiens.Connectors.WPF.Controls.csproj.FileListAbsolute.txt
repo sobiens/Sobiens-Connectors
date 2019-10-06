@@ -373,7 +373,9 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.g.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\Sobiens.Connectors.WPF.Controls.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\bin\Debug\Sobiens.Connectors.Common.dll.config

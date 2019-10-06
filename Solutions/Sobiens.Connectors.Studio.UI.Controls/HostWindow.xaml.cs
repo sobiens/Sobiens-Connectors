@@ -124,7 +124,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             this.MainPanel.Children.Clear();
             control.VerticalContentAlignment = VerticalAlignment.Stretch;
             control.HorizontalContentAlignment = HorizontalAlignment.Stretch ;
-            control.Height = this.Height-200;
+            if (this.Height == 0)
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+                control.Height = SystemParameters.WorkArea.Height;
+            }
+            else
+            {
+                control.Height = this.Height - 200;
+            }
             //control.Width = 0;
             //control.HorizontalAlignment = HorizontalAlignment.Stretch;
             //control.VerticalAlignment= VerticalAlignment.Stretch;

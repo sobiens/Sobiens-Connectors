@@ -48,6 +48,7 @@ namespace Sobiens.Connectors.Common.Interfaces
         void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields);
 
         string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
+        List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder, bool includeReadOnly);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting);

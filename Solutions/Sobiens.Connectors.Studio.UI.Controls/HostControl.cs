@@ -23,7 +23,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             get
             {
-                return true;
+                return this._IsValid;
             }
             set
             {

@@ -5,6 +5,7 @@ using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Services.SharePoint;
 using Sobiens.Connectors.Studio.UI.Controls;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,41 @@ namespace Sobiens.Connectors.Studio.UI
         public MainWindow()
         {
             InitializeComponent();
+
+            /*
+            SPSiteSetting sourceSiteSetting = new SPSiteSetting();
+            sourceSiteSetting.Url = "https://sobiens1.sharepoint.com/sites/test";
+            sourceSiteSetting.Username = "serkant@sobiens1.onmicrosoft.com";
+            sourceSiteSetting.Password = "Trinity100";
+            sourceSiteSetting.SiteSettingType = SiteSettingTypes.SharePoint;
+            sourceSiteSetting.UseDefaultCredential = false;
+            sourceSiteSetting.UseClaimAuthentication = false;
+            sourceSiteSetting.CheckInAfterCopy = false;
+            sourceSiteSetting.useMajorVersionAsDefault = false;
+            sourceSiteSetting.CheckInAfterEditProperties = false;
+            sourceSiteSetting.limitFolderEditableProperties = false;
+
+            SPSiteSetting targetSiteSetting = new SPSiteSetting();
+            targetSiteSetting.Url = "https://sobiens1.sharepoint.com/sites/test2";
+            targetSiteSetting.Username = "serkant@sobiens1.onmicrosoft.com";
+            targetSiteSetting.Password = "Trinity100";
+            targetSiteSetting.SiteSettingType = SiteSettingTypes.SharePoint;
+            targetSiteSetting.UseDefaultCredential = false;
+            targetSiteSetting.UseClaimAuthentication = false;
+            targetSiteSetting.CheckInAfterCopy = false;
+            targetSiteSetting.useMajorVersionAsDefault = false;
+            targetSiteSetting.CheckInAfterEditProperties = false;
+            targetSiteSetting.limitFolderEditableProperties = false;
+
+            string sourceWebUrl = "https://sobiens1.sharepoint.com/sites/test";
+            string sourceListName = "Test1";
+            Guid sourceWorkflowDefinitionId = Guid.Empty;
+            string targetWebUrl = "https://sobiens1.sharepoint.com/sites/test2";
+            string targetListName = "Test1";
+
+            
+            SharePointService.CopyWorkflow(sourceSiteSetting, sourceWebUrl, sourceListName, sourceWorkflowDefinitionId, targetSiteSetting, targetWebUrl, targetListName);
+            */
             //SyncTasksManager.GetInstance().GetTestDocumentSyncTasks();
 
             //string configurationFolderPath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["LogFolderPath"]);
@@ -121,6 +157,7 @@ namespace Sobiens.Connectors.Studio.UI
 
             ApplicationContext.SetApplicationManager(new Sobiens.Connectors.UI.SPCamlStudioApplicationManager(this));
             ApplicationContext.Current.Initialize();
+            FeatureHelpManager.ShowNotSeenFeatureHelpDialog();
         }
 
         private void Window_Initialized(object sender, EventArgs e)

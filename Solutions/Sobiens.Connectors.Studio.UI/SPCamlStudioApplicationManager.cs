@@ -309,5 +309,18 @@ namespace Sobiens.Connectors.UI
             else
                 throw new NotImplementedException();
         }
+
+        public override List<Workflow> GetWorkflows(ISiteSetting siteSetting, Folder folder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            //if (folder as SPWeb != null)
+            //    return serviceManager.GetWorkflows(siteSetting, folder, true);
+            //else
+            if (folder as SPList != null)
+                return serviceManager.GetWorkflows(siteSetting, folder.GetListName());
+            else
+                throw new NotImplementedException();
+        }
+
     }
 }

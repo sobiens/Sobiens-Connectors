@@ -51,9 +51,12 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             foreach(object nodeObject in treeviewItems)
             {
-                Folder subfolder = (Folder)((TreeViewItem)nodeObject).Tag;
-                folders.Add(subfolder);
-                PopulateFoldersFromTreeNode(subfolder.Folders, ((TreeViewItem)nodeObject).Items);
+                Folder subfolder = ((TreeViewItem)nodeObject).Tag as Folder;
+                if (subfolder != null)
+                {
+                    folders.Add(subfolder);
+                    PopulateFoldersFromTreeNode(subfolder.Folders, ((TreeViewItem)nodeObject).Items);
+                }
             }
         }
 

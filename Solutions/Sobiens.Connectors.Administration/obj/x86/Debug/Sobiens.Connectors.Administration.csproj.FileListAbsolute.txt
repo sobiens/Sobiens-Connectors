@@ -98,7 +98,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administratio
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.g.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.exe
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.pdb

@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\TFS\Sobiens\Sobiens.SharePoint\Sobiens.Connectors\Sobiens.Connectors.WPF.Controls\obj\Debug\
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPF.Controls\obj\Debug\
 Sobiens.Connectors.WPF.Controls
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 56-203447763
 
-73-994281651
-26-833091380
+731488412352
+261899938618
 About.xaml;BrowserExplorer.xaml;ContentExplorer.xaml;EditItems\EditItemFileControl.xaml;EditItems\EditItemLabelControl.xaml;EditItems\EditItemTaxonomyControl.xaml;ErrorForm.xaml;Dictionary1.xaml;EditItems\CheckInForm.xaml;EditItems\FileCopyNameForm.xaml;EditItems\FileExistConfirmationForm.xaml;EditItems\ItemVersionHistoryForm.xaml;LoadingWindow.xaml;Selectors\TermSetSelector.xaml;Selectors\DocumentTemplateSelection.xaml;Selectors\PictureSelection.xaml;Selectors\PictureSelectors.xaml;Selectors\DocumentTemplateLocationSelectionForm.xaml;Settings\TaskListLocationForm.xaml;Settings\EmptyConfigurationControl.xaml;Settings\ExplorerLocationForm.xaml;Settings\DocumentTemplateMappingForm.xaml;Settings\ConfigurationImportForm.xaml;Settings\ItemPropertyMappingForm.xaml;Settings\ItemPropertyMappingsForm.xaml;EditItemPropertiesControl.xaml;EditItems\EditItemTextBoxControl.xaml;EditItems\EditItemRichTextBoxControl.xaml;EditItems\EditItemDateTimeControl.xaml;EditItems\EditItemNumberTextBoxControl.xaml;EditItems\EditItemMultiLineTextBoxControl.xaml;EditItems\EditItemComboBoxControl.xaml;EditItems\EditItemCheckedListBoxControl.xaml;EditItems\EditItemBooleanControl.xaml;EditItems\FieldMappingControl.xaml;Excel\ExcelConnectorExplorer.xaml;HierarchyBreadcrumbBar.xaml;HierarchyNavigator.xaml;HostWindow.xaml;ConnectorExplorer.xaml;Outlook\OutlookConnectorExplorer.xaml;SearchExplorer.xaml;Search\SearchFiltersPanelControl.xaml;Search\SearchFilterControl.xaml;Settings\DocumentTemplateForm.xaml;Settings\SettingsForm.xaml;Settings\SiteSettingForm.xaml;SiteContentSelections.xaml;Social\SocialExplorer.xaml;StatusBar.xaml;Themes\Generic.xaml;UploadFilesForm.xaml;Workflow\TaskListView.xaml;Word\WordConnectorExplorer.xaml;WorkflowExplorer.xaml;Workflow\ItemWorkflowForm.xaml;
 
-False
+True
 

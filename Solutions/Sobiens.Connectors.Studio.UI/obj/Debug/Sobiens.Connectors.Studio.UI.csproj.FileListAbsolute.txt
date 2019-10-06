@@ -122,7 +122,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.g.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.exe
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.pdb
@@ -130,3 +129,15 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.Studio.UI.application
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.exe.manifest
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\Sobiens.Connectors.Studio.UI.application
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.WPF.Controls.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.WPF.Controls.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Microsoft.Lync.Controls.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Microsoft.Lync.Controls.Framework.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Microsoft.Lync.Utilities.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Microsoft.Lync.Model.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.WPF.Controls.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.WPF.Controls.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.Studio.UI.Controls.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config

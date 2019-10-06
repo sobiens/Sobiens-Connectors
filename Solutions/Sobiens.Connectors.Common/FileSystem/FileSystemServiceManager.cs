@@ -585,6 +585,11 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
+        public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        {
+            return null;
+        }
+
         public List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName)
         {
             throw new NotImplementedException();

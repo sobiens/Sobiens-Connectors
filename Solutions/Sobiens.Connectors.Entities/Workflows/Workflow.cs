@@ -7,6 +7,7 @@ namespace Sobiens.Connectors.Entities.Workflows
 {
     public class Workflow
     {
+        public Guid SiteSettingID { get; set; }
         public string StatusPageUrl { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }

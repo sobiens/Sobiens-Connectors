@@ -71,6 +71,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClosableBrowserTab.cs" />
     <Compile Include="CodeTemplates\WebAPI\ControllerClassTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +101,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WebAPIConfigClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrowserTabsPanel.xaml.cs">
+      <DependentUpon>BrowserTabsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowCopyForm.xaml.cs">
+      <DependentUpon>WorkflowCopyForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="SyncSchemaWizardForm.xaml.cs">
       <DependentUpon>SyncSchemaWizardForm.xaml</DependentUpon>
@@ -223,6 +230,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CriteriaPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BrowserTabsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WorkflowCopyForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -514,6 +529,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

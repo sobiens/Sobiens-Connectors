@@ -11,6 +11,7 @@ namespace Sobiens.Connectors.Entities.Settings
         public bool Exist { get; set; }
         public string Name { get; set; }
         public bool DetailedLogMode = true;
+        public string LatestFeatureHelpVersionShown { get; set; }
         public SiteSettings SiteSettings = new SiteSettings();
 
         public FolderSettings FolderSettings { get; set; }
