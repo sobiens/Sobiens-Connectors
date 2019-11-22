@@ -23,7 +23,7 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="WebsSoap", Namespace="http://schemas.microsoft.com/sharepoint/soap/")]
@@ -805,7 +805,7 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.microsoft.com/sharepoint/soap/")]
     public enum CustomizedPageStatus {
@@ -821,11 +821,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetWebCollectionCompletedEventHandler(object sender, GetWebCollectionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWebCollectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -847,11 +847,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetWebCompletedEventHandler(object sender, GetWebCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWebCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -873,11 +873,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetListTemplatesCompletedEventHandler(object sender, GetListTemplatesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetListTemplatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -899,11 +899,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetAllSubWebCollectionCompletedEventHandler(object sender, GetAllSubWebCollectionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAllSubWebCollectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -925,11 +925,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void WebUrlFromPageUrlCompletedEventHandler(object sender, WebUrlFromPageUrlCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WebUrlFromPageUrlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -951,11 +951,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetContentTypesCompletedEventHandler(object sender, GetContentTypesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetContentTypesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -977,11 +977,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetContentTypeCompletedEventHandler(object sender, GetContentTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetContentTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1003,11 +1003,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CreateContentTypeCompletedEventHandler(object sender, CreateContentTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateContentTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1029,11 +1029,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateContentTypeCompletedEventHandler(object sender, UpdateContentTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateContentTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1055,11 +1055,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void DeleteContentTypeCompletedEventHandler(object sender, DeleteContentTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteContentTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1081,11 +1081,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateContentTypeXmlDocumentCompletedEventHandler(object sender, UpdateContentTypeXmlDocumentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateContentTypeXmlDocumentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1107,11 +1107,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RemoveContentTypeXmlDocumentCompletedEventHandler(object sender, RemoveContentTypeXmlDocumentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RemoveContentTypeXmlDocumentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1133,11 +1133,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetColumnsCompletedEventHandler(object sender, GetColumnsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetColumnsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1159,11 +1159,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateColumnsCompletedEventHandler(object sender, UpdateColumnsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateColumnsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1185,11 +1185,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetCustomizedPageStatusCompletedEventHandler(object sender, GetCustomizedPageStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCustomizedPageStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1211,27 +1211,27 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RevertFileContentStreamCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RevertAllFileContentStreamsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CustomizeCssCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RevertCssCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetActivatedFeaturesCompletedEventHandler(object sender, GetActivatedFeaturesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetActivatedFeaturesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1253,11 +1253,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWebsWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetObjectIdFromUrlCompletedEventHandler(object sender, GetObjectIdFromUrlCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetObjectIdFromUrlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

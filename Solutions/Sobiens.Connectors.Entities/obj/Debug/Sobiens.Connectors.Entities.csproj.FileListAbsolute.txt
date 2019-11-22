@@ -28,7 +28,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\Sobiens.Connectors.Entities.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\NLog.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\bin\Debug\NLog.xml
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csprojAssemblyReference.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\en-US.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Resources\Languages\fr-FR.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities_MarkupCompile.cache
@@ -36,3 +35,4 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csprojAssemblyReference.cache

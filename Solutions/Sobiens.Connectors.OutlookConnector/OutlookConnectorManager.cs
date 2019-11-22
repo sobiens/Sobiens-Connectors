@@ -10,6 +10,7 @@ using Sobiens.Connectors.Common;
 using Sobiens.Connectors.WPF.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Entities.Workflows;
 
 namespace Sobiens.Connectors.OutlookConnector
 {
@@ -652,5 +653,9 @@ namespace Sobiens.Connectors.OutlookConnector
                 throw new NotImplementedException();
         }
 
+        public override List<Workflow> GetWorkflows(ISiteSetting siteSetting, Folder folder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

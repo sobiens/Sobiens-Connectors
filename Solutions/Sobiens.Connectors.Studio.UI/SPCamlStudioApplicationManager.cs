@@ -50,9 +50,12 @@ namespace Sobiens.Connectors.UI
         {
             this.IsInitialized = true;
             ApplicationContext.Current.Configuration = ConfigurationManager.GetInstance().LoadConfiguration();
-            this.SPCamlStudio.QueryDesignerToolbar.ValidateButtonEnabilities();
-            this.SPCamlStudio.ServerObjectExplorer.Initialize();
-            //            this.RefreshControlsFromConfiguration();
+            if (this.SPCamlStudio != null)
+            {
+                this.SPCamlStudio.QueryDesignerToolbar.ValidateButtonEnabilities();
+                this.SPCamlStudio.ServerObjectExplorer.Initialize();
+                //            this.RefreshControlsFromConfiguration();
+            }
         }
 
         public override void RefreshControlsFromConfiguration()

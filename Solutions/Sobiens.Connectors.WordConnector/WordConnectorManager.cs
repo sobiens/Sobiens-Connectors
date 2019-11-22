@@ -16,6 +16,7 @@ using Sobiens.Connectors.WPF.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Diagnostics;
 using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Entities.Workflows;
 
 namespace Sobiens.Connectors.WordConnector
 {
@@ -457,6 +458,10 @@ namespace Sobiens.Connectors.WordConnector
                 return serviceManager.GetContentTypes(siteSetting, folder.GetListName());
             else
                 throw new NotImplementedException();
+        }
+        public override List<Workflow> GetWorkflows(ISiteSetting siteSetting, Folder folder)
+        {
+            throw new NotImplementedException();
         }
 
     }

@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="CopyResult" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Sobiens.Connectors.Services.SharePoint.SharePointCopyWS.CopyResult, Web References.SharePointCopyWS.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>Sobiens.Connectors.Services.SharePoint.SharePointCopyWS.CopyResult, Web References.SharePointCopyWS.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

@@ -27,7 +27,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>Sobiens.Connectors.OutlookConnector</RootNamespace>
     <AssemblyName>Sobiens.Connectors.OutlookConnector</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>

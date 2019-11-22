@@ -78,6 +78,7 @@ namespace Sobiens.Connectors.Common.Service
                 SyncTasksManager.GetInstance().SyncSchema(queryRunner.backgroundWorker, syncTaskSchemaCopy.SourceObjects, syncTaskSchemaCopy.DestinationObject);
             }
 
+            SyncTasksManager.GetInstance().SaveProcessStatus(queryRunner.Task.ProcessID, "Completed", null, queryRunner.Task.LastRunStartDate);
             SyncTasksManager.GetInstance().SaveSyncTaskStatus(queryRunner.Task, processStartDate, DateTime.Now, true, string.Empty);
             queryRunner.State = RunnerState.Complete;
         }

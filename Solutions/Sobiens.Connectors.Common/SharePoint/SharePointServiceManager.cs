@@ -570,8 +570,8 @@ namespace Sobiens.Connectors.Common.SharePoint
         public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
         {
             Hashtable changedProperties = SharePointService.getChangedProperties(null, fields);
-            if (auditInformation["Editor"] != null && auditInformation["Editor"] != string.Empty)
-                changedProperties.Add("Editor", auditInformation["Editor"]);
+            //if (auditInformation["Editor"] != null && auditInformation["Editor"] != string.Empty)
+            //    changedProperties.Add("Editor", auditInformation["Editor"]);
 
             if (auditInformation["Modified"] != null && auditInformation["Modified"] != string.Empty)
                 changedProperties.Add("Modified", auditInformation["Modified"]);

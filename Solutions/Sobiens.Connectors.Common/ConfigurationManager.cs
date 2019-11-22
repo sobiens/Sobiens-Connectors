@@ -683,17 +683,41 @@ namespace Sobiens.Connectors.Common
 
         public string GetSyncTasksFilePath()
         {
+            string settingFilePath = System.Configuration.ConfigurationManager.AppSettings["SyncTasksLocation"];
+            if (string.IsNullOrEmpty(settingFilePath) == false
+                && System.IO.File.Exists(settingFilePath) == true)
+            {
+                return settingFilePath;
+            }
+
             return GetSyncTasksFolder() + "\\SyncTasks.xml";
         }
 
         public string GetSyncTaskStatusFilePath(SyncTask syncTask)
         {
+            string settingFilePath = System.Configuration.ConfigurationManager.AppSettings["SyncTasksLocation"];
+            if (string.IsNullOrEmpty(settingFilePath) == false
+                && System.IO.File.Exists(settingFilePath) == true)
+            {
+                FileInfo fi = new FileInfo(settingFilePath);
+                return fi.Directory.FullName + "\\SyncTaskStatus.xml";
+            }
+
             return ConfigurationManager.GetInstance().GetSyncTaskFolder(syncTask) + "\\SyncTaskStatus.xml";
         }
 
 
         public string GetSyncTasksFolder()
         {
+            string settingFilePath = System.Configuration.ConfigurationManager.AppSettings["SyncTasksLocation"];
+            if (string.IsNullOrEmpty(settingFilePath) == false
+                && System.IO.File.Exists(settingFilePath) == true)
+            {
+                FileInfo fi = new FileInfo(settingFilePath);
+                return fi.Directory.FullName;
+            }
+
+
             string folderPath = GetApplicationFolder();
             folderPath += "\\SyncTasks";
             if (System.IO.Directory.Exists(folderPath) == false)

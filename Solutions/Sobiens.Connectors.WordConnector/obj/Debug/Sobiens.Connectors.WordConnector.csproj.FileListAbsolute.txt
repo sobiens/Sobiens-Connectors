@@ -119,3 +119,8 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Microsoft.Xrm.Sdk.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\obj\Debug\Sobiens.Connectors.WordConnector.csproj.CopyComplete
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Sobiens.Connectors.WordConnector.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Sobiens.Connectors.Windows.Controls.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WordConnector\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config

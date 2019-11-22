@@ -210,6 +210,7 @@ namespace Sobiens.Connectors.Common
         private List<SyncTask> LoadState()
         {
             string settingFilePath = ConfigurationManager.GetInstance().GetSyncTasksFilePath();
+
             Logger.Info("SyncTasks are being loaded from " + settingFilePath, "SyncTasksManager");
             if (System.IO.File.Exists(settingFilePath) == false)
                 return new List<SyncTask>();
@@ -746,6 +747,10 @@ namespace Sobiens.Connectors.Common
                         {
                             value = value.Split(new string[] { ";#" }, StringSplitOptions.None)[1];
                         }
+                    }
+                    else if (currentField.Type == FieldTypes.DateTime && string.IsNullOrEmpty(value) == true)
+                    {
+                        continue;
                     }
                     values.Add(field, value);
                 }
@@ -1355,7 +1360,7 @@ namespace Sobiens.Connectors.Common
                                 if (queryResultMapping.QueryResult.Filters.Filters.Count>0)
                                     currentFilters.Add(queryResultMapping.QueryResult.Filters);
 
-                        if(lastProcessStartDate.HasValue == true)
+                        if (lastProcessStartDate.HasValue == true && lastProcessStartDate != DateTime.MinValue)
                         {
                             string lastProcessStartDateString = GetDateTimeFilterString(siteSetting, lastProcessStartDate.Value);
                             currentFilters.Add(new CamlFilter(GetModifiedFieldName(siteSetting), FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
@@ -1382,7 +1387,7 @@ namespace Sobiens.Connectors.Common
                                 currentFilters.Add(_filters);
                             }
 
-                    if (lastProcessStartDate.HasValue == true)
+                    if (lastProcessStartDate.HasValue == true && lastProcessStartDate != DateTime.MinValue)
                     {
                         //var result = new DateTimeOffset(input.DateTime, TimeZoneInfo.FindSystemTimeZoneById(input.TimeZoneId).GetUtcOffset(input.DateTime));
 

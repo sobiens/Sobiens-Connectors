@@ -23,7 +23,7 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="WorkflowSoap", Namespace="http://schemas.microsoft.com/sharepoint/soap/workflow/")]
@@ -345,11 +345,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetToDosForItemCompletedEventHandler(object sender, GetToDosForItemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetToDosForItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -371,11 +371,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetTemplatesForItemCompletedEventHandler(object sender, GetTemplatesForItemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTemplatesForItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -397,11 +397,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void StartWorkflowCompletedEventHandler(object sender, StartWorkflowCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StartWorkflowCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -423,11 +423,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AlterToDoCompletedEventHandler(object sender, AlterToDoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AlterToDoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -449,11 +449,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetWorkflowDataForItemCompletedEventHandler(object sender, GetWorkflowDataForItemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWorkflowDataForItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -475,11 +475,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ClaimReleaseTaskCompletedEventHandler(object sender, ClaimReleaseTaskCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ClaimReleaseTaskCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -501,11 +501,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointWorkflowWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetWorkflowTaskDataCompletedEventHandler(object sender, GetWorkflowTaskDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWorkflowTaskDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

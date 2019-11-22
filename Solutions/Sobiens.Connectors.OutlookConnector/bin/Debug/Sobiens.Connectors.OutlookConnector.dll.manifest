@@ -415,6 +415,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.SharePoint.Client.WorkflowServices.dll" size="39128">
+      <assemblyIdentity name="Microsoft.SharePoint.Client.WorkflowServices" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xrBItacknrM3qfIUbSgCr0Ylqbuh7FxooG2xcuf1DfE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.VisualStudio.Tools.Applications.Runtime.dll" size="83168">
       <assemblyIdentity name="Microsoft.VisualStudio.Tools.Applications.Runtime" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -451,26 +463,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Common.dll" size="191488">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Common.dll" size="192512">
       <assemblyIdentity name="Sobiens.Connectors.Common" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OxXG+HdAt2AD6U96JUFWJ5kBvgkM97SDG9fKVTELraE=</dsig:DigestValue>
+        <dsig:DigestValue>QpPj/kyHkh6dmfBRZ40M66MNp/Sys2HJhR4leZ9eKdk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Entities.dll" size="150016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Entities.dll" size="150528">
       <assemblyIdentity name="Sobiens.Connectors.Entities" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8pjO9MIf0OM5sAddKBAhbinKGpoSwrWgzt9N2lS3Nw4=</dsig:DigestValue>
+        <dsig:DigestValue>5RXeb1X/KFmOqYQKULH/3Ux5ylkBOqFMI4VrNwBW63w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -482,7 +494,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wtGT0TKGoOFk6T7711/XcSol8dDsOrW2tRb4W+93930=</dsig:DigestValue>
+        <dsig:DigestValue>uf3fq/FphAWhh7wRp/9LvJ4CZTO+aUE9zZgJOcClWBQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -494,19 +506,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YMgoGcPJjy7PKe+n5Pix50ar9VkR4N7pQuHTTVWG9+o=</dsig:DigestValue>
+        <dsig:DigestValue>KkKSaVOZ1O7XSLo+LB8l3RMxxrOh7WXKCiK1SNPuPrA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.SharePoint.dll" size="272896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.SharePoint.dll" size="275968">
       <assemblyIdentity name="Sobiens.Connectors.Services.SharePoint" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>F1GGRK5ZjZ6pWKRVlQ/N4t+gSmdDA2sePyOB0ZUeA3A=</dsig:DigestValue>
+        <dsig:DigestValue>OgzCwRJvG7duwgPilBy+y+xbuySEevRrIQzjQPF0nkk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -518,7 +530,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rqbRSKGWZoL+KpH/mwTKNcfJrmf/8G/jPz9e1uPMyBg=</dsig:DigestValue>
+        <dsig:DigestValue>Ng4foIFP2mVR9kUKOvkYNrRrBrojLy/aY9anR+KnA7o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -530,7 +542,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MNTOJ+8Moq4UC5gs6ZA3RnJU5+tXDpab/hsJRl7EUaw=</dsig:DigestValue>
+        <dsig:DigestValue>2XWKaDTRTnCU9SW6v3JvD36jPaX4AKEiBVlPGjveKXw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -542,17 +554,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IcR3SVBrRC2ND4w1+cgcLhlfdHoBLj7J4NQ3X8Ss39Q=</dsig:DigestValue>
+        <dsig:DigestValue>ht0jXEwtAnooTH+d2c3mv6Uin3KFGOvoTHJFwo7MhIQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Sobiens.Connectors.OutlookConnector.dll.config" size="161">
+  <file name="Sobiens.Connectors.OutlookConnector.dll.config" size="790">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>1SR2HBfPDeqUEJ8/zazS7LZ1UBFf+eAwf3jAUFVBnv4=</dsig:DigestValue>
+      <dsig:DigestValue>p4Q3dHJsRDGFX7ZvcuALZgLOPlryyJ2UHD1bxIswHgI=</dsig:DigestValue>
     </hash>
   </file>
   <vstav3:addIn xmlns:vstav3="urn:schemas-microsoft-com:vsta.v3">
@@ -581,4 +593,4 @@
       </vstov4:customizations>
     </vstav3:application>
   </vstav3:addIn>
-<publisherIdentity name="CN=WIN-JB33EMI1M3P\Administrator" issuerKeyHash="02b307bb84f1f02ade873f5bc48bdab8d06dd3a0" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>/dqVJzYkGdf0vyDxSeRHWIQT+C0=</DigestValue></Reference></SignedInfo><SignatureValue>Mk1wjOpFLpZRPEg2JeuuRHGEcg/YJZBz3WLVRIFIPM1xHAbKU81GcQP6FKotyUc3U/lTEfddwdgGSAGWM91F54F031E6g8+ziMDqUrCWB+wIJhMFCMc8HRm+b/kejRi69DJWpPPK+xeHbSQ4qHNxC9ycR95qu1qQ1zMLAEdKVmU=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>tMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="2df813845847e449f120bff4d71924362795dafd" Description="" Url=""><as:assemblyIdentity name="Sobiens.Connectors.OutlookConnector.dll" version="1.0.0.0" publicKeyToken="e6cc90cc476f4775" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=WIN-JB33EMI1M3P\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>CwdCMY5n8gzRhUQtIFt72ys2iwk=</DigestValue></Reference></SignedInfo><SignatureValue>M9FJkZM8+DD1lnSgLNIzmy3yy4r7HutI0L1HOVBJkJtLp4vP3KVvq0CprDw0ZADVdzqHhRVXrdr8i2tYH0BSLZe6agateuVj5FathxX36Oms2iCUifIsi3lF774jS2Jc9hpXf4DR4iMuwt5SuOpSFp5liLH9cp3JT24flAbnMyA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>tMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICDTCCAXagAwIBAgIQThfnMSoH9b5ExnsrGVnQiDANBgkqhkiG9w0BAQUFADBFMUMwQQYDVQQDHjoAVwBJAE4ALQBKAEIAMwAzAEUATQBJADEATQAzAFAAXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByMB4XDTEyMDEwMjE0NDMyOFoXDTEzMDEwMTIwNDMyOFowRTFDMEEGA1UEAx46AFcASQBOAC0ASgBCADMAMwBFAE0ASQAxAE0AMwBQAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAtMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJcCAwEAATANBgkqhkiG9w0BAQUFAAOBgQA9uGI7/wN2luNwwdBH+qh/kNPNLDfeo7FB/Q/Vyqye8QVdiXsuMgyF/gs+yz1C2RPGhTgs8x+KtsRGRmiQ4MvpFNWovpKtufaBa6YbtgDsUeMyR+y+A9mIsDpL69jHfsyQqAYJli24i2Dm5378BgFyakV60ewRo9os1r1FFnz2Pw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
+<publisherIdentity name="CN=WIN-JB33EMI1M3P\Administrator" issuerKeyHash="02b307bb84f1f02ade873f5bc48bdab8d06dd3a0" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>EPztiLtdNOFCSB6e1HVvmGaTaZw=</DigestValue></Reference></SignedInfo><SignatureValue>c2yfuanTLVT8cZHToExU4R04JT1HzyjckL6BSg1ibqSTiTsDfimbc4QLqIvDTf0zHa/GTwDPXzZqEV9T+4FCHEFZfYHbEzfBrdTcDADiawj+jsCD2iu+HHYY+shxafcHjY4YC0/FsSyrzBFvmxiQotTXS/awCwLm+nbGaySWBYs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>tMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="9c699366986f75d49e1e4842e1345dbb88edfc10" Description="" Url=""><as:assemblyIdentity name="Sobiens.Connectors.OutlookConnector.dll" version="1.0.0.0" publicKeyToken="e6cc90cc476f4775" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=WIN-JB33EMI1M3P\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>oRHgCB3/56iMLIDQeEr4En2rfqA=</DigestValue></Reference></SignedInfo><SignatureValue>l1lYGOrcgyD0FXV/t9/Klw6YksvvlHzx8gdm8A75zOnsTTXOE6f2Q1HvUrsh+TR/UeOGdl+WKZp2tLMiypU3Sagw3orp5fD/BGqHAXhE+9hCekQbi+h3MwvtulChWaTVsVpgYf7r7FkArBoZDonuHSdu+I+ZbdCENHp2O7M7NDc=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>tMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICDTCCAXagAwIBAgIQThfnMSoH9b5ExnsrGVnQiDANBgkqhkiG9w0BAQUFADBFMUMwQQYDVQQDHjoAVwBJAE4ALQBKAEIAMwAzAEUATQBJADEATQAzAFAAXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByMB4XDTEyMDEwMjE0NDMyOFoXDTEzMDEwMTIwNDMyOFowRTFDMEEGA1UEAx46AFcASQBOAC0ASgBCADMAMwBFAE0ASQAxAE0AMwBQAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAtMcUw4doQsnLGMTGBo6mfTNKVACNXTr1HsQI8C/HyCcVDRQ0ygN2cvnqW9tIdfpO7mQ6G3t5w/bbNtFaPbSQHU8WWOPhcBPCZKJN7U6H82wnspjA5e1pUFquCwQN3Kr7OuvEntFpvKREO8n2Is046f4AlExA4UdOvIvuVldKcJcCAwEAATANBgkqhkiG9w0BAQUFAAOBgQA9uGI7/wN2luNwwdBH+qh/kNPNLDfeo7FB/Q/Vyqye8QVdiXsuMgyF/gs+yz1C2RPGhTgs8x+KtsRGRmiQ4MvpFNWovpKtufaBa6YbtgDsUeMyR+y+A9mIsDpL69jHfsyQqAYJli24i2Dm5378BgFyakV60ewRo9os1r1FFnz2Pw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

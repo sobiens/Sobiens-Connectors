@@ -107,3 +107,8 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnecto
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Microsoft.Xrm.Sdk.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csproj.CopyComplete
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Sobiens.Connectors.ExcelConnector.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Sobiens.Connectors.Windows.Controls.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config

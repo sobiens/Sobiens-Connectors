@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<ArrayOfSyncTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SyncTask xsi:type="SyncTaskListItemsCopy">
+    <ProcessID>00000000-0000-0000-0000-000000000000</ProcessID>
+    <ID>9517c929-be06-4367-bb2a-2908e6b0344b</ID>
+    <Name>Test2</Name>
+    <Scheduled>true</Scheduled>
+    <Status>Completed</Status>
+    <LastRunStartDate>2019-11-21T13:17:40.9818486+03:00</LastRunStartDate>
+    <LastRunEndDate>0001-01-01T00:00:00</LastRunEndDate>
+    <LastSuccessfullyCompletedStartDate>2019-11-21T13:17:40.9818486+03:00</LastSuccessfullyCompletedStartDate>
+    <ScheduleInterval>0</ScheduleInterval>
+    <SourceQueryResultMapping>
+      <Mappings>
+        <QueryResultMapping>
+          <QueryResult>
+            <ID>00000000-0000-0000-0000-000000000000</ID>
+            <Name>Test1</Name>
+            <IsDocumentLibrary>false</IsDocumentLibrary>
+            <VersioningEnabled>true</VersioningEnabled>
+            <PrimaryIdFieldName>ID</PrimaryIdFieldName>
+            <PrimaryNameFieldName>Title</PrimaryNameFieldName>
+            <PrimaryFileReferenceFieldName>FileRef</PrimaryFileReferenceFieldName>
+            <ModifiedByFieldName>Editor</ModifiedByFieldName>
+            <ModifiedOnFieldName>Modified</ModifiedOnFieldName>
+            <SiteSetting>
+              <SiteSettingType>SharePoint</SiteSettingType>
+              <ID>22ad46f7-5567-47eb-8a92-ad4ef289780d</ID>
+              <Url>https://sobiens1.sharepoint.com/sites/test</Url>
+              <Username>serkant@sobiens1.onmicrosoft.com</Username>
+              <Password>Trinity100</Password>
+              <UseDefaultCredential>false</UseDefaultCredential>
+              <UseClaimAuthentication>true</UseClaimAuthentication>
+              <CheckInAfterCopy>false</CheckInAfterCopy>
+              <useMajorVersionAsDefault>false</useMajorVersionAsDefault>
+              <CheckInAfterEditProperties>false</CheckInAfterEditProperties>
+              <limitFolderEditableProperties>false</limitFolderEditableProperties>
+            </SiteSetting>
+            <FolderPath>Lists/Test1</FolderPath>
+            <ListName>Test1</ListName>
+            <Fields>
+              <string>Title</string>
+              <string>ID</string>
+              <string>Modified</string>
+              <string>Editor</string>
+              <string>FileRef</string>
+            </Fields>
+            <Filters>
+              <IsOr>false</IsOr>
+              <Filters />
+              <FilterCollections />
+            </Filters>
+            <ReferenceFields />
+          </QueryResult>
+          <SelectFields>
+            <QueryResultMappingSelectField>
+              <FieldName>Title</FieldName>
+              <StaticValue />
+              <OutputHeaderName>Title</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>ID</FieldName>
+              <StaticValue />
+              <OutputHeaderName>ID</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>Modified</FieldName>
+              <StaticValue />
+              <OutputHeaderName>Modified</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>Editor</FieldName>
+              <StaticValue />
+              <OutputHeaderName>Editor</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>FileRef</FieldName>
+              <StaticValue />
+              <OutputHeaderName>FileRef</OutputHeaderName>
+            </QueryResultMappingSelectField>
+          </SelectFields>
+        </QueryResultMapping>
+      </Mappings>
+    </SourceQueryResultMapping>
+    <SourceUniqueFieldHeaderNames>
+      <string>ID</string>
+    </SourceUniqueFieldHeaderNames>
+    <SourceFieldHeaderMappings>
+      <string>Title</string>
+      <string>ID</string>
+    </SourceFieldHeaderMappings>
+    <DestinationFolderPath>Lists/Test2</DestinationFolderPath>
+    <DestinationRootFolderPath>Lists/Test2</DestinationRootFolderPath>
+    <DestinationIDFieldHeaderName>ID</DestinationIDFieldHeaderName>
+    <DestinationUniqueFieldNames>
+      <string>SourceItemID</string>
+    </DestinationUniqueFieldNames>
+    <DestinationSiteSetting>
+      <SiteSettingType>SharePoint</SiteSettingType>
+      <ID>22ad46f7-5567-47eb-8a92-ad4ef289780d</ID>
+      <Url>https://sobiens1.sharepoint.com/sites/test</Url>
+      <Username>serkant@sobiens1.onmicrosoft.com</Username>
+      <Password>Trinity100</Password>
+      <UseDefaultCredential>false</UseDefaultCredential>
+      <UseClaimAuthentication>true</UseClaimAuthentication>
+      <CheckInAfterCopy>false</CheckInAfterCopy>
+      <useMajorVersionAsDefault>false</useMajorVersionAsDefault>
+      <CheckInAfterEditProperties>false</CheckInAfterEditProperties>
+      <limitFolderEditableProperties>false</limitFolderEditableProperties>
+    </DestinationSiteSetting>
+    <IsDestinationDocumentLibrary>false</IsDestinationDocumentLibrary>
+    <DestinationListName>Test2</DestinationListName>
+    <DestinationTermStoreName>Taxonomy_BrjLUNqY3/3gqp8FAbbKiQ==</DestinationTermStoreName>
+    <DestinationReferenceFields />
+    <DestinationPrimaryIdFieldName>ID</DestinationPrimaryIdFieldName>
+    <DestinationPrimaryNameFieldName>Title</DestinationPrimaryNameFieldName>
+    <DestinationPrimaryFileReferenceFieldName>FileRef</DestinationPrimaryFileReferenceFieldName>
+    <DestinationFieldMappings>
+      <QueryResultMappingSelectField>
+        <FieldName>Title</FieldName>
+        <StaticValue />
+        <OutputHeaderName>Title</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>SourceItemID</FieldName>
+        <StaticValue />
+        <OutputHeaderName>SourceItemID</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+    </DestinationFieldMappings>
+    <ShouldSkipUpdates>false</ShouldSkipUpdates>
+  </SyncTask>
+</ArrayOfSyncTask>

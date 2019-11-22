@@ -111,3 +111,7 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnec
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.Xrm.Sdk.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\obj\Debug\Sobiens.Connectors.OutlookConnector.csproj.CopyComplete
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Sobiens.Connectors.Windows.Controls.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.OutlookConnector\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config

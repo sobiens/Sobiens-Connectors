@@ -27,7 +27,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>Sobiens.Connectors.ExcelConnector</RootNamespace>
     <AssemblyName>Sobiens.Connectors.ExcelConnector</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>

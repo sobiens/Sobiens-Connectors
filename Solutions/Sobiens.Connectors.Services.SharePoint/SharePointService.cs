@@ -942,6 +942,22 @@ namespace Sobiens.Connectors.Services.SharePoint
                         FieldUserValue userValue = (FieldUserValue)objValue;
                         value = userValue.LookupId + ";#" + userValue.LookupValue;
                     }
+                    else if (objValue is FieldLookupValue == true)
+                    {
+                        FieldLookupValue userValue = (FieldLookupValue)objValue;
+                        value = userValue.LookupId + ";#" + userValue.LookupValue;
+                    }
+                    else if (objValue is FieldLookupValue[] == true)
+                    {
+                        FieldLookupValue[] _values = (FieldLookupValue[])objValue;
+                        value = string.Empty;
+                        foreach (FieldLookupValue _value in _values)
+                        {
+                            if (string.IsNullOrEmpty(value) == false)
+                                value += ";#";
+                            value += _value.LookupId + ";#" + _value.LookupValue;
+                        }
+                    }
                     else if (objValue is DateTime == true)
                     {
                         value = ((DateTime)objValue).ToString("yyyy-MM-ddTHH:mm:ssZ");
@@ -1546,6 +1562,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 lock (UpdateListItemLocker)
                 {
+                    Logger.Info("Updating listitem listname:" + listName + " - listItemID:" + listItemID, "UpdateListItem");
                     ClientContext context = GetClientContext(siteSetting);
                     List list = context.Web.Lists.GetByTitle(listName);
                     Microsoft.SharePoint.Client.FieldCollection fields = list.Fields;
@@ -1582,6 +1599,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                             Microsoft.SharePoint.Client.Field field = fields.Where(t => t.InternalName.Equals(fieldName.ToString(), StringComparison.InvariantCultureIgnoreCase)).First();
                             item[fieldName.ToString()] = val;
                         }
+                        Logger.Info("Updating listitem listname:" + listName + " - listItemID:" + listItemID + "field:" + fieldName.ToString() + " - val:" + (val!=null? val.ToString():""), "UpdateListItem");
                     }
 
                     item.Update();
@@ -1649,6 +1667,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                Logger.Error(ex, "UpdateListItem");
 
                 //LogManager.LogAndShowException(methodName, ex);
                 throw ex;
@@ -3048,6 +3067,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
+
                 /*LogManager.Log("UploadFile started with;"
                     + Environment.NewLine + " ListName:" + listName
                     + Environment.NewLine + " WebURL:" + webURL

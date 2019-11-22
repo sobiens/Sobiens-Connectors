@@ -21,6 +21,9 @@ namespace Sobiens.Connectors.Studio.UI
             base.OnStartup(e);
             if (System.Configuration.ConfigurationManager.AppSettings["RunAs"] == "RunOnlyScheduledTasks")
             {
+                ApplicationContext.SetApplicationManager(new Sobiens.Connectors.UI.SPCamlStudioApplicationManager(null));
+                ApplicationContext.Current.Initialize();
+
                 QueryMediator.EnqueueRequests(DateTime.Now);
                 QueryMediator.PerformRequests(false);
                 this.Shutdown();

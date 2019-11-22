@@ -23,7 +23,7 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Taxonomy web serviceSoap", Namespace="http://schemas.microsoft.com/sharepoint/taxonomy/soap/")]
@@ -250,7 +250,7 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.microsoft.com/sharepoint/taxonomy/soap/")]
     public enum StringMatchOption {
@@ -263,11 +263,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetTermSetsCompletedEventHandler(object sender, GetTermSetsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTermSetsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -297,11 +297,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetTermsByLabelCompletedEventHandler(object sender, GetTermsByLabelCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTermsByLabelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -323,11 +323,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddTermsCompletedEventHandler(object sender, AddTermsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddTermsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -349,11 +349,11 @@ namespace Sobiens.Connectors.Services.SharePoint.SharePointTaxonomyWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetKeywordTermsByGuidsCompletedEventHandler(object sender, GetKeywordTermsByGuidsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetKeywordTermsByGuidsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

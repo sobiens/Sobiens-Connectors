@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<ArrayOfSyncTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SyncTask xsi:type="SyncTaskListItemsCopy">
+    <ProcessID>5075d324-082a-4639-9d5d-a663ea658657</ProcessID>
+    <ID>8ad5be50-1db4-4c64-b8f2-833a48f02ec2</ID>
+    <Name>Call for submissions from Colloborate System To Staging</Name>
+    <Scheduled>true</Scheduled>
+    <Status>Started</Status>
+    <LastRunStartDate>0001-01-01T00:00:00</LastRunStartDate>
+    <LastRunEndDate>0001-01-01T00:00:00</LastRunEndDate>
+    <LastSuccessfullyCompletedStartDate>0001-01-01T00:00:00</LastSuccessfullyCompletedStartDate>
+    <ScheduleInterval>300000</ScheduleInterval>
+    <SourceQueryResultMapping>
+      <Mappings>
+        <QueryResultMapping>
+          <QueryResult>
+            <ID>00000000-0000-0000-0000-000000000000</ID>
+            <Name>Test1</Name>
+            <IsDocumentLibrary>false</IsDocumentLibrary>
+            <VersioningEnabled>false</VersioningEnabled>
+            <SiteSetting>
+              <SiteSettingType>SharePoint</SiteSettingType>
+              <ID>3201584b-77a0-4866-86a8-9cd4447ddbec</ID>
+              <Url>https://sobiens1.sharepoint.com/sites/test2</Url>
+              <Username>serkant@sobiens1.onmicrosoft.com</Username>
+              <Password>Trinity100</Password>
+              <UseDefaultCredential>false</UseDefaultCredential>
+              <UseClaimAuthentication>true</UseClaimAuthentication>
+              <CheckInAfterCopy>false</CheckInAfterCopy>
+              <useMajorVersionAsDefault>false</useMajorVersionAsDefault>
+              <CheckInAfterEditProperties>false</CheckInAfterEditProperties>
+              <limitFolderEditableProperties>false</limitFolderEditableProperties>
+            </SiteSetting>
+            <ListName>CallForSubmissions</ListName>
+            <Fields>
+              <string>Title</string>
+              <string>UNF3CSPAutoapprovalTarget</string>
+              <string>UNF3CSPBody</string>
+              <string>callforsubmission</string>
+              <string>UNF3CSPDateOfCall</string>
+              <string>UNF3CSPIssue</string>
+              <string>UNF3CSPLinkToDocument</string>
+              <string>UNF3CSPMandate</string>
+              <string>UNF3CSPOpenCall</string>
+              <string>UNF3CSPOrganizationUnitProgramme</string>
+              <string>UNF3CSPRecurrency</string>
+              <string>UNF3CSPSession</string>
+              <string>UNFC3CStatement</string>
+              <string>UNF3CSPDescription</string>
+              <string>UNF3CSPCallAssociation</string>
+              <string>UNF3CSPTargetAudience</string>
+              <string>UNF3CSPTargetPortalUrl</string>
+              <string>UNF3CSPTheme</string>
+              <string>UNF3CSPUserResponsible</string>
+              <string>UNFC3CCallType</string>
+              <string>ID</string>
+              <string>Modified</string>
+              <string>Editor</string>
+              <string>FileRef</string>
+            </Fields>
+            <Filters>
+              <IsOr>true</IsOr>
+              <Filters>
+                <CamlFilter>
+                  <FieldName>_ModerationStatus</FieldName>
+                  <FilterType>Equals</FilterType>
+                  <FilterValue>Approved</FilterValue>
+                  <FieldType>Text</FieldType>
+                </CamlFilter>
+              </Filters>
+              <FilterCollections />
+            </Filters>
+            <ReferenceFields />
+          </QueryResult>
+          <SelectFields>
+            <QueryResultMappingSelectField>
+              <FieldName>Title</FieldName>
+              <OutputHeaderName>Title</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPAutoapprovalTarget</FieldName>
+              <OutputHeaderName>UNF3CSPAutoapprovalTarget</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPBody</FieldName>
+              <OutputHeaderName>UNF3CSPBody</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>callforsubmission</FieldName>
+              <OutputHeaderName>callforsubmission</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPDateOfCall</FieldName>
+              <OutputHeaderName>UNF3CSPDateOfCall</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPIssue</FieldName>
+              <OutputHeaderName>UNF3CSPIssue</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPLinkToDocument</FieldName>
+              <OutputHeaderName>UNF3CSPLinkToDocument</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPMandate</FieldName>
+              <OutputHeaderName>UNF3CSPMandate</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPOpenCall</FieldName>
+              <OutputHeaderName>UNF3CSPOpenCall</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPOrganizationUnitProgramme</FieldName>
+              <OutputHeaderName>UNF3CSPOrganizationUnitProgramme</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPRecurrency</FieldName>
+              <OutputHeaderName>UNF3CSPRecurrency</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPSession</FieldName>
+              <OutputHeaderName>UNF3CSPSession</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNFC3CStatement</FieldName>
+              <OutputHeaderName>UNFC3CStatement</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPDescription</FieldName>
+              <OutputHeaderName>UNF3CSPDescription</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPCallAssociation</FieldName>
+              <OutputHeaderName>UNF3CSPCallAssociation</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPTargetAudience</FieldName>
+              <OutputHeaderName>UNF3CSPTargetAudience</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPTargetPortalUrl</FieldName>
+              <OutputHeaderName>UNF3CSPTargetPortalUrl</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPTheme</FieldName>
+              <OutputHeaderName>UNF3CSPTheme</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNF3CSPUserResponsible</FieldName>
+              <OutputHeaderName>UNF3CSPUserResponsible</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>UNFC3CCallType</FieldName>
+              <OutputHeaderName>UNFC3CCallType</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>ID</FieldName>
+              <StaticValue />
+              <OutputHeaderName>ID</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>Modified</FieldName>
+              <StaticValue />
+              <OutputHeaderName>Modified</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>Editor</FieldName>
+              <StaticValue />
+              <OutputHeaderName>Editor</OutputHeaderName>
+            </QueryResultMappingSelectField>
+            <QueryResultMappingSelectField>
+              <FieldName>FileRef</FieldName>
+              <StaticValue />
+              <OutputHeaderName>FileRef</OutputHeaderName>
+            </QueryResultMappingSelectField>
+          </SelectFields>
+        </QueryResultMapping>
+      </Mappings>
+    </SourceQueryResultMapping>
+    <SourceUniqueFieldHeaderNames>
+      <string>ID</string>
+    </SourceUniqueFieldHeaderNames>
+    <SourceFieldHeaderMappings>
+      <string>Title</string>
+      <string>UNF3CSPAutoapprovalTarget</string>
+      <string>UNF3CSPBody</string>
+      <string>callforsubmission</string>
+      <string>UNF3CSPDateOfCall</string>
+      <string>UNF3CSPIssue</string>
+      <string>UNF3CSPLinkToDocument</string>
+      <string>UNF3CSPMandate</string>
+      <string>UNF3CSPOpenCall</string>
+      <string>UNF3CSPOrganizationUnitProgramme</string>
+      <string>UNF3CSPRecurrency</string>
+      <string>UNF3CSPSession</string>
+      <string>UNFC3CStatement</string>
+      <string>UNF3CSPDescription</string>
+      <string>UNF3CSPCallAssociation</string>
+      <string>UNF3CSPTargetAudience</string>
+      <string>UNF3CSPTargetPortalUrl</string>
+      <string>UNF3CSPTheme</string>
+      <string>UNF3CSPUserResponsible</string>
+      <string>UNFC3CCallType</string>
+      <string>ID</string>
+    </SourceFieldHeaderMappings>
+    <DestinationRootFolderPath>Test2</DestinationRootFolderPath>
+    <DestinationIDFieldHeaderName>ID</DestinationIDFieldHeaderName>
+    <DestinationUniqueFieldNames>
+      <string>SourceItemID</string>
+    </DestinationUniqueFieldNames>
+    <DestinationSiteSetting>
+      <SiteSettingType>SharePoint</SiteSettingType>
+      <ID>af95765a-5969-47ff-a5fa-6a35bdc98bdb</ID>
+      <Url>https://sobiens1.sharepoint.com/sites/test</Url>
+      <Username>serkant@sobiens1.onmicrosoft.com</Username>
+      <Password>Trinity100</Password>
+      <UseDefaultCredential>false</UseDefaultCredential>
+      <UseClaimAuthentication>true</UseClaimAuthentication>
+      <CheckInAfterCopy>false</CheckInAfterCopy>
+      <useMajorVersionAsDefault>false</useMajorVersionAsDefault>
+      <CheckInAfterEditProperties>false</CheckInAfterEditProperties>
+      <limitFolderEditableProperties>false</limitFolderEditableProperties>
+    </DestinationSiteSetting>
+    <IsDestinationDocumentLibrary>false</IsDestinationDocumentLibrary>
+    <DestinationListName>CallForSubmissions</DestinationListName>
+    <DestinationReferenceFields />
+    <DestinationFieldMappings>
+      <QueryResultMappingSelectField>
+        <FieldName>Title</FieldName>
+        <StaticValue />
+        <OutputHeaderName>Title</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPAutoapprovalTarget</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPAutoapprovalTarget</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPBody</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPBody</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>callforsubmission</FieldName>
+        <StaticValue />
+        <OutputHeaderName>callforsubmission</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPDateOfCall</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPDateOfCall</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPIssue</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPIssue</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPLinkToDocument</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPLinkToDocument</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPMandate</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPMandate</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPOpenCall</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPOpenCall</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPOrganizationUnitProgramme</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPOrganizationUnitProgramme</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPRecurrency</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPRecurrency</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPSession</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPSession</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNFC3CStatement</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNFC3CStatement</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPDescription</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPDescription</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPCallAssociation</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPCallAssociation</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPTargetAudience</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPTargetAudience</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPTargetPortalUrl</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPTargetPortalUrl</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPTheme</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPTheme</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNF3CSPUserResponsible</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNF3CSPUserResponsible</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>UNFC3CCallType</FieldName>
+        <StaticValue />
+        <OutputHeaderName>UNFC3CCallType</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+      <QueryResultMappingSelectField>
+        <FieldName>SourceItemID</FieldName>
+        <StaticValue />
+        <OutputHeaderName>SourceItemID</OutputHeaderName>
+        <ValueTransformationSyntax />
+      </QueryResultMappingSelectField>
+    </DestinationFieldMappings>
+    <ShouldSkipUpdates>false</ShouldSkipUpdates>
+  </SyncTask>
+</ArrayOfSyncTask>

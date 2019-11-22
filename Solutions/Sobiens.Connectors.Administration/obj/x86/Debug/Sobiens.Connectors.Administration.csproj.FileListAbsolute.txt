@@ -101,3 +101,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administratio
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.exe
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\obj\x86\Debug\Sobiens.Connectors.Administration.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\bin\Debug\Sobiens.Connectors.Common.dll.config
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Administration\bin\Debug\Sobiens.Connectors.WPF.Controls.dll.config
