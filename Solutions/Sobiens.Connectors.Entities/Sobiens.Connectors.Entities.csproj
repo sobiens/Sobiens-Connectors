@@ -104,6 +104,7 @@
     <Compile Include="CamlQueryOptions.cs" />
     <Compile Include="ChoiceDataItem.cs" />
     <Compile Include="CamlFilterTypes.cs" />
+    <Compile Include="CompareObjectsResult.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="CopiedItemInfo.cs" />
     <Compile Include="BasicFolderDefinition.cs" />

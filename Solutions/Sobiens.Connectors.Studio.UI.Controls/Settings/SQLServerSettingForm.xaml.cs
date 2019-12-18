@@ -77,6 +77,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Settings
                 MessageBox.Show(Languages.Translate("Checking connection failed. Please correct the entries."));
                 return;
             }
+            this.IsValid = true;
             loadingWindow.Close();
         }
 

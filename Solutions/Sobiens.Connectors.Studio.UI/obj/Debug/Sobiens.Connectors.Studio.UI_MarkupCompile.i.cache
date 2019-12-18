@@ -1,7 +1,7 @@
 ﻿Sobiens.Connectors.Studio.UI
 
 
-exe
+winexe
 C#
 .cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\obj\Debug\
@@ -16,5 +16,5 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\App
 251989160182
 MainWindow.xaml;
 
-False
+True
 
