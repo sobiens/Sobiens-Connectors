@@ -89,7 +89,7 @@ namespace Sobiens.Connectors.Services.CRM
 
 
 
-        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes)
+        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             List<Sobiens.Connectors.Entities.Folder> subFolders = new List<Sobiens.Connectors.Entities.Folder>();
             if (parentFolder as CRMWeb != null)
@@ -153,7 +153,7 @@ namespace Sobiens.Connectors.Services.CRM
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder)
         {
-            return GetFolders(siteSetting, currentFolder, null);
+            return GetFolders(siteSetting, currentFolder, null, string.Empty);
         }
 
         public string[] GetCurrentUserDetails(ISiteSetting siteSetting)

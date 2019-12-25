@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Sobiens.Connectors.Entities.Workflows
 {
-    public class Workflow
+    public class Workflow: Folder
     {
-        public Guid SiteSettingID { get; set; }
+        //public Guid SiteSettingID { get; set; }
         public string StatusPageUrl { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
@@ -39,5 +39,12 @@ namespace Sobiens.Connectors.Entities.Workflows
                 }
             }
         }
+
+        public override string GetUrl(){throw new NotImplementedException();}
+        public override string GetPath() { throw new NotImplementedException(); }
+        public override string GetListName() { throw new NotImplementedException(); }
+        public override string GetRoot() { throw new NotImplementedException(); }
+        public override string GetWebUrl() { throw new NotImplementedException(); }
+
     }
 }

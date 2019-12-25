@@ -27,3 +27,4 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmai
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csprojAssemblyReference.cache

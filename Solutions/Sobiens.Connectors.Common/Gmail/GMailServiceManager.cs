@@ -223,9 +223,9 @@ namespace Sobiens.Connectors.Common
         //}
 
 
-        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes)
+        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
-            return this.GetFolders(siteSetting, parentFolder);
+            return this.GetFolders(siteSetting, parentFolder, null, childFoldersCategoryName);
         }
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder)

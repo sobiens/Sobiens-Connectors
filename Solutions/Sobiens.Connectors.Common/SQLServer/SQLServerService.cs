@@ -5,6 +5,7 @@ using Sobiens.Connectors.Entities.Interfaces;
 using System.Data.SqlClient;
 using System.Data;
 using Sobiens.Connectors.Entities.SQLServer;
+using System.Linq;
 
 namespace Sobiens.Connectors.Common.SQLServer
 {
@@ -27,43 +28,18 @@ namespace Sobiens.Connectors.Common.SQLServer
 
         public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder)
         {
-            return GetFolders(siteSetting, parentFolder, null);
+            return GetFolders(siteSetting, parentFolder, null, string.Empty);
         }
 
-        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes)
+        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             List<Sobiens.Connectors.Entities.Folder> subFolders = new List<Sobiens.Connectors.Entities.Folder>();
             if (parentFolder as Sobiens.Connectors.Entities.SQLServer.SQLServer != null)
             {
-                Sobiens.Connectors.Entities.SQLServer.SQLServer sqlServer = (Sobiens.Connectors.Entities.SQLServer.SQLServer)parentFolder;
+                //Sobiens.Connectors.Entities.SQLServer.SQLServer sqlServer = (Sobiens.Connectors.Entities.SQLServer.SQLServer)parentFolder;
                 try
                 {
-                    using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, string.Empty)))
-                    {
-                        con.Open();
-
-                        // Set up a command with the given query and associate
-                        // this with the current connection.
-                        using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
-                        {
-                            using (IDataReader dr = cmd.ExecuteReader())
-                            {
-                                while (dr.Read())
-                                {
-                                    string dbName = dr[0].ToString();
-                                    if (dbName.Equals("master", StringComparison.InvariantCultureIgnoreCase) == false
-                                        && dbName.Equals("model", StringComparison.InvariantCultureIgnoreCase) == false
-                                        && dbName.Equals("tempdb", StringComparison.InvariantCultureIgnoreCase) == false
-                                        && dbName.Equals("msdb", StringComparison.InvariantCultureIgnoreCase) == false
-                                        )
-                                    {
-                                        SQLDB list = new SQLDB(dbName, siteSetting.ID, dbName);
-                                        subFolders.Add(list);
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    subFolders = GetDatabases(siteSetting, null).ToList< Sobiens.Connectors.Entities.Folder>();
                 }
                 catch (Exception ex)
                 {
@@ -74,18 +50,24 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
             else if (parentFolder as SQLDB != null)
             {
-                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, parentFolder.Title)))
+                if (childFoldersCategoryName.Equals("Tables", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
-                    connection.Open();
-                    DataTable schema = connection.GetSchema("Tables");
-                    foreach (DataRow row in schema.Rows)
-                    {
-                        string tableName = row[2].ToString();
-                        SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, parentFolder.Title);
-                        
-                        //table.ListName = parentFolder.Title;
-                        subFolders.Add(table);
+                    subFolders = GetTables(siteSetting, parentFolder).ToList< Sobiens.Connectors.Entities.Folder>();
+                }
+                else if (childFoldersCategoryName.Equals("Functions", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = GetFunctions(siteSetting, parentFolder).ToList<Sobiens.Connectors.Entities.Folder>();
+                }
+                else if (childFoldersCategoryName.Equals("Views", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    List<IView> views = GetViews(siteSetting, parentFolder);
+                    foreach (IView view in views) {
+                        subFolders.Add((Folder)view);
                     }
+                }
+                else if (childFoldersCategoryName.Equals("Stored Procedures", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = GetStoredProcedures(siteSetting, parentFolder).ToList<Sobiens.Connectors.Entities.Folder>();
                 }
             }
             return subFolders;
@@ -118,6 +100,259 @@ namespace Sobiens.Connectors.Common.SQLServer
                 }
 
                 return primaryKeys.ToArray();
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<SQLTable> GetTables(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                List<SQLTable> functions = new List<SQLTable>();
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, folder.Title)))
+                {
+                    connection.Open();
+                    DataTable schema = connection.GetSchema("Tables");
+                    foreach (DataRow row in schema.Rows)
+                    {
+                        string tableName = row[2].ToString();
+                        SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
+
+                        //table.ListName = parentFolder.Title;
+                        functions.Add(table);
+                    }
+                }
+
+                return functions;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<IView> GetViews(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                SQLDB db = (SQLDB)folder;
+                List<SQLView> views = new List<SQLView>();
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, db.Title)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand("Select schm.name, v.name, smv.definition" +
+                                                            " FROM sys.all_views AS v" +
+                                                                " JOIN sys.sql_modules AS smv" +
+                                                                    " ON smv.object_id = v.object_id" +
+                                                                " JOIN sys.schemas AS schm" +
+                                                                    " ON v.schema_id = schm.schema_id", con))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                SQLView view = new SQLView();
+                                view.Schema = dr[0].ToString();
+                                view.Name= dr[1].ToString();
+                                view.Title = dr[1].ToString();
+                                view.Content = dr[2].ToString();
+                                views.Add(view);
+                            }
+                        }
+                    }
+                }
+
+                return views.ToList<IView>();
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<SQLDB> GetDatabases(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                List<SQLDB> dbs = new List<SQLDB>();
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, string.Empty)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                string dbName = dr[0].ToString();
+                                if (dbName.Equals("master", StringComparison.InvariantCultureIgnoreCase) == false
+                                    && dbName.Equals("model", StringComparison.InvariantCultureIgnoreCase) == false
+                                    && dbName.Equals("tempdb", StringComparison.InvariantCultureIgnoreCase) == false
+                                    && dbName.Equals("msdb", StringComparison.InvariantCultureIgnoreCase) == false
+                                    )
+                                {
+                                    SQLDB db = new SQLDB(dbName, siteSetting.ID, dbName);
+                                    dbs.Add(db);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return dbs;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+        public List<SQLFunction> GetFunctions(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                SQLDB db = (SQLDB)folder;
+                List<SQLFunction> functions = new List<SQLFunction>();
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, db.Title)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand("SELECT schm.name, " +
+                                                               "OBJECT_NAME(sm.object_id) AS object_name, " +
+                                                               "sm.definition " +
+                                                            "FROM sys.sql_modules AS sm " +
+                                                                "JOIN sys.objects AS o ON sm.object_id = o.object_id " +
+                                                            "JOIN sys.schemas AS schm " +
+                                                                "ON o.schema_id = schm.schema_id " +
+                                                            "WHERE o.type = 'FN' " +
+                                                            "ORDER BY o.type ", con))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                SQLFunction function = new SQLFunction();
+                                function.Schema = dr[0].ToString();
+                                function.Name = dr[1].ToString();
+                                function.Title = dr[1].ToString();
+                                function.Content = dr[2].ToString();
+                                functions.Add(function);
+                            }
+                        }
+                    }
+                }
+
+                return functions;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<SQLStoredProcedure> GetStoredProcedures(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                SQLDB db = (SQLDB)folder;
+                List<SQLStoredProcedure> storedProcedures = new List<SQLStoredProcedure>();
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, db.Title)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand("SELECT schm.name,   " +
+                                                               "OBJECT_NAME(sm.object_id) AS object_name, " +
+                                                               "sm.definition " +
+                                                            "FROM sys.sql_modules AS sm " +
+                                                                "JOIN sys.objects AS o ON sm.object_id = o.object_id " +
+                                                            "JOIN sys.schemas AS schm " +
+                                                                "ON o.schema_id = schm.schema_id " +
+                                                            "WHERE o.type = 'P' ", con))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                SQLStoredProcedure storedProcedure = new SQLStoredProcedure();
+                                storedProcedure.Schema = dr[0].ToString();
+                                storedProcedure.Name = dr[1].ToString();
+                                storedProcedure.Title = dr[1].ToString();
+                                storedProcedure.Content = dr[2].ToString();
+                                storedProcedures.Add(storedProcedure);
+                            }
+                        }
+                    }
+                }
+
+                return storedProcedures;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public List<SQLTrigger> GetTriggers(ISiteSetting siteSetting, Folder folder)
+        {
+            try
+            {
+                SQLDB db = (SQLDB)folder;
+                List<SQLTrigger> triggers = new List<SQLTrigger>();
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, db.Title)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand("SELECT schm.name,   " +
+                                                               "OBJECT_NAME(sm.object_id) AS object_name, " +
+                                                               "sm.definition " +
+                                                            "FROM sys.sql_modules AS sm " +
+                                                                "JOIN sys.objects AS o ON sm.object_id = o.object_id " +
+                                                            "JOIN sys.schemas AS schm " +
+                                                                "ON o.schema_id = schm.schema_id " +
+                                                            "WHERE o.type = 'TR' ", con))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                SQLTrigger trigger = new SQLTrigger();
+                                trigger.Schema = dr[0].ToString();
+                                trigger.Name = dr[1].ToString();
+                                trigger.Title = dr[1].ToString();
+                                trigger.Content = dr[2].ToString();
+                                triggers.Add(trigger);
+                            }
+                        }
+                    }
+                }
+
+                return triggers;
             }
             catch (Exception ex)
             {

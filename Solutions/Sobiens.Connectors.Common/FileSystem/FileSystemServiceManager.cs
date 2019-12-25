@@ -388,7 +388,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         //    return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count); 
         //}
 
-        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
+        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             throw new NotImplementedException();
         }

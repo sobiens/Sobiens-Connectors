@@ -234,49 +234,60 @@ namespace Sobiens.Connectors.Services.SharePoint
 
         public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder)
         {
-            return GetFolders(siteSetting, parentFolder, null);
+            return GetFolders(siteSetting, parentFolder, null, string.Empty);
         }
 
-        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes)
+        public List<Sobiens.Connectors.Entities.Folder> GetFolders(ISiteSetting siteSetting, Sobiens.Connectors.Entities.Folder parentFolder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             List<Sobiens.Connectors.Entities.Folder> subFolders = new List<Sobiens.Connectors.Entities.Folder>();
             if (parentFolder as SPWeb != null)
             {
-                SPWeb web = (SPWeb)parentFolder;
-                try
+                if (childFoldersCategoryName.Equals("Lists and Libraries", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
-                    List<SPWeb> webs = this.GetWebs(siteSetting, web.Url);
-                    foreach (SPWeb _web in webs)
+                    SPWeb web = (SPWeb)parentFolder;
+                    try
                     {
-                        subFolders.Add(_web);
+                        List<SPWeb> webs = this.GetWebs(siteSetting, web.Url);
+                        foreach (SPWeb _web in webs)
+                        {
+                            subFolders.Add(_web);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    string message = string.Format("SharePointService GetWebs method returned error:{0}", ex.Message);
-                    Logger.Error(message, "Service");
-                }
+                    catch (Exception ex)
+                    {
+                        string message = string.Format("SharePointService GetWebs method returned error:{0}", ex.Message);
+                        Logger.Error(message, "Service");
+                    }
 
-                try
-                {
-                    List<SPList> lists = this.GetLists(siteSetting, web.Url);
-                    foreach (SPList list in lists)
+                    try
                     {
-                        if (list.Hidden == true)
-                            continue;
-                        if (includedFolderTypes != null && includedFolderTypes.Contains(list.ServerTemplate) == false)
-                            continue;
-                        /*
-                        if (includedFolderTypes == null && list.ServerTemplate != 101 && list.ServerTemplate != 100 && list.BaseType != 1)
-                            continue;
-                            */
-                        subFolders.Add(list);
+                        List<SPList> lists = this.GetLists(siteSetting, web.Url);
+                        foreach (SPList list in lists)
+                        {
+                            if (list.Hidden == true)
+                                continue;
+                            if (includedFolderTypes != null && includedFolderTypes.Contains(list.ServerTemplate) == false)
+                                continue;
+                            /*
+                            if (includedFolderTypes == null && list.ServerTemplate != 101 && list.ServerTemplate != 100 && list.BaseType != 1)
+                                continue;
+                                */
+                            subFolders.Add(list);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = string.Format("SharePointService GetLists method returned error:{0}", ex.Message);
+                        Logger.Error(message, "Service");
                     }
                 }
-                catch (Exception ex)
+                else if (childFoldersCategoryName.Equals("Workflows", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
-                    string message = string.Format("SharePointService GetLists method returned error:{0}", ex.Message);
-                    Logger.Error(message, "Service");
+                    subFolders = this.GetWorkflows(siteSetting, string.Empty).ToList< Sobiens.Connectors.Entities.Folder>();
+                }
+                else if (childFoldersCategoryName.Equals("Content Types", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = this.GetContentTypes(siteSetting, siteSetting.Url, string.Empty, false).ToList<Sobiens.Connectors.Entities.Folder>();
                 }
             }
             else if (parentFolder as SPFolder != null)
@@ -1871,223 +1882,234 @@ namespace Sobiens.Connectors.Services.SharePoint
 
         private static Sobiens.Connectors.Entities.FieldCollection ParseToFieldCollection(Microsoft.SharePoint.Client.FieldCollection _fields, ISiteSetting siteSetting, bool includeReadOnly)
         {
+
             Sobiens.Connectors.Entities.FieldCollection fields = new Sobiens.Connectors.Entities.FieldCollection();
             foreach (Microsoft.SharePoint.Client.Field _field in _fields)
             {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.LoadXml(_field.SchemaXml);
-                XmlElement element = xmlDoc.DocumentElement;
-                string type = element.Attributes["Type"].Value;
-                Sobiens.Connectors.Entities.Field field = new Sobiens.Connectors.Entities.Field();
 
-                if (type.Equals("TaxonomyFieldType", StringComparison.InvariantCultureIgnoreCase) == true
-                    || type.Equals("TaxonomyFieldTypeMulti", StringComparison.InvariantCultureIgnoreCase) == true)
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(_field.SchemaXml);
+                    XmlElement element = xmlDoc.DocumentElement;
+                    string type = element.Attributes["Type"].Value;
+                    Sobiens.Connectors.Entities.Field field = new Sobiens.Connectors.Entities.Field();
+                try
                 {
-                    field = new SPTaxonomyField();
-                }
-
-                if (element.Attributes["StaticName"].Value.StartsWith("Email") && element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden" &&
-                    (element.Attributes["Type"].Value.ToLower() == "note" || element.Attributes["Type"].Value.ToLower() == "text") &&
-                    (element.Attributes["StaticName"].Value == "EmailCc" ||
-                    element.Attributes["StaticName"].Value == "EmailTo" ||
-                    element.Attributes["StaticName"].Value == "EmailSubject" ||
-                    element.Attributes["StaticName"].Value == "EmailSender" ||
-                    element.Attributes["StaticName"].Value == "EmailFrom")
-                    )
-                {
-                    element.Attributes["Type"].Value = "Text";
-                }
-                //else if (element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden")
-                //    continue;
-                else if (element.Attributes["Hidden"] != null && element.Attributes["Hidden"].Value.ToLower() == "true")
-                {//JD
-                    if (element.Attributes["Type"].Value.ToLower() == "note")//taxonomy field has hidden note field attached with same name
+                    if (type.Equals("TaxonomyFieldType", StringComparison.InvariantCultureIgnoreCase) == true
+                        || type.Equals("TaxonomyFieldTypeMulti", StringComparison.InvariantCultureIgnoreCase) == true)
                     {
-                        for (int i = 0; i < fields.Count; i++)
+                        field = new SPTaxonomyField();
+                    }
+
+                    string staticName = (element.Attributes["StaticName"] != null ? element.Attributes["StaticName"].Value : element.Attributes["Name"].Value);
+                    if (staticName.StartsWith("Email") && element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden" &&
+                        (element.Attributes["Type"].Value.ToLower() == "note" || element.Attributes["Type"].Value.ToLower() == "text") &&
+                        (staticName == "EmailCc" ||
+                        staticName == "EmailTo" ||
+                        staticName == "EmailSubject" ||
+                        staticName == "EmailSender" ||
+                        staticName == "EmailFrom")
+                        )
+                    {
+                        element.Attributes["Type"].Value = "Text";
+                    }
+                    //else if (element.Attributes["Group"] != null && element.Attributes["Group"].Value.ToLower() == "_hidden")
+                    //    continue;
+                    else if (element.Attributes["Hidden"] != null && element.Attributes["Hidden"].Value.ToLower() == "true")
+                    {//JD
+                        if (element.Attributes["Type"].Value.ToLower() == "note")//taxonomy field has hidden note field attached with same name
                         {
-                            if (fields[i].Type == FieldTypes.TaxonomyFieldType &&
-                                element.Attributes["DisplayName"].Value.StartsWith(fields[i].DisplayName.Trim()))
+                            for (int i = 0; i < fields.Count; i++)
                             {
-                                fields[i].attachedField = element.Attributes["Name"].Value;
-                                break;
+                                if (fields[i].Type == FieldTypes.TaxonomyFieldType &&
+                                    element.Attributes["DisplayName"].Value.StartsWith(fields[i].DisplayName.Trim()))
+                                {
+                                    fields[i].attachedField = element.Attributes["Name"].Value;
+                                    break;
+                                }
                             }
                         }
+                        continue;
                     }
-                    continue;
-                }
-                if (element.Attributes["MaxLength"] != null && element.Attributes["MaxLength"].Value != String.Empty)
-                {
-                    field.MaxLength = int.Parse(element.Attributes["MaxLength"].Value);
-                }
-                if (element.Attributes["NumLines"] != null && element.Attributes["NumLines"].Value != String.Empty)
-                {
-                    field.NumLines = int.Parse(element.Attributes["NumLines"].Value);
-                }
-                if (element.Attributes["AppendOnly"] != null && element.Attributes["AppendOnly"].Value != String.Empty)
-                {
-                    field.AppendOnly = element.Attributes["AppendOnly"].Value.ToLower() == "true" ? true : false;
-                }
+                    if (element.Attributes["MaxLength"] != null && element.Attributes["MaxLength"].Value != String.Empty)
+                    {
+                        field.MaxLength = int.Parse(element.Attributes["MaxLength"].Value);
+                    }
+                    if (element.Attributes["NumLines"] != null && element.Attributes["NumLines"].Value != String.Empty)
+                    {
+                        field.NumLines = int.Parse(element.Attributes["NumLines"].Value);
+                    }
+                    if (element.Attributes["AppendOnly"] != null && element.Attributes["AppendOnly"].Value != String.Empty)
+                    {
+                        field.AppendOnly = element.Attributes["AppendOnly"].Value.ToLower() == "true" ? true : false;
+                    }
 
-                if (element.Attributes["RichText"] != null && element.Attributes["RichText"].Value != String.Empty)
-                {
-                    field.RichText = bool.Parse(element.Attributes["RichText"].Value);
-                }
+                    if (element.Attributes["RichText"] != null && element.Attributes["RichText"].Value != String.Empty)
+                    {
+                        field.RichText = bool.Parse(element.Attributes["RichText"].Value);
+                    }
 
-                if (element.Attributes["RichTextMode"] != null && element.Attributes["RichTextMode"].Value != String.Empty)
-                {
-                    field.RichTextMode = element.Attributes["RichTextMode"].Value;
-                }
+                    if (element.Attributes["RichTextMode"] != null && element.Attributes["RichTextMode"].Value != String.Empty)
+                    {
+                        field.RichTextMode = element.Attributes["RichTextMode"].Value;
+                    }
 
-                if (element.Attributes["Decimals"] != null && element.Attributes["Decimals"].Value != String.Empty)
-                    field.Decimals = int.Parse(element.Attributes["Decimals"].Value);
-                if (element.Attributes["Min"] != null && element.Attributes["Min"].Value != String.Empty)
-                    field.Min = decimal.Parse(element.Attributes["Min"].Value);
-                if (element.Attributes["Max"] != null && element.Attributes["Max"].Value != String.Empty)
-                    field.Max = decimal.Parse(element.Attributes["Max"].Value);
+                    if (element.Attributes["Decimals"] != null && element.Attributes["Decimals"].Value != String.Empty)
+                        field.Decimals = int.Parse(element.Attributes["Decimals"].Value);
+                    if (element.Attributes["Min"] != null && element.Attributes["Min"].Value != String.Empty)
+                        field.Min = decimal.Parse(element.Attributes["Min"].Value);
+                    if (element.Attributes["Max"] != null && element.Attributes["Max"].Value != String.Empty)
+                        field.Max = decimal.Parse(element.Attributes["Max"].Value);
 
-                if (element.Attributes["Description"] != null && element.Attributes["Description"].Value != String.Empty)
-                    field.Description = element.Attributes["Description"].Value;
+                    if (element.Attributes["Description"] != null && element.Attributes["Description"].Value != String.Empty)
+                        field.Description = element.Attributes["Description"].Value;
 
-                field.ID = new Guid(element.Attributes["ID"].Value);
-                string authoringInfo = String.Empty;
-                if (element.Attributes["AuthoringInfo"] != null)
-                    authoringInfo = element.Attributes["AuthoringInfo"].Value;
-                field.DisplayName = element.Attributes["DisplayName"].Value + (string.IsNullOrEmpty(authoringInfo) == false? " " + authoringInfo:"");
-                field.Name = element.Attributes["Name"].Value;
-                if (element.Attributes["Required"] != null)
-                    field.Required = bool.Parse(element.Attributes["Required"].Value);
-                if (element.Attributes["FromBaseType"] != null)
-                    field.FromBaseType = bool.Parse(element.Attributes["FromBaseType"].Value);
-                else
-                    field.FromBaseType = false;
-                if (element.Attributes["ReadOnly"] != null)
-                    field.ReadOnly = bool.Parse(element.Attributes["ReadOnly"].Value);
-                else
-                    field.ReadOnly = false;
-                if (element["Default"] != null)
-                    field.DefaultValue = element["Default"].InnerText;
+                    field.ID = new Guid(element.Attributes["ID"].Value);
+                    string authoringInfo = String.Empty;
+                    if (element.Attributes["AuthoringInfo"] != null)
+                        authoringInfo = element.Attributes["AuthoringInfo"].Value;
+                    field.DisplayName = element.Attributes["DisplayName"].Value + (string.IsNullOrEmpty(authoringInfo) == false ? " " + authoringInfo : "");
+                    field.Name = element.Attributes["Name"].Value;
+                    if (element.Attributes["Required"] != null)
+                        field.Required = bool.Parse(element.Attributes["Required"].Value);
+                    if (element.Attributes["FromBaseType"] != null)
+                        field.FromBaseType = bool.Parse(element.Attributes["FromBaseType"].Value);
+                    else
+                        field.FromBaseType = false;
+                    if (element.Attributes["ReadOnly"] != null)
+                        field.ReadOnly = bool.Parse(element.Attributes["ReadOnly"].Value);
+                    else
+                        field.ReadOnly = false;
+                    if (element["Default"] != null)
+                        field.DefaultValue = element["Default"].InnerText;
 
-                if (element.Attributes["Mult"] == null || element.Attributes["Mult"].Value.ToString() == String.Empty)
-                    field.Mult = false;
-                else
-                    field.Mult = bool.Parse(element.Attributes["Mult"].Value);
-                if (field.Required == true)
-                    field.ReadOnly = false;
+                    if (element.Attributes["Mult"] == null || element.Attributes["Mult"].Value.ToString() == String.Empty)
+                        field.Mult = false;
+                    else
+                        field.Mult = bool.Parse(element.Attributes["Mult"].Value);
+                    if (field.Required == true)
+                        field.ReadOnly = false;
 
-                FieldTypes fieldType;
-                switch (type.ToLower())
-                {
-                    case "text":
-                        fieldType = FieldTypes.Text;
-                        break;
-                    case "note":
-                        fieldType = FieldTypes.Note;
-                        break;
-                    case "boolean":
-                        fieldType = FieldTypes.Boolean;
-                        break;
-                    case "datetime":
-                        fieldType = FieldTypes.DateTime;
-                        break;
-                    case "number":
-                        fieldType = FieldTypes.Number;
-                        break;
-                    case "taxonomyfieldtype":
-                    case "taxonomyfieldtypemulti":
-                        fieldType = FieldTypes.TaxonomyFieldType;
-                        var xmlNsM = new XmlNamespaceManager(element.OwnerDocument.NameTable);
-                        //xmlNsM.AddNamespace("foo", "http://schemas.microsoft.com/sharepoint/soap/");
-                        Guid termSetId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='TermSetId']", xmlNsM)["Value"].InnerText);
-                        Guid sspId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='SspId']", xmlNsM)["Value"].InnerText);
-                        Guid anchorId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='AnchorId']", xmlNsM)["Value"].InnerText);
+                    FieldTypes fieldType;
+                    switch (type.ToLower())
+                    {
+                        case "text":
+                            fieldType = FieldTypes.Text;
+                            break;
+                        case "note":
+                            fieldType = FieldTypes.Note;
+                            break;
+                        case "boolean":
+                            fieldType = FieldTypes.Boolean;
+                            break;
+                        case "datetime":
+                            fieldType = FieldTypes.DateTime;
+                            break;
+                        case "number":
+                            fieldType = FieldTypes.Number;
+                            break;
+                        case "taxonomyfieldtype":
+                        case "taxonomyfieldtypemulti":
+                            fieldType = FieldTypes.TaxonomyFieldType;
+                            var xmlNsM = new XmlNamespaceManager(element.OwnerDocument.NameTable);
+                            //xmlNsM.AddNamespace("foo", "http://schemas.microsoft.com/sharepoint/soap/");
+                            Guid termSetId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='TermSetId']", xmlNsM)["Value"].InnerText);
+                            Guid sspId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='SspId']", xmlNsM)["Value"].InnerText);
+                            Guid anchorId = new Guid(element.SelectSingleNode("Customization/ArrayOfProperty/Property[Name='AnchorId']", xmlNsM)["Value"].InnerText);
 
-                        ((SPTaxonomyField)field).TermSetId = termSetId;
-                        ((SPTaxonomyField)field).SspId = sspId;
-                        ((SPTaxonomyField)field).AnchorId = anchorId;
+                            ((SPTaxonomyField)field).TermSetId = termSetId;
+                            ((SPTaxonomyField)field).SspId = sspId;
+                            ((SPTaxonomyField)field).AnchorId = anchorId;
 
 
-                        string lcidString = element.Attributes["ShowField"].Value.Replace("Term", string.Empty);
-                        int lcid;
-                        if (int.TryParse(lcidString, out lcid) == false)
-                        {
-                            lcid = 1033;
-                        }
+                            string lcidString = element.Attributes["ShowField"].Value.Replace("Term", string.Empty);
+                            int lcid;
+                            if (int.TryParse(lcidString, out lcid) == false)
+                            {
+                                lcid = 1033;
+                            }
 
-                        if(anchorId == Guid.Empty)
-                        {
-                            SPTermSet termSet = new SharePointService().GetTermSet(siteSetting, termSetId);
-                            ((SPTaxonomyField)field).Path = termSet.Path;
-                        }
-                        else
-                        {
-                            SPTerm term = new SharePointService().GetTerm(siteSetting, anchorId);
-                            ((SPTaxonomyField)field).Path = term.Path;
-                        }
+                            if (anchorId == Guid.Empty)
+                            {
+                                SPTermSet termSet = new SharePointService().GetTermSet(siteSetting, termSetId);
+                                ((SPTaxonomyField)field).Path = termSet.Path;
+                            }
+                            else
+                            {
+                                SPTerm term = new SharePointService().GetTerm(siteSetting, anchorId);
+                                ((SPTaxonomyField)field).Path = term.Path;
+                            }
 
-                        ((SPTaxonomyField)field).LCID = lcid;
-                        //field.List = element.Attributes["List"].Value;
-                        //field.ShowField = element.Attributes["ShowField"].Value;
-                        if(type.ToLower() == "taxonomyfieldtypemulti")
+                            ((SPTaxonomyField)field).LCID = lcid;
+                            //field.List = element.Attributes["List"].Value;
+                            //field.ShowField = element.Attributes["ShowField"].Value;
+                            if (type.ToLower() == "taxonomyfieldtypemulti")
+                                field.Mult = true;
+                            break;
+                        case "lookup":
+                            fieldType = FieldTypes.Lookup;
+                            field.List = element.Attributes["List"].Value;
+                            Guid listId;
+                            if (Guid.TryParse(field.List, out listId) == true)
+                            {
+                                SPList referenceList = new SharePointService().GetListById(siteSetting, listId);
+                                field.List = referenceList.Title;
+                            }
+                            field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
+                            break;
+                        case "lookupmulti":
+                            fieldType = FieldTypes.Lookup;
+                            field.List = (element.Attributes["List"]!=null?element.Attributes["List"].Value:string.Empty);
+                            field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
                             field.Mult = true;
-                        break;
-                    case "lookup":
-                        fieldType = FieldTypes.Lookup;
-                        field.List = element.Attributes["List"].Value;
-                        Guid listId;
-                        if(Guid.TryParse(field.List, out listId) == true)
-                        {
-                            SPList referenceList = new SharePointService().GetListById(siteSetting, listId);
-                            field.List = referenceList.Title;
-                        }
-                        field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
-                        break;
-                    case "lookupmulti":
-                        fieldType = FieldTypes.Lookup;
-                        field.List = element.Attributes["List"].Value;
-                        field.ShowField = (element.Attributes["ShowField"] != null ? element.Attributes["ShowField"].Value : "Title");
-                        field.Mult = true;
-                        break;
-                    case "choice":
-                        fieldType = FieldTypes.Choice;
-                        field.ChoiceItems = GetChoiceDataItems(element);
-                        break;
-                    case "multichoice":
-                        fieldType = FieldTypes.Choice;
-                        field.ChoiceItems = GetChoiceDataItems(element);
-                        field.Mult = true;
-                        break;
-                    case "file":
-                        fieldType = FieldTypes.File;
-                        break;
-                    case "url":
-                        fieldType = FieldTypes.URL;
-                        break;
-                    case "user":
-                        fieldType = FieldTypes.User;
-                        break;
-                    case "currency":
-                        fieldType = FieldTypes.Currency;
-                        break;
-                    case "calculated":
-                        fieldType = FieldTypes.Calculated;
-                        field.Formula = element.InnerXml;
-                        break;
-                    case "outcomechoice":
-                        fieldType = FieldTypes.OutcomeChoice;
-                        field.ChoiceItems = GetChoiceDataItems(element);
-                        break;
-                    default:
-                        fieldType = FieldTypes.Unknown;
-                        field.ReadOnly = true;
-                        break;
+                            break;
+                        case "choice":
+                            fieldType = FieldTypes.Choice;
+                            field.ChoiceItems = GetChoiceDataItems(element);
+                            break;
+                        case "multichoice":
+                            fieldType = FieldTypes.Choice;
+                            field.ChoiceItems = GetChoiceDataItems(element);
+                            field.Mult = true;
+                            break;
+                        case "file":
+                            fieldType = FieldTypes.File;
+                            break;
+                        case "url":
+                            fieldType = FieldTypes.URL;
+                            break;
+                        case "user":
+                            fieldType = FieldTypes.User;
+                            break;
+                        case "currency":
+                            fieldType = FieldTypes.Currency;
+                            break;
+                        case "calculated":
+                            fieldType = FieldTypes.Calculated;
+                            field.Formula = element.InnerXml;
+                            break;
+                        case "outcomechoice":
+                            fieldType = FieldTypes.OutcomeChoice;
+                            field.ChoiceItems = GetChoiceDataItems(element);
+                            break;
+                        default:
+                            fieldType = FieldTypes.Unknown;
+                            field.ReadOnly = true;
+                            break;
+                    }
+                    field.Type = fieldType;
+                    if (field.ReadOnly == false || includeReadOnly == true)
+                    {
+                        fields.Add(field);
+                    }
                 }
-                field.Type = fieldType;
-                if (field.ReadOnly == false || includeReadOnly == true)
+                catch (Exception ex)
                 {
-                    fields.Add(field);
+                    string message = string.Format("SharePointService GetWebs method returned error:{0}", ex.Message);
+                    Logger.Error(message, "Service");
                 }
             }
             return fields;
+
         }
 
         private static Sobiens.Connectors.Entities.FieldCollection XmlNodeToFieldCollection(XmlElement fieldElement, bool includeReadOnly)
@@ -3463,21 +3485,33 @@ namespace Sobiens.Connectors.Services.SharePoint
             return XmlNodeToFieldCollection(web["Fields"], includeReadOnly);
         }
         */
-        public static List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
+        public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
         {
             try
             {
                 List<Workflow> workflows = new List<Workflow>();
                 ClientContext sourceContext = GetClientContext(siteSetting);
                 var sourceWorkflowServicesManager = new WorkflowServicesManager(sourceContext, sourceContext.Web);
-                List list = sourceContext.Web.Lists.GetByTitle(listName);
-                sourceContext.Load(list);
-                sourceContext.ExecuteQuery();
+                List list = null;
+
+                if (string.IsNullOrEmpty(listName) == false)
+                {
+                    list = sourceContext.Web.Lists.GetByTitle(listName);
+                    sourceContext.Load(list);
+                    sourceContext.ExecuteQuery();
+                }
 
                 var workflowSubscriptionService = sourceWorkflowServicesManager.GetWorkflowSubscriptionService();
 
-                // get all workflow associations
-                var workflowAssociations = workflowSubscriptionService.EnumerateSubscriptionsByList(list.Id);
+                WorkflowSubscriptionCollection workflowAssociations = null;
+                if (string.IsNullOrEmpty(listName) == false)
+                {
+                    workflowAssociations = workflowSubscriptionService.EnumerateSubscriptionsByList(list.Id);
+                }
+                else {
+                    workflowAssociations = workflowSubscriptionService.EnumerateSubscriptions();
+                }
+                
                 sourceContext.Load(workflowAssociations);
                 sourceContext.ExecuteQuery();
 
@@ -3485,6 +3519,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                 {
                     Workflow wf = new Workflow();
                     wf.Id = subscription.DefinitionId.ToString();
+                    wf.Title = subscription.Name;
                     wf.Name = subscription.Name;
                     wf.SiteSettingID = siteSetting.ID;
                     workflows.Add(wf);
@@ -3530,7 +3565,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                 throw ex;
             }
         }
-        public static List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, bool includeReadOnly)
+        public List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, bool includeReadOnly)
         {
             try
             {
@@ -3541,9 +3576,9 @@ namespace Sobiens.Connectors.Services.SharePoint
                 context.ExecuteQuery();
                 foreach (Microsoft.SharePoint.Client.ContentType _contentType in _contentTypes)
                 {
-                    Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, string.Empty, includeReadOnly);
                     context.Load(_contentType.Fields);
                     context.ExecuteQuery();
+                    Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, string.Empty, includeReadOnly);
                     contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
                     if (contentType.Fields != null && contentType.Fields.Count > 0)
                     {
@@ -3588,6 +3623,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             Sobiens.Connectors.Entities.ContentType contentType = new Sobiens.Connectors.Entities.ContentType();
             contentType.ID = _contentType.Id.StringValue;// element.Attributes["ID"].Value;
+            contentType.Title = _contentType.Name;
             contentType.Name = _contentType.Name;
             contentType.Description = _contentType.Description;
             contentType.Group = _contentType.Group;

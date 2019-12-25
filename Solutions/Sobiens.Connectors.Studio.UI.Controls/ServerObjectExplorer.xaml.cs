@@ -200,6 +200,28 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             //rootNode.Expanded += new RoutedEventHandler(rootNode_Expanded);
             rootNode.Tag = folder;
             itemCollection.Add(rootNode);
+            if(folder as SPWeb != null)
+            {
+                AddHeadingNode(rootNode, folder, "Lists and Libraries", true);
+                AddHeadingNode(rootNode, folder, "Workflows", true);
+                AddHeadingNode(rootNode, folder, "Site Pages", true);
+                AddHeadingNode(rootNode, folder, "Site Assets", true);
+                AddHeadingNode(rootNode, folder, "Content Types", true);
+                AddHeadingNode(rootNode, folder, "Site Columns", true);
+                AddHeadingNode(rootNode, folder, "Site Groups", true);
+                AddHeadingNode(rootNode, folder, "Subsites", true);
+                return;
+            }
+
+            if (folder as SQLDB != null)
+            {
+                AddHeadingNode(rootNode, folder, "Tables", true);
+                AddHeadingNode(rootNode, folder, "Views", true);
+                AddHeadingNode(rootNode, folder, "Functions", true);
+                AddHeadingNode(rootNode, folder, "Stored Procedures", true);
+                return;
+            }
+
             if (folder.Folders.Count == 0)
             {
                 AddLoadingNode(rootNode);
@@ -255,18 +277,17 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         /// Refreshes the node.
         /// </summary>
         /// <param name="node">The node.</param>
-        private void RefreshNode(TreeViewItem item)
+        private void RefreshNode(TreeViewItem item, object _object, string headerText)
         {
             Folder folder = null;
             item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
             {
-                folder = (Folder)item.Tag;
+                folder = (Folder)_object;
             }));
 
             {
-
                 SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[folder.SiteSettingID];
-                List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes);
+                List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes, headerText);
                 folder.Folders = subFolders;
                 item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {
@@ -301,14 +322,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             WorkItem workItem = new WorkItem(Languages.Translate("Populating treeview items"));
             workItem.CallbackFunction = new WorkRequestDelegate(callback);
-            workItem.CallbackData = e.Source;
+            workItem.CallbackData = new object[] { item, item.Tag, item.Header };
             workItem.WorkItemType = WorkItem.WorkItemTypeEnum.NonCriticalWorkItem;
             BackgroundManager.GetInstance().AddWorkItem(workItem);
         }
 
         void callback(object item, DateTime dateTime)
         {
-            RefreshNode((TreeViewItem) item);
+            object[] args = (object[])item;
+
+            RefreshNode((TreeViewItem)args[0], args[1], args[2].ToString());
         }
 
         private bool IsLoadingNode(TreeViewItem node)
@@ -324,6 +347,21 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             childNode.Header = Languages.Translate("Loading...");
             childNode.Tag = LoadingNodeTagValue;
             node.Items.Add(childNode);
+        }
+
+        private TreeViewItem AddHeadingNode(TreeViewItem parentNode, object parentObject, string headerText, bool addLoadingNode)
+        {
+            TreeViewItem childNode = new TreeViewItem();
+            childNode.Header = headerText;
+            childNode.Tag = parentObject;
+            parentNode.Items.Add(childNode);
+
+            if(addLoadingNode == true)
+            {
+                AddLoadingNode(childNode);
+            }
+
+            return childNode;
         }
 
 

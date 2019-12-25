@@ -32,7 +32,7 @@ namespace Sobiens.Connectors.Common
         public abstract Folder GetFolder(ISiteSetting siteSetting, BasicFolderDefinition folderDefinition);
         public abstract Folder GetRootFolder(ISiteSetting siteSetting);
         public abstract Folder GetParentFolder(ISiteSetting siteSetting, Folder folder);
-        public abstract List<Folder> GetSubFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes);
+        public abstract List<Folder> GetSubFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName);
         public abstract List<IView> GetViews(ISiteSetting siteSetting, Folder folder);
         public abstract IView GetView(ISiteSetting siteSetting, Folder folder);
         public abstract List<IItem> GetListItems(ISiteSetting siteSetting, Folder folder, IView view, string sortField, bool isAsc, int currentPageIndex, string currentListItemCollectionPositionNext, CamlFilters filters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount);

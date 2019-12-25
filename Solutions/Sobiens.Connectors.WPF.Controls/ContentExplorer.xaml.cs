@@ -544,7 +544,7 @@ namespace Sobiens.Connectors.WPF.Controls
             }
             else
             {
-                folders = ApplicationContext.Current.GetSubFolders(siteSetting, selectedFolder, null);
+                folders = ApplicationContext.Current.GetSubFolders(siteSetting, selectedFolder, null, string.Empty);
             }
 
             LoadItems(selectedView, folders, items, listItemCollectionPositionNext, itemCount);

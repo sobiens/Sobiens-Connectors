@@ -171,7 +171,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
         public List<IView> GetViews(ISiteSetting siteSetting, Folder folder)
         {
-            throw new Exception("Not implemented yet");
+            return (new SQLServerService()).GetViews(siteSetting, null);
         }
         public List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
         {
@@ -197,9 +197,9 @@ namespace Sobiens.Connectors.Common.SQLServer
         //    throw new Exception("Not implemented yet");
         //}
 
-        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
+        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
-            return new SQLServerService().GetFolders(siteSetting, folder);
+            return new SQLServerService().GetFolders(siteSetting, folder,null, childFoldersCategoryName);
         }
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder)

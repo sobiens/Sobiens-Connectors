@@ -207,7 +207,7 @@ namespace Sobiens.Connectors.WPF.Controls
 
             {
                 SiteSetting siteSetting = this.SiteSettings[folder.SiteSettingID];
-                List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes);
+                List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes, string.Empty);
                 folder.Folders = subFolders;
                 item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {

@@ -11,7 +11,7 @@ namespace Sobiens.Connectors.Entities.CRM
     public interface ICRMService
     {
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder);
-        List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder, int[] includedFolderTypes);
+        List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder, int[] includedFolderTypes, string childFoldersCategoryName);
         List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount);
         List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
 

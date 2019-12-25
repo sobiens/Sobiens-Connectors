@@ -49,7 +49,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 TargetFolder = selectEntityForm.SelectedObject;
                 TargetSiteSetting = ApplicationContext.Current.GetSiteSetting(TargetFolder.SiteSettingID);
-                List<Folder> folders = ApplicationContext.Current.GetSubFolders(TargetSiteSetting, TargetFolder, null);
+                List<Folder> folders = ApplicationContext.Current.GetSubFolders(TargetSiteSetting, TargetFolder, null, string.Empty);
 
                 AssociatedListComboBox.Items.Clear();
                 AssociatedListComboBox.DisplayMemberPath = "Title";

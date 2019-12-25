@@ -337,16 +337,16 @@ namespace Sobiens.Connectors.Common.CRM
         //    return new List<IItem>();
         //}
 
-        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
+        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             ICRMService crmService = new CRMService();
-            return crmService.GetFolders(siteSetting, folder, includedFolderTypes);
+            return crmService.GetFolders(siteSetting, folder, includedFolderTypes, childFoldersCategoryName);
         }
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder)
         {
             ICRMService crmService = new CRMService();
-            return crmService.GetFolders(siteSetting, folder, null);
+            return crmService.GetFolders(siteSetting, folder, null, string.Empty);
         }
 
         public Folder GetRootFolder(ISiteSetting siteSetting)
@@ -384,7 +384,7 @@ namespace Sobiens.Connectors.Common.CRM
             crmWeb.SiteSettingID = siteSetting.ID;
             crmWeb.Url = siteSetting.Url;
             crmWeb.WebUrl = siteSetting.Url;
-            List<Folder> folders = crmService.GetFolders(siteSetting, crmWeb, null);
+            List<Folder> folders = crmService.GetFolders(siteSetting, crmWeb, null, string.Empty);
             Folder folder = (from x in folders where x.Title == folderDefinition.Title select x).FirstOrDefault();
             return folder;
 

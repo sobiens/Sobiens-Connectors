@@ -40,22 +40,52 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         protected override void OnLoad() {
             SiteSetting sourceObjectSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
-            List<Folder> sourceFolders = ApplicationContext.Current.GetSubFolders(sourceObjectSiteSetting, SourceObject, null);
+            List<Folder> sourceFolders = ApplicationContext.Current.GetSubFolders(sourceObjectSiteSetting, SourceObject, null, string.Empty);
 
             SiteSetting objectToCompareWithSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[ObjectToCompareWith.SiteSettingID];
-            List<Folder> objectToCompareWithFolders = ApplicationContext.Current.GetSubFolders(objectToCompareWithSiteSetting, ObjectToCompareWith, null);
+            List<Folder> objectToCompareWithFolders = ApplicationContext.Current.GetSubFolders(objectToCompareWithSiteSetting, ObjectToCompareWith, null, string.Empty);
             List<CompareObjectsResult> items = new List<CompareObjectsResult>();
             /*
             TreeViewItem additionalItemsNode = AddNode(FoldersTreeView.Items, "Additional Items", "Additional Items", Brushes.DarkBlue);
             TreeViewItem missingItemsNode = AddNode(FoldersTreeView.Items, "Missing Items", "Missing Items", Brushes.Red);
             TreeViewItem updateRequiresNode = AddNode(FoldersTreeView.Items, "Update Required Items", "Update Required Items", Brushes.Orange);
             */
-            foreach (Folder folder in sourceFolders)
+            foreach (Folder sourceFolder in sourceFolders)
             {
-                if(objectToCompareWithFolders.Where(t=>t.Title.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                Folder destinationFolder = objectToCompareWithFolders.Where(t => t.Title.Equals(sourceFolder.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if (destinationFolder == null)
                 {
-                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, "Table", folder.Title, "Additional", folder, null)); ;
+                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, "Table", sourceFolder.Title, "Additional", sourceFolder, null)); ;
                     //TreeViewItem node = AddNode(additionalItemsNode.Items, folder.Title, folder, Brushes.Black);
+                }
+                else
+                {
+                    List<Field> objectToCompareWithFields = ApplicationContext.Current.GetFields(objectToCompareWithSiteSetting, sourceFolder);
+                    List<Field> sourceFields = ApplicationContext.Current.GetFields(sourceObjectSiteSetting, destinationFolder);
+                    bool hasDifference = false;
+                    foreach (Field field in objectToCompareWithFields)
+                    {
+                        if (sourceFields.Where(t => t.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                        {
+                            hasDifference = true;
+                            //items.Add(new CompareObjectsResult("Table", destinationFolder.Title, "Field", field.DisplayName, "Missing", null, null)); ;
+                        }
+                    }
+
+                    foreach (Field field in sourceFields)
+                    {
+                        if (objectToCompareWithFields.Where(t => t.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                        {
+                            hasDifference = true;
+                            //items.Add(new CompareObjectsResult("Table", destinationFolder.Title, "Field", field.DisplayName, "Additional", null, null)); ;
+                        }
+                    }
+
+                    if(hasDifference == true)
+                    {
+                        items.Add(new CompareObjectsResult(string.Empty, string.Empty, "Table", sourceFolder.Title, "Update", sourceFolder, null)); ;
+                    }
+
                 }
             }
 
@@ -71,6 +101,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 }
                 else
                 {
+                    /*
                     List<Field> objectToCompareWithFields = ApplicationContext.Current.GetFields(objectToCompareWithSiteSetting, folder);
                     List<Field> sourceFields = ApplicationContext.Current.GetFields(sourceObjectSiteSetting, sourceFolder);
                     foreach (Field field in objectToCompareWithFields)
@@ -88,6 +119,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                             items.Add(new CompareObjectsResult("Table", folder.Title, "Field", field.DisplayName, "Additional", null, null)); ;
                         }
                     }
+                    */
                 }
             }
 

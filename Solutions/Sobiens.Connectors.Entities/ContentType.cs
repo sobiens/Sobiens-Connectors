@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sobiens.Connectors.Entities
 {
-    public class ContentType
+    public class ContentType:Folder
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -18,5 +18,11 @@ namespace Sobiens.Connectors.Entities
         {
             return Name;
         }
+
+        public override string GetUrl() { throw new NotImplementedException(); }
+        public override string GetPath() { throw new NotImplementedException(); }
+        public override string GetListName() { throw new NotImplementedException(); }
+        public override string GetRoot() { throw new NotImplementedException(); }
+        public override string GetWebUrl() { throw new NotImplementedException(); }
     }
 }

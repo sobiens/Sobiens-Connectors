@@ -418,10 +418,10 @@ namespace Sobiens.Connectors.Common.SharePoint
         //    return spService.GetListItems(siteSetting, null, String.Empty, true, false, webUrl, listName, null, String.Empty, null, isRecursive, out next, out count);
         //}
 
-        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
+        public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             ISharePointService spService = new SharePointService();
-            return spService.GetFolders(siteSetting, folder, includedFolderTypes);
+            return spService.GetFolders(siteSetting, folder, includedFolderTypes, childFoldersCategoryName);
         }
 
         public List<Folder> GetFolders(ISiteSetting siteSetting, Folder folder)
@@ -649,7 +649,7 @@ namespace Sobiens.Connectors.Common.SharePoint
 
         public List<ContentType> GetContentTypes(ISiteSetting siteSetting)
         {
-            return SharePointService.GetContentTypes(siteSetting, siteSetting.Url, ((SPWeb)siteSetting).GetRoot(), true);
+            return (new SharePointService()).GetContentTypes(siteSetting, siteSetting.Url, ((SPWeb)siteSetting).GetRoot(), true);
         }
         public List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName)
         {
@@ -657,7 +657,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         }
         public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
         {
-            return SharePointService.GetWorkflows(siteSetting, listName);
+            return (new SharePointService()).GetWorkflows(siteSetting, listName);
         }
 
         public Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType)

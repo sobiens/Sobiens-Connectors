@@ -256,8 +256,23 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     AddLoadingNode(sharedWithMeViewsNode);
                     AddLoadingNode(personalViewsNode);
                 }
+
+                /*
+                if (SourceObject as SQLDB != null)
+                {
+                    TreeViewItem viewsNode = AddNode(listNode.Items, "Views", "Views", Brushes.Black);
+                    AddLoadingNode(viewsNode);
+                    TreeViewItem storedProceduresNode = AddNode(listNode.Items, "Stored Procedures", "Stored Procedures", Brushes.Black);
+                    AddLoadingNode(storedProceduresNode);
+                    TreeViewItem functionsNode = AddNode(listNode.Items, "Functions", "Functions", Brushes.Black);
+                    AddLoadingNode(functionsNode);
+                    TreeViewItem triggersNode = AddNode(listNode.Items, "Triggers", "Triggers", Brushes.Black);
+                    AddLoadingNode(triggersNode);
+                }
+                */
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("An error occured:" + ex.Message);
                 Logger.Error(ex, ApplicationContext.Current.GetApplicationType().ToString());

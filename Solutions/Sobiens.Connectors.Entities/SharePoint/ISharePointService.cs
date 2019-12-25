@@ -13,7 +13,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
         string GetTermsByLabel(ISiteSetting siteSetting, string webUrl, string label, int lcid, int resultCollectionSize, string termIds, bool addIfNotFound);
         string GetKeywordTermsByGuids(ISiteSetting siteSetting, string webUrl, int lcid, string termIds);
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder);
-        List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder, int[] includedFolderTypes);
+        List<Folder> GetFolders(ISiteSetting siteSetting, Folder currentFolder, int[] includedFolderTypes, string childFoldersCategoryName);
         List<IView> GetViews(ISiteSetting siteSetting, string webUrl, string listName);
         List<IItem> GetListItems(ISiteSetting siteSetting, IView view, string sortField, bool isAsc, bool isDocumentLibrary, string webUrl, string listName, string folderName, string currentListItemCollectionPositionNext, CamlFilters customFilters, bool isRecursive, out string listItemCollectionPositionNext, out int itemCount);
         List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount);

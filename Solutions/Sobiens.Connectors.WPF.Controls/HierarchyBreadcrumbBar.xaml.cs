@@ -260,7 +260,7 @@ namespace Sobiens.Connectors.WPF.Controls
             }
             else
             {
-                subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, null);
+                subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, null, string.Empty);
             }
 
             folder.Folders = subFolders;

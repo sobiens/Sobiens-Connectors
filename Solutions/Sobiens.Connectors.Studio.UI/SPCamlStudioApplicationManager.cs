@@ -81,10 +81,10 @@ namespace Sobiens.Connectors.UI
             return serviceManager.GetParentFolder(siteSetting, folder);
         }
 
-        public override List<Folder> GetSubFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes)
+        public override List<Folder> GetSubFolders(ISiteSetting siteSetting, Folder folder, int[] includedFolderTypes, string childFoldersCategoryName)
         {
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            return serviceManager.GetFolders(siteSetting, folder, includedFolderTypes);
+            return serviceManager.GetFolders(siteSetting, folder, includedFolderTypes, childFoldersCategoryName);
         }
 
         public override List<IView> GetViews(ISiteSetting siteSetting, Folder folder)

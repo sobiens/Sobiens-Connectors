@@ -68,7 +68,7 @@ namespace Sobiens.Connectors.Common.Interfaces
 
         IItem GetItem(ISiteSetting siteSetting, string itemUrl, out Sobiens.Connectors.Entities.Folder itemFolder);
 
-        List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes);
+        List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder, int[] includedFolderTypes, string childFoldersCategoryName);
 
         List<Folder> GetFolders(ISiteSetting siteSetting, Folder parentFolder);
         List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId);
