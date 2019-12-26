@@ -143,3 +143,200 @@ Stacktrace:
    at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.RefreshNode(TreeViewItem item, Object _object, String headerText) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 290
    at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.callback(Object item, DateTime dateTime) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 334
    at Sobiens.Connectors.Common.Threading.BackgroundManager.backgroundWorker_DoWork(Object sender, DoWorkEventArgs e) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\Threading\BackgroundManager.cs:line 91|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 01:31:08.0274|2019-12-26 01:31:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 01:31:08.0674|2019-12-26 01:31:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:51:11.3118|2019-12-26 10:51:11,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:51:11.3477|2019-12-26 10:51:11,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:51:45.3212|2019-12-26 10:51:45,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:51:45.3591|2019-12-26 10:51:45,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:52:44.8070|2019-12-26 10:52:44,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:52:44.8479|2019-12-26 10:52:44,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:53:15.2597|2019-12-26 10:53:15,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 10:53:15.2597|2019-12-26 10:53:15,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 11:49:28.0882|2019-12-26 11:49:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 11:49:28.1386|2019-12-26 11:49:28,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 11:49:36.7314|2019-12-26 11:49:36,error,Studio,Exception Found:
+Type: System.Exception
+Message: An error occured in WorkItem LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem
+Source: 
+Stacktrace: 
+  Inner Exception Found:
+  Type: System.Net.WebException
+  Message: The request failed with HTTP status 403: Forbidden.
+  Source: Sobiens.Connectors.Services.SharePoint
+  Stacktrace:    at Sobiens.Connectors.Services.SharePoint.SharePointService.GetWebs(ISiteSetting siteSetting, String webUrl) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 647
+   at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFolders(ISiteSetting siteSetting, Folder parentFolder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 298
+   at Sobiens.Connectors.Common.SharePoint.SharePointServiceManager.GetFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\SharePoint\SharePointServiceManager.cs:line 424
+   at Sobiens.Connectors.UI.SPCamlStudioApplicationManager.GetSubFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\SPCamlStudioApplicationManager.cs:line 87
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.RefreshNode(TreeViewItem item, Object _object, String headerText) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 290
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.callback(Object item, DateTime dateTime) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 334
+   at Sobiens.Connectors.Common.Threading.BackgroundManager.backgroundWorker_DoWork(Object sender, DoWorkEventArgs e) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\Threading\BackgroundManager.cs:line 91|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 11:50:08.0586|2019-12-26 11:50:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 11:50:08.0836|2019-12-26 11:50:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:02:02.0965|2019-12-26 12:02:02,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:02:02.1294|2019-12-26 12:02:02,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:12:09.4873|2019-12-26 12:12:09,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:12:09.5123|2019-12-26 12:12:09,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:13:27.6141|2019-12-26 12:13:27,error,Service,SharePointService GetWebs method returned error:Cannot invoke method or retrieve property from null object. Object returned by the following call stack is null. "GetTermSet
+"|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:13:28.2993|2019-12-26 12:13:28,error,Service,SharePointService GetWebs method returned error:Object reference not set to an instance of an object.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:13:28.2993|2019-12-26 12:13:28,info,Service,webUrl:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:13:47.2709|2019-12-26 12:13:47,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:13:47.3163|2019-12-26 12:13:47,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:16:16.2540|2019-12-26 12:16:16,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:16:16.2889|2019-12-26 12:16:16,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:21:45.2115|2019-12-26 12:21:45,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:21:45.2434|2019-12-26 12:21:45,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:22:12.5382|2019-12-26 12:22:12,error,Service,SharePointService GetWebs method returned error:Cannot invoke method or retrieve property from null object. Object returned by the following call stack is null. "GetTermSet
+"|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:30:22.6771|2019-12-26 12:30:22,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:30:22.7030|2019-12-26 12:30:22,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:31:19.4499|2019-12-26 12:31:19,error,Service,SharePointService GetWebs method returned error:Cannot invoke method or retrieve property from null object. Object returned by the following call stack is null. "GetTermSet
+"|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:31:20.1998|2019-12-26 12:31:20,info,Service,webUrl:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:31:45.4526|2019-12-26 12:31:45,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:31:45.4820|2019-12-26 12:31:45,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:33:01.5652|2019-12-26 12:33:01,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:33:01.5951|2019-12-26 12:33:01,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:33:15.8272|2019-12-26 12:33:15,error,Service,Exception Found:
+Type: System.Net.WebException
+Message: The remote name could not be resolved: 'sobiens1.sharepoint.com'
+Source: System
+Stacktrace:    at System.Net.HttpWebRequest.GetResponse()
+   at Microsoft.SharePoint.Client.Idcrl.SharePointOnlineAuthenticationProvider.GetIdcrlHeader(Uri url, Boolean alwaysThrowOnFailure, EventHandler`1 executingWebRequest)
+   at Microsoft.SharePoint.Client.Idcrl.SharePointOnlineAuthenticationProvider.GetAuthenticationCookie(Uri url, String username, SecureString password, Boolean alwaysThrowOnFailure, EventHandler`1 executingWebRequest)
+   at Microsoft.SharePoint.Client.SharePointOnlineCredentials.GetAuthenticationCookie(Uri url, Boolean refresh, Boolean alwaysThrowOnFailure)
+   at Microsoft.SharePoint.Client.ClientRuntimeContext.SetupRequestCredential(ClientRuntimeContext context, HttpWebRequest request)
+   at Microsoft.SharePoint.Client.SPWebRequestExecutor.GetRequestStream()
+   at Microsoft.SharePoint.Client.ClientContext.GetFormDigestInfoPrivate()
+   at Microsoft.SharePoint.Client.ClientContext.EnsureFormDigest()
+   at Microsoft.SharePoint.Client.ClientContext.ExecuteQuery()
+   at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFields(ISiteSetting siteSetting, String webUrl) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 3051|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:33:15.8422|2019-12-26 12:33:15,error,Studio,Exception Found:
+Type: System.Exception
+Message: An error occured in WorkItem LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem
+Source: 
+Stacktrace: 
+  Inner Exception Found:
+  Type: System.Net.WebException
+  Message: The remote name could not be resolved: 'sobiens1.sharepoint.com'
+  Source: System
+  Stacktrace:    at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFields(ISiteSetting siteSetting, String webUrl) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 3063
+   at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFolders(ISiteSetting siteSetting, Folder parentFolder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 302
+   at Sobiens.Connectors.Common.SharePoint.SharePointServiceManager.GetFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\SharePoint\SharePointServiceManager.cs:line 424
+   at Sobiens.Connectors.UI.SPCamlStudioApplicationManager.GetSubFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\SPCamlStudioApplicationManager.cs:line 87
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.RefreshNode(TreeViewItem item, Object _object, String headerText) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 290
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.callback(Object item, DateTime dateTime) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 334
+   at Sobiens.Connectors.Common.Threading.BackgroundManager.backgroundWorker_DoWork(Object sender, DoWorkEventArgs e) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\Threading\BackgroundManager.cs:line 91|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:34:50.4210|2019-12-26 12:34:50,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:34:50.4519|2019-12-26 12:34:50,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:35:07.1321|2019-12-26 12:35:07,error,Service,Exception Found:
+Type: System.Net.WebException
+Message: The remote name could not be resolved: 'sobiens1.sharepoint.com'
+Source: System
+Stacktrace:    at System.Net.HttpWebRequest.GetResponse()
+   at Microsoft.SharePoint.Client.Idcrl.SharePointOnlineAuthenticationProvider.GetIdcrlHeader(Uri url, Boolean alwaysThrowOnFailure, EventHandler`1 executingWebRequest)
+   at Microsoft.SharePoint.Client.Idcrl.SharePointOnlineAuthenticationProvider.GetAuthenticationCookie(Uri url, String username, SecureString password, Boolean alwaysThrowOnFailure, EventHandler`1 executingWebRequest)
+   at Microsoft.SharePoint.Client.SharePointOnlineCredentials.GetAuthenticationCookie(Uri url, Boolean refresh, Boolean alwaysThrowOnFailure)
+   at Microsoft.SharePoint.Client.ClientRuntimeContext.SetupRequestCredential(ClientRuntimeContext context, HttpWebRequest request)
+   at Microsoft.SharePoint.Client.SPWebRequestExecutor.GetRequestStream()
+   at Microsoft.SharePoint.Client.ClientContext.GetFormDigestInfoPrivate()
+   at Microsoft.SharePoint.Client.ClientContext.EnsureFormDigest()
+   at Microsoft.SharePoint.Client.ClientContext.ExecuteQuery()
+   at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFields(ISiteSetting siteSetting, String webUrl) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 3051|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:35:07.1591|2019-12-26 12:35:07,error,Studio,Exception Found:
+Type: System.Exception
+Message: An error occured in WorkItem LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem
+Source: 
+Stacktrace: 
+  Inner Exception Found:
+  Type: System.Net.WebException
+  Message: The remote name could not be resolved: 'sobiens1.sharepoint.com'
+  Source: System
+  Stacktrace:    at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFields(ISiteSetting siteSetting, String webUrl) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 3063
+   at Sobiens.Connectors.Services.SharePoint.SharePointService.GetFolders(ISiteSetting siteSetting, Folder parentFolder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.SharePoint\SharePointService.cs:line 302
+   at Sobiens.Connectors.Common.SharePoint.SharePointServiceManager.GetFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\SharePoint\SharePointServiceManager.cs:line 424
+   at Sobiens.Connectors.UI.SPCamlStudioApplicationManager.GetSubFolders(ISiteSetting siteSetting, Folder folder, Int32[] includedFolderTypes, String childFoldersCategoryName) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\SPCamlStudioApplicationManager.cs:line 87
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.RefreshNode(TreeViewItem item, Object _object, String headerText) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 290
+   at Sobiens.Connectors.Studio.UI.Controls.ServerObjectExplorer.callback(Object item, DateTime dateTime) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ServerObjectExplorer.xaml.cs:line 334
+   at Sobiens.Connectors.Common.Threading.BackgroundManager.backgroundWorker_DoWork(Object sender, DoWorkEventArgs e) in C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\Threading\BackgroundManager.cs:line 91|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:35:51.8495|2019-12-26 12:35:51,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:35:51.8794|2019-12-26 12:35:51,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:36:43.1876|2019-12-26 12:36:43,info,Service,webUrl:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:37:54.5460|2019-12-26 12:37:54,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:37:54.5949|2019-12-26 12:37:54,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 12:38:23.5929|2019-12-26 12:38:23,info,Service,webUrl:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:41:44.1511|2019-12-26 13:41:44,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:41:44.1821|2019-12-26 13:41:44,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20191226.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:41:44.1821|2019-12-26 13:41:44,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20191226.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:41:44.1821|2019-12-26 13:41:44,info,SyncTasksManager,SyncTaskHistories are being read from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\Histories\20191226.txt|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:42:27.3759|2019-12-26 13:42:27,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:42:27.3998|2019-12-26 13:42:27,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:42:29.9604|2019-12-26 13:42:29,error,Service,CRMService GetLists method returned error:Metadata contains a reference that cannot be resolved: 'https://sobiens.crm11.dynamics.com/XRMServices/2011/Organization.svc?wsdl&sdkversion=8.1'.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:43:14.3109|2019-12-26 13:43:14,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:43:14.3418|2019-12-26 13:43:14,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:43:44.8368|2019-12-26 13:43:44,error,Service,CRMService GetLists method returned error:Metadata contains a reference that cannot be resolved: 'https://sobiens.crm11.dynamics.com/XRMServices/2011/Organization.svc?wsdl&sdkversion=8.1'.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:47:46.3047|2019-12-26 13:47:46,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:47:46.3366|2019-12-26 13:47:46,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:50:39.5285|2019-12-26 13:50:39,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:50:39.5285|2019-12-26 13:50:39,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:52:10.9898|2019-12-26 13:52:10,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:52:10.9898|2019-12-26 13:52:10,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:52:33.2771|2019-12-26 13:52:33,info,Service,webUrl:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:52:33.2771|2019-12-26 13:52:33,info,listName,listName:https://sobiens1.sharepoint.com/sites/test|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:58:48.1464|2019-12-26 13:58:48,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:58:48.1733|2019-12-26 13:58:48,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:59:10.8743|2019-12-26 13:59:10,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:59:10.8753|2019-12-26 13:59:10,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:59:12.1421|2019-12-26 13:59:12,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 13:59:12.1421|2019-12-26 13:59:12,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:45:08.7447|2019-12-26 14:45:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:45:08.7796|2019-12-26 14:45:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:45:13.7268|2019-12-26 14:45:13,error,Service,CRMService GetLists method returned error:The entity with a name = 'Team' with namemapping = 'Logical' was not found in the MetadataCache. MetadataCacheDetails: ProviderType=Dynamic, StandardCache=True, IsLoadedInStagedContext = False, Timestamp=2046144, MinActiveRowVersion=2046144|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:45:35.0908|2019-12-26 14:45:35,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:45:35.1147|2019-12-26 14:45:35,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:47:12.3736|2019-12-26 14:47:12,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:47:12.4005|2019-12-26 14:47:12,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:47:19.5355|2019-12-26 14:47:19,error,Service,CRMService GetLists method returned error:The entity with a name = 'Teams' with namemapping = 'Logical' was not found in the MetadataCache. MetadataCacheDetails: ProviderType=Dynamic, StandardCache=True, IsLoadedInStagedContext = False, Timestamp=2046144, MinActiveRowVersion=2046144|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:47:34.6077|2019-12-26 14:47:34,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:47:34.6525|2019-12-26 14:47:34,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:48:14.4190|2019-12-26 14:48:14,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:48:14.4559|2019-12-26 14:48:14,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:51:22.9862|2019-12-26 14:51:22,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:51:23.0241|2019-12-26 14:51:23,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:51:32.9535|2019-12-26 14:51:32,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:51:32.9535|2019-12-26 14:51:32,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:54:08.5175|2019-12-26 14:54:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:54:08.5573|2019-12-26 14:54:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:54:46.6662|2019-12-26 14:54:46,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:54:46.6912|2019-12-26 14:54:46,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:55:41.0834|2019-12-26 14:55:41,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:55:41.1238|2019-12-26 14:55:41,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:57:18.9463|2019-12-26 14:57:18,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 14:57:18.9712|2019-12-26 14:57:18,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:34:50.3159|2019-12-26 15:34:50,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:34:50.3528|2019-12-26 15:34:50,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:43:48.4791|2019-12-26 15:43:48,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:43:48.5100|2019-12-26 15:43:48,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:54:18.3672|2019-12-26 15:54:18,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:54:18.4011|2019-12-26 15:54:18,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:54:45.5225|2019-12-26 15:54:45,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:54:45.5494|2019-12-26 15:54:45,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:56:12.3556|2019-12-26 15:56:12,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 15:56:12.3915|2019-12-26 15:56:12,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:01:01.9288|2019-12-26 16:01:01,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:01:01.9587|2019-12-26 16:01:01,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:04:00.0384|2019-12-26 16:04:00,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:04:00.0832|2019-12-26 16:04:00,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:09:54.1368|2019-12-26 16:09:54,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:09:54.1677|2019-12-26 16:09:54,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:11:24.3875|2019-12-26 16:11:24,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:11:24.4164|2019-12-26 16:11:24,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:12:33.7579|2019-12-26 16:12:33,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:12:33.7873|2019-12-26 16:12:33,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:15:31.1552|2019-12-26 16:15:31,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:15:31.1792|2019-12-26 16:15:31,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:16:52.1779|2019-12-26 16:16:52,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:16:52.2058|2019-12-26 16:16:52,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:18:15.5838|2019-12-26 16:18:15,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2019-12-26 16:18:15.6108|2019-12-26 16:18:15,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry

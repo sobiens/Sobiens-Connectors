@@ -204,8 +204,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 AddHeadingNode(rootNode, folder, "Lists and Libraries", true);
                 AddHeadingNode(rootNode, folder, "Workflows", true);
-                AddHeadingNode(rootNode, folder, "Site Pages", true);
-                AddHeadingNode(rootNode, folder, "Site Assets", true);
+                //AddHeadingNode(rootNode, folder, "Site Pages", true);
+                //AddHeadingNode(rootNode, folder, "Site Assets", true);
                 AddHeadingNode(rootNode, folder, "Content Types", true);
                 AddHeadingNode(rootNode, folder, "Site Columns", true);
                 AddHeadingNode(rootNode, folder, "Site Groups", true);
@@ -219,6 +219,18 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 AddHeadingNode(rootNode, folder, "Views", true);
                 AddHeadingNode(rootNode, folder, "Functions", true);
                 AddHeadingNode(rootNode, folder, "Stored Procedures", true);
+                return;
+            }
+
+            if (folder as CRMWeb != null)
+            {
+                AddHeadingNode(rootNode, folder, "Entities", true);
+                AddHeadingNode(rootNode, folder, "Option Sets", true);
+                AddHeadingNode(rootNode, folder, "Processes", true);
+                AddHeadingNode(rootNode, folder, "Plug-in Assemblies", true);
+                AddHeadingNode(rootNode, folder, "Teams", true);
+                AddHeadingNode(rootNode, folder, "Business Units", true);
+                AddHeadingNode(rootNode, folder, "Security Roles", true);
                 return;
             }
 

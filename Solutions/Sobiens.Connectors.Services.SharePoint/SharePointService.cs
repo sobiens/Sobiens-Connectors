@@ -289,6 +289,18 @@ namespace Sobiens.Connectors.Services.SharePoint
                 {
                     subFolders = this.GetContentTypes(siteSetting, siteSetting.Url, string.Empty, false).ToList<Sobiens.Connectors.Entities.Folder>();
                 }
+                else if (childFoldersCategoryName.Equals("Site Groups", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = this.GetGroups(siteSetting).ToList<Sobiens.Connectors.Entities.Folder>();
+                }
+                else if (childFoldersCategoryName.Equals("Subsites", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = this.GetWebs(siteSetting, ((SPWeb)parentFolder).Url).ToList<Sobiens.Connectors.Entities.Folder>();
+                }
+                else if (childFoldersCategoryName.Equals("Site Columns", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
+                    subFolders = this.GetFields(siteSetting, ((SPWeb)parentFolder).Url).ToList<Sobiens.Connectors.Entities.Folder>();
+                }
             }
             else if (parentFolder as SPFolder != null)
             {
@@ -619,6 +631,26 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<SPWeb> webs = new List<SPWeb>();
+                ClientContext context = GetClientContext(siteSetting);
+                Web web = context.Web;
+                Site site = context.Site;
+                WebCollection _webs = web.Webs;
+
+                context.Load(web);
+                context.Load(site);
+                context.Load(_webs);
+                context.ExecuteQuery();
+
+                foreach (Web _web in _webs)
+                {
+
+                    SPWeb __web = new SPWeb(_web.Url, _web.Title, siteSetting.ID, _web.Id.ToString(), site.Url, webUrl);
+                    webs.Add(__web);
+                }
+
+                return webs;
+
+                /*
                 SharePointWebsWS.Webs ws = GetWebsWebService(siteSetting, webUrl);
                 XmlNode subWebs = ws.GetWebCollection();
                 string message = string.Format("SharePointService GetWebs method returned xml:{0}", subWebs.OuterXml);
@@ -632,6 +664,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                     webs.Add(web);
                 }
                 return webs;
+                */
             }
             catch (Exception ex)
             {
@@ -640,73 +673,6 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        /*
-        private SPList ParseSPList(XmlElement element, Guid siteSettingID, string siteURL, string webUrl)
-        {
-            string id = element.Attributes["ID"].Value;
-            string title = element.Attributes["Title"].Value;
-            SPList list = new SPList(siteSettingID, id, title);
-            list.ID = id;
-            list.ServerTemplate = int.Parse(element.Attributes["ServerTemplate"].Value);
-            list.Title = title;
-            if (element.Attributes["Hidden"] != null)
-                list.Hidden = bool.Parse(element.Attributes["Hidden"].Value);
-
-            if (element.Attributes["AllowDeletion"] != null)
-                list.AllowDeletion = bool.Parse(element.Attributes["AllowDeletion"].Value);
-            if (element.Attributes["AllowMultiResponses"] != null)
-                list.AllowMultiResponses = bool.Parse(element.Attributes["AllowMultiResponses"].Value);
-            if (element.Attributes["EnableAttachments"] != null)
-                list.EnableAttachments = bool.Parse(element.Attributes["EnableAttachments"].Value);
-            if (element.Attributes["EnableModeration"] != null)
-                list.EnableModeration = bool.Parse(element.Attributes["EnableModeration"].Value);
-            if (element.Attributes["EnableVersioning"] != null)
-                list.EnableVersioning = bool.Parse(element.Attributes["EnableVersioning"].Value);
-            if (element.Attributes["EnableMinorVersion"] != null)
-                list.EnableMinorVersion = bool.Parse(element.Attributes["EnableMinorVersion"].Value);
-            if (element.Attributes["RequireCheckout"] != null)
-                list.RequireCheckout = bool.Parse(element.Attributes["RequireCheckout"].Value);
-            list.WebPath = element.Attributes["WebFullUrl"].Value;
-            list.BaseType = int.Parse(element.Attributes["BaseType"].Value);
-            string folderPath = string.Empty;
-            if (element.Attributes["DefaultViewUrl"] != null && string.IsNullOrEmpty(element.Attributes["DefaultViewUrl"].Value) == false)
-            {
-                folderPath = element.Attributes["DefaultViewUrl"].Value;
-                folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-                if (list.IsDocumentLibrary == true) // Removes Forms folder
-                {
-                    folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-                }
-
-                if (webUrl.Split(new char[] { '/' }).Length > 3)
-                {
-                    string webFolderPath = string.Empty;
-
-                    if(webUrl.StartsWith("https")==true)
-                        webFolderPath = webUrl.Substring(webUrl.IndexOf('/', 8));
-                    else
-                        webFolderPath = webUrl.Substring(webUrl.IndexOf('/', 7));
-
-                    if (folderPath.IndexOf(webFolderPath + "/", StringComparison.InvariantCultureIgnoreCase) == 0)
-                    {
-                        folderPath = folderPath.Substring(webFolderPath.Length + 1);
-                    }
-                }
-            }
-            else
-            {
-                folderPath = (list.IsDocumentLibrary == true ? list.Title : "Lists/" + list.Title);
-            }
-
-            list.FolderPath = folderPath;//webUrl + "/" +JD
-            list.RootFolderPath = list.WebUrl.TrimEnd(new char[] { '/' }) + "/" + list.FolderPath.TrimStart(new char[] { '/' });
-            list.ListName = list.Title;
-            list.SiteUrl = siteURL;
-            list.WebUrl = webUrl;
-
-            return list;
-        }
-        */
         private SPList ParseSPList(List _list, Guid siteSettingID, string siteURL, string webUrl, string folderPath, string webApplicationUrl)
         {
             string id = _list.Id.ToString();
@@ -1968,6 +1934,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                     if (element.Attributes["AuthoringInfo"] != null)
                         authoringInfo = element.Attributes["AuthoringInfo"].Value;
                     field.DisplayName = element.Attributes["DisplayName"].Value + (string.IsNullOrEmpty(authoringInfo) == false ? " " + authoringInfo : "");
+                    field.Title = field.DisplayName;
                     field.Name = element.Attributes["Name"].Value;
                     if (element.Attributes["Required"] != null)
                         field.Required = bool.Parse(element.Attributes["Required"].Value);
@@ -2028,12 +1995,12 @@ namespace Sobiens.Connectors.Services.SharePoint
                                 lcid = 1033;
                             }
 
-                            if (anchorId == Guid.Empty)
+                            if (anchorId == Guid.Empty && termSetId != Guid.Empty)
                             {
                                 SPTermSet termSet = new SharePointService().GetTermSet(siteSetting, termSetId);
                                 ((SPTaxonomyField)field).Path = termSet.Path;
                             }
-                            else
+                            else if (anchorId != Guid.Empty)
                             {
                                 SPTerm term = new SharePointService().GetTerm(siteSetting, anchorId);
                                 ((SPTaxonomyField)field).Path = term.Path;
@@ -2472,12 +2439,16 @@ namespace Sobiens.Connectors.Services.SharePoint
         private static List<ChoiceDataItem> GetChoiceDataItems(XmlElement element)
         {
             List<ChoiceDataItem> choices = new List<ChoiceDataItem>();
-            foreach (XmlNode node in element["CHOICES"].ChildNodes)
+            if (element["CHOICES"] != null)
             {
-                string value = node.InnerText;
-                ChoiceDataItem choiceDataItem = new ChoiceDataItem(value, value);
-                choices.Add(choiceDataItem);
+                foreach (XmlNode node in element["CHOICES"].ChildNodes)
+                {
+                    string value = node.InnerText;
+                    ChoiceDataItem choiceDataItem = new ChoiceDataItem(value, value);
+                    choices.Add(choiceDataItem);
+                }
             }
+
             return choices;
         }
 
@@ -3071,6 +3042,29 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
+        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string webUrl)
+        {
+            try
+            {
+                ClientContext context = GetClientContext(siteSetting);
+                Microsoft.SharePoint.Client.FieldCollection _fields = context.Web.Fields;
+                context.Load(_fields);
+                context.ExecuteQuery();
+                Sobiens.Connectors.Entities.FieldCollection fields = ParseToFieldCollection(_fields, siteSetting, true);
+
+                Logger.Info("webUrl:" + webUrl, "Service");
+
+                return fields;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Service");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Uploads the file.
         /// </summary>
@@ -3485,6 +3479,34 @@ namespace Sobiens.Connectors.Services.SharePoint
             return XmlNodeToFieldCollection(web["Fields"], includeReadOnly);
         }
         */
+        public List<SPUserGroup> GetGroups(ISiteSetting siteSetting)
+        {
+            try
+            {
+                List<SPUserGroup> userGroups = new List<SPUserGroup>();
+                ClientContext sourceContext = GetClientContext(siteSetting);
+                GroupCollection groups = sourceContext.Web.SiteGroups;
+                
+                sourceContext.Load(groups);
+                sourceContext.ExecuteQuery();
+
+
+                foreach (Group _group in groups)
+                {
+                    SPUserGroup userGroup = new SPUserGroup(_group.Id, _group.Title);
+                    userGroups.Add(userGroup);
+                }
+
+                return userGroups;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
         public List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName)
         {
             try

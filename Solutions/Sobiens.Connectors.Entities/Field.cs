@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Sobiens.Connectors.Entities
 {
-    public class Field
+#if General
+    [Serializable]
+#endif
+    public class Field:Folder
     {
         public Guid ID;
         public string attachedField;//JD
@@ -36,6 +39,11 @@ namespace Sobiens.Connectors.Entities
         public string DefaultValue = String.Empty;
         public string Formula = String.Empty;
         public List<ChoiceDataItem> ChoiceItems { get; set; }
+        public override string GetUrl() { throw new NotImplementedException(); }
+        public override string GetPath() { throw new NotImplementedException(); }
+        public override string GetListName() { throw new NotImplementedException(); }
+        public override string GetRoot() { throw new NotImplementedException(); }
+        public override string GetWebUrl() { throw new NotImplementedException(); }
         public override string ToString()
         {
             return this.DisplayName;

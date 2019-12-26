@@ -70,6 +70,7 @@ namespace Sobiens.Connectors.Services.CRM
                         }
                     }
 
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     using (OrganizationServiceProxy organizationServiceProxy = new OrganizationServiceProxy(uri, null, credentials, null))
                     {
                         organizationServiceProxy.Authenticate();
@@ -98,10 +99,33 @@ namespace Sobiens.Connectors.Services.CRM
 
                 try
                 {
-                    List<CRMEntity> lists = this.GetLists(siteSetting);
-                    foreach (CRMEntity list in lists)
+                    if (childFoldersCategoryName.Equals("Entities", StringComparison.InvariantCultureIgnoreCase) == true)
                     {
-                        subFolders.Add(list);
+                        List<CRMEntity> lists = this.GetLists(siteSetting);
+                        foreach (CRMEntity list in lists)
+                        {
+                            subFolders.Add(list);
+                        }
+                    }
+                    else if (childFoldersCategoryName.Equals("Teams", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetTeams(siteSetting).ToList<Folder>();
+                    }
+                    else if (childFoldersCategoryName.Equals("Business Units", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetBusinessUnits(siteSetting).ToList<Folder>();
+                    }
+                    else if (childFoldersCategoryName.Equals("Processes", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetProcesses(siteSetting).ToList<Folder>();
+                    }
+                    else if (childFoldersCategoryName.Equals("Option Sets", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetOptionSets(siteSetting).ToList<Folder>();
+                    }
+                    else if (childFoldersCategoryName.Equals("Security Roles", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetSecurityRoles(siteSetting).ToList<Folder>();
                     }
                 }
                 catch (Exception ex)
@@ -227,6 +251,114 @@ namespace Sobiens.Connectors.Services.CRM
             }
 
             return 0;
+        }
+
+        public List<CRMOptionSet> GetOptionSets(ISiteSetting siteSetting)
+        {
+            List<CRMOptionSet> optionSets = new List<CRMOptionSet>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            OrganizationServiceProxy serviceProxy = (OrganizationServiceProxy)organizationService;
+            serviceProxy.EnableProxyTypes();
+            RetrieveAllOptionSetsRequest retrieveAllOptionSetsRequest = new RetrieveAllOptionSetsRequest();
+            RetrieveAllOptionSetsResponse retrieveAllOptionSetsResponse = (RetrieveAllOptionSetsResponse)serviceProxy.Execute(retrieveAllOptionSetsRequest);
+            if (retrieveAllOptionSetsResponse.OptionSetMetadata.Count() > 0)
+            {
+                foreach (OptionSetMetadataBase optionSetMetadataBase in retrieveAllOptionSetsResponse.OptionSetMetadata)
+                {
+                    string displayName = (optionSetMetadataBase.DisplayName.LocalizedLabels.Count > 0) ? optionSetMetadataBase.DisplayName.LocalizedLabels[0].Label : String.Empty;
+                    CRMOptionSet optionSet = new CRMOptionSet(Guid.NewGuid().ToString(), displayName);
+                    if (optionSetMetadataBase as OptionSetMetadata != null)
+                    {
+                        OptionSetMetadata _optionSetMetadata = (OptionSetMetadata)optionSetMetadataBase;
+                        foreach (OptionMetadata _optionMetadata in _optionSetMetadata.Options)
+                        {
+                            optionSet.Options.Add(_optionMetadata.Value.HasValue == true ? _optionMetadata.Value.Value : -1, _optionMetadata.Label.LocalizedLabels.Count > 0 ? _optionMetadata.Label.LocalizedLabels[0].Label : string.Empty);
+                        }
+                    }
+                    else if (optionSetMetadataBase as BooleanOptionSetMetadata != null)
+                    {
+                        BooleanOptionSetMetadata _optionSetMetadata = (BooleanOptionSetMetadata)optionSetMetadataBase;
+                        
+                        optionSet.Options.Add(_optionSetMetadata.TrueOption.Value.HasValue == true ? _optionSetMetadata.TrueOption.Value.Value : -1, _optionSetMetadata.TrueOption.Label.LocalizedLabels.Count > 0 ? _optionSetMetadata.TrueOption.Label.LocalizedLabels[0].Label : string.Empty);
+                        optionSet.Options.Add(_optionSetMetadata.FalseOption.Value.HasValue == true ? _optionSetMetadata.FalseOption.Value.Value : -1, _optionSetMetadata.FalseOption.Label.LocalizedLabels.Count > 0 ? _optionSetMetadata.FalseOption.Label.LocalizedLabels[0].Label : string.Empty);
+                    }
+                    optionSets.Add(optionSet);
+                }
+            }
+
+            return optionSets;
+        }
+
+        public List<CRMProcess> GetProcesses(ISiteSetting siteSetting)
+        {
+            List<CRMProcess> processes = new List<CRMProcess>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            QueryExpression query = new QueryExpression("workflow");
+            CamlFilters filters = new CamlFilters();
+            filters.IsOr = false;
+            query.Criteria = GetFilterExpression(filters);
+            query.ColumnSet = new ColumnSet(true);
+            EntityCollection items = organizationService.RetrieveMultiple(query);
+            foreach (Entity _entity in items.Entities)
+            {
+                processes.Add(new CRMProcess(_entity.Id.ToString(), _entity["name"].ToString()));
+            }
+
+            return processes;
+        }
+
+        public List<CRMSecurityRole> GetSecurityRoles(ISiteSetting siteSetting)
+        {
+            List<CRMSecurityRole> securityRoles = new List<CRMSecurityRole>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            QueryExpression query = new QueryExpression("role");
+            CamlFilters filters = new CamlFilters();
+            filters.IsOr = false;
+            query.Criteria = GetFilterExpression(filters);
+            query.ColumnSet = new ColumnSet(true);
+            EntityCollection items = organizationService.RetrieveMultiple(query);
+            foreach (Entity _entity in items.Entities)
+            {
+                securityRoles.Add(new CRMSecurityRole(_entity.Id.ToString(), _entity["name"].ToString()));
+            }
+
+            return securityRoles;
+        }
+
+        public List<CRMTeam> GetTeams(ISiteSetting siteSetting)
+        {
+            List<CRMTeam> teams = new List<CRMTeam>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            QueryExpression query = new QueryExpression("team");
+            CamlFilters filters = new CamlFilters();
+            filters.IsOr = false;
+            query.Criteria = GetFilterExpression(filters);
+            query.ColumnSet = new ColumnSet(true);
+            EntityCollection items = organizationService.RetrieveMultiple(query);
+            foreach(Entity _entity in items.Entities)
+            {
+                teams.Add(new CRMTeam(_entity.Id.ToString(), _entity["name"].ToString()));
+            }
+
+            return teams;
+        }
+
+        public List<CRMBusinessUnit> GetBusinessUnits(ISiteSetting siteSetting)
+        {
+            List<CRMBusinessUnit> businessUnits = new List<CRMBusinessUnit>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            QueryExpression query = new QueryExpression("businessunit");
+            CamlFilters filters = new CamlFilters();
+            filters.IsOr = false;
+            query.Criteria = GetFilterExpression(filters);
+            query.ColumnSet = new ColumnSet(true);
+            EntityCollection items = organizationService.RetrieveMultiple(query);
+            foreach (Entity _entity in items.Entities)
+            {
+                businessUnits.Add(new CRMBusinessUnit(_entity.Id.ToString(), _entity["name"].ToString()));
+            }
+
+            return businessUnits;
         }
 
         public void GrantUserObjectAccess(ISiteSetting siteSetting, Guid objectId, string objectLogicalName, Guid userId, int accessrightmask)

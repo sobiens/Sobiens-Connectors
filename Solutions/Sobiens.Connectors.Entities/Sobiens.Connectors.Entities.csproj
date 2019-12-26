@@ -109,8 +109,13 @@
     <Compile Include="CopiedItemInfo.cs" />
     <Compile Include="BasicFolderDefinition.cs" />
     <Compile Include="CRM\CRMBaseFolder.cs" />
+    <Compile Include="CRM\CRMOptionSet.cs" />
+    <Compile Include="CRM\CRMProcess.cs" />
     <Compile Include="CRM\CRMEntity.cs" />
     <Compile Include="CRM\CRMEntitySection.cs" />
+    <Compile Include="CRM\CRMBusinessUnit.cs" />
+    <Compile Include="CRM\CRMSecurityRole.cs" />
+    <Compile Include="CRM\CRMTeam.cs" />
     <Compile Include="CRM\CRMView.cs" />
     <Compile Include="CRM\CRMViewCollection.cs" />
     <Compile Include="CRM\CRMUserCollection.cs" />
@@ -139,6 +144,7 @@
     <Compile Include="Settings\TaskListLocations.cs" />
     <Compile Include="SharePoint\SPTaxonomyField.cs" />
     <Compile Include="SharePoint\SPTerm.cs" />
+    <Compile Include="SharePoint\SPUserGroup.cs" />
     <Compile Include="SharePoint\SPTermStore.cs" />
     <Compile Include="SharePoint\SPTermSet.cs" />
     <Compile Include="SharePoint\SPTermGroup.cs" />
