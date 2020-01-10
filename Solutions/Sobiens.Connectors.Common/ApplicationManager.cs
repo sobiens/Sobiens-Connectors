@@ -55,7 +55,8 @@ namespace Sobiens.Connectors.Common
         public IConnectorMainView ConnectorExplorer { get; set; }
         public abstract List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder);
         public abstract List<Workflow> GetWorkflows(ISiteSetting siteSetting, Folder folder);
-
+        public abstract List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder);
+        public abstract void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting);
 
         public void MoveFile(ISiteSetting siteSetting, IItem item, Folder folder, string newFileName)
         {

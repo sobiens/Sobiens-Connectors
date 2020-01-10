@@ -357,6 +357,68 @@ namespace Sobiens.Connectors.Common.SQLServer
         {
             throw new NotImplementedException();
         }
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+
+            List<SQLTable> sourceTables = new SQLServerService().GetTables(sourceSiteSetting, sourceObject);
+            List<SQLFunction> sourceFunctions = new SQLServerService().GetFunctions(sourceSiteSetting, sourceObject);
+            List<IView> sourceViews = new SQLServerService().GetViews(sourceSiteSetting, sourceObject);
+            List<SQLStoredProcedure> sourceStoredProcedures = new SQLServerService().GetStoredProcedures(sourceSiteSetting, sourceObject);
+            List<SQLTrigger> sourceTriggers = new SQLServerService().GetTriggers(sourceSiteSetting, sourceObject);
+
+            List<SQLTable> destinationTables = new SQLServerService().GetTables(destinationSiteSetting, destinationObject);
+            List<SQLFunction> destinationFunctions = new SQLServerService().GetFunctions(destinationSiteSetting, destinationObject);
+            List<IView> destinationViews = new SQLServerService().GetViews(destinationSiteSetting, destinationObject);
+            List<SQLStoredProcedure> destinationStoredProcedures = new SQLServerService().GetStoredProcedures(destinationSiteSetting, destinationObject);
+            List<SQLTrigger> destinationTriggers = new SQLServerService().GetTriggers(destinationSiteSetting, destinationObject);
+
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function"));
+            //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger"));
+
+            return compareObjectsResults;
+        }
+
+
+        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject) {
+            return true;
+        }
+        public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) {
+            if (compareObjectsResult.ObjectToCompareWith as SQLTable != null)
+            {
+                SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
+                SQLTable destinationTable = compareObjectsResult.ObjectToCompareWith as SQLTable;
+                List<Field> fields = new SQLServerService().GetFields(sourceSiteSetting, destinationTable.DBName, destinationTable.Title);
+                new SQLServerService().CreateTable(sourceSiteSetting, sourceDB.Title, destinationTable, fields);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as SQLFunction != null)
+            {
+                SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
+                SQLFunction destinationFunction = compareObjectsResult.ObjectToCompareWith as SQLFunction;
+                new SQLServerService().CreateFunction(sourceSiteSetting, sourceDB.Title, destinationFunction);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as SQLStoredProcedure != null)
+            {
+                SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
+                SQLStoredProcedure destinationSQLStoredProcedure = compareObjectsResult.ObjectToCompareWith as SQLStoredProcedure;
+                new SQLServerService().CreateStoredProcedure(sourceSiteSetting, sourceDB.Title, destinationSQLStoredProcedure);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as SQLView != null)
+            {
+                SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
+                SQLView destinationView = compareObjectsResult.ObjectToCompareWith as SQLView;
+                new SQLServerService().CreateView(sourceSiteSetting, sourceDB.Title, destinationView);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as SQLTrigger != null)
+            {
+                SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
+                SQLTrigger trigger = compareObjectsResult.ObjectToCompareWith as SQLTrigger;
+                new SQLServerService().CreateTrigger(sourceSiteSetting, sourceDB.Title, trigger);
+            }
+        }
 
     }
 }

@@ -335,13 +335,13 @@ namespace Sobiens.Connectors.Common.SharePoint
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
             SPFolder spFolder = folder as SPFolder;
-            return SharePointService.GetFields(siteSetting, spFolder.WebUrl, spFolder.ListName);
+            return new SharePointService().GetFields(siteSetting, spFolder.WebUrl, spFolder.ListName);
         }
 
         public void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields)
         {
             SPFolder spFolder = folder as SPFolder;
-            SharePointService.CreateFields(siteSetting, spFolder.WebUrl, spFolder.ListName, fields);
+            new SharePointService().CreateFields(siteSetting, spFolder.WebUrl, spFolder.ListName, fields);
         }
 
         public List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder, bool includeReadOnly)
@@ -666,5 +666,54 @@ namespace Sobiens.Connectors.Common.SharePoint
             return sharePointService.CreateList(siteSetting, title, templateType);
 
         }
+
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+
+            List<SPList> sourceLists = new SharePointService().GetLists(sourceSiteSetting, ((SPWeb)sourceObject).Url);
+            List<ContentType> sourceContentTypes = new SharePointService().GetContentTypes(sourceSiteSetting, ((SPWeb)sourceObject).Url, string.Empty, false);
+            List<Field> sourceFields = new SharePointService().GetFields(sourceSiteSetting, ((SPWeb)sourceObject).Url);
+
+            List<SPList> destinationLists = new SharePointService().GetLists(destinationSiteSetting, ((SPWeb)destinationObject).Url);
+            List<ContentType> destinationContentTypes = new SharePointService().GetContentTypes(destinationSiteSetting, ((SPWeb)destinationObject).Url, string.Empty, false);
+            List<Field> destinationFields = new SharePointService().GetFields(destinationSiteSetting, ((SPWeb)destinationObject).Url);
+
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceLists.ToList<Folder>(), destinationSiteSetting, destinationLists.ToList<Folder>(), destinationObject, "List"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type"));
+            //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field"));
+
+            return compareObjectsResults;
+        }
+
+
+        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            return true;
+        }
+        public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) {
+            SPWeb sourceWeb = compareObjectsResult.SourceParentObject as SPWeb;
+            SPWeb destinationWeb = compareObjectsResult.ObjectToCompareWithParentObject as SPWeb;
+            if (compareObjectsResult.ObjectToCompareWith as SPList != null)
+            {
+                SPList destinationList = compareObjectsResult.ObjectToCompareWith as SPList;
+                List<Field> fields = new SharePointService().GetFields(destinationSiteSetting, destinationWeb.Url, destinationList.Title);
+                fields = fields.Where(t => t.FromBaseType == false).ToList();
+                new SharePointService().CreateList(sourceSiteSetting, destinationList.Title, destinationList.ServerTemplate);
+                new SharePointService().CreateFields(sourceSiteSetting, sourceWeb.Url, destinationList.Title, fields);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as ContentType != null)
+            {
+                ContentType destinationFunction = compareObjectsResult.ObjectToCompareWith as ContentType;
+//                new SharePointService().cre(sourceSiteSetting, sourceDB.Title, destinationFunction);
+            }
+            else if (compareObjectsResult.ObjectToCompareWith as Field != null)
+            {
+                Field destinationField = compareObjectsResult.ObjectToCompareWith as Field;
+//                new SharePointService().CreateFields(sourceSiteSetting, sourceDB.Title, destinationSQLStoredProcedure);
+            }
+        }
+
     }
 }

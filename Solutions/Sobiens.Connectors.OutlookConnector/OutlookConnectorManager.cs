@@ -657,5 +657,18 @@ namespace Sobiens.Connectors.OutlookConnector
         {
             throw new NotImplementedException();
         }
+
+        public override List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
+            return serviceManager.GetObjectDifferences(sourceSiteSetting, sourceFolder, destinationSiteSetting, destinationFolder);
+        }
+
+        public override void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
+            serviceManager.ApplyMissingCompareObjectsResult(compareObjectsResult, sourceSiteSetting, destinationSiteSetting);
+        }
+
     }
 }

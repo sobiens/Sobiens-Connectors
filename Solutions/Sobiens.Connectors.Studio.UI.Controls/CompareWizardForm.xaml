@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
-             mc:Ignorable="d">
+             mc:Ignorable="d" Width="500">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.Resources>
             <Style TargetType="DataGridRow">
@@ -29,7 +29,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Margin="0,0,0,0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="CompareGrid" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+        <DataGrid Margin="0,50,0,0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CanUserAddRows="False" Name="CompareGrid" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" LoadingRow="CompareGrid_LoadingRow">
             <DataGrid.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -69,11 +69,21 @@
                 <DataGridTextColumn Header="Object Type" IsReadOnly="True" Binding="{Binding ObjectType}"  />
                 <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Difference Type" Binding="{Binding DifferenceType}" />
-                <DataGridCheckBoxColumn Header="" Binding="{Binding IsSelected}"></DataGridCheckBoxColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="ApplyChangeButton" Click="ApplyChangeButton_Click" Visibility="{Binding ApplyButtonVisibility}">Apply</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TreeView  Grid.Row="0" Name="FoldersTreeView"  VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" Visibility="Hidden"></TreeView>
         <Button Grid.Row="1" x:Name="ApplyButton" Content="Apply" Click="ApplyButton_Click" HorizontalAlignment="Right" Margin="5,5,5,5" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="label" Content="Source Object:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="SourceObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0"/>
+        <Label x:Name="label1" Content="Destination Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0"/>
+        <Label x:Name="DestinationObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,0,0,0"/>
     </Grid>
     
 </wpfc:HostControl>

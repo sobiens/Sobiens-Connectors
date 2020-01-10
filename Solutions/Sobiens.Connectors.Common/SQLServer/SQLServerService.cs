@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Sobiens.Connectors.Entities.SQLServer;
 using System.Linq;
+using System.Text;
 
 namespace Sobiens.Connectors.Common.SQLServer
 {
@@ -113,22 +114,145 @@ namespace Sobiens.Connectors.Common.SQLServer
         {
             try
             {
-                List<SQLTable> functions = new List<SQLTable>();
+                List<SQLTable> tables = new List<SQLTable>();
                 using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, folder.Title)))
                 {
                     connection.Open();
-                    DataTable schema = connection.GetSchema("Tables");
-                    foreach (DataRow row in schema.Rows)
+                    using (SqlCommand cmd = new SqlCommand("SELECT schm.name, o.name " +
+                                                                "FROM sys.objects AS o " +
+                                                                "JOIN sys.schemas AS schm ON o.schema_id = schm.schema_id " +
+                                                                "WHERE o.type = 'U' " +
+                                                                "ORDER BY o.name ", connection))
                     {
-                        string tableName = row[2].ToString();
-                        SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
-
-                        //table.ListName = parentFolder.Title;
-                        functions.Add(table);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                string tableName = dr[1].ToString();
+                                SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
+                                tables.Add(table);
+                            }
+                        }
                     }
                 }
 
-                return functions;
+                return tables;
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public void CreateTable(ISiteSetting siteSetting, string dbName, SQLTable table, List<Field> fields)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    connection.Open();
+                    StringBuilder sqlStringBuilder = new StringBuilder();
+                    sqlStringBuilder.Append("CREATE TABLE " + table.Title + " (");
+                    foreach (Field field in fields) {
+                        sqlStringBuilder.Append(((SQLField)field).ToSQL() + ",");
+                    }
+                    sqlStringBuilder.Remove(sqlStringBuilder.Length - 1, 1);
+                    sqlStringBuilder.Append(")");
+
+                    using (SqlCommand cmd = new SqlCommand(sqlStringBuilder.ToString(), connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public void CreateView(ISiteSetting siteSetting, string dbName, SQLView view)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    connection.Open();
+                    StringBuilder sqlStringBuilder = new StringBuilder();
+                    using (SqlCommand cmd = new SqlCommand(view.Content, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public void CreateTrigger(ISiteSetting siteSetting, string dbName, SQLTrigger trigger)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    connection.Open();
+                    StringBuilder sqlStringBuilder = new StringBuilder();
+                    using (SqlCommand cmd = new SqlCommand(trigger.Content, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public void CreateStoredProcedure(ISiteSetting siteSetting, string dbName, SQLStoredProcedure storedProcedure)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    connection.Open();
+                    StringBuilder sqlStringBuilder = new StringBuilder();
+                    using (SqlCommand cmd = new SqlCommand(storedProcedure.Content, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+        public void CreateFunction(ISiteSetting siteSetting, string dbName, SQLFunction function)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    connection.Open();
+                    StringBuilder sqlStringBuilder = new StringBuilder();
+                    using (SqlCommand cmd = new SqlCommand(function.Content, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -444,7 +568,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                             {
                                 string fieldName = dr["columnname"].ToString();
                                 bool required = !(bool)dr["is_nullable"];
-                                int maxLength = int.Parse(dr["max_length"].ToString());
+                                int maxLength = int.Parse(dr["max_length"].ToString())/2;
                                 FieldTypes fieldType = FieldTypes.Text;
                                 switch (dr["columntype"].ToString().ToLower())
                                 {
@@ -468,12 +592,13 @@ namespace Sobiens.Connectors.Common.SQLServer
                                         break;
                                 }
 
-                                Field field = new Field();
+                                SQLField field = new SQLField();
                                 field.Name = fieldName;
                                 field.DisplayName = fieldName;
                                 field.Required = required;
                                 field.MaxLength = maxLength;
                                 field.Type = fieldType;
+                                field.SQLFieldTypeName = dr["columntype"].ToString().ToLower();
                                 field.FromBaseType = false;
                                 fields.Add(field);
                             }

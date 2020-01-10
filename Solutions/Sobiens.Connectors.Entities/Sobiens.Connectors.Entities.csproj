@@ -152,6 +152,7 @@
     <Compile Include="SQLServer\SQLDB.cs" />
     <Compile Include="SQLServer\SQLFolder.cs" />
     <Compile Include="SQLServer\SQLStoredProcedure.cs" />
+    <Compile Include="SQLServer\SQLField.cs" />
     <Compile Include="SQLServer\SQLTrigger.cs" />
     <Compile Include="SQLServer\SQLView.cs" />
     <Compile Include="SQLServer\SQLFunction.cs" />

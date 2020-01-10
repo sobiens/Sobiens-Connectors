@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="CompareManager.cs" />
     <Compile Include="ContextMenuManager.cs" />
     <Compile Include="CRM\CRMServiceManager.cs" />
     <Compile Include="EDMX\EDMXManager.cs" />

@@ -712,7 +712,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         /// <param name="siteSetting">site setting</param>
         /// <param name="webUrl">web site url</param>
         /// <returns></returns>
-        private List<SPList> GetLists(ISiteSetting siteSetting, string webUrl)
+        public List<SPList> GetLists(ISiteSetting siteSetting, string webUrl)
         {
             try
             {
@@ -2879,7 +2879,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         }
 
 
-        public static void CreateFields(ISiteSetting siteSetting, string webUrl, string listName, List<Entities.Field> fields)
+        public void CreateFields(ISiteSetting siteSetting, string webUrl, string listName, List<Entities.Field> fields)
         {
             try
             {
@@ -3012,7 +3012,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        public static Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string webUrl, string listName)
+        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string webUrl, string listName)
         {
             try
             {

@@ -333,7 +333,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
             SPFolder spFolder = folder as SPFolder;
-            return SharePointService.GetFields(siteSetting, spFolder.WebUrl, spFolder.ListName);
+            return new SharePointService().GetFields(siteSetting, spFolder.WebUrl, spFolder.ListName);
         }
 
         public void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields)
@@ -598,6 +598,19 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+
+            return compareObjectsResults;
+        }
+
+
+        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            return true;
+        }
+        public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) { }
 
     }
 }

@@ -18,7 +18,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
     {
         private const int LoadingNodeTagValue = -1;
         public Folder SourceObject;
-        public Folder ObjectToCompareWith;
+        public Folder DestinationObject;
 
         /*
         public Folder SelectedObject
@@ -39,17 +39,20 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         }
 
         protected override void OnLoad() {
-            SiteSetting sourceObjectSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
-            List<Folder> sourceFolders = ApplicationContext.Current.GetSubFolders(sourceObjectSiteSetting, SourceObject, null, string.Empty);
+            SiteSetting sourceSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
+            //List<Folder> sourceFolders = ApplicationContext.Current.GetSubFolders(sourceObjectSiteSetting, SourceObject, null, string.Empty);
 
-            SiteSetting objectToCompareWithSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[ObjectToCompareWith.SiteSettingID];
-            List<Folder> objectToCompareWithFolders = ApplicationContext.Current.GetSubFolders(objectToCompareWithSiteSetting, ObjectToCompareWith, null, string.Empty);
-            List<CompareObjectsResult> items = new List<CompareObjectsResult>();
+            SiteSetting destinationSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[DestinationObject.SiteSettingID];
+            //List<Folder> objectToCompareWithFolders = ApplicationContext.Current.GetSubFolders(objectToCompareWithSiteSetting, ObjectToCompareWith, null, string.Empty);
+            SourceObjectLabel.Content = SourceObject.Title;
+            DestinationObjectLabel.Content = DestinationObject.Title;
+            List<CompareObjectsResult> items = ApplicationContext.Current.GetObjectDifferences(sourceSiteSetting, SourceObject, destinationSiteSetting, DestinationObject);
             /*
             TreeViewItem additionalItemsNode = AddNode(FoldersTreeView.Items, "Additional Items", "Additional Items", Brushes.DarkBlue);
             TreeViewItem missingItemsNode = AddNode(FoldersTreeView.Items, "Missing Items", "Missing Items", Brushes.Red);
             TreeViewItem updateRequiresNode = AddNode(FoldersTreeView.Items, "Update Required Items", "Update Required Items", Brushes.Orange);
             */
+            /*
             foreach (Folder sourceFolder in sourceFolders)
             {
                 Folder destinationFolder = objectToCompareWithFolders.Where(t => t.Title.Equals(sourceFolder.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
@@ -101,7 +104,6 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 }
                 else
                 {
-                    /*
                     List<Field> objectToCompareWithFields = ApplicationContext.Current.GetFields(objectToCompareWithSiteSetting, folder);
                     List<Field> sourceFields = ApplicationContext.Current.GetFields(sourceObjectSiteSetting, sourceFolder);
                     foreach (Field field in objectToCompareWithFields)
@@ -119,10 +121,9 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                             items.Add(new CompareObjectsResult("Table", folder.Title, "Field", field.DisplayName, "Additional", null, null)); ;
                         }
                     }
-                    */
                 }
             }
-
+            */
             ListCollectionView customers = new ListCollectionView(items);
             customers.GroupDescriptions.Add(new PropertyGroupDescription("DifferenceType"));
             CompareGrid.ItemsSource = customers;
@@ -215,7 +216,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         public void Initialize(Folder sourceObject, Folder objectToCompareWith)
         {
             this.SourceObject = sourceObject;
-            this.ObjectToCompareWith = objectToCompareWith;
+            this.DestinationObject = objectToCompareWith;
             this.FoldersTreeView.ContextMenu = new ContextMenu();
         }
 
@@ -289,6 +290,29 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             DockPanel panel = (DockPanel)node.Header;
             CheckBox checkBox = (CheckBox)panel.Children[1];
             return checkBox.IsChecked.HasValue? checkBox.IsChecked.Value:false;
+        }
+
+        private void ApplyChangeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SiteSetting sourceSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
+            SiteSetting destinationSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[DestinationObject.SiteSettingID];
+
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    CompareObjectsResult compareObjectsResult = (CompareObjectsResult)row.Item;
+                    if(compareObjectsResult.DifferenceType == "Missing")
+                    {
+                        ApplicationContext.Current.ApplyMissingCompareObjectsResult(compareObjectsResult, sourceSiteSetting, destinationSiteSetting);
+                    }
+                }
+            this.OnLoad();
+        }
+
+        private void CompareGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+//            Button button = e.Row.DetailsTemplate.FindName("ApplyChangeButton") as Button;
         }
     }
 }

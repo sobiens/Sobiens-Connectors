@@ -101,7 +101,7 @@ namespace Sobiens.Connectors.Services.CRM
                 {
                     if (childFoldersCategoryName.Equals("Entities", StringComparison.InvariantCultureIgnoreCase) == true)
                     {
-                        List<CRMEntity> lists = this.GetLists(siteSetting);
+                        List<CRMEntity> lists = this.GetEntities(siteSetting);
                         foreach (CRMEntity list in lists)
                         {
                             subFolders.Add(list);
@@ -494,7 +494,7 @@ namespace Sobiens.Connectors.Services.CRM
         }
         */
 
-        private List<CRMEntity> GetLists(ISiteSetting siteSetting) {
+        public List<CRMEntity> GetEntities(ISiteSetting siteSetting) {
             IOrganizationService organizationService = GetClientContext(siteSetting);
             //Dictionary<string, string> attributesData = new Dictionary<string, string>();
             RetrieveAllEntitiesRequest metaDataRequest = new RetrieveAllEntitiesRequest();
@@ -936,6 +936,22 @@ namespace Sobiens.Connectors.Services.CRM
             return filterExpression;
         }
 
+        public void CreateEntity(ISiteSetting siteSetting, string entityName)
+        {
+            try
+            {
+                IOrganizationService organizationService = GetClientContext(siteSetting);
+                Entity account = new Entity(entityName);
+                account["name"] = entityName;
+                Guid accountId = organizationService.Create(account);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
 
     }
 }

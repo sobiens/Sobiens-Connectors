@@ -440,6 +440,19 @@ namespace Sobiens.Connectors.Common
         {
             throw new NotImplementedException();
         }
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+
+            return compareObjectsResults;
+        }
+
+
+        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            return true;
+        }
+        public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) { }
 
     }
 }

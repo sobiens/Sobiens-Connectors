@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Sobiens.Connectors.WPF.Controls;
 using Sobiens.WPF.Controls.UserControls;
 using System;
 using System.Diagnostics;
