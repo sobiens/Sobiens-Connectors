@@ -314,5 +314,26 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
 //            Button button = e.Row.DetailsTemplate.FindName("ApplyChangeButton") as Button;
         }
+
+        private void ShowDifferencesButton_Click(object sender, RoutedEventArgs e)
+        {
+            SiteSetting sourceSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[SourceObject.SiteSettingID];
+            SiteSetting destinationSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[DestinationObject.SiteSettingID];
+
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    CompareObjectsResult compareObjectsResult = (CompareObjectsResult)row.Item;
+                    if (compareObjectsResult.DifferenceType == "Update")
+                    {
+                        CompareSQLObjectsForm csof = new CompareSQLObjectsForm();
+                        csof.Initialize((Folder)compareObjectsResult.SourceObject, (Folder)compareObjectsResult.ObjectToCompareWith);
+                        csof.ShowDialog(this.ParentWindow, "Compare and Edit");
+//                        ApplicationContext.Current.ApplyMissingCompareObjectsResult(compareObjectsResult, sourceSiteSetting, destinationSiteSetting);
+                    }
+                }
+
+        }
     }
 }

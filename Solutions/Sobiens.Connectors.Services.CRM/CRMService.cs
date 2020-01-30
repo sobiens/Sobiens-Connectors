@@ -130,7 +130,7 @@ namespace Sobiens.Connectors.Services.CRM
                 }
                 catch (Exception ex)
                 {
-                    string message = string.Format("CRMService GetLists method returned error:{0}", ex.Message);
+                   string message = string.Format("CRMService GetLists method returned error:{0}", ex.Message);
                     Logger.Error(message, "Service");
                 }
             }

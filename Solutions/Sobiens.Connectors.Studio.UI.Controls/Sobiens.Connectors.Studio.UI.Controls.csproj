@@ -105,6 +105,9 @@
     <Compile Include="BrowserTabsPanel.xaml.cs">
       <DependentUpon>BrowserTabsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CompareSQLObjectsForm.xaml.cs">
+      <DependentUpon>CompareSQLObjectsForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkflowCopyForm.xaml.cs">
       <DependentUpon>WorkflowCopyForm.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CodeWizardForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CompareSQLObjectsForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

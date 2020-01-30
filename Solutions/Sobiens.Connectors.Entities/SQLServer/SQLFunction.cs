@@ -17,16 +17,14 @@ namespace Sobiens.Connectors.Entities.SQLServer
         {
         }
 
-        public string Schema { get; set; }
-        public string Name { get; set; }
-        public string Content { get; set; }
+
 
         public override bool Equals(object value)
         {
             SQLFunction function = value as SQLFunction;
 
             return (function != null)
-                && (Content == function.Content);
+                && (SQLSyntax == function.SQLSyntax);
         }
     }
 }

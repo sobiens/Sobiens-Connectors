@@ -17,16 +17,12 @@ namespace Sobiens.Connectors.Entities.SQLServer
         {
         }
 
-        public string Schema { get; set; }
-        public string Name { get; set; }
-        public string Content { get; set; }
-
         public override bool Equals(object value)
         {
             SQLStoredProcedure storedProcedure = value as SQLStoredProcedure;
 
             return (storedProcedure != null)
-                && (Content == storedProcedure.Content);
+                && (SQLSyntax == storedProcedure.SQLSyntax);
         }
     }
 }

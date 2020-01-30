@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sobiens.Connectors.Common
 {
+    public delegate bool CheckIfEqualsDelegate(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject);
     public class CompareManager
     {
         private static CompareManager _Instance = null;
@@ -24,7 +25,7 @@ namespace Sobiens.Connectors.Common
             }
         }
 
-        public List<CompareObjectsResult> GetObjectsDifferences(ISiteSetting sourceSiteSetting, Folder sourceParentObject, List<Folder> sourceObjects, ISiteSetting destinationSiteSetting, List<Folder> destinationObjects, Folder destinationParentObject, string objectTypeName)
+        public List<CompareObjectsResult> GetObjectsDifferences(ISiteSetting sourceSiteSetting, Folder sourceParentObject, List<Folder> sourceObjects, ISiteSetting destinationSiteSetting, List<Folder> destinationObjects, Folder destinationParentObject, string objectTypeName, CheckIfEqualsDelegate checkIfEqualsDelegate)
         {
             List<CompareObjectsResult> items = new List<CompareObjectsResult>();
             foreach (Folder sourceObject in sourceObjects)
@@ -37,7 +38,7 @@ namespace Sobiens.Connectors.Common
                 }
                 else
                 {
-                    if (CheckIfEquals(sourceSiteSetting, sourceObject, destinationSiteSetting, destinationObject) == false)
+                    if (checkIfEqualsDelegate(sourceSiteSetting, sourceObject, destinationSiteSetting, destinationObject) == false)
                     {
                         items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Update", sourceObject, destinationObject, sourceParentObject, destinationParentObject)); ;
                     }
@@ -61,9 +62,13 @@ namespace Sobiens.Connectors.Common
             return items;
         }
 
+        /*
         private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
+            List<CompareObjectsResult> items = ApplicationContext.Current.GetObjectDifferences(sourceSiteSetting, SourceObject, destinationSiteSetting, DestinationObject);
+
             return true;
         }
+        */
     }
 }

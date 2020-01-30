@@ -40,5 +40,16 @@ namespace Sobiens.Connectors.Entities
                     return Visibility.Hidden;
             }
         }
+
+        public Visibility ShowDifferencesButtonVisibility
+        {
+            get
+            {
+                if (DifferenceType == "Update")
+                    return Visibility.Visible;
+                else
+                    return Visibility.Hidden;
+            }
+        }
     }
 }

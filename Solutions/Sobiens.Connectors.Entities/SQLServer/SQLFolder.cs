@@ -40,6 +40,10 @@ namespace Sobiens.Connectors.Entities.SQLServer
             }
         }
 
+        public string Name { get; set; }
+        public string Schema { get; set; }
+        public string SQLSyntax { get; set; }
+
         public override bool CanUpload()
         {
             return false;

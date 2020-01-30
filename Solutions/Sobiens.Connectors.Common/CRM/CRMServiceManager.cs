@@ -526,17 +526,17 @@ namespace Sobiens.Connectors.Common.CRM
             List<CRMProcess> destinationProcesses = new CRMService().GetProcesses(destinationSiteSetting);
             List<CRMSecurityRole> destinationSecurityRoles = new CRMService().GetSecurityRoles(destinationSiteSetting);
 
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceEntities.ToList<Folder>(), destinationSiteSetting, destinationEntities.ToList<Folder>(), destinationObject, "Entity"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceBussinessUnits.ToList<Folder>(), destinationSiteSetting, destinationBusinessUnits.ToList<Folder>(), destinationObject, "Business Unit"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTeams.ToList<Folder>(), destinationSiteSetting, destinationTeams.ToList<Folder>(), destinationObject, "Team"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceProcesses.ToList<Folder>(), destinationSiteSetting, destinationProcesses.ToList<Folder>(), destinationObject, "Process"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceSecurityRoles.ToList<Folder>(), destinationSiteSetting, destinationSecurityRoles.ToList<Folder>(), destinationObject, "Security Role"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceEntities.ToList<Folder>(), destinationSiteSetting, destinationEntities.ToList<Folder>(), destinationObject, "Entity", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceBussinessUnits.ToList<Folder>(), destinationSiteSetting, destinationBusinessUnits.ToList<Folder>(), destinationObject, "Business Unit", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTeams.ToList<Folder>(), destinationSiteSetting, destinationTeams.ToList<Folder>(), destinationObject, "Team", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceProcesses.ToList<Folder>(), destinationSiteSetting, destinationProcesses.ToList<Folder>(), destinationObject, "Process", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceSecurityRoles.ToList<Folder>(), destinationSiteSetting, destinationSecurityRoles.ToList<Folder>(), destinationObject, "Security Role", CheckIfEquals));
 
             return compareObjectsResults;
         }
 
 
-        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
             return true;
         }
@@ -553,22 +553,22 @@ namespace Sobiens.Connectors.Common.CRM
             else if (compareObjectsResult.ObjectToCompareWith as CRMBusinessUnit != null)
             {
                 CRMBusinessUnit destinationFunction = compareObjectsResult.ObjectToCompareWith as CRMBusinessUnit;
-                new CRMService().CreateFunction(sourceSiteSetting, sourceWeb.Title, destinationFunction);
+                //new CRMService().CreateFunction(sourceSiteSetting, sourceWeb.Title, destinationFunction);
             }
             else if (compareObjectsResult.ObjectToCompareWith as CRMTeam != null)
             {
                 CRMTeam destinationSQLStoredProcedure = compareObjectsResult.ObjectToCompareWith as CRMTeam;
-                new CRMService().CreateStoredProcedure(sourceSiteSetting, sourceWeb.Title, destinationSQLStoredProcedure);
+                //new CRMService().CreateStoredProcedure(sourceSiteSetting, sourceWeb.Title, destinationSQLStoredProcedure);
             }
             else if (compareObjectsResult.ObjectToCompareWith as CRMProcess != null)
             {
                 CRMProcess destinationView = compareObjectsResult.ObjectToCompareWith as CRMProcess;
-                new CRMService().CreateView(sourceSiteSetting, sourceWeb.Title, destinationView);
+                //new CRMService().CreateView(sourceSiteSetting, sourceWeb.Title, destinationView);
             }
             else if (compareObjectsResult.ObjectToCompareWith as CRMSecurityRole != null)
             {
                 CRMSecurityRole trigger = compareObjectsResult.ObjectToCompareWith as CRMSecurityRole;
-                new CRMService().CreateTrigger(sourceSiteSetting, sourceWeb.Title, trigger);
+                //new CRMService().CreateTrigger(sourceSiteSetting, sourceWeb.Title, trigger);
             }
 
         }

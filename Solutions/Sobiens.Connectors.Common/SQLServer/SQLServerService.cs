@@ -183,7 +183,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(view.Content, connection))
+                    using (SqlCommand cmd = new SqlCommand(view.SQLSyntax, connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -205,7 +205,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(trigger.Content, connection))
+                    using (SqlCommand cmd = new SqlCommand(trigger.SQLSyntax, connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -227,7 +227,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(storedProcedure.Content, connection))
+                    using (SqlCommand cmd = new SqlCommand(storedProcedure.SQLSyntax, connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -248,7 +248,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(function.Content, connection))
+                    using (SqlCommand cmd = new SqlCommand(function.SQLSyntax, connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -289,7 +289,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 view.Schema = dr[0].ToString();
                                 view.Name= dr[1].ToString();
                                 view.Title = dr[1].ToString();
-                                view.Content = dr[2].ToString();
+                                view.SQLSyntax = dr[2].ToString();
                                 views.Add(view);
                             }
                         }
@@ -377,7 +377,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 function.Schema = dr[0].ToString();
                                 function.Name = dr[1].ToString();
                                 function.Title = dr[1].ToString();
-                                function.Content = dr[2].ToString();
+                                function.SQLSyntax = dr[2].ToString();
                                 functions.Add(function);
                             }
                         }
@@ -423,7 +423,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 storedProcedure.Schema = dr[0].ToString();
                                 storedProcedure.Name = dr[1].ToString();
                                 storedProcedure.Title = dr[1].ToString();
-                                storedProcedure.Content = dr[2].ToString();
+                                storedProcedure.SQLSyntax = dr[2].ToString();
                                 storedProcedures.Add(storedProcedure);
                             }
                         }
@@ -469,7 +469,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 trigger.Schema = dr[0].ToString();
                                 trigger.Name = dr[1].ToString();
                                 trigger.Title = dr[1].ToString();
-                                trigger.Content = dr[2].ToString();
+                                trigger.SQLSyntax = dr[2].ToString();
                                 triggers.Add(trigger);
                             }
                         }

@@ -14,18 +14,15 @@ namespace Sobiens.Connectors.Entities.SQLServer
             : base(siteSettingID, uniqueIdentifier, title)
         {
         }
-        public string Name { get; set; }
         public int RowLimit { get; set; }
         public List<CamlFieldRef> ViewFields { get; set; }
-        public string Schema { get; set; }
-        public string Content { get; set; }
 
         public override bool Equals(object value)
         {
             SQLView view = value as SQLView;
 
             return (view != null)
-                && (Content == view.Content);
+                && (SQLSyntax == view.SQLSyntax);
         }
     }
 }

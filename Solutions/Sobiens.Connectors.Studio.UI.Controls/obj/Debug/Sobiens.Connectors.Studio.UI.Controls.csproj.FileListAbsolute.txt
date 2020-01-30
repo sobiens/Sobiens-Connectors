@@ -430,3 +430,5 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\bin\Debug\Sobiens.Connectors.Common.dll.config
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\WorkflowCopyForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\WorkflowCopyForm.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CompareSQLObjectsForm.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CompareSQLObjectsForm.baml

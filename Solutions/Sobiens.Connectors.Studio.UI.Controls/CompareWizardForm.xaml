@@ -72,7 +72,10 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="ApplyChangeButton" Click="ApplyChangeButton_Click" Visibility="{Binding ApplyButtonVisibility}">Apply</Button>
+                            <Grid>
+                                <Button Name="ApplyChangeButton" Click="ApplyChangeButton_Click" Visibility="{Binding ApplyButtonVisibility}">Apply</Button>
+                                <Button Name="ShowDifferencesButton" Click="ShowDifferencesButton_Click" Visibility="{Binding ShowDifferencesButtonVisibility}">Update</Button>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

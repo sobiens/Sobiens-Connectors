@@ -373,17 +373,67 @@ namespace Sobiens.Connectors.Common.SQLServer
             List<SQLStoredProcedure> destinationStoredProcedures = new SQLServerService().GetStoredProcedures(destinationSiteSetting, destinationObject);
             List<SQLTrigger> destinationTriggers = new SQLServerService().GetTriggers(destinationSiteSetting, destinationObject);
 
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function", CheckIfEquals));
             //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger", CheckIfEquals));
 
             return compareObjectsResults;
         }
 
 
-        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject) {
+        public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        {
+            if (sourceObject as SQLTable != null)
+            {
+                List<Field> sourceFields = ApplicationContext.Current.GetFields(sourceSiteSetting, sourceObject);
+                List<Field> objectToCompareWithFields = ApplicationContext.Current.GetFields(destinationSiteSetting, destinationObject);
+                bool hasFieldChange = false;
+                foreach (Field field in objectToCompareWithFields)
+                {
+                    if (sourceFields.Where(t => t.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                    {
+                        hasFieldChange = true;
+                    }
+                }
+
+                if (hasFieldChange == true)
+                {
+                    return false;
+                }
+            }
+            else if (sourceObject as SQLFunction != null)
+            {
+                if (((SQLFunction)sourceObject).SQLSyntax.Equals(((SQLFunction)destinationObject).SQLSyntax) == false)
+                {
+                    return false;
+                }
+            }
+            else if (sourceObject as IView != null)
+            {
+                /*
+                if (((IView)sourceObject).Content.Equals(((IView)destinationObject).Content) == false)
+                {
+                    return false;
+                }
+                */
+            }
+            else if (sourceObject as SQLStoredProcedure != null)
+            {
+                if (((SQLStoredProcedure)sourceObject).SQLSyntax.Equals(((SQLStoredProcedure)destinationObject).SQLSyntax) == false)
+                {
+                    return false;
+                }
+            }
+            else if (sourceObject as SQLTrigger != null)
+            {
+                if (((SQLTrigger)sourceObject).SQLSyntax.Equals(((SQLTrigger)destinationObject).SQLSyntax) == false)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
         public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) {

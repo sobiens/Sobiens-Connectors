@@ -16,16 +16,13 @@ namespace Sobiens.Connectors.Entities.SQLServer
             : base(siteSettingID, uniqueIdentifier, title)
         {
         }
-        public string Schema { get; set; }
-        public string Name { get; set; }
-        public string Content { get; set; }
 
         public override bool Equals(object value)
         {
             SQLTrigger trigger = value as SQLTrigger;
 
             return (trigger != null)
-                && (Content == trigger.Content);
+                && (SQLSyntax == trigger.SQLSyntax);
         }
     }
 }

@@ -679,19 +679,20 @@ namespace Sobiens.Connectors.Common.SharePoint
             List<ContentType> destinationContentTypes = new SharePointService().GetContentTypes(destinationSiteSetting, ((SPWeb)destinationObject).Url, string.Empty, false);
             List<Field> destinationFields = new SharePointService().GetFields(destinationSiteSetting, ((SPWeb)destinationObject).Url);
 
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceLists.ToList<Folder>(), destinationSiteSetting, destinationLists.ToList<Folder>(), destinationObject, "List"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceLists.ToList<Folder>(), destinationSiteSetting, destinationLists.ToList<Folder>(), destinationObject, "List", CheckIfEquals));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type", CheckIfEquals));
             //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field", CheckIfEquals));
 
             return compareObjectsResults;
         }
 
 
-        private bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
             return true;
         }
+
         public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) {
             SPWeb sourceWeb = compareObjectsResult.SourceParentObject as SPWeb;
             SPWeb destinationWeb = compareObjectsResult.ObjectToCompareWithParentObject as SPWeb;
