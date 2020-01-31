@@ -44,5 +44,23 @@ namespace Sobiens.Connectors.Entities.SQLServer
         {
             return this.DBName + "." + this.ListName;
         }
+
+        public FieldCollection Fields { get; set; }
+
+        public new string SQLSyntax
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("CREATE TABLE " + this.Name + "(");
+                foreach (SQLField field in this.Fields)
+                {
+                    sb.Append(field.ToSQL() + ",");
+                }
+                sb.Remove(sb.Length, 1);
+                sb.Append(")");
+                return sb.ToString();
+            }
+        }
     }
 }

@@ -155,11 +155,16 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 string tableName = dr[1].ToString();
                                 SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
                                 table.SiteSettingID = siteSetting.ID;
-                                table.ListName = folder.Title;
+                                table.ListName = tableName;
                                 tables.Add(table);
                             }
                         }
                     }
+                }
+
+                foreach(SQLTable table in tables)
+                {
+                    table.Fields = GetFields(siteSetting, folder.Title, table.Name);
                 }
 
                 return tables;

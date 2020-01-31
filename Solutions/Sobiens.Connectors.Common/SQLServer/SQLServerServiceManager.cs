@@ -387,8 +387,8 @@ namespace Sobiens.Connectors.Common.SQLServer
         {
             if (sourceObject as SQLTable != null)
             {
-                List<Field> sourceFields = ApplicationContext.Current.GetFields(sourceSiteSetting, sourceObject);
-                List<Field> objectToCompareWithFields = ApplicationContext.Current.GetFields(destinationSiteSetting, destinationObject);
+                FieldCollection sourceFields = (sourceObject as SQLTable).Fields;
+                FieldCollection objectToCompareWithFields = (destinationObject as SQLTable).Fields;
                 bool hasFieldChange = false;
                 foreach (Field field in objectToCompareWithFields)
                 {

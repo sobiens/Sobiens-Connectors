@@ -38,7 +38,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\bin\Debug\Microsoft.Xrm.Sdk.xml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\bin\Debug\NLog.xml
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csprojAssemblyReference.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.CRM\obj\Debug\Sobiens.Connectors.Services.CRM.pdb
