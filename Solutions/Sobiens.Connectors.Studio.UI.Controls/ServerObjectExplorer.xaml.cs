@@ -498,7 +498,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 Folder objectToCompareWith = selectEntityForm.SelectedObject;
                 CompareWizardForm compareWizardForm = new CompareWizardForm();
                 compareWizardForm.Initialize(sourceObject, objectToCompareWith);
-                compareWizardForm.ShowDialog(this.ParentWindow, "Compare Wizard");
+                compareWizardForm.ShowDialog(this.ParentWindow, "Compare Wizard", false, true);
             }
         }
 

@@ -49,6 +49,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             if (this.ShowActionButtons == false)
             {
                 BottomGrid.Visibility = System.Windows.Visibility.Collapsed;
+                OKButton.Visibility = Visibility.Hidden;
+                CancelButton.Visibility = Visibility.Hidden;
             }
             if (this.ShowLogo == false)
             {
@@ -64,6 +66,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         }
         public void ShowLoadingStatus(string message)
         {
+            BottomGrid.Visibility = System.Windows.Visibility.Visible;
             LoadingImage.Visibility = System.Windows.Visibility.Visible;
             LoadingImage.UpdateLayout();
             this.SetStatusText(message);
@@ -80,6 +83,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         public void SetStatusText(string message)
         {
+            BottomGrid.Visibility = System.Windows.Visibility.Visible;
             StatusTextBox.Content = message;
             StatusTextBox.Foreground = Brushes.Black;
             StatusTextBox.UpdateLayout();

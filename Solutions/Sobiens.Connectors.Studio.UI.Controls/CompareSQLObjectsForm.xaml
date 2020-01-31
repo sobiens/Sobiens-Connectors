@@ -32,9 +32,12 @@
             <ColumnDefinition Width="30"></ColumnDefinition>
             <ColumnDefinition Width="50*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <RichTextBox  Grid.Row="1" x:Name="SourceObjectSchemaTextBlock" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <RichTextBox  Grid.Row="1" Grid.Column="2" x:Name="DestinationObjectSchemaTextBlock" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Button Grid.Row="2" x:Name="ApplyButton" Content="Apply" Click="ApplyButton_Click" HorizontalAlignment="Right" Margin="5,5,5,5" VerticalAlignment="Top" Width="80"/>
+        <RichTextBox  Grid.Row="1" x:Name="SourceObjectSchemaTextBlock" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" TextChanged="SourceObjectSchemaTextBlock_TextChanged" />
+        <RichTextBox  Grid.Row="1" Grid.Column="2" x:Name="DestinationObjectSchemaTextBlock" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" TextChanged="DestinationObjectSchemaTextBlock_TextChanged" />
+        <Button Grid.Row="1" Grid.Column="1" x:Name="CopyToRightButton" Content="&gt;&gt;" Click="CopyToRightButton_Click" Margin="5,5,5,5" VerticalAlignment="Top" Width="20"/>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="CopyToLeftButton" Content="&lt;&lt;" Click="CopyToLeftButton_Click" Margin="5,35,5,5" VerticalAlignment="Top" Width="20"/>
+        <Button Grid.Row="2" x:Name="ExecuteLeftSideButton" Content="Execute" Click="ExecuteLeftSideButton_Click" HorizontalAlignment="Right" Margin="5,5,5,5" VerticalAlignment="Top" Width="80"/>
+        <Button Grid.Row="2" Grid.Column="3" x:Name="ExecuteRightSideButton" Content="Execute" Click="ExecuteRightSideButton_Click" HorizontalAlignment="Right" Margin="5,5,5,5" VerticalAlignment="Top" Width="80"/>
         <Label x:Name="label" Content="Source Object:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label x:Name="SourceObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0"/>
         <Label Grid.Column="2" x:Name="label1" Content="Destination Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>

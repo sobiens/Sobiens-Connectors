@@ -34,8 +34,11 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.sobiens.com/Sobiens.Connectors.Studio.UI/</UpdateUrl>
+    <SupportUrl>http://tutorials.sobiens.com/solutions/sobiens-studio/</SupportUrl>
+    <ProductName>Sobiens Studio</ProductName>
+    <PublisherName>Sobiens Information Technology LTD</PublisherName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationRevision>35</ApplicationRevision>
     <ApplicationVersion>1.6.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

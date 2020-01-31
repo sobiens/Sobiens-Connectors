@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog"/>
+  </configSections>
+  <appSettings>
+    <!--<add key="LogFolderPath" value="C:\temp\Logs"/>-->
+    <add key="RunAs" value="Studio"/>
+    <!-- Studio, RunOnlyScheduledTasks -->
+    <!--<add key="SyncTasksLocation" value="C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI\bin\Debug\XML\SyncTasksCallForSubmission.xml"/>-->
+    <!-- Studio, RunOnlyScheduledTasks -->
+    <add key="ClientSettingsProvider.ServiceUri" value=""/>
+  </appSettings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2"/>
+  </startup>
+  <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <targets>
+      <target name="logfile" xsi:type="File" fileName="${basedir}\Logs\${shortdate}.log" layout="${level}|${longdate}|${message}|${callsite:className=true:fileName=false:includeSourcePath=false:methodName=true}"/>
+    </targets>
+    <rules>
+      <logger name="*" minLevel="Debug" writeTo="logfile"/>
+    </rules>
+  </nlog>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri=""/>
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400"/>
+      </providers>
+    </roleManager>
+  </system.web>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.SharePoint.Client.Runtime" publicKeyToken="71e9bce111e9429c" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-16.0.0.0" newVersion="16.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.SharePoint.Client" publicKeyToken="71e9bce111e9429c" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-16.0.0.0" newVersion="16.0.0.0"/>
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

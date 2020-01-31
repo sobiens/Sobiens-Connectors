@@ -74,7 +74,31 @@ namespace Sobiens.Connectors.Common.SQLServer
             return subFolders;
         }
 
-        
+
+        public void ExecuteQuery(ISiteSetting siteSetting, string dbName, string sqlQuery)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.GetConnectionString(siteSetting, dbName)))
+                {
+                    con.Open();
+
+                    // Set up a command with the given query and associate
+                    // this with the current connection.
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
 
         public string[] GetPrimaryKeys(ISiteSetting siteSetting, string dbName, string tableName)
         {
@@ -130,6 +154,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                             {
                                 string tableName = dr[1].ToString();
                                 SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
+                                table.SiteSettingID = siteSetting.ID;
+                                table.ListName = folder.Title;
                                 tables.Add(table);
                             }
                         }
@@ -290,6 +316,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 view.Name= dr[1].ToString();
                                 view.Title = dr[1].ToString();
                                 view.SQLSyntax = dr[2].ToString();
+                                view.SiteSettingID = siteSetting.ID;
+                                view.ListName = db.Title;
                                 views.Add(view);
                             }
                         }
@@ -378,6 +406,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 function.Name = dr[1].ToString();
                                 function.Title = dr[1].ToString();
                                 function.SQLSyntax = dr[2].ToString();
+                                function.SiteSettingID = siteSetting.ID;
+                                function.ListName = db.Title;
                                 functions.Add(function);
                             }
                         }
@@ -424,6 +454,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 storedProcedure.Name = dr[1].ToString();
                                 storedProcedure.Title = dr[1].ToString();
                                 storedProcedure.SQLSyntax = dr[2].ToString();
+                                storedProcedure.SiteSettingID = siteSetting.ID;
+                                storedProcedure.ListName = folder.Title;
                                 storedProcedures.Add(storedProcedure);
                             }
                         }
@@ -470,6 +502,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 trigger.Name = dr[1].ToString();
                                 trigger.Title = dr[1].ToString();
                                 trigger.SQLSyntax = dr[2].ToString();
+                                trigger.SiteSettingID = siteSetting.ID;
+                                trigger.ListName = folder.Title;
                                 triggers.Add(trigger);
                             }
                         }

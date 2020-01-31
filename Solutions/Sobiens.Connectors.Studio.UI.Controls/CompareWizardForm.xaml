@@ -82,7 +82,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <TreeView  Grid.Row="0" Name="FoldersTreeView"  VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" Visibility="Hidden"></TreeView>
-        <Button Grid.Row="1" x:Name="ApplyButton" Content="Apply" Click="ApplyButton_Click" HorizontalAlignment="Right" Margin="5,5,5,5" VerticalAlignment="Top" Width="80"/>
         <Label x:Name="label" Content="Source Object:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label x:Name="SourceObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0"/>
         <Label x:Name="label1" Content="Destination Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0"/>
