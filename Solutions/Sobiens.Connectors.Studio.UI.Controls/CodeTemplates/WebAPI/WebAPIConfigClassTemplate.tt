@@ -38,7 +38,7 @@ namespace SobyGrid_WebAPIExample
 			foreach (Folder table in tables)
 			{
 			#>
-            builder.EntitySet<<#= table.Title #>Record>("<#= table.Title #>");
+            builder.EntitySet<<#= table.Title #>Record>("<#= table.Title #>List");
 			<#
 			}
 			#>

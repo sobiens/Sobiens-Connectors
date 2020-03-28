@@ -22,7 +22,7 @@ namespace Sobiens.Connectors.Entities.SQLServer
             SQLTrigger trigger = value as SQLTrigger;
 
             return (trigger != null)
-                && (SQLSyntax == trigger.SQLSyntax);
+                && (ToSQLSyntax() == trigger.ToSQLSyntax());
         }
     }
 }

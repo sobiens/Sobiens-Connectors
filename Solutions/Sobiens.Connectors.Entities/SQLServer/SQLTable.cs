@@ -47,20 +47,17 @@ namespace Sobiens.Connectors.Entities.SQLServer
 
         public FieldCollection Fields { get; set; }
 
-        public new string SQLSyntax
+        public override string ToSQLSyntax()
         {
-            get
+            StringBuilder sb = new StringBuilder();
+            sb.Append("CREATE TABLE " + this.Name + "(" + Environment.NewLine);
+            foreach (SQLField field in this.Fields)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("CREATE TABLE " + this.Name + "(");
-                foreach (SQLField field in this.Fields)
-                {
-                    sb.Append(field.ToSQL() + ",");
-                }
-                sb.Remove(sb.Length, 1);
-                sb.Append(")");
-                return sb.ToString();
+                sb.Append(field.ToSQL() + "," + Environment.NewLine);
             }
+            sb.Remove(sb.Length-1, 1);
+            sb.Append(")");
+            return sb.ToString();
         }
     }
 }

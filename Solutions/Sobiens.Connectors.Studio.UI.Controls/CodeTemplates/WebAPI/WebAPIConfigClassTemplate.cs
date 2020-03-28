@@ -82,7 +82,7 @@ namespace SobyGrid_WebAPIExample
             
             #line default
             #line hidden
-            this.Write("\");\r\n\t\t\t");
+            this.Write("List\");\r\n\t\t\t");
             
             #line 42 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
 

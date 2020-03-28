@@ -61,8 +61,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                 }
                 else if (childFoldersCategoryName.Equals("Views", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
-                    List<IView> views = GetViews(siteSetting, parentFolder);
-                    foreach (IView view in views) {
+                    List<SQLView> views = GetViews(siteSetting, parentFolder);
+                    foreach (SQLView view in views) {
                         subFolders.Add((Folder)view);
                     }
                 }
@@ -155,7 +155,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 string tableName = dr[1].ToString();
                                 SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
                                 table.SiteSettingID = siteSetting.ID;
-                                table.ListName = tableName;
+                                //table.ListName = tableName;
                                 tables.Add(table);
                             }
                         }
@@ -164,7 +164,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
                 foreach(SQLTable table in tables)
                 {
-                    table.Fields = GetFields(siteSetting, folder.Title, table.Name);
+                    table.Fields = GetFields(siteSetting, folder.Title, table.Title);
                 }
 
                 return tables;
@@ -214,7 +214,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(view.SQLSyntax, connection))
+                    using (SqlCommand cmd = new SqlCommand(view.ToSQLSyntax(), connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -236,7 +236,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(trigger.SQLSyntax, connection))
+                    using (SqlCommand cmd = new SqlCommand(trigger.ToSQLSyntax(), connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -258,7 +258,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(storedProcedure.SQLSyntax, connection))
+                    using (SqlCommand cmd = new SqlCommand(storedProcedure.ToSQLSyntax(), connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -279,7 +279,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                 {
                     connection.Open();
                     StringBuilder sqlStringBuilder = new StringBuilder();
-                    using (SqlCommand cmd = new SqlCommand(function.SQLSyntax, connection))
+                    using (SqlCommand cmd = new SqlCommand(function.ToSQLSyntax(), connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -293,7 +293,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
         }
 
-        public List<IView> GetViews(ISiteSetting siteSetting, Folder folder)
+        public List<SQLView> GetViews(ISiteSetting siteSetting, Folder folder)
         {
             try
             {
@@ -305,12 +305,15 @@ namespace Sobiens.Connectors.Common.SQLServer
 
                     // Set up a command with the given query and associate
                     // this with the current connection.
-                    using (SqlCommand cmd = new SqlCommand("Select schm.name, v.name, smv.definition" +
-                                                            " FROM sys.all_views AS v" +
-                                                                " JOIN sys.sql_modules AS smv" +
-                                                                    " ON smv.object_id = v.object_id" +
-                                                                " JOIN sys.schemas AS schm" +
-                                                                    " ON v.schema_id = schm.schema_id", con))
+                    using (SqlCommand cmd = new SqlCommand("SELECT schm.name, " +
+                                                               "OBJECT_NAME(sm.object_id) AS object_name, " +
+                                                               "sm.definition " +
+                                                            "FROM sys.sql_modules AS sm " +
+                                                                "JOIN sys.objects AS o ON sm.object_id = o.object_id " +
+                                                            "JOIN sys.schemas AS schm " +
+                                                                "ON o.schema_id = schm.schema_id " +
+                                                            "WHERE o.type = 'V' " +
+                                                            "ORDER BY o.type ", con))
                     {
                         using (IDataReader dr = cmd.ExecuteReader())
                         {
@@ -320,7 +323,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 view.Schema = dr[0].ToString();
                                 view.Name= dr[1].ToString();
                                 view.Title = dr[1].ToString();
-                                view.SQLSyntax = dr[2].ToString();
+                                view._SQLSyntax = dr[2].ToString();
                                 view.SiteSettingID = siteSetting.ID;
                                 view.ListName = db.Title;
                                 views.Add(view);
@@ -329,7 +332,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                     }
                 }
 
-                return views.ToList<IView>();
+                return views;
             }
             catch (Exception ex)
             {
@@ -410,7 +413,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 function.Schema = dr[0].ToString();
                                 function.Name = dr[1].ToString();
                                 function.Title = dr[1].ToString();
-                                function.SQLSyntax = dr[2].ToString();
+                                function._SQLSyntax = dr[2].ToString();
                                 function.SiteSettingID = siteSetting.ID;
                                 function.ListName = db.Title;
                                 functions.Add(function);
@@ -458,7 +461,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 storedProcedure.Schema = dr[0].ToString();
                                 storedProcedure.Name = dr[1].ToString();
                                 storedProcedure.Title = dr[1].ToString();
-                                storedProcedure.SQLSyntax = dr[2].ToString();
+                                storedProcedure._SQLSyntax = dr[2].ToString();
                                 storedProcedure.SiteSettingID = siteSetting.ID;
                                 storedProcedure.ListName = folder.Title;
                                 storedProcedures.Add(storedProcedure);
@@ -506,7 +509,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 trigger.Schema = dr[0].ToString();
                                 trigger.Name = dr[1].ToString();
                                 trigger.Title = dr[1].ToString();
-                                trigger.SQLSyntax = dr[2].ToString();
+                                trigger._SQLSyntax = dr[2].ToString();
                                 trigger.SiteSettingID = siteSetting.ID;
                                 trigger.ListName = folder.Title;
                                 triggers.Add(trigger);

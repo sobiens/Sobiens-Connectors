@@ -28,6 +28,7 @@ namespace Sobiens.Connectors.Entities.SQLServer
             {
                 case "varchar":
                 case "nvarchar":
+                case "nchar":
                     sql += "(" + this.MaxLength + ")";
                     break;
             }

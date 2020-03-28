@@ -152,7 +152,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\SobyGrid_WebAPIExample.zip" />
+    <None Include="Resources\SobyGrid_WebAPIExample.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\SPOnlineWebpart.dwp" />
     <None Include="Sobiens.Connectors.Studio.UI_TemporaryKey.pfx" />
   </ItemGroup>

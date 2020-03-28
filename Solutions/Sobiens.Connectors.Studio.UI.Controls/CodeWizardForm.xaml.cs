@@ -1,7 +1,9 @@
 ﻿using Sobiens.Connectors.Common;
+using Sobiens.Connectors.Common.SQLServer;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
+using Sobiens.Connectors.Entities.SQLServer;
 using Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI;
 using System;
 using System.Collections.Generic;
@@ -143,80 +145,107 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         void GenerateSQLServerCode()
         {
-
-            //            string startPath = @"c:\project\tests";
-            string zipPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Resources\SobyGrid_WebAPIExample.zip";
-            string extractPath = GetTempPath();
-
-            //            ZipFile.CreateFromDirectory(startPath, zipPath);
-
-            ZipFile.ExtractToDirectory(zipPath, extractPath);
-            Process.Start("Explorer.exe", extractPath);
-            string rootPath = extractPath + "\\SobyGrid_WebAPIExample\\SobyGrid_WebAPIExample";
-            string modelsPath = rootPath + "\\Models";
-            string controllersPath = rootPath + "\\Controllers";
-            string appStartPath = rootPath + "\\App_Start";
-            
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(rootPath + "\\SobyGrid_WebAPIExample.csproj");
-            XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-            ns.AddNamespace("msbld", "http://schemas.microsoft.com/developer/msbuild/2003");
-//            XmlNode node = xmldoc.SelectSingleNode("//msbld:Compile", ns);
-
-            XmlNode nodeItemGroup = doc.SelectSingleNode("//msbld:Compile", ns).ParentNode;
-            XmlNode contentNodeItemGroup = doc.SelectSingleNode("//msbld:Content", ns).ParentNode;
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters["Tables"] = _MainObject.Folders;
-            GenerateWebAPIConfigCodeFile(appStartPath + "\\WebApiConfig.cs", parameters);
-            GenerateTaskServiceContextCodeFile(modelsPath + "\\TaskServiceContext.cs", parameters);
-
-            SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[_MainObject.SiteSettingID];
-            foreach (Folder folder in _MainObject.Folders)
+            try
             {
-                FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, folder);
-                FieldCollection primaryKeyFields = new FieldCollection();
-                string[] primaryKeys = ApplicationContext.Current.GetPrimaryKeys(siteSetting, folder);
-                if (primaryKeys.Count() == 0)
-                    continue;
+                //            string startPath = @"c:\project\tests";
+                string zipPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Resources\SobyGrid_WebAPIExample.zip";
+                string extractPath = GetTempPath();
 
-                List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
-                foreach (Field field in fields)
+                //            ZipFile.CreateFromDirectory(startPath, zipPath);
+
+                ZipFile.ExtractToDirectory(zipPath, extractPath);
+                string rootPath = extractPath + "\\SobyGrid_WebAPIExample\\SobyGrid_WebAPIExample";
+                string modelsPath = rootPath + "\\Models";
+                string controllersPath = rootPath + "\\Controllers";
+                string appStartPath = rootPath + "\\App_Start";
+
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(rootPath + "\\SobyGrid_WebAPIExample.csproj");
+                XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
+                ns.AddNamespace("msbld", "http://schemas.microsoft.com/developer/msbuild/2003");
+                //            XmlNode node = xmldoc.SelectSingleNode("//msbld:Compile", ns);
+
+                XmlNode nodeItemGroup = doc.SelectSingleNode("//msbld:Compile", ns).ParentNode;
+                XmlNode contentNodeItemGroup = doc.SelectSingleNode("//msbld:Content", ns).ParentNode;
+
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters["Tables"] = _MainObject.Folders;
+                GenerateWebAPIConfigCodeFile(appStartPath + "\\WebApiConfig.cs", parameters);
+                GenerateTaskServiceContextCodeFile(modelsPath + "\\TaskServiceContext.cs", parameters);
+
+                SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[_MainObject.SiteSettingID];
+                foreach (Folder folder in _MainObject.Folders)
                 {
-                    if (primaryKeys.Contains(field.Name))
-                        field.IsPrimary = true;
+                    FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, folder);
+                    FieldCollection primaryKeyFields = new FieldCollection();
+                    string[] primaryKeys = ApplicationContext.Current.GetPrimaryKeys(siteSetting, folder);
+                    if (primaryKeys.Count() == 0)
+                        continue;
+
+                    List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
+                    foreach (Field field in fields)
+                    {
+                        
+                        if (primaryKeys.Contains(field.Name))
+                            field.IsPrimary = true;
+                    }
+
+                    string tableName = folder.Title;
+                    parameters = new Dictionary<string, object>();
+                    parameters["TableName"] = tableName;
+                    parameters["Fields"] = fields;
+                    GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
+                    GenerateControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                    GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);
+
+                    XmlElement htmlElement = doc.CreateElement("Content", "http://schemas.microsoft.com/developer/msbuild/2003");
+                    XmlAttribute includeAttribute = doc.CreateAttribute("Include");
+                    includeAttribute.Value = tableName + "Management.html";
+                    htmlElement.Attributes.Append(includeAttribute);
+                    contentNodeItemGroup.AppendChild(htmlElement);
+
+                    XmlElement modelElement = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
+                    includeAttribute = doc.CreateAttribute("Include");
+                    includeAttribute.Value = "Models\\" + tableName + "Record.cs";
+                    modelElement.Attributes.Append(includeAttribute);
+                    nodeItemGroup.AppendChild(modelElement);
+
+                    XmlElement newChild = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
+                    includeAttribute = doc.CreateAttribute("Include");
+                    includeAttribute.Value = "Controllers\\" + tableName + "ListController.cs";
+                    newChild.Attributes.Append(includeAttribute);
+                    nodeItemGroup.AppendChild(newChild);
                 }
+                string connectionstring = (new SQLServerService()).GetConnectionString(siteSetting, ((SQLDB)_MainObject).Title);
+                SaveConnectionStrings(rootPath + "\\web.config", connectionstring);
 
-                string tableName = folder.Title;
-                parameters = new Dictionary<string, object>();
-                parameters["TableName"] = tableName;
-                parameters["Fields"] = fields;
-                GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
-                GenerateControllerCodeFile(controllersPath + "\\" + tableName + "Controller.cs", parameters);
-                GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);
-
-                XmlElement htmlElement = doc.CreateElement("Content", "http://schemas.microsoft.com/developer/msbuild/2003");
-                XmlAttribute includeAttribute = doc.CreateAttribute("Include");
-                includeAttribute.Value = tableName + "Management.html";
-                htmlElement.Attributes.Append(includeAttribute);
-                contentNodeItemGroup.AppendChild(htmlElement);
-
-                XmlElement modelElement = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
-                includeAttribute = doc.CreateAttribute("Include");
-                includeAttribute.Value = "Models\\" + tableName + "Record.cs";
-                modelElement.Attributes.Append(includeAttribute);
-                nodeItemGroup.AppendChild(modelElement);
-
-                XmlElement newChild = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
-                includeAttribute = doc.CreateAttribute("Include");
-                includeAttribute.Value = "Controllers\\" + tableName + "Controller.cs";
-                newChild.Attributes.Append(includeAttribute);
-                nodeItemGroup.AppendChild(newChild);
+                doc.Save(rootPath + "\\SobyGrid_WebAPIExample.csproj");
+                Process.Start("Explorer.exe", extractPath);
+                MessageBox.Show("Code generation completed successfully.");
             }
+            catch (Exception ex) {
+                MessageBox.Show("Error:" + ex.Message);
+            }
+        }
 
-            doc.Save(rootPath + "\\SobyGrid_WebAPIExample.csproj");
-            MessageBox.Show("Code generation completed successfully.");
+        public void SaveConnectionStrings(string webConfigFilePath, string connectionstring)
+        {
+            XmlDocument xDoc = new XmlDocument();
+
+            xDoc.Load(webConfigFilePath);
+
+            XmlNodeList xList = xDoc.SelectNodes("/configuration/connectionStrings/add");
+
+            foreach (XmlNode xn in xList)
+            {
+                XmlElement element = xn as XmlElement;
+
+                element.SetAttribute("connectionString", connectionstring);
+
+
+            }
+            xDoc.Save(webConfigFilePath);
         }
 
         void GenerateSharePointCode()
@@ -269,14 +298,25 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             _QueryPanels = queryPanels;
             _MainObject = mainObject;
             ViewComboBox.Items.Clear();
-            foreach(IQueryPanel queryPanel in _QueryPanels){
+            ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
+            string childFoldersCategoryName = "";
+            if (_MainObject as SQLDB != null)
+                childFoldersCategoryName = "Tables";
+            List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, _MainObject, null, childFoldersCategoryName);
+
+            foreach (IQueryPanel queryPanel in _QueryPanels){
                 ViewComboBox.Items.Add(new ComboBoxItem()
                 {
                     Content = queryPanel.FileName,
                     Tag = queryPanel
                 });
             }
-            AddNode(ObjectsTreeView.Items, _MainObject);
+
+            _MainObject.Folders = subFolders;
+            foreach (Folder subFolder in subFolders)
+            {
+                AddNode(ObjectsTreeView.Items, subFolder);
+            }
         }
 
     private void AddNode(ItemCollection itemCollection, Folder folder)

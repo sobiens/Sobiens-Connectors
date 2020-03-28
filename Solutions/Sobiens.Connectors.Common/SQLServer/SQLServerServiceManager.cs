@@ -146,7 +146,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
         public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
         {
-            return (new SQLServerService()).GetPrimaryKeys(siteSetting, folder.GetListName(), folder.Title);
+            return (new SQLServerService()).GetPrimaryKeys(siteSetting, ((SQLTable)folder).DBName, folder.Title);
         }
 
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
@@ -171,7 +171,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
         public List<IView> GetViews(ISiteSetting siteSetting, Folder folder)
         {
-            return (new SQLServerService()).GetViews(siteSetting, null);
+            return (new SQLServerService()).GetViews(siteSetting, null).ToList<IView>();
         }
         public List<IItem> GetAuditLogs(ISiteSetting siteSetting, string listName, string itemId)
         {
@@ -363,19 +363,19 @@ namespace Sobiens.Connectors.Common.SQLServer
 
             List<SQLTable> sourceTables = new SQLServerService().GetTables(sourceSiteSetting, sourceObject);
             List<SQLFunction> sourceFunctions = new SQLServerService().GetFunctions(sourceSiteSetting, sourceObject);
-            List<IView> sourceViews = new SQLServerService().GetViews(sourceSiteSetting, sourceObject);
+            List<SQLView> sourceViews = new SQLServerService().GetViews(sourceSiteSetting, sourceObject);
             List<SQLStoredProcedure> sourceStoredProcedures = new SQLServerService().GetStoredProcedures(sourceSiteSetting, sourceObject);
             List<SQLTrigger> sourceTriggers = new SQLServerService().GetTriggers(sourceSiteSetting, sourceObject);
 
             List<SQLTable> destinationTables = new SQLServerService().GetTables(destinationSiteSetting, destinationObject);
             List<SQLFunction> destinationFunctions = new SQLServerService().GetFunctions(destinationSiteSetting, destinationObject);
-            List<IView> destinationViews = new SQLServerService().GetViews(destinationSiteSetting, destinationObject);
+            List<SQLView> destinationViews = new SQLServerService().GetViews(destinationSiteSetting, destinationObject);
             List<SQLStoredProcedure> destinationStoredProcedures = new SQLServerService().GetStoredProcedures(destinationSiteSetting, destinationObject);
             List<SQLTrigger> destinationTriggers = new SQLServerService().GetTriggers(destinationSiteSetting, destinationObject);
 
             compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table", CheckIfEquals));
             compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function", CheckIfEquals));
-            //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
+            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), destinationObject, "View", CheckIfEquals));
             compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure", CheckIfEquals));
             compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger", CheckIfEquals));
 
@@ -405,7 +405,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
             else if (sourceObject as SQLFunction != null)
             {
-                if (((SQLFunction)sourceObject).SQLSyntax.Equals(((SQLFunction)destinationObject).SQLSyntax) == false)
+                if (((SQLFunction)sourceObject).ToSQLSyntax().Equals(((SQLFunction)destinationObject).ToSQLSyntax()) == false)
                 {
                     return false;
                 }
@@ -421,14 +421,14 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
             else if (sourceObject as SQLStoredProcedure != null)
             {
-                if (((SQLStoredProcedure)sourceObject).SQLSyntax.Equals(((SQLStoredProcedure)destinationObject).SQLSyntax) == false)
+                if (((SQLStoredProcedure)sourceObject).ToSQLSyntax().Equals(((SQLStoredProcedure)destinationObject).ToSQLSyntax()) == false)
                 {
                     return false;
                 }
             }
             else if (sourceObject as SQLTrigger != null)
             {
-                if (((SQLTrigger)sourceObject).SQLSyntax.Equals(((SQLTrigger)destinationObject).SQLSyntax) == false)
+                if (((SQLTrigger)sourceObject).ToSQLSyntax().Equals(((SQLTrigger)destinationObject).ToSQLSyntax()) == false)
                 {
                     return false;
                 }

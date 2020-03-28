@@ -33,26 +33,29 @@
             var bookGrid = new soby_WebGrid("#soby_TasksDiv", "<#= TableName #>", bookService, "There is no record found.");
             bookGrid.ImagesFolderUrl = "/media/images";
 
-            bookService.Transport.Read = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>", "json", "application/json; charset=utf-8", "GET");
-            bookService.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>", "json", "application/json; charset=utf-8", "POST");
-            bookService.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>(#key)", "json", "application/json; charset=utf-8", "PUT");
-            bookService.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>(#key)", "json", "application/json; charset=utf-8", "DELETE");
+            bookService.Transport.Read = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "GET");
+            bookService.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "POST");
+            bookService.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "PUT");
+            bookService.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "DELETE");
 
 			<#
 			foreach(Field field in Fields){
-			if(field.IsPrimary == true){
-			#>
-            bookGrid.AddKeyField("<#= field.Name #>");
-			<#
-			}
+			    if(field.IsPrimary == true){
+			    #>
+                bookGrid.AddKeyField("<#= field.Name #>");
+			    <#
+			    }
 			}
 			#>
 
 
 			<#
 			foreach(Field field in Fields){
+                string fieldTypeString = "SobyFieldTypes.Text";
+			    if(field.Type == FieldTypes.Number)
+                    fieldTypeString = "SobyFieldTypes.Number";
 			#>
-            bookDataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Number, null);
+            bookDataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
             bookGrid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, true, null);
 			<#
 			}

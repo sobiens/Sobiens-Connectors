@@ -45,10 +45,11 @@ namespace SobyGrid_WebAPIExample.Models
         public TaskServiceContext()
             : base(""name=TaskServiceContext"")
         {
+            Database.SetInitializer<TaskServiceContext>(null);
         }
 			");
             
-            #line 25 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 26 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
 			List<Folder> tables = (List<Folder>)Tables;
 			foreach (Folder table in tables)
@@ -59,21 +60,21 @@ namespace SobyGrid_WebAPIExample.Models
             #line hidden
             this.Write("\t\t\tpublic System.Data.Entity.DbSet<");
             
-            #line 30 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
             
             #line default
             #line hidden
             this.Write("Record> ");
             
-            #line 30 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
             
             #line default
             #line hidden
-            this.Write(" { get; set; }\r\n\t\t\t");
+            this.Write("List { get; set; }\r\n\t\t\t");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
 			}
 			

@@ -21,15 +21,15 @@ using System.Web.OData;
 
 namespace SobyGrid_WebAPIExample.Controllers
 {
-    public class <#= TableName #>Controller : ODataController
+    public class <#= TableName #>ListController : ODataController
     {
         private TaskServiceContext db = new TaskServiceContext();
 
         // GET api/<#= TableName #>
         [EnableQuery]
-        public IQueryable<<#= TableName #>Record> Get<#= TableName #>()
+        public IQueryable<<#= TableName #>Record> Get<#= TableName #>List()
         {
-            return db.<#= TableName #>;
+            return db.<#= TableName #>List;
         }
 
 		<#
@@ -47,7 +47,7 @@ namespace SobyGrid_WebAPIExample.Controllers
 				fieldTypeString = "bool";
 			else if (Fields[i].Type == FieldTypes.Number)
 				fieldTypeString = "int";
-			string keyName = "key" + i.ToString();
+			string keyName = "key";
 			parametersWithOrder += ", " + keyName;
 			queryStringParameters += ", [FromODataUri] " + fieldTypeString + " " + keyName;
 			functionParameters += ", " + fieldTypeString + " " + keyName;
@@ -73,7 +73,7 @@ namespace SobyGrid_WebAPIExample.Controllers
         [EnableQuery]
         public SingleResult<<#= TableName #>Record> Get(<#= queryStringParameters #>)
         {
-            IQueryable<<#= TableName #>Record> result = db.<#= TableName #>.Where(<#= whereFilters #>);
+            IQueryable<<#= TableName #>Record> result = db.<#= TableName #>List.Where(<#= whereFilters #>);
             return SingleResult.Create(result);
         }
 
@@ -83,7 +83,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             {
                 return BadRequest(ModelState);
             }
-            db.<#= TableName #>.Add(addEntity);
+            db.<#= TableName #>List.Add(addEntity);
             await db.SaveChangesAsync();
             return Created(addEntity);
         }
@@ -94,7 +94,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var entity = await db.<#= TableName #>.FindAsync(new object[]{<#= parametersWithOrder #>});
+            var entity = await db.<#= TableName #>List.FindAsync(new object[]{<#= parametersWithOrder #>});
             if (entity == null)
             {
                 return NotFound();
@@ -149,18 +149,18 @@ namespace SobyGrid_WebAPIExample.Controllers
 
         public async System.Threading.Tasks.Task<IHttpActionResult> Delete(<#= queryStringParameters #>)
         {
-            var deleteEntity = await db.<#= TableName #>.FindAsync(new object[]{<#= parametersWithOrder #>});
+            var deleteEntity = await db.<#= TableName #>List.FindAsync(new object[]{<#= parametersWithOrder #>});
             if (deleteEntity == null)
             {
                 return NotFound();
             }
-            db.<#= TableName #>.Remove(deleteEntity);
+            db.<#= TableName #>List.Remove(deleteEntity);
             await db.SaveChangesAsync();
             return StatusCode(HttpStatusCode.NoContent);
         }
         private bool RecordExists(<#= functionParameters #>)
         {
-            return db.<#= TableName #>.Count(<#= whereFilters #>) > 0;
+            return db.<#= TableName #>List.Count(<#= whereFilters #>) > 0;
         }
 		<#
 		}

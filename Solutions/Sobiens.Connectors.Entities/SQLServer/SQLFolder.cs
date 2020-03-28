@@ -42,7 +42,8 @@ namespace Sobiens.Connectors.Entities.SQLServer
 
         public string Name { get; set; }
         public string Schema { get; set; }
-        public string SQLSyntax { get; set; }
+        public string _SQLSyntax { get; set; }
+        public virtual string ToSQLSyntax() { return this._SQLSyntax; }
 
         public override bool CanUpload()
         {

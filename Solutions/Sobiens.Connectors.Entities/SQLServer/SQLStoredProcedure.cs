@@ -22,7 +22,7 @@ namespace Sobiens.Connectors.Entities.SQLServer
             SQLStoredProcedure storedProcedure = value as SQLStoredProcedure;
 
             return (storedProcedure != null)
-                && (SQLSyntax == storedProcedure.SQLSyntax);
+                && (ToSQLSyntax() == storedProcedure.ToSQLSyntax());
         }
     }
 }

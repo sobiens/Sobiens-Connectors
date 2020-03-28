@@ -51,8 +51,8 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write("Controller : ODataController\r\n    {\r\n        private TaskServiceContext db = new " +
-                    "TaskServiceContext();\r\n\r\n        // GET api/");
+            this.Write("ListController : ODataController\r\n    {\r\n        private TaskServiceContext db = " +
+                    "new TaskServiceContext();\r\n\r\n        // GET api/");
             
             #line 28 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
@@ -73,14 +73,14 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write("()\r\n        {\r\n            return db.");
+            this.Write("List()\r\n        {\r\n            return db.");
             
             #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
             
             #line default
             #line hidden
-            this.Write(";\r\n        }\r\n\r\n\t\t");
+            this.Write("List;\r\n        }\r\n\r\n\t\t");
             
             #line 35 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
 
@@ -98,7 +98,7 @@ namespace SobyGrid_WebAPIExample.Controllers
 				fieldTypeString = "bool";
 			else if (Fields[i].Type == FieldTypes.Number)
 				fieldTypeString = "int";
-			string keyName = "key" + i.ToString();
+			string keyName = "key";
 			parametersWithOrder += ", " + keyName;
 			queryStringParameters += ", [FromODataUri] " + fieldTypeString + " " + keyName;
 			functionParameters += ", " + fieldTypeString + " " + keyName;
@@ -157,7 +157,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".Where(");
+            this.Write("List.Where(");
             
             #line 76 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(whereFilters));
@@ -181,9 +181,9 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".Add(addEntity);\r\n            await db.SaveChangesAsync();\r\n            return Cr" +
-                    "eated(addEntity);\r\n        }\r\n\r\n        public async System.Threading.Tasks.Task" +
-                    "<IHttpActionResult> Patch(");
+            this.Write("List.Add(addEntity);\r\n            await db.SaveChangesAsync();\r\n            retur" +
+                    "n Created(addEntity);\r\n        }\r\n\r\n        public async System.Threading.Tasks." +
+                    "Task<IHttpActionResult> Patch(");
             
             #line 91 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(queryStringParameters));
@@ -206,7 +206,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".FindAsync(new object[]{");
+            this.Write("List.FindAsync(new object[]{");
             
             #line 97 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parametersWithOrder));
@@ -311,7 +311,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".FindAsync(new object[]{");
+            this.Write("List.FindAsync(new object[]{");
             
             #line 152 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parametersWithOrder));
@@ -326,9 +326,9 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".Remove(deleteEntity);\r\n            await db.SaveChangesAsync();\r\n            ret" +
-                    "urn StatusCode(HttpStatusCode.NoContent);\r\n        }\r\n        private bool Recor" +
-                    "dExists(");
+            this.Write("List.Remove(deleteEntity);\r\n            await db.SaveChangesAsync();\r\n           " +
+                    " return StatusCode(HttpStatusCode.NoContent);\r\n        }\r\n        private bool R" +
+                    "ecordExists(");
             
             #line 161 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(functionParameters));
@@ -342,7 +342,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             
             #line default
             #line hidden
-            this.Write(".Count(");
+            this.Write("List.Count(");
             
             #line 163 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(whereFilters));

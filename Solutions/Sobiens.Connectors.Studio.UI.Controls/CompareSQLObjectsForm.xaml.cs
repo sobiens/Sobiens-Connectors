@@ -46,8 +46,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 isExecutable = true;
             }
 
-            string sourceSQLSyntax = ((SQLFolder)SourceObject).SQLSyntax;
-            string destinationSQLSyntax = ((SQLFolder)DestinationObject).SQLSyntax;
+            string sourceSQLSyntax = ((SQLFolder)SourceObject).ToSQLSyntax();
+            string destinationSQLSyntax = ((SQLFolder)DestinationObject).ToSQLSyntax();
 
             if(isExecutable == true)
             {

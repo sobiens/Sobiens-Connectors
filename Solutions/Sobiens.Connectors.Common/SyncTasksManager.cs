@@ -795,11 +795,15 @@ namespace Sobiens.Connectors.Common
                         serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, int.Parse(item.GetID()), values, auditInformation);
                     }
                     else
+                    {
+                        Logger.Info("Creating list item... ", "Service");
                         serviceManager.CreateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, values);
+                    }
                 }
                 else if (action.Equals("Update") == true && shouldSkipUpdates == false)
                 {
                     int listItemId = int.Parse(dataRow[3]);
+                    Logger.Info("Updating list item listItemId:" + listItemId + " ... ", "Service");
                     serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, listItemId, values, auditInformation);
                 }
             }

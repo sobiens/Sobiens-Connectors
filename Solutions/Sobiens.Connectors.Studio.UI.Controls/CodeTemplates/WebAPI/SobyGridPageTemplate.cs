@@ -69,53 +69,54 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
             
             #line default
             #line hidden
-            this.Write("\", \"json\", \"application/json; charset=utf-8\", \"GET\");\r\n            bookService.Tr" +
-                    "ansport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + \"/");
+            this.Write("List\", \"json\", \"application/json; charset=utf-8\", \"GET\");\r\n            bookServic" +
+                    "e.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + \"/");
             
             #line 37 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
             
             #line default
             #line hidden
-            this.Write("\", \"json\", \"application/json; charset=utf-8\", \"POST\");\r\n            bookService.T" +
-                    "ransport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + \"/");
+            this.Write("List\", \"json\", \"application/json; charset=utf-8\", \"POST\");\r\n            bookServi" +
+                    "ce.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + \"/" +
+                    "");
             
             #line 38 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
             
             #line default
             #line hidden
-            this.Write("(#key)\", \"json\", \"application/json; charset=utf-8\", \"PUT\");\r\n            bookServ" +
-                    "ice.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + \"" +
-                    "/");
+            this.Write("List(#key)\", \"json\", \"application/json; charset=utf-8\", \"PUT\");\r\n            book" +
+                    "Service.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl()" +
+                    " + \"/");
             
             #line 39 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
             
             #line default
             #line hidden
-            this.Write("(#key)\", \"json\", \"application/json; charset=utf-8\", \"DELETE\");\r\n\r\n\t\t\t");
+            this.Write("List(#key)\", \"json\", \"application/json; charset=utf-8\", \"DELETE\");\r\n\r\n\t\t\t");
             
             #line 41 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
 
 			foreach(Field field in Fields){
-			if(field.IsPrimary == true){
-			
+			    if(field.IsPrimary == true){
+			    
             
             #line default
             #line hidden
-            this.Write("            bookGrid.AddKeyField(\"");
+            this.Write("                bookGrid.AddKeyField(\"");
             
             #line 45 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
-            this.Write("\");\r\n\t\t\t");
+            this.Write("\");\r\n\t\t\t    ");
             
             #line 46 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
 
-			}
+			    }
 			}
 			
             
@@ -126,34 +127,44 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
             #line 52 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
 
 			foreach(Field field in Fields){
+                string fieldTypeString = "SobyFieldTypes.Text";
+			    if(field.Type == FieldTypes.Number)
+                    fieldTypeString = "SobyFieldTypes.Number";
 			
             
             #line default
             #line hidden
             this.Write("            bookDataSourceBuilder.AddSchemaField(\"");
             
-            #line 55 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            #line 58 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
-            this.Write("\", SobyFieldTypes.Number, null);\r\n            bookGrid.AddColumn(\"");
+            this.Write("\", ");
             
-            #line 56 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            #line 58 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
+            
+            #line default
+            #line hidden
+            this.Write(", null);\r\n            bookGrid.AddColumn(\"");
+            
+            #line 59 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write("\", \"");
             
-            #line 56 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            #line 59 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write("\", SobyShowFieldsOn.All, null, null, true, true, true, null);\r\n\t\t\t");
             
-            #line 57 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            #line 60 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
 
 			}
 			

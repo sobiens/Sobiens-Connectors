@@ -41,7 +41,7 @@
                     <Image Source="Images/ValidateCaml.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Code Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CodeWizardButton_Click" Background="Transparent" Name="CodeWizardButton" Visibility="Hidden">
+            <Button ToolTip="Code Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CodeWizardButton_Click" Background="Transparent" Name="CodeWizardButton" Visibility="Visible">
                 <Button.Content>
                     <Image Source="Images/CodeWizard.png" Height="18" Width="18" />
                 </Button.Content>

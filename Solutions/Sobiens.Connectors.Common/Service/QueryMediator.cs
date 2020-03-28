@@ -15,18 +15,22 @@ namespace Sobiens.Connectors.Common.Service
         {
             var time = referenceTime.TimeOfDay;
             //List<SyncTask> synctasks = SyncTasksManager.GetInstance().GetTestListItemSyncTasks().ToList();
+            Logger.Info("Total synctask count:" + SyncTasksManager.GetInstance().SyncTasks.Count, "EnqueueRequests");
             List<SyncTask> synctasks = SyncTasksManager.GetInstance().SyncTasks.Where(t => t.Scheduled == true).ToList();
+            Logger.Info("Total scheduled synctask count:" + synctasks.Count, "EnqueueRequests");
 
             foreach (var synctask in synctasks)
             {
                 QueryRunner queryRunner = QueuedRequests.Where(t => t.Task.ID == synctask.ID).FirstOrDefault();
                 if (queryRunner == null)
                 {
+                    Logger.Info("Queued request synctask.ProcessID:" + synctask.ProcessID, "EnqueueRequests");
                     SyncTasksManager.GetInstance().SaveProcessStatus(synctask.ProcessID, "Queued", referenceTime, null);
                     EnqueAction(synctask);
                 }
                 else if(queryRunner.Task.LastRunStartDate.AddSeconds(synctask.ScheduleInterval) < DateTime.Now && queryRunner.State == RunnerState.Complete)
                 {
+                    Logger.Info("Removing queued request synctask.ProcessID:" + synctask.ProcessID, "EnqueueRequests");
                     QueuedRequests.Remove(queryRunner);
                     /*
                     SyncTaskStatus syncTaskStatus = SyncTasksManager.GetInstance().GetLastSyncTaskStatus(synctask);
@@ -63,13 +67,20 @@ namespace Sobiens.Connectors.Common.Service
                                               select runner).Count() > 0 ? true : false;
                     if (isTaskInProgress == true)
                         continue;
+                    Logger.Info("Performing request synctask ProcessID:" + runner.Task.ProcessID, "EnqueueRequests");
                     SyncTasksManager.GetInstance().SaveProcessStatus(runner.Task.ProcessID, "Started", null, null);
 
                     //logger.Info(String.Format("Performing request for {0} RetriedCount:{1}...", runner.Request.TargetMeter.ToLogString(), runner.RetryCount));
-                    if(isAsync == true)
+                    if (isAsync == true)
+                    {
+                        Logger.Info("Running synctask as async ProcessID:" + runner.Task.ProcessID, "EnqueueRequests");
                         runner.RunAsync();
+                    }
                     else
+                    {
+                        Logger.Info("Running synctask as sync ProcessID:" + runner.Task.ProcessID, "EnqueueRequests");
                         runner.RunSync();
+                    }
                 }
             }
         }

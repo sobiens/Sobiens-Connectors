@@ -22,7 +22,7 @@ namespace Sobiens.Connectors.Entities.SQLServer
             SQLView view = value as SQLView;
 
             return (view != null)
-                && (SQLSyntax == view.SQLSyntax);
+                && (ToSQLSyntax() == view.ToSQLSyntax());
         }
     }
 }

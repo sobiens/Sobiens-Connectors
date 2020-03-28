@@ -24,7 +24,7 @@ namespace Sobiens.Connectors.Entities.SQLServer
             SQLFunction function = value as SQLFunction;
 
             return (function != null)
-                && (SQLSyntax == function.SQLSyntax);
+                && (ToSQLSyntax() == function.ToSQLSyntax());
         }
     }
 }

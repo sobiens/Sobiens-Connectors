@@ -118,7 +118,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 return;
             }
 
-            EDMXManager.Save("c:\\temp\\newedmx.xml", selectedObject as SQLDB);
+            //EDMXManager.Save("c:\\temp\\newedmx.xml", selectedObject as SQLDB);
 
             CodeWizardForm codeWizardForm = new CodeWizardForm();
             codeWizardForm.Initialize(ApplicationContext.Current.SPCamlStudio.QueriesPanel.QueryPanels, selectedObject);
