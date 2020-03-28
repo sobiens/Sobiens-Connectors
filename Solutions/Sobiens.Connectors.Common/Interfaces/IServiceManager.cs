@@ -10,6 +10,7 @@ using System.Data;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Net;
 using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.Common.Interfaces
 {
@@ -48,7 +49,10 @@ namespace Sobiens.Connectors.Common.Interfaces
         void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields);
 
         string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
-        List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName);
+        SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder);
+        
+
+            List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting, string listName);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder, bool includeReadOnly);
         List<ContentType> GetContentTypes(ISiteSetting siteSetting);

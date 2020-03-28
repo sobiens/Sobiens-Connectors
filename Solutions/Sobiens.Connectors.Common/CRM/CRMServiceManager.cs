@@ -11,6 +11,7 @@ using System.Net;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Services.CRM;
 using System.Linq;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.Common.CRM
 {
@@ -256,6 +257,10 @@ namespace Sobiens.Connectors.Common.CRM
         }
 
         public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            throw new Exception("Not implemented yet.");
+        }
+        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
         {
             throw new Exception("Not implemented yet.");
         }

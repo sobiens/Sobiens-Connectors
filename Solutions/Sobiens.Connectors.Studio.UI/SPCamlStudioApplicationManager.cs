@@ -20,6 +20,7 @@ using System.Windows;
 using System.Windows.Data;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Entities.Workflows;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.UI
 {
@@ -98,6 +99,11 @@ namespace Sobiens.Connectors.UI
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
             return serviceManager.GetPrimaryKeys(siteSetting, folder);
         }
+        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder) {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetForeignKeys(siteSetting, folder);
+        }
+
         public override FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
             if(folder as CRMEntity != null)

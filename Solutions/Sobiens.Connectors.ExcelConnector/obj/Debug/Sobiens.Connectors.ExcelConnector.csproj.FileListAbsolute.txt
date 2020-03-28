@@ -55,3 +55,6 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.dll
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csprojAssemblyReference.cache
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.Properties.Resources.resources
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.ExcelConnector\obj\Debug\Sobiens.Connectors.ExcelConnector.csproj.GenerateResource.cache

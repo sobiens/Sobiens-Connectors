@@ -149,6 +149,11 @@ namespace Sobiens.Connectors.Common.SQLServer
             return (new SQLServerService()).GetPrimaryKeys(siteSetting, ((SQLTable)folder).DBName, folder.Title);
         }
 
+        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            return (new SQLServerService()).GetForeignKeys(siteSetting, ((SQLTable)folder).DBName, folder.Title);
+        }
+
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
             return (new SQLServerService()).GetFields(siteSetting, ((SQLTable)folder).DBName, ((SQLTable)folder).ListName);

@@ -180,21 +180,30 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, folder);
                     FieldCollection primaryKeyFields = new FieldCollection();
                     string[] primaryKeys = ApplicationContext.Current.GetPrimaryKeys(siteSetting, folder);
+                    SQLForeignKey[] foreignKeys = ApplicationContext.Current.GetForeignKeys(siteSetting, folder);
                     if (primaryKeys.Count() == 0)
                         continue;
-
+                    List<Folder> referencedTables = new List<Folder>();
                     List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
                     foreach (Field field in fields)
                     {
-                        
                         if (primaryKeys.Contains(field.Name))
                             field.IsPrimary = true;
+                    }
+
+                    foreach(SQLForeignKey foreignKey in foreignKeys)
+                    {
+                        referencedTables.Add(_MainObject.Folders.Where(t=>t.Title.Equals(foreignKey.ReferencedTableName, StringComparison.InvariantCultureIgnoreCase)).First());
                     }
 
                     string tableName = folder.Title;
                     parameters = new Dictionary<string, object>();
                     parameters["TableName"] = tableName;
                     parameters["Fields"] = fields;
+                    parameters["ForeignKeys"] = foreignKeys;
+                    parameters["ReferencedTables"] = referencedTables;
+
+
                     GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
                     GenerateControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
                     GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);

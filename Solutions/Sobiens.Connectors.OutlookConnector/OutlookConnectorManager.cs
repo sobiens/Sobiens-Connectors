@@ -11,6 +11,7 @@ using Sobiens.Connectors.WPF.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.Workflows;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.OutlookConnector
 {
@@ -610,7 +611,11 @@ namespace Sobiens.Connectors.OutlookConnector
         {
             throw new NotImplementedException();
         }
-
+        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetForeignKeys(siteSetting, folder);
+        }
         public override void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems)
         {
             throw new NotImplementedException();

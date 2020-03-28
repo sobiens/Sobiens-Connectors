@@ -14,6 +14,7 @@ using System.Data;
 using System.Diagnostics;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Net;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.Common.SharePoint
 {
@@ -600,7 +601,10 @@ namespace Sobiens.Connectors.Common.SharePoint
             ISharePointService spService = new SharePointService();
             spService.DeleteUniquePermissions(siteSetting, folder, applyToAllSubItems);
         }
-
+        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            throw new NotImplementedException();
+        }
         public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
         {
             throw new NotImplementedException();

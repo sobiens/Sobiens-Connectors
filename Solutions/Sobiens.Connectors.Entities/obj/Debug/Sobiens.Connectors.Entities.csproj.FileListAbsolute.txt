@@ -35,4 +35,3 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.pdb
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Entities\obj\Debug\Sobiens.Connectors.Entities.csprojAssemblyReference.cache

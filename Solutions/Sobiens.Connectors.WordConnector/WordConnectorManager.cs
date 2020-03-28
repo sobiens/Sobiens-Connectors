@@ -17,6 +17,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Diagnostics;
 using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.Workflows;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.WordConnector
 {
@@ -413,7 +414,11 @@ namespace Sobiens.Connectors.WordConnector
         {
             throw new NotImplementedException();
         }
-
+        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetForeignKeys(siteSetting, folder);
+        }
         public override string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
         {
             throw new NotImplementedException();

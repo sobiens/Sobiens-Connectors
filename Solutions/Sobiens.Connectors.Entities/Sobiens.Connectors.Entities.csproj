@@ -151,6 +151,7 @@
     <Compile Include="SharePoint\SPWebpart.cs" />
     <Compile Include="SQLServer\SQLDB.cs" />
     <Compile Include="SQLServer\SQLFolder.cs" />
+    <Compile Include="SQLServer\SQLForeignKey.cs" />
     <Compile Include="SQLServer\SQLStoredProcedure.cs" />
     <Compile Include="SQLServer\SQLField.cs" />
     <Compile Include="SQLServer\SQLTrigger.cs" />

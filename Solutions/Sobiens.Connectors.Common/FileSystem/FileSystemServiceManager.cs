@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Sobiens.Connectors.Entities.FileSystem;
 using Sobiens.Connectors.Entities.Workflows;
 using System.Net;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.Common.SharePoint
 {
@@ -541,7 +542,10 @@ namespace Sobiens.Connectors.Common.SharePoint
         {
             throw new NotImplementedException();
         }
-
+        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            throw new Exception("Not implemented yet.");
+        }
         public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
         {
             throw new NotImplementedException();

@@ -16,6 +16,7 @@ using Sobiens.Connectors.WPF.Controls;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.Workflows;
+using Sobiens.Connectors.Entities.SQLServer;
 
 namespace Sobiens.Connectors.ExcelConnector
 {
@@ -231,7 +232,11 @@ namespace Sobiens.Connectors.ExcelConnector
         {
             return ItemsManager.GetItemMenuItems(siteSetting, item);
         }
-
+        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
+        {
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            return serviceManager.GetForeignKeys(siteSetting, folder);
+        }
         public override SC_MenuItems GetFolderMenuItems(ISiteSetting siteSetting, Folder folder)
         {
             return FoldersManager.GetFolderMenuItems(siteSetting, folder);
