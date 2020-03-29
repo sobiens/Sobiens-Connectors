@@ -87,6 +87,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelClassTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.cs">
+      <DependentUpon>SobyGridComponentTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CodeTemplates\WebAPI\SobyGridPageTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -599,6 +604,10 @@
     <Content Include="CodeTemplates\WebAPI\ModelClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ModelClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SobyGridComponentTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="CodeTemplates\WebAPI\SobyGridPageTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

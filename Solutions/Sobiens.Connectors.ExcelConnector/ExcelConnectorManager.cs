@@ -232,11 +232,6 @@ namespace Sobiens.Connectors.ExcelConnector
         {
             return ItemsManager.GetItemMenuItems(siteSetting, item);
         }
-        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            return serviceManager.GetForeignKeys(siteSetting, folder);
-        }
         public override SC_MenuItems GetFolderMenuItems(ISiteSetting siteSetting, Folder folder)
         {
             return FoldersManager.GetFolderMenuItems(siteSetting, folder);
@@ -396,11 +391,6 @@ namespace Sobiens.Connectors.ExcelConnector
         }
 
         public override FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
         {
             throw new NotImplementedException();
         }

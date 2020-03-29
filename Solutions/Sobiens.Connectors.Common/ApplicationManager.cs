@@ -47,8 +47,6 @@ namespace Sobiens.Connectors.Common
         public abstract void CopyFile(Folder folder, IItem item, string newFileName);
         public abstract bool CheckFolderExists(Folder folder, string newFolderName);
         public abstract FieldCollection GetFields(ISiteSetting siteSetting, Folder folder);
-        public abstract string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
-        public abstract SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder);
         public abstract void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields);
         public abstract void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems);
         public abstract void Save();

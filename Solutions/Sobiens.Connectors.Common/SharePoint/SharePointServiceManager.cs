@@ -601,14 +601,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             ISharePointService spService = new SharePointService();
             spService.DeleteUniquePermissions(siteSetting, folder, applyToAllSubItems);
         }
-        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new NotImplementedException();
-        }
-        public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new NotImplementedException();
-        }
+
         public SPTermStore GetTermStore(ISiteSetting siteSetting)
         {
             ISharePointService spService = new SharePointService();

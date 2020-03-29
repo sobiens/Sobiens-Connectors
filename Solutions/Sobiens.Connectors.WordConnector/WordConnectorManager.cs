@@ -414,15 +414,6 @@ namespace Sobiens.Connectors.WordConnector
         {
             throw new NotImplementedException();
         }
-        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            return serviceManager.GetForeignKeys(siteSetting, folder);
-        }
-        public override string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems)
         {

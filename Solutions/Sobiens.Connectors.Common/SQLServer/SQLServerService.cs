@@ -229,6 +229,35 @@ namespace Sobiens.Connectors.Common.SQLServer
                 foreach(SQLTable table in tables)
                 {
                     table.Fields = GetFields(siteSetting, folder.Title, table.Title);
+                    table.ForeignKeys = GetForeignKeys(siteSetting, folder.Title, table.Title);
+                    table.PrimaryKeys = GetPrimaryKeys(siteSetting, folder.Title, table.Title);
+                    string showFieldName = string.Empty;
+                    foreach (Field field in table.Fields)
+                    {
+                        if(field.Type == FieldTypes.Text)
+                        {
+                            showFieldName = field.Name;
+                        }
+                    }
+                    if(string.IsNullOrEmpty(showFieldName) == true)
+                        showFieldName = table.Fields[0].Name;
+
+                    foreach (Field field in table.Fields)
+                    {
+                        if (table.PrimaryKeys.Contains(field.Name))
+                            field.IsPrimary = true;
+
+                        SQLForeignKey foreignKey = table.ForeignKeys.Where(t => t.TableColumnName.Equals(field.Name) == true).FirstOrDefault();
+                        if (foreignKey != null)
+                        {
+                            ((SQLField)field).Type = FieldTypes.Lookup;
+                            ((SQLField)field).ShowField = showFieldName;
+                            ((SQLField)field).List = foreignKey.ReferencedTableName;
+                            ((SQLField)field).ReferenceFieldName = foreignKey.ReferencedTableColumnName;
+                        }
+                    }
+
+
                 }
 
                 return tables;

@@ -19,6 +19,8 @@ namespace Sobiens.Connectors.Entities.SQLServer
         {
             get;set;
         }
+        public string ReferenceFieldName { get; set; }
+
 
         public string ToSQL()
         {

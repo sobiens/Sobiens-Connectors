@@ -256,14 +256,7 @@ namespace Sobiens.Connectors.Common.CRM
             return buff;
         }
 
-        public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new Exception("Not implemented yet.");
-        }
-        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new Exception("Not implemented yet.");
-        }
+
 
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {

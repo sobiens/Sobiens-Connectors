@@ -48,8 +48,8 @@ namespace Sobiens.Connectors.Common.Interfaces
         FieldCollection GetFields(ISiteSetting siteSetting, Folder folder);
         void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields);
 
-        string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
-        SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder);
+        //string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder);
+        //SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder);
         
 
             List<Workflow> GetWorkflows(ISiteSetting siteSetting, string listName);

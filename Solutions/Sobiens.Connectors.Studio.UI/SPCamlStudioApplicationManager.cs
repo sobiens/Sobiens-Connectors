@@ -94,15 +94,7 @@ namespace Sobiens.Connectors.UI
             return serviceManager.GetViews(siteSetting, folder);
         }
 
-        public override string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            return serviceManager.GetPrimaryKeys(siteSetting, folder);
-        }
-        public override SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder) {
-            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            return serviceManager.GetForeignKeys(siteSetting, folder);
-        }
+
 
         public override FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {

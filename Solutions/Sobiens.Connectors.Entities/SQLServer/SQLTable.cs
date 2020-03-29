@@ -23,6 +23,20 @@ namespace Sobiens.Connectors.Entities.SQLServer
             get;set;
         }
 
+        public string[] PrimaryKeys
+        {
+            get; set;
+        }
+
+        public SQLForeignKey[] ForeignKeys
+        {
+            get; set;
+        }
+
+        public SQLTrigger[] Triggers
+        {
+            get; set;
+        }
         public override string GetWebUrl()
         {
             return this.DBName;

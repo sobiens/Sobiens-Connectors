@@ -538,14 +538,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             throw new NotImplementedException();
         }
 
-        public string[] GetPrimaryKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new NotImplementedException();
-        }
-        public SQLForeignKey[] GetForeignKeys(ISiteSetting siteSetting, Folder folder)
-        {
-            throw new Exception("Not implemented yet.");
-        }
+
         public List<SPTermGroup> GetTermGroups(ISiteSetting siteSetting)
         {
             throw new NotImplementedException();

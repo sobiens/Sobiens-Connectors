@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Sobiens.Connectors.Entities" #>
 <#@ parameter type="System.String" name="TableName" #>
+<#@ parameter type="System.String" name="GridComponentSyntax" #>
 <#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
 <body>
     <link href="/media/css/soby.ui.components.css" rel="stylesheet" type="text/css" media="all" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="/media/js/soby.spservice.js"></script>
+    <script src="/media/js/soby.service.js"></script>
     <script src="/media/js/soby.ui.components.js"></script>
     <div id='soby_TasksDiv'></div>
 
@@ -27,40 +28,8 @@
             soby_PopulateTasks();
         });
         function soby_PopulateTasks() {
-            var bookDataSourceBuilder = new soby_WSBuilder();
-            bookDataSourceBuilder.Filters = new SobyFilters(false);
-            var bookService = new soby_WebServiceService(bookDataSourceBuilder);
-            var bookGrid = new soby_WebGrid("#soby_TasksDiv", "<#= TableName #>", bookService, "There is no record found.");
-            bookGrid.ImagesFolderUrl = "/media/images";
-
-            bookService.Transport.Read = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "GET");
-            bookService.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "POST");
-            bookService.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "PUT");
-            bookService.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "DELETE");
-
-			<#
-			foreach(Field field in Fields){
-			    if(field.IsPrimary == true){
-			    #>
-                bookGrid.AddKeyField("<#= field.Name #>");
-			    <#
-			    }
-			}
-			#>
-
-
-			<#
-			foreach(Field field in Fields){
-                string fieldTypeString = "SobyFieldTypes.Text";
-			    if(field.Type == FieldTypes.Number)
-                    fieldTypeString = "SobyFieldTypes.Number";
-			#>
-            bookDataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
-            bookGrid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, true, null);
-			<#
-			}
-			#>
-            bookGrid.Initialize(true);
+            <#= GridComponentSyntax #>
+            <#= TableName #>Grid.Initialize(true);
         }
     </script>
 </body>

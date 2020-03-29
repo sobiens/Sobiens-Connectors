@@ -128,6 +128,18 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             File.WriteAllText(path, content);
         }
 
+        public string GenerateSobyGridComponentTemplateCodeContent(Dictionary<string, object> parameters)
+        {
+            SobyGridComponentTemplate t = new SobyGridComponentTemplate();
+            t.Session = new System.Collections.Generic.Dictionary<string, object>();
+            foreach (string parameterKey in parameters.Keys)
+            {
+                t.Session[parameterKey] = parameters[parameterKey];
+            }
+            t.Initialize();
+            return t.TransformText();
+        }
+
         public string GetTempPath()
         {
             string folderPath = System.IO.Path.GetTempPath() + "SPCamlStudio";
@@ -177,20 +189,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[_MainObject.SiteSettingID];
                 foreach (Folder folder in _MainObject.Folders)
                 {
-                    FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, folder);
+                    SQLTable table = (SQLTable)folder;
+                    FieldCollection fields = table.Fields;// ApplicationContext.Current.GetFields(siteSetting, folder);
                     FieldCollection primaryKeyFields = new FieldCollection();
-                    string[] primaryKeys = ApplicationContext.Current.GetPrimaryKeys(siteSetting, folder);
-                    SQLForeignKey[] foreignKeys = ApplicationContext.Current.GetForeignKeys(siteSetting, folder);
+                    string[] primaryKeys = table.PrimaryKeys;
+                    SQLForeignKey[] foreignKeys = table.ForeignKeys;
                     if (primaryKeys.Count() == 0)
                         continue;
-                    List<Folder> referencedTables = new List<Folder>();
-                    List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
-                    foreach (Field field in fields)
-                    {
-                        if (primaryKeys.Contains(field.Name))
-                            field.IsPrimary = true;
-                    }
 
+                    List<Folder> referencedTables = new List<Folder>();
+                    //List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
                     foreach(SQLForeignKey foreignKey in foreignKeys)
                     {
                         referencedTables.Add(_MainObject.Folders.Where(t=>t.Title.Equals(foreignKey.ReferencedTableName, StringComparison.InvariantCultureIgnoreCase)).First());
@@ -200,12 +208,34 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     parameters = new Dictionary<string, object>();
                     parameters["TableName"] = tableName;
                     parameters["Fields"] = fields;
-                    parameters["ForeignKeys"] = foreignKeys;
-                    parameters["ReferencedTables"] = referencedTables;
+                    //parameters["ForeignKeys"] = foreignKeys;
+                    //parameters["ReferencedTables"] = referencedTables;
+                    
+                    string gridComponentCode = GenerateSobyGridComponentTemplateCodeContent(parameters);
+                    foreach(Folder referencedTable in referencedTables)
+                    {
+                        SQLTable _referencedTable = (SQLTable)referencedTable;
+                        FieldCollection referencedFields = _referencedTable.Fields; // ApplicationContext.Current.GetFields(siteSetting, referencedTable);
+                        //FieldCollection referencedPrimaryKeyFields = new FieldCollection();
+                        //string[] referencedPrimaryKeys = _referencedTable.PrimaryKeys;
+                        //List<Field> referencedPrimaryKeyFieldObjects = (from x in fields where referencedPrimaryKeys.Contains(x.Name) select x).ToList();
 
+                        Dictionary<string, object> referencedTableParameters = new Dictionary<string, object>();
+                        referencedTableParameters["TableName"] = referencedTable.Title;
+                        referencedTableParameters["Fields"] = referencedFields;
+                        //referencedTableParameters["ForeignKeys"] = foreignKeys;
+                        gridComponentCode += GenerateSobyGridComponentTemplateCodeContent(referencedTableParameters);
+
+                    }
+
+                    foreach(SQLForeignKey foreignKey in foreignKeys)
+                    {
+                        gridComponentCode += tableName + "Grid.AddDataRelation(\"" + fields[0].Name + "\", \"" + foreignKey.TableColumnName + "\", " + foreignKey.ReferencedTableName + "Grid.GridID, \"" + foreignKey.ReferencedTableColumnName + "\");" + Environment.NewLine;
+                    }
 
                     GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
                     GenerateControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                    parameters["GridComponentSyntax"] = gridComponentCode;
                     GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);
 
                     XmlElement htmlElement = doc.CreateElement("Content", "http://schemas.microsoft.com/developer/msbuild/2003");

@@ -1,0 +1,54 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="System.String" name="TableName" #>
+<#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+
+
+        var <#= TableName #>DataSourceBuilder = new soby_WSBuilder();
+        <#= TableName #>DataSourceBuilder.Filters = new SobyFilters(false);
+        var <#= TableName #>Service = new soby_WebServiceService(<#= TableName #>DataSourceBuilder);
+        var <#= TableName #>Grid = new soby_WebGrid("#soby_TasksDiv", "<#= TableName #>", <#= TableName #>Service, "There is no record found.");
+        <#= TableName #>Grid.ImagesFolderUrl = "/media/images";
+
+        <#= TableName #>Service.Transport.Read = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "GET");
+        <#= TableName #>Service.Transport.Add = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "POST");
+        <#= TableName #>Service.Transport.Update = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "PUT");
+        <#= TableName #>Service.Transport.Delete = new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= TableName #>List(#key)", "json", "application/json; charset=utf-8", "DELETE");
+
+		<#
+		foreach(Field field in Fields){
+			if(field.IsPrimary == true){
+			#>
+            <#= TableName #>Grid.AddKeyField("<#= field.Name #>");
+			<#
+			}
+		}
+		#>
+
+
+		<#
+		foreach(Field field in Fields){
+            string fieldTypeString = "SobyFieldTypes.Text";
+			if(field.Type == FieldTypes.Number)
+                fieldTypeString = "SobyFieldTypes.Number";
+
+			if(field.Type == FieldTypes.Lookup){
+			#>
+				<#= TableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Lookup, { ModelName: "<#= field.List #>Record", ValueFieldType: SobyFieldTypes.Number, ValueFieldName: "<#= ((Sobiens.Connectors.Entities.SQLServer.SQLField)field).ReferenceFieldName #>", TitleFieldName: "<#= field.ShowField#>", ReadTransport: new soby_TransportRequest(soby_GetTutorialWebAPIUrl() + "/<#= field.List #>List", "json", "application/json; charset=utf-8", "GET") });
+				<#= TableName #>Grid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, function (item) {
+			        return item.<#= field.List #>Record.<#= field.ShowField#>;
+			    }, null, true, true, true, null);
+			<#
+			}
+			else{
+			#>
+				<#= TableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
+				<#= TableName #>Grid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, true, null);
+		<#
+			}
+		}
+		#>

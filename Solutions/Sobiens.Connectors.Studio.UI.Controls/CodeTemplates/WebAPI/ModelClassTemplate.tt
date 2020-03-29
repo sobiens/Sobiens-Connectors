@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace SobyGrid_WebAPIExample.Models
 {
 	[Table("<#= TableName #>")]
@@ -22,22 +23,61 @@ namespace SobyGrid_WebAPIExample.Models
 		foreach (Field field in Fields)
         {
 			string fieldTypeString = "string";
-			if (field.Type == FieldTypes.Boolean)
-				fieldTypeString = "bool";
-			else if (field.Type == FieldTypes.Number)
-				fieldTypeString = "int";
+			switch (((Sobiens.Connectors.Entities.SQLServer.SQLField)field).SQLFieldTypeName)
+            {
+                case "int":
+			        fieldTypeString = "int";
+                    break;
+                case "bigint":
+			        fieldTypeString = "long";
+                    break;
+                case "float":
+                case "decimal":
+                case "numeric":
+			        fieldTypeString = "decimal";
+                    break;
+                case "smallint":
+			        fieldTypeString = "Int16";
+                    break;
+                case "tinyint":
+			        fieldTypeString = "Byte";
+                    break;
+                case "bit":
+			        fieldTypeString = "bool";
+                    break;
+                case "date":
+                case "datetime":
+                case "datetime2":
+                case "smalldatetime":
+                    fieldTypeString = "DateTime";
+                    break;
+            }
+
 
 		#>
-		<# if (field.Required == true){ #>[Required]<# } #>
-		<# if (field.IsPrimary == true){
-		keyColumnOrder++;
-		 #>
-		[Key]
-		[Column(Order=<#= keyColumnOrder #>)]
-		<# } #>
-	    public <#= fieldTypeString #> <#= field.Name #>{ get; set; }
-		<#
-        }
-		#>
+		    <# if (field.Required == true){ #>[Required]<# } #>
+		    <# if (field.IsPrimary == true){
+		    keyColumnOrder++;
+		     #>
+		    [Key]
+		    [Column(Order=<#= keyColumnOrder #>)]
+		    <# }#>
+
+            <# if(field.Type == FieldTypes.Lookup){#>
+                // Foreign Key
+		        [ForeignKey("<#= field.List #>Record")]
+		        public <#= fieldTypeString #> <#= field.Name #> { get; set; }
+		        // Navigation property
+		        public <#= field.List #>Record <#= field.List #>Record { get; set; }
+            <#
+            }
+            else{
+            #>
+    	        public <#= fieldTypeString #> <#= field.Name #>{ get; set; }
+            <#
+            }
+            #>
+		
+        <#}#>
     }
 }
