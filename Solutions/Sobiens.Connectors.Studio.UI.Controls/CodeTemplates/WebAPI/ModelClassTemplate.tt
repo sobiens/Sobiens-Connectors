@@ -20,6 +20,12 @@ namespace SobyGrid_WebAPIExample.Models
     {
 		<#
 		int keyColumnOrder = 0;
+        bool hasPrimaryField = false;
+		foreach (Field field in Fields)
+        {
+        	if (field.IsPrimary == true)
+                hasPrimaryField = true;
+        }
 		foreach (Field field in Fields)
         {
 			string fieldTypeString = "string";
@@ -49,13 +55,14 @@ namespace SobyGrid_WebAPIExample.Models
                 case "datetime":
                 case "datetime2":
                 case "smalldatetime":
-                    fieldTypeString = "DateTime";
+                    fieldTypeString = "System.DateTime";
                     break;
             }
 
 
 		#>
 		    <# if (field.Required == true){ #>[Required]<# } #>
+		    <# if (hasPrimaryField == false && keyColumnOrder == 0){ #>[Key][DatabaseGenerated(DatabaseGeneratedOption.None)]<# } #>
 		    <# if (field.IsPrimary == true){
 		    keyColumnOrder++;
 		     #>

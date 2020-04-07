@@ -76,9 +76,22 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             File.WriteAllText(path, content);
         }
 
-        public void GenerateControllerCodeFile(string path, Dictionary<string, object> parameters)
+        public void GenerateODataControllerCodeFile(string path, Dictionary<string, object> parameters)
         {
-            ControllerClassTemplate t = new ControllerClassTemplate();
+            ODataControllerClassTemplate t = new ODataControllerClassTemplate();
+            t.Session = new System.Collections.Generic.Dictionary<string, object>();
+            foreach (string parameterKey in parameters.Keys)
+            {
+                t.Session[parameterKey] = parameters[parameterKey];
+            }
+            t.Initialize();
+            string content = t.TransformText();
+            File.WriteAllText(path, content);
+        }
+
+        public void GenerateApiControllerCodeFile(string path, Dictionary<string, object> parameters)
+        {
+            ApiControllerClassTemplate t = new ApiControllerClassTemplate();
             t.Session = new System.Collections.Generic.Dictionary<string, object>();
             foreach (string parameterKey in parameters.Keys)
             {
@@ -139,7 +152,18 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             t.Initialize();
             return t.TransformText();
         }
-
+        public void GenerateIndexPageTemplateCodeContent(string path, Dictionary<string, object> parameters)
+        {
+            IndexPageTemplate t = new IndexPageTemplate();
+            t.Session = new System.Collections.Generic.Dictionary<string, object>();
+            foreach (string parameterKey in parameters.Keys)
+            {
+                t.Session[parameterKey] = parameters[parameterKey];
+            }
+            t.Initialize();
+            string content = t.TransformText();
+            File.WriteAllText(path, content);
+        }
         public string GetTempPath()
         {
             string folderPath = System.IO.Path.GetTempPath() + "SPCamlStudio";
@@ -187,21 +211,33 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 GenerateTaskServiceContextCodeFile(modelsPath + "\\TaskServiceContext.cs", parameters);
 
                 SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[_MainObject.SiteSettingID];
+
+                parameters = new Dictionary<string, object>();
+                parameters["Database"] = _MainObject;
+
+                string gridComponentsCode = string.Empty;
                 foreach (Folder folder in _MainObject.Folders)
                 {
                     SQLTable table = (SQLTable)folder;
                     FieldCollection fields = table.Fields;// ApplicationContext.Current.GetFields(siteSetting, folder);
-                    FieldCollection primaryKeyFields = new FieldCollection();
-                    string[] primaryKeys = table.PrimaryKeys;
+                    //FieldCollection primaryKeyFields = new FieldCollection();
+                    //string[] primaryKeys = table.PrimaryKeys;
                     SQLForeignKey[] foreignKeys = table.ForeignKeys;
-                    if (primaryKeys.Count() == 0)
-                        continue;
+                    List<SQLForeignKey> relatedForeignKeys = new List<SQLForeignKey>();
+                    //if (primaryKeys.Count() == 0)
+                    //    continue;
 
                     List<Folder> referencedTables = new List<Folder>();
-                    //List<Field> primaryKeyFieldObjects = (from x in fields where primaryKeys.Contains(x.Name) select x).ToList();
-                    foreach(SQLForeignKey foreignKey in foreignKeys)
+                    foreach (Folder otherTable in _MainObject.Folders)
                     {
-                        referencedTables.Add(_MainObject.Folders.Where(t=>t.Title.Equals(foreignKey.ReferencedTableName, StringComparison.InvariantCultureIgnoreCase)).First());
+                        if (otherTable.Title.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase) == true)
+                            continue;
+
+                        SQLForeignKey[] _foreignKeys = ((SQLTable)otherTable).ForeignKeys.Where(t => t.ReferencedTableName.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+                        if (_foreignKeys.Count() > 0) { 
+                            referencedTables.Add(otherTable);
+                            relatedForeignKeys.AddRange(_foreignKeys);
+                        }
                     }
 
                     string tableName = folder.Title;
@@ -228,13 +264,36 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                     }
 
-                    foreach(SQLForeignKey foreignKey in foreignKeys)
+                    string showFieldName = string.Empty;
+                    List<Field> textFields = fields.Where(t => t.Type == FieldTypes.Text).ToList();
+                    if (textFields.Count > 0)
+                        showFieldName = textFields[0].Name;
+                    else
+                        showFieldName = fields[0].Name;
+
+
+                    foreach (SQLForeignKey foreignKey in relatedForeignKeys)
                     {
-                        gridComponentCode += tableName + "Grid.AddDataRelation(\"" + fields[0].Name + "\", \"" + foreignKey.TableColumnName + "\", " + foreignKey.ReferencedTableName + "Grid.GridID, \"" + foreignKey.ReferencedTableColumnName + "\");" + Environment.NewLine;
+
+                        gridComponentCode += tableName + "Grid.AddDataRelation(\"" + showFieldName + "\", \"" + foreignKey.ReferencedTableColumnName + "\", " + foreignKey.TableName + "Grid.GridID, \"" + foreignKey.TableColumnName + "\");" + Environment.NewLine;
                     }
 
                     GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
-                    GenerateControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                    if (fields.Where(t => t.IsPrimary == true).Count() > 0)
+                    {
+                        GenerateODataControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                    }
+                    else
+                    {
+                        GenerateApiControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                    }
+
+                    gridComponentCode = "function soby_Populate" + tableName + "() {" +
+                        Environment.NewLine + gridComponentCode +
+                        Environment.NewLine + tableName + "Grid.Initialize(true);" +
+                        Environment.NewLine + "}";
+
+                    gridComponentsCode += gridComponentCode;
                     parameters["GridComponentSyntax"] = gridComponentCode;
                     GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);
 
@@ -256,6 +315,12 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     newChild.Attributes.Append(includeAttribute);
                     nodeItemGroup.AppendChild(newChild);
                 }
+
+                parameters = new Dictionary<string, object>();
+                parameters["Database"] = _MainObject;
+                parameters["GridComponentsSyntax"] = gridComponentsCode;
+                GenerateIndexPageTemplateCodeContent(rootPath + "\\Index.html", parameters);
+
                 string connectionstring = (new SQLServerService()).GetConnectionString(siteSetting, ((SQLDB)_MainObject).Title);
                 SaveConnectionStrings(rootPath + "\\web.config", connectionstring);
 

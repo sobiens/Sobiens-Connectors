@@ -21,16 +21,16 @@
     <div id='soby_TasksDiv'></div>
 
     <script language="javascript">
-        function soby_GetTutorialWebAPIUrl() {
+        function soby_GetODataServiceUrl() {
+            return "/odataapi";
+        }
+        function soby_GetApiServiceUrl() {
             return "/api";
         }
         $(function () {
             soby_PopulateTasks();
         });
-        function soby_PopulateTasks() {
-            <#= GridComponentSyntax #>
-            <#= TableName #>Grid.Initialize(true);
-        }
+        <#= GridComponentSyntax #>
     </script>
 </body>
 </html>

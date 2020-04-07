@@ -198,6 +198,24 @@ namespace Sobiens.Connectors.Common.SQLServer
                 throw ex;
             }
         }
+
+        private string GetShowFieldName(ISiteSetting siteSetting, SQLTable table)
+        {
+            if (table.Fields == null)
+                table.Fields = GetFields(siteSetting, table.DBName, table.Title);
+            string showFieldName = string.Empty;
+            foreach (Field field in table.Fields)
+            {
+                if (field.Type == FieldTypes.Text)
+                {
+                    showFieldName = field.Name;
+                }
+            }
+            if (string.IsNullOrEmpty(showFieldName) == true)
+                showFieldName = table.Fields[0].Name;
+
+            return showFieldName;
+        }
         public List<SQLTable> GetTables(ISiteSetting siteSetting, Folder folder)
         {
             try
@@ -231,16 +249,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                     table.Fields = GetFields(siteSetting, folder.Title, table.Title);
                     table.ForeignKeys = GetForeignKeys(siteSetting, folder.Title, table.Title);
                     table.PrimaryKeys = GetPrimaryKeys(siteSetting, folder.Title, table.Title);
-                    string showFieldName = string.Empty;
-                    foreach (Field field in table.Fields)
-                    {
-                        if(field.Type == FieldTypes.Text)
-                        {
-                            showFieldName = field.Name;
-                        }
-                    }
-                    if(string.IsNullOrEmpty(showFieldName) == true)
-                        showFieldName = table.Fields[0].Name;
+
 
                     foreach (Field field in table.Fields)
                     {
@@ -250,8 +259,9 @@ namespace Sobiens.Connectors.Common.SQLServer
                         SQLForeignKey foreignKey = table.ForeignKeys.Where(t => t.TableColumnName.Equals(field.Name) == true).FirstOrDefault();
                         if (foreignKey != null)
                         {
+                            SQLTable referencedTable = tables.Where(t => t.ListName.Equals(foreignKey.ReferencedTableName, StringComparison.InvariantCultureIgnoreCase) == true).First();
                             ((SQLField)field).Type = FieldTypes.Lookup;
-                            ((SQLField)field).ShowField = showFieldName;
+                            ((SQLField)field).ShowField = GetShowFieldName(siteSetting, referencedTable);
                             ((SQLField)field).List = foreignKey.ReferencedTableName;
                             ((SQLField)field).ReferenceFieldName = foreignKey.ReferencedTableColumnName;
                         }
@@ -703,6 +713,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                             {
                                 string fieldName = dr["columnname"].ToString();
                                 bool required = !(bool)dr["is_nullable"];
+                                bool identity = (bool)dr["is_identity"];
                                 int maxLength = int.Parse(dr["max_length"].ToString())/2;
                                 FieldTypes fieldType = FieldTypes.Text;
                                 switch (dr["columntype"].ToString().ToLower())
@@ -730,6 +741,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 SQLField field = new SQLField();
                                 field.Name = fieldName;
                                 field.DisplayName = fieldName;
+                                field.ReadOnly = identity;
                                 field.Required = required;
                                 field.MaxLength = maxLength;
                                 field.Type = fieldType;

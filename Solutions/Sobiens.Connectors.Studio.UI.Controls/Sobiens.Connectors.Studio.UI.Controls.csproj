@@ -72,10 +72,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClosableBrowserTab.cs" />
-    <Compile Include="CodeTemplates\WebAPI\ControllerClassTemplate.cs">
+    <Compile Include="CodeTemplates\WebAPI\ApiControllerClassTemplate.cs">
+      <DependentUpon>ApiControllerClassTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ControllerClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\ODataControllerClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ODataControllerClassTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="CodeTemplates\WebAPI\EDMXTemplate.cs">
       <AutoGen>True</AutoGen>
@@ -89,6 +94,11 @@
     </Compile>
     <Compile Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.cs">
       <DependentUpon>SobyGridComponentTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\IndexPageTemplate.cs">
+      <DependentUpon>IndexPageTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -593,9 +603,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeTemplates\WebAPI\ControllerClassTemplate.tt">
+    <Content Include="CodeTemplates\WebAPI\ApiControllerClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ControllerClassTemplate.cs</LastGenOutput>
+      <LastGenOutput>ApiControllerClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\ODataControllerClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ODataControllerClassTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="CodeTemplates\WebAPI\EDMXTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -608,6 +622,10 @@
     <Content Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>SobyGridComponentTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\IndexPageTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IndexPageTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="CodeTemplates\WebAPI\SobyGridPageTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

@@ -1,0 +1,187 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+
+<#@ parameter type="System.String" name="TableName" #>
+<#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+
+using SobyGrid_WebAPIExample.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.OData;
+using System.Web.OData.Routing;
+
+namespace SobyGrid_WebAPIExample.Controllers
+{
+    public class <#= TableName #>ListController : ODataController
+    {
+        private TaskServiceContext db = new TaskServiceContext();
+
+        // GET api/<#= TableName #>
+        [EnableQuery]
+        public IQueryable<<#= TableName #>Record> Get()
+        {
+            return db.<#= TableName #>List;
+        }
+
+		<#
+		string parametersWithOrder = string.Empty;
+		string queryStringParameters = string.Empty;
+		string oDataParameters = string.Empty;
+		string functionParameters = string.Empty;
+		string whereFilters = "e => ";
+		string badRequestCheckParameters = string.Empty;
+
+		for(int i=0;i<Fields.Count;i++){
+			if(Fields[i].IsPrimary == false)
+				continue;
+			string fieldTypeString = "string";
+			if (Fields[i].Type == FieldTypes.Boolean)
+				fieldTypeString = "bool";
+			else if (Fields[i].Type == FieldTypes.Number)
+				fieldTypeString = "int";
+			else if (Fields[i].Type == FieldTypes.Lookup)
+				fieldTypeString = "int";
+			string keyName = "key";
+            if(i>0)
+                keyName = "key" + (i-1).ToString();
+			parametersWithOrder += ", " + keyName;
+			queryStringParameters += ", [FromODataUri] " + fieldTypeString + " " + keyName;
+            oDataParameters += "," + keyName + "={" + keyName + "}";
+			functionParameters += ", " + fieldTypeString + " " + keyName;
+			badRequestCheckParameters += " || updateEntity." + Fields[i].Name + " != " + keyName;
+			whereFilters += " e." + Fields[i].Name + " == " + keyName + "  && ";
+		}
+		if(parametersWithOrder.Length>0)
+			parametersWithOrder = parametersWithOrder.Substring(1);
+		if(queryStringParameters.Length>0)
+			queryStringParameters = queryStringParameters.Substring(1);
+		if(oDataParameters.Length>0)
+			oDataParameters = oDataParameters.Substring(1);
+		if(functionParameters.Length>0)
+		    functionParameters = functionParameters.Substring(1);
+		if(badRequestCheckParameters.Length>0)
+			badRequestCheckParameters = badRequestCheckParameters.Substring(3);
+		if(whereFilters.Length>0)
+	        whereFilters = whereFilters.Substring(0, whereFilters.Length - 3);
+		#>
+
+		<#
+		if(parametersWithOrder.Length>0)
+		{
+		#>
+        [EnableQuery]
+        [ODataRoute("Get<#= TableName #>List(<#= oDataParameters #>)")]
+        public SingleResult<<#= TableName #>Record> Get(<#= queryStringParameters #>)
+        {
+            IQueryable<<#= TableName #>Record> result = db.<#= TableName #>List.Where(<#= whereFilters #>);
+            return SingleResult.Create(result);
+        }
+
+        public async System.Threading.Tasks.Task<IHttpActionResult> Post(<#= TableName #>Record addEntity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            db.<#= TableName #>List.Add(addEntity);
+            await db.SaveChangesAsync();
+            return Created(addEntity);
+        }
+
+        public async System.Threading.Tasks.Task<IHttpActionResult> Patch(<#= queryStringParameters #>, Delta<<#= TableName #>Record> patchEntity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var entity = await db.<#= TableName #>List.FindAsync(new object[]{<#= parametersWithOrder #>});
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            patchEntity.Patch(entity);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(<#= parametersWithOrder #>))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return Updated(entity);
+        }
+        
+        [ODataRoute("Update<#= TableName #>List(<#= oDataParameters #>)")]
+        public async System.Threading.Tasks.Task<IHttpActionResult> Put(<#= queryStringParameters #>, <#= TableName #>Record updateEntity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            db.Entry(updateEntity).State = EntityState.Modified;
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(<#= parametersWithOrder #>))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return Updated(updateEntity);
+        }
+
+        [ODataRoute("Delete<#= TableName #>List(<#= oDataParameters #>)")]
+        public async System.Threading.Tasks.Task<IHttpActionResult> Delete(<#= queryStringParameters #>)
+        {
+            var deleteEntity = db.<#= TableName #>List.Where(<#= whereFilters #>).FirstOrDefault();
+            if (deleteEntity == null)
+            {
+                return NotFound();
+            }
+            db.<#= TableName #>List.Remove(deleteEntity);
+            await db.SaveChangesAsync();
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+        private bool RecordExists(<#= functionParameters #>)
+        {
+            return db.<#= TableName #>List.Count(<#= whereFilters #>) > 0;
+        }
+		<#
+		}
+		#>
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

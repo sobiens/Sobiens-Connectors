@@ -43,28 +43,23 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
     <div id='soby_TasksDiv'></div>
 
     <script language=""javascript"">
-        function soby_GetTutorialWebAPIUrl() {
+        function soby_GetODataServiceUrl() {
+            return ""/odataapi"";
+        }
+        function soby_GetApiServiceUrl() {
             return ""/api"";
         }
         $(function () {
             soby_PopulateTasks();
         });
-        function soby_PopulateTasks() {
-            ");
+        ");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
+            #line 33 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GridComponentSyntax));
             
             #line default
             #line hidden
-            this.Write("\r\n            ");
-            
-            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\SobyGridPageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
-            
-            #line default
-            #line hidden
-            this.Write("Grid.Initialize(true);\r\n        }\r\n    </script>\r\n</body>\r\n</html>\r\n");
+            this.Write("\r\n    </script>\r\n</body>\r\n</html>\r\n");
             return this.GenerationEnvironment.ToString();
         }
         

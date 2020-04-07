@@ -44,6 +44,9 @@ namespace SobyGrid_WebAPIExample
     {
         public static void Register(HttpConfiguration config)
         {
+            // Attribute routing.
+            config.MapHttpAttributeRoutes();
+
             // Web API configuration and services
             config.Select();
             config.Filter();
@@ -52,9 +55,6 @@ namespace SobyGrid_WebAPIExample
             config.OrderBy();
             config.MaxTop(10000);
 
-            // Web API routes
-            //config.MapHttpAttributeRoutes();
-
             // New code:
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 			");
@@ -62,38 +62,244 @@ namespace SobyGrid_WebAPIExample
             #line 36 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
 
 			List<Folder> tables = (List<Folder>)Tables;
-			foreach (Folder table in tables)
+			foreach (Folder _table in tables)
 			{
+            Sobiens.Connectors.Entities.SQLServer.SQLTable table = (Sobiens.Connectors.Entities.SQLServer.SQLTable)_table;
 			
             
             #line default
             #line hidden
             this.Write("            builder.EntitySet<");
             
-            #line 41 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            #line 42 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
             
             #line default
             #line hidden
             this.Write("Record>(\"");
             
-            #line 41 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            #line 42 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
             
             #line default
             #line hidden
-            this.Write("List\");\r\n\t\t\t");
+            this.Write("List\");\r\n\r\n            var functionDelete");
             
-            #line 42 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
-
-			}
-			
+            #line 44 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
             
             #line default
             #line hidden
-            this.Write("\r\n            config.MapODataServiceRoute(\r\n                routeName: \"ODataRout" +
-                    "e\",\r\n                routePrefix: \"api\",\r\n                model: builder.GetEdmM" +
-                    "odel());\r\n        }\r\n    }\r\n}\r\n");
+            this.Write(" = builder.Function(\"Delete");
+            
+            #line 44 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n            var functionUpdate");
+            
+            #line 45 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(" = builder.Function(\"Update");
+            
+            #line 45 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n            var functionGet");
+            
+            #line 46 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(" = builder.Function(\"Get");
+            
+            #line 46 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n\r\n            ");
+            
+            #line 48 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+
+            for(int i=0;i<table.Fields.Count;i++){
+			    if(table.Fields[i].IsPrimary == false)
+				    continue;
+			    string fieldTypeString = "string";
+			    if (table.Fields[i].Type == FieldTypes.Boolean)
+				    fieldTypeString = "bool";
+			    else if (table.Fields[i].Type == FieldTypes.Number)
+				    fieldTypeString = "int";
+			    else if (table.Fields[i].Type == FieldTypes.Lookup)
+				    fieldTypeString = "int";
+			    string keyName = "key";
+                if(i>0)
+                    keyName = "key" + (i-1).ToString();
+            
+            
+            #line default
+            #line hidden
+            this.Write("                functionDelete");
+            
+            #line 63 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".Parameter<");
+            
+            #line 63 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
+            
+            #line default
+            #line hidden
+            this.Write(">(\"");
+            
+            #line 63 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(keyName));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n                functionUpdate");
+            
+            #line 64 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".Parameter<");
+            
+            #line 64 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
+            
+            #line default
+            #line hidden
+            this.Write(">(\"");
+            
+            #line 64 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(keyName));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n                functionGet");
+            
+            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".Parameter<");
+            
+            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
+            
+            #line default
+            #line hidden
+            this.Write(">(\"");
+            
+            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(keyName));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n            ");
+            
+            #line 66 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n            functionDelete");
+            
+            #line 68 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".ReturnsCollectionFromEntitySet<");
+            
+            #line 68 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("Record>(\"");
+            
+            #line 68 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n            functionUpdate");
+            
+            #line 69 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".ReturnsCollectionFromEntitySet<");
+            
+            #line 69 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("Record>(\"");
+            
+            #line 69 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n            functionGet");
+            
+            #line 70 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write(".ReturnsCollectionFromEntitySet<");
+            
+            #line 70 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("Record>(\"");
+            
+            #line 70 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            
+            #line default
+            #line hidden
+            this.Write("List\");\r\n\r\n\t\t\t");
+            
+            #line 72 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\WebAPIConfigClassTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(@"
+            config.MapODataServiceRoute(
+                routeName: ""ODataRoute"",
+                routePrefix: ""odataapi"",
+                model: builder.GetEdmModel());
+
+            config.Routes.MapHttpRoute(
+                name: ""DefaultApi"",
+                routeTemplate: ""api/{controller}/{id}"",
+                defaults: new { id = RouteParameter.Optional });
+        }
+    }
+}
+");
             return this.GenerationEnvironment.ToString();
         }
         

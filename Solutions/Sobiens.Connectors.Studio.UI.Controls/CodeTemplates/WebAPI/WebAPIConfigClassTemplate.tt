@@ -20,6 +20,9 @@ namespace SobyGrid_WebAPIExample
     {
         public static void Register(HttpConfiguration config)
         {
+            // Attribute routing.
+            config.MapHttpAttributeRoutes();
+
             // Web API configuration and services
             config.Select();
             config.Filter();
@@ -28,25 +31,55 @@ namespace SobyGrid_WebAPIExample
             config.OrderBy();
             config.MaxTop(10000);
 
-            // Web API routes
-            //config.MapHttpAttributeRoutes();
-
             // New code:
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 			<#
 			List<Folder> tables = (List<Folder>)Tables;
-			foreach (Folder table in tables)
+			foreach (Folder _table in tables)
 			{
+            Sobiens.Connectors.Entities.SQLServer.SQLTable table = (Sobiens.Connectors.Entities.SQLServer.SQLTable)_table;
 			#>
             builder.EntitySet<<#= table.Title #>Record>("<#= table.Title #>List");
-			<#
-			}
-			#>
+
+            var functionDelete<#= table.Title #> = builder.Function("Delete<#= table.Title #>List");
+            var functionUpdate<#= table.Title #> = builder.Function("Update<#= table.Title #>List");
+            var functionGet<#= table.Title #> = builder.Function("Get<#= table.Title #>List");
+
+            <#
+            for(int i=0;i<table.Fields.Count;i++){
+			    if(table.Fields[i].IsPrimary == false)
+				    continue;
+			    string fieldTypeString = "string";
+			    if (table.Fields[i].Type == FieldTypes.Boolean)
+				    fieldTypeString = "bool";
+			    else if (table.Fields[i].Type == FieldTypes.Number)
+				    fieldTypeString = "int";
+			    else if (table.Fields[i].Type == FieldTypes.Lookup)
+				    fieldTypeString = "int";
+			    string keyName = "key";
+                if(i>0)
+                    keyName = "key" + (i-1).ToString();
+            #>
+                functionDelete<#= table.Title #>.Parameter<<#= fieldTypeString #>>("<#= keyName #>");
+                functionUpdate<#= table.Title #>.Parameter<<#= fieldTypeString #>>("<#= keyName #>");
+                functionGet<#= table.Title #>.Parameter<<#= fieldTypeString #>>("<#= keyName #>");
+            <# } #>
+
+            functionDelete<#= table.Title #>.ReturnsCollectionFromEntitySet<<#= table.Title #>Record>("<#= table.Title #>List");
+            functionUpdate<#= table.Title #>.ReturnsCollectionFromEntitySet<<#= table.Title #>Record>("<#= table.Title #>List");
+            functionGet<#= table.Title #>.ReturnsCollectionFromEntitySet<<#= table.Title #>Record>("<#= table.Title #>List");
+
+			<#}#>
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
-                routePrefix: "api",
+                routePrefix: "odataapi",
                 model: builder.GetEdmModel());
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional });
         }
     }
 }
