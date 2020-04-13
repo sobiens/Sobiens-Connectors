@@ -42,34 +42,41 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.OData;
 
-namespace SobyGrid_WebAPIExample.Controllers
-{
-    public class ");
+");
             
-            #line 24 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 22 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
+
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+
+            
+            #line default
+            #line hidden
+            this.Write("namespace SobyGrid_WebAPIExample.Controllers\r\n{\r\n    public class ");
+            
+            #line 27 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("ListController : ApiController\r\n    {\r\n        private TaskServiceContext db = ne" +
                     "w TaskServiceContext();\r\n\r\n        // GET api/");
             
-            #line 28 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List\r\n        public IQueryable<");
             
-            #line 29 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> Get()\r\n        {\r\n            return db.");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 34 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ApiControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden

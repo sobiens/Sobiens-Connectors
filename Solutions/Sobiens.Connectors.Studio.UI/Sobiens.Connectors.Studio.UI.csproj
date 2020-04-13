@@ -38,7 +38,7 @@
     <ProductName>Sobiens Studio</ProductName>
     <PublisherName>Sobiens Information Technology LTD</PublisherName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>37</ApplicationRevision>
     <ApplicationVersion>1.6.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -152,10 +152,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\SobyGrid_WebAPIExample.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\SPOnlineWebpart.dwp" />
+    <EmbeddedResource Include="Resources\SobyGrid_WebAPIExample.zip" />
+    <EmbeddedResource Include="Resources\SPOnlineWebpart.dwp" />
     <None Include="Sobiens.Connectors.Studio.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

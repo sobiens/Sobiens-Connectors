@@ -183,13 +183,21 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             try
             {
-                //            string startPath = @"c:\project\tests";
-                string zipPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Resources\SobyGrid_WebAPIExample.zip";
+                List<string> usedForeignKeyTables = new List<string>();
+
+                //string zipPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\Resources\SobyGrid_WebAPIExample.zip";
                 string extractPath = GetTempPath();
+                string zipPath = extractPath + @"\SobyGrid_WebAPIExample.zip";
+                Stream stream = Assembly.GetEntryAssembly().GetManifestResourceStream("Sobiens.Connectors.Studio.UI.Resources.SobyGrid_WebAPIExample.zip");
+                FileStream fileStream = new FileStream(zipPath, FileMode.CreateNew);
+                for (int i = 0; i < stream.Length; i++)
+                    fileStream.WriteByte((byte)stream.ReadByte());
+                fileStream.Close();
 
                 //            ZipFile.CreateFromDirectory(startPath, zipPath);
 
                 ZipFile.ExtractToDirectory(zipPath, extractPath);
+                File.Delete(zipPath);
                 string rootPath = extractPath + "\\SobyGrid_WebAPIExample\\SobyGrid_WebAPIExample";
                 string modelsPath = rootPath + "\\Models";
                 string controllersPath = rootPath + "\\Controllers";
@@ -219,7 +227,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 foreach (Folder folder in _MainObject.Folders)
                 {
                     SQLTable table = (SQLTable)folder;
-                    FieldCollection fields = table.Fields;// ApplicationContext.Current.GetFields(siteSetting, folder);
+                    FieldCollection fields = table.Fields.GetUsableFields();// ApplicationContext.Current.GetFields(siteSetting, folder);
                     //FieldCollection primaryKeyFields = new FieldCollection();
                     //string[] primaryKeys = table.PrimaryKeys;
                     SQLForeignKey[] foreignKeys = table.ForeignKeys;
@@ -227,7 +235,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     //if (primaryKeys.Count() == 0)
                     //    continue;
 
-                    List<Folder> referencedTables = new List<Folder>();
+                    //List<Folder> referencedTables = new List<Folder>();
                     foreach (Folder otherTable in _MainObject.Folders)
                     {
                         if (otherTable.Title.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase) == true)
@@ -235,83 +243,115 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                         SQLForeignKey[] _foreignKeys = ((SQLTable)otherTable).ForeignKeys.Where(t => t.ReferencedTableName.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase)).ToArray();
                         if (_foreignKeys.Count() > 0) { 
-                            referencedTables.Add(otherTable);
+                            //referencedTables.Add(otherTable);
                             relatedForeignKeys.AddRange(_foreignKeys);
                         }
                     }
 
                     string tableName = folder.Title;
+                    string schemaName = ((SQLTable)folder).Schema;
+                    string fixedTableName = CodeWizardManager.FixTableNameForCode(tableName);
+                    string gridName = fixedTableName + "Grid";
                     parameters = new Dictionary<string, object>();
+                    parameters["Tables"] = _MainObject.Folders;
                     parameters["TableName"] = tableName;
+                    parameters["SchemaName"] = schemaName;
                     parameters["Fields"] = fields;
+                    parameters["GridName"] = gridName;
+                    parameters["GridTitle"] = folder.Title;
+                    parameters["GridAltTitle"] = folder.Title;
+
                     //parameters["ForeignKeys"] = foreignKeys;
                     //parameters["ReferencedTables"] = referencedTables;
-                    
+
                     string gridComponentCode = GenerateSobyGridComponentTemplateCodeContent(parameters);
-                    foreach(Folder referencedTable in referencedTables)
-                    {
-                        SQLTable _referencedTable = (SQLTable)referencedTable;
-                        FieldCollection referencedFields = _referencedTable.Fields; // ApplicationContext.Current.GetFields(siteSetting, referencedTable);
-                        //FieldCollection referencedPrimaryKeyFields = new FieldCollection();
-                        //string[] referencedPrimaryKeys = _referencedTable.PrimaryKeys;
-                        //List<Field> referencedPrimaryKeyFieldObjects = (from x in fields where referencedPrimaryKeys.Contains(x.Name) select x).ToList();
-
-                        Dictionary<string, object> referencedTableParameters = new Dictionary<string, object>();
-                        referencedTableParameters["TableName"] = referencedTable.Title;
-                        referencedTableParameters["Fields"] = referencedFields;
-                        //referencedTableParameters["ForeignKeys"] = foreignKeys;
-                        gridComponentCode += GenerateSobyGridComponentTemplateCodeContent(referencedTableParameters);
-
-                    }
-
                     string showFieldName = string.Empty;
                     List<Field> textFields = fields.Where(t => t.Type == FieldTypes.Text).ToList();
                     if (textFields.Count > 0)
                         showFieldName = textFields[0].Name;
                     else
                         showFieldName = fields[0].Name;
-
-
-                    foreach (SQLForeignKey foreignKey in relatedForeignKeys)
+                    foreach (SQLForeignKey referencedForeignKey in relatedForeignKeys)
                     {
+                        string referencedGridName = fixedTableName + "_";
+                        string referencedTableColumnNames = string.Empty;
+                        string tableColumnNames = string.Empty;
+                        foreach (string referencedTableColumnName in referencedForeignKey.ReferencedTableColumnNames)
+                        {
+                            if (string.IsNullOrEmpty(referencedTableColumnNames) == false)
+                                referencedTableColumnNames += ",";
 
-                        gridComponentCode += tableName + "Grid.AddDataRelation(\"" + showFieldName + "\", \"" + foreignKey.ReferencedTableColumnName + "\", " + foreignKey.TableName + "Grid.GridID, \"" + foreignKey.TableColumnName + "\");" + Environment.NewLine;
+                            referencedTableColumnNames += referencedTableColumnName;
+                        }
+
+                        foreach (string tableColumnName in referencedForeignKey.TableColumnNames)
+                        {
+                            if (string.IsNullOrEmpty(tableColumnNames) == false)
+                                tableColumnNames += ",";
+
+                            tableColumnNames += tableColumnName;
+                            referencedGridName += "_" + tableColumnName;
+                        }
+
+                        referencedGridName += "_Grid";
+                        SQLTable referencedTable = (SQLTable)_MainObject.Folders.Where(t => t.Title.Equals(referencedForeignKey.TableName, StringComparison.InvariantCultureIgnoreCase)).First();
+                        FieldCollection referencedFields = referencedTable.Fields.GetUsableFields(); // ApplicationContext.Current.GetFields(siteSetting, referencedTable);
+                        //FieldCollection referencedPrimaryKeyFields = new FieldCollection();
+                        //string[] referencedPrimaryKeys = _referencedTable.PrimaryKeys;
+                        //List<Field> referencedPrimaryKeyFieldObjects = (from x in fields where referencedPrimaryKeys.Contains(x.Name) select x).ToList();
+
+                        Dictionary<string, object> referencedTableParameters = new Dictionary<string, object>();
+                        referencedTableParameters["Tables"] = _MainObject.Folders;
+                        referencedTableParameters["TableName"] = referencedTable.Title;
+                        referencedTableParameters["SchemaName"] = schemaName;
+                        referencedTableParameters["Fields"] = referencedFields;
+                        referencedTableParameters["GridName"] = referencedGridName;
+                        referencedTableParameters["GridTitle"] = referencedTable.Title;
+                        referencedTableParameters["GridAltTitle"] = tableColumnNames + " --- " + referencedTableColumnNames;
+
+                        //referencedTableParameters["ForeignKeys"] = foreignKeys;
+                        gridComponentCode += GenerateSobyGridComponentTemplateCodeContent(referencedTableParameters);
+                        gridComponentCode += "      " + gridName + ".AddDataRelation(\"" + showFieldName + "\", \"" + referencedTableColumnNames + "\", " + referencedGridName + ".GridID, \"" + tableColumnNames + "\");" + Environment.NewLine;
                     }
 
-                    GenerateModelCodeFile(modelsPath + "\\" + tableName + "Record.cs", parameters);
-                    if (fields.Where(t => t.IsPrimary == true).Count() > 0)
+                    GenerateModelCodeFile(modelsPath + "\\" + fixedTableName + "Record.cs", parameters);
+                    if (fields.Where(t => t.IsPrimary == true).Count() > 0 && table.Fields.HasUnusableFieldsPrimary() == false)
                     {
-                        GenerateODataControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                        GenerateODataControllerCodeFile(controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
                     }
                     else
                     {
-                        GenerateApiControllerCodeFile(controllersPath + "\\" + tableName + "ListController.cs", parameters);
+                        GenerateApiControllerCodeFile(controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
                     }
 
-                    gridComponentCode = "function soby_Populate" + tableName + "() {" +
+                    gridComponentCode = "   function soby_Populate" + fixedTableName + "() {" +
                         Environment.NewLine + gridComponentCode +
-                        Environment.NewLine + tableName + "Grid.Initialize(true);" +
-                        Environment.NewLine + "}";
+                        Environment.NewLine + "     " + gridName + ".Initialize(true);" +
+                        Environment.NewLine + " }" + Environment.NewLine + Environment.NewLine;
 
                     gridComponentsCode += gridComponentCode;
                     parameters["GridComponentSyntax"] = gridComponentCode;
-                    GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + tableName + "Management.html", parameters);
+                    XmlAttribute includeAttribute;
+
+                    /*
+                    GenerateSobyGridPageTemplateCodeFile(rootPath + "\\" + fixedTableName + "Management.html", parameters);
 
                     XmlElement htmlElement = doc.CreateElement("Content", "http://schemas.microsoft.com/developer/msbuild/2003");
-                    XmlAttribute includeAttribute = doc.CreateAttribute("Include");
-                    includeAttribute.Value = tableName + "Management.html";
+                    includeAttribute = doc.CreateAttribute("Include");
+                    includeAttribute.Value = fixedTableName + "Management.html";
                     htmlElement.Attributes.Append(includeAttribute);
                     contentNodeItemGroup.AppendChild(htmlElement);
+                    */
 
                     XmlElement modelElement = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
                     includeAttribute = doc.CreateAttribute("Include");
-                    includeAttribute.Value = "Models\\" + tableName + "Record.cs";
+                    includeAttribute.Value = "Models\\" + fixedTableName + "Record.cs";
                     modelElement.Attributes.Append(includeAttribute);
                     nodeItemGroup.AppendChild(modelElement);
 
                     XmlElement newChild = doc.CreateElement("Compile", "http://schemas.microsoft.com/developer/msbuild/2003");
                     includeAttribute = doc.CreateAttribute("Include");
-                    includeAttribute.Value = "Controllers\\" + tableName + "ListController.cs";
+                    includeAttribute.Value = "Controllers\\" + fixedTableName + "ListController.cs";
                     newChild.Attributes.Append(includeAttribute);
                     nodeItemGroup.AppendChild(newChild);
                 }

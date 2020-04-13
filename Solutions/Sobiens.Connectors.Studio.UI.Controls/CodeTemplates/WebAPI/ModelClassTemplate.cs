@@ -31,166 +31,228 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
         {
             this.Write("\r\n");
             this.Write("\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel.DataAnnotations;" +
-                    "\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\n\r\n\r\nnamespace SobyGrid_We" +
-                    "bAPIExample.Models\r\n{\r\n\t[Table(\"");
+                    "\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\n\r\n");
             
-            #line 18 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 17 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+
+    Sobiens.Connectors.Entities.SQLServer.SQLTable sqlTable = (Sobiens.Connectors.Entities.SQLServer.SQLTable)((List<Folder>)Tables).Where(t=>t.Title == TableName).First();
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\nnamespace SobyGrid_WebAPIExample.Models\r\n{\r\n\t[Table(\"");
+            
+            #line 24 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SchemaName));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 24 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
             
             #line default
             #line hidden
             this.Write("\")]\r\n    public class ");
             
-            #line 19 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 25 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record\r\n    {\r\n\t\t");
             
-            #line 21 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 27 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
 
 		int keyColumnOrder = 0;
         bool hasPrimaryField = false;
+        bool hasDummyPrimaryKeyPlaced = false;
 		foreach (Field field in Fields)
         {
         	if (field.IsPrimary == true)
                 hasPrimaryField = true;
         }
+        List<string> usedForeignKeyTables = new List<string>();
 		foreach (Field field in Fields)
         {
+            string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetCsharpFieldTypeAsString(field);
+            /*
 			string fieldTypeString = "string";
 			switch (((Sobiens.Connectors.Entities.SQLServer.SQLField)field).SQLFieldTypeName)
             {
                 case "int":
-			        fieldTypeString = "int";
+			        fieldTypeString = "int" + (field.Required == true?"":"?");
                     break;
                 case "bigint":
-			        fieldTypeString = "long";
+			        fieldTypeString = "long" + (field.Required == true?"":"?");
                     break;
                 case "float":
                 case "decimal":
                 case "numeric":
-			        fieldTypeString = "decimal";
+                case "money":
+			        fieldTypeString = "decimal" + (field.Required == true?"":"?");
+                    break;
+                case "real":
+			        fieldTypeString = "System.Single" + (field.Required == true?"":"?");
                     break;
                 case "smallint":
-			        fieldTypeString = "Int16";
+			        fieldTypeString = "System.Int16" + (field.Required == true?"":"?");
                     break;
                 case "tinyint":
-			        fieldTypeString = "Byte";
+			        fieldTypeString = "System.Byte" + (field.Required == true?"":"?");
                     break;
                 case "bit":
-			        fieldTypeString = "bool";
+			        fieldTypeString = "bool" + (field.Required == true?"":"?");
                     break;
                 case "date":
                 case "datetime":
                 case "datetime2":
                 case "smalldatetime":
-                    fieldTypeString = "System.DateTime";
+                    fieldTypeString = "System.DateTime" + (field.Required == true?"":"?") ;
                     break;
             }
-
-
+            */
+            string columnAttributeSynxtax = "[Column(\"" + field.Name + "\")]";
 		
             
             #line default
             #line hidden
             this.Write("\t\t    ");
             
-            #line 64 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 78 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  if (field.Required == true){ 
             
             #line default
             #line hidden
             this.Write("[Required]");
             
-            #line 64 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 78 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\t    ");
             
-            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
- if (hasPrimaryField == false && keyColumnOrder == 0){ 
+            #line 79 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+ if (hasPrimaryField == false && hasDummyPrimaryKeyPlaced == false)
+                {
+                    hasDummyPrimaryKeyPlaced = true;
+                
             
             #line default
             #line hidden
-            this.Write("[Key][DatabaseGenerated(DatabaseGeneratedOption.None)]");
+            this.Write("[Key][DatabaseGenerated(DatabaseGeneratedOption.None)]\r\n             ");
             
-            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 83 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\t    ");
             
-            #line 66 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 84 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  if (field.IsPrimary == true){
+            
+            #line default
+            #line hidden
+            this.Write("[Key]");
+            
+            #line 84 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+ }
+            
+            #line default
+            #line hidden
+            this.Write("\t\t    ");
+            
+            #line 85 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+ if (field.IsPrimary == true || field.Type == FieldTypes.Lookup){
 		    keyColumnOrder++;
+            columnAttributeSynxtax = "[Column(\"" + field.Name + "\", Order=" + keyColumnOrder + ")]";
 		     
             
             #line default
             #line hidden
-            this.Write("\t\t    [Key]\r\n\t\t    [Column(Order=");
+            this.Write("\t\t    ");
             
-            #line 70 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(keyColumnOrder));
-            
-            #line default
-            #line hidden
-            this.Write(")]\r\n\t\t    ");
-            
-            #line 71 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 89 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  }
             
             #line default
             #line hidden
             this.Write("\r\n            ");
             
-            #line 73 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 91 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
  if(field.Type == FieldTypes.Lookup){
+                Sobiens.Connectors.Entities.SQLServer.SQLForeignKey foreignKey = sqlTable.ForeignKeys.Where(t => t.TableColumnNames.Contains(field.Name) == true).FirstOrDefault();
+                string navigationPropertyName = Sobiens.Connectors.Common.CodeWizardManager.GetFieldNavigationPropertyName(sqlTable, field);
+            
             
             #line default
             #line hidden
             this.Write("                // Foreign Key\r\n\t\t        [ForeignKey(\"");
             
-            #line 75 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.List));
+            #line 96 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(navigationPropertyName));
             
             #line default
             #line hidden
-            this.Write("Record\")]\r\n\t\t        public ");
+            this.Write("\")]\r\n                ");
             
-            #line 76 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 97 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(columnAttributeSynxtax));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t        public ");
+            
+            #line 98 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 76 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
+            #line 98 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Sobiens.Connectors.Common.CodeWizardManager.FixFieldNameForCode(field.Name)));
             
             #line default
             #line hidden
-            this.Write(" { get; set; }\r\n\t\t        // Navigation property\r\n\t\t        public ");
+            this.Write(" { get; set; }\r\n                ");
             
-            #line 78 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 99 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+ if(usedForeignKeyTables.Contains(foreignKey.Title) == false) 
+                {
+                    usedForeignKeyTables.Add(foreignKey.Title);
+                
+            
+            #line default
+            #line hidden
+            this.Write("\t\t        // Navigation property\r\n\t\t        public ");
+            
+            #line 104 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.List));
             
             #line default
             #line hidden
             this.Write("Record ");
             
-            #line 78 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.List));
+            #line 104 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(navigationPropertyName));
             
             #line default
             #line hidden
-            this.Write("Record { get; set; }\r\n            ");
+            this.Write(" { get; set; }\r\n                ");
             
-            #line 79 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 105 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("            ");
+            
+            #line 106 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
 
             }
             else{
@@ -198,23 +260,30 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
             
             #line default
             #line hidden
-            this.Write("    \t        public ");
+            this.Write("                ");
             
-            #line 83 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 110 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(columnAttributeSynxtax));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    \t        public ");
+            
+            #line 111 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldTypeString));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 83 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
+            #line 111 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Sobiens.Connectors.Common.CodeWizardManager.FixFieldNameForCode(field.Name)));
             
             #line default
             #line hidden
             this.Write("{ get; set; }\r\n            ");
             
-            #line 84 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 112 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
 
             }
             
@@ -223,7 +292,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
             #line hidden
             this.Write("\t\t\r\n        ");
             
-            #line 88 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+            #line 116 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
 }
             
             #line default
@@ -233,6 +302,32 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
         }
         
         #line 1 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ModelClassTemplate.tt"
+
+private object _TablesField;
+
+/// <summary>
+/// Access the Tables parameter of the template.
+/// </summary>
+private object Tables
+{
+    get
+    {
+        return this._TablesField;
+    }
+}
+
+private string _SchemaNameField;
+
+/// <summary>
+/// Access the SchemaName parameter of the template.
+/// </summary>
+private string SchemaName
+{
+    get
+    {
+        return this._SchemaNameField;
+    }
+}
 
 private string _TableNameField;
 
@@ -268,6 +363,34 @@ public virtual void Initialize()
 {
     if ((this.Errors.HasErrors == false))
     {
+bool TablesValueAcquired = false;
+if (this.Session.ContainsKey("Tables"))
+{
+    this._TablesField = ((object)(this.Session["Tables"]));
+    TablesValueAcquired = true;
+}
+if ((TablesValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Tables");
+    if ((data != null))
+    {
+        this._TablesField = ((object)(data));
+    }
+}
+bool SchemaNameValueAcquired = false;
+if (this.Session.ContainsKey("SchemaName"))
+{
+    this._SchemaNameField = ((string)(this.Session["SchemaName"]));
+    SchemaNameValueAcquired = true;
+}
+if ((SchemaNameValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("SchemaName");
+    if ((data != null))
+    {
+        this._SchemaNameField = ((string)(data));
+    }
+}
 bool TableNameValueAcquired = false;
 if (this.Session.ContainsKey("TableName"))
 {

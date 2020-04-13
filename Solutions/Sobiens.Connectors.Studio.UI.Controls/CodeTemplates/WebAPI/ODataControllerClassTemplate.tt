@@ -7,6 +7,7 @@
 
 <#@ parameter type="System.String" name="TableName" #>
 <#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+<#@ parameter type="System.Object" name="Tables" #>
 
 using SobyGrid_WebAPIExample.Models;
 using System;
@@ -20,21 +21,27 @@ using System.Web.Http;
 using System.Web.OData;
 using System.Web.OData.Routing;
 
+<#
+	List<Folder> tables = (List<Folder>)Tables;
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+#>
+
 namespace SobyGrid_WebAPIExample.Controllers
 {
-    public class <#= TableName #>ListController : ODataController
+    public class <#= fixedTableName #>ListController : ODataController
     {
         private TaskServiceContext db = new TaskServiceContext();
 
-        // GET api/<#= TableName #>
+        // GET api/<#= fixedTableName #>
         [EnableQuery]
-        public IQueryable<<#= TableName #>Record> Get()
+        public IQueryable<<#= fixedTableName #>Record> Get()
         {
-            return db.<#= TableName #>List;
+            return db.<#= fixedTableName #>List;
         }
 
 		<#
 		string parametersWithOrder = string.Empty;
+		string updateKeyStatements = string.Empty;
 		string queryStringParameters = string.Empty;
 		string oDataParameters = string.Empty;
 		string functionParameters = string.Empty;
@@ -44,13 +51,28 @@ namespace SobyGrid_WebAPIExample.Controllers
 		for(int i=0;i<Fields.Count;i++){
 			if(Fields[i].IsPrimary == false)
 				continue;
+            
+            string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetCsharpFieldTypeAsString(Fields[i]);
+                
+                /*
 			string fieldTypeString = "string";
 			if (Fields[i].Type == FieldTypes.Boolean)
 				fieldTypeString = "bool";
 			else if (Fields[i].Type == FieldTypes.Number)
 				fieldTypeString = "int";
-			else if (Fields[i].Type == FieldTypes.Lookup)
-				fieldTypeString = "int";
+			else if (Fields[i].Type == FieldTypes.DateTime)
+				fieldTypeString = "System.DateTime";
+			else if (Fields[i].Type == FieldTypes.Lookup){
+            	Sobiens.Connectors.Entities.SQLServer.SQLTable referencedTable = (Sobiens.Connectors.Entities.SQLServer.SQLTable)tables.Where(t=>t.Title==Fields[i].List).First();
+                string referenceFieldName = ((Sobiens.Connectors.Entities.SQLServer.SQLField)Fields[i]).ReferenceFieldName;
+                Field referencedField = referencedTable.Fields.Where(t=>t.Name == referenceFieldName).First();
+			    fieldTypeString = "string";
+			    if (referencedField.Type == FieldTypes.Number || referencedField.Type == FieldTypes.Lookup)
+    				fieldTypeString = "int";
+			    if (referencedField.Type == FieldTypes.DateTime)
+    				fieldTypeString = "System.DateTime";
+            }
+            */
 			string keyName = "key";
             if(i>0)
                 keyName = "key" + (i-1).ToString();
@@ -60,6 +82,7 @@ namespace SobyGrid_WebAPIExample.Controllers
 			functionParameters += ", " + fieldTypeString + " " + keyName;
 			badRequestCheckParameters += " || updateEntity." + Fields[i].Name + " != " + keyName;
 			whereFilters += " e." + Fields[i].Name + " == " + keyName + "  && ";
+            updateKeyStatements += "updateEntity." + Fields[i].Name + "=" + keyName + ";" + Environment.NewLine;
 		}
 		if(parametersWithOrder.Length>0)
 			parametersWithOrder = parametersWithOrder.Substring(1);
@@ -80,31 +103,31 @@ namespace SobyGrid_WebAPIExample.Controllers
 		{
 		#>
         [EnableQuery]
-        [ODataRoute("Get<#= TableName #>List(<#= oDataParameters #>)")]
-        public SingleResult<<#= TableName #>Record> Get(<#= queryStringParameters #>)
+        [ODataRoute("Get<#= fixedTableName #>List(<#= oDataParameters #>)")]
+        public SingleResult<<#= fixedTableName #>Record> Get(<#= queryStringParameters #>)
         {
-            IQueryable<<#= TableName #>Record> result = db.<#= TableName #>List.Where(<#= whereFilters #>);
+            IQueryable<<#= fixedTableName #>Record> result = db.<#= fixedTableName #>List.Where(<#= whereFilters #>);
             return SingleResult.Create(result);
         }
 
-        public async System.Threading.Tasks.Task<IHttpActionResult> Post(<#= TableName #>Record addEntity)
+        public async System.Threading.Tasks.Task<IHttpActionResult> Post(<#= fixedTableName #>Record addEntity)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            db.<#= TableName #>List.Add(addEntity);
+            db.<#= fixedTableName #>List.Add(addEntity);
             await db.SaveChangesAsync();
             return Created(addEntity);
         }
 
-        public async System.Threading.Tasks.Task<IHttpActionResult> Patch(<#= queryStringParameters #>, Delta<<#= TableName #>Record> patchEntity)
+        public async System.Threading.Tasks.Task<IHttpActionResult> Patch(<#= queryStringParameters #>, Delta<<#= fixedTableName #>Record> patchEntity)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var entity = await db.<#= TableName #>List.FindAsync(new object[]{<#= parametersWithOrder #>});
+            var entity = await db.<#= fixedTableName #>List.FindAsync(new object[]{<#= parametersWithOrder #>});
             if (entity == null)
             {
                 return NotFound();
@@ -128,13 +151,14 @@ namespace SobyGrid_WebAPIExample.Controllers
             return Updated(entity);
         }
         
-        [ODataRoute("Update<#= TableName #>List(<#= oDataParameters #>)")]
-        public async System.Threading.Tasks.Task<IHttpActionResult> Put(<#= queryStringParameters #>, <#= TableName #>Record updateEntity)
+        [ODataRoute("Update<#= fixedTableName #>List(<#= oDataParameters #>)")]
+        public async System.Threading.Tasks.Task<IHttpActionResult> Put(<#= queryStringParameters #>, <#= fixedTableName #>Record updateEntity)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            <#= updateKeyStatements #>
             db.Entry(updateEntity).State = EntityState.Modified;
             try
             {
@@ -154,21 +178,21 @@ namespace SobyGrid_WebAPIExample.Controllers
             return Updated(updateEntity);
         }
 
-        [ODataRoute("Delete<#= TableName #>List(<#= oDataParameters #>)")]
+        [ODataRoute("Delete<#= fixedTableName #>List(<#= oDataParameters #>)")]
         public async System.Threading.Tasks.Task<IHttpActionResult> Delete(<#= queryStringParameters #>)
         {
-            var deleteEntity = db.<#= TableName #>List.Where(<#= whereFilters #>).FirstOrDefault();
+            var deleteEntity = db.<#= fixedTableName #>List.Where(<#= whereFilters #>).FirstOrDefault();
             if (deleteEntity == null)
             {
                 return NotFound();
             }
-            db.<#= TableName #>List.Remove(deleteEntity);
+            db.<#= fixedTableName #>List.Remove(deleteEntity);
             await db.SaveChangesAsync();
             return StatusCode(HttpStatusCode.NoContent);
         }
         private bool RecordExists(<#= functionParameters #>)
         {
-            return db.<#= TableName #>List.Count(<#= whereFilters #>) > 0;
+            return db.<#= fixedTableName #>List.Count(<#= whereFilters #>) > 0;
         }
 		<#
 		}

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PublishUrlHistory>c:\temp\Sobiens.Connectors.Studio.UI\|publish\</PublishUrlHistory>
     <InstallUrlHistory />
-    <SupportUrlHistory />
+    <SupportUrlHistory>http://tutorials.sobiens.com/solutions/sobiens-studio/</SupportUrlHistory>
     <UpdateUrlHistory>http://www.sobiens.com/Sobiens.Connectors.Studio.UI/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />

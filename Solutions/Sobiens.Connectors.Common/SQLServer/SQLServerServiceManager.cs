@@ -156,7 +156,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
-            return (new SQLServerService()).GetFields(siteSetting, ((SQLTable)folder).DBName, ((SQLTable)folder).ListName);
+            return (new SQLServerService()).GetFields(siteSetting, ((SQLTable)folder).DBName, ((SQLTable)folder).ListName, ((SQLTable)folder).Schema);
         }
 
         public void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields)
@@ -446,7 +446,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             {
                 SQLDB sourceDB = compareObjectsResult.SourceParentObject as SQLDB;
                 SQLTable destinationTable = compareObjectsResult.ObjectToCompareWith as SQLTable;
-                List<Field> fields = new SQLServerService().GetFields(sourceSiteSetting, destinationTable.DBName, destinationTable.Title);
+                List<Field> fields = new SQLServerService().GetFields(sourceSiteSetting, destinationTable.DBName, destinationTable.Title, destinationTable.Schema);
                 new SQLServerService().CreateTable(sourceSiteSetting, sourceDB.Title, destinationTable, fields);
             }
             else if (compareObjectsResult.ObjectToCompareWith as SQLFunction != null)

@@ -54,27 +54,28 @@ namespace SobyGrid_WebAPIExample.Models
 			List<Folder> tables = (List<Folder>)Tables;
 			foreach (Folder table in tables)
 			{
+                string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(table.Title);
 			
             
             #line default
             #line hidden
             this.Write("\t\t\tpublic System.Data.Entity.DbSet<");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> ");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(table.Title));
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List { get; set; }\r\n\t\t\t");
             
-            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 33 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
 			}
 			

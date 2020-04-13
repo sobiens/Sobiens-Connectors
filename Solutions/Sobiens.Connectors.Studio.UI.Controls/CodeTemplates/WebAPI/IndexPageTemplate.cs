@@ -52,59 +52,63 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
 
 		for(int i=0;i<Database.Folders.Count;i++){
             Sobiens.Connectors.Entities.Folder folder = Database.Folders[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
 			
             
             #line default
             #line hidden
             this.Write("            <li><a  href=\"#tabs-");
             
-            #line 30 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(i.ToString()));
             
             #line default
             #line hidden
             this.Write("\" data-onloadfunction=\"soby_Populate");
             
-            #line 30 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(folder.Title));
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("()\">");
             
-            #line 30 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(folder.Title));
             
             #line default
             #line hidden
             this.Write("</a></li>\r\n\t\t\t");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
 
 		}
 		for(int i=0;i<Database.Folders.Count;i++){
             Sobiens.Connectors.Entities.Folder folder = Database.Folders[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+
+
 			
             
             #line default
             #line hidden
             this.Write("            <div id=\"tabs-");
             
-            #line 36 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 40 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(i.ToString()));
             
             #line default
             #line hidden
             this.Write("\"><div id=\'soby_");
             
-            #line 36 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(folder.Title));
+            #line 40 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Div\'></div></div>\r\n\t\t\t");
             
-            #line 37 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 41 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
 
 		}
             
@@ -138,7 +142,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI
 
     ");
             
-            #line 65 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
+            #line 69 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\IndexPageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GridComponentsSyntax));
             
             #line default

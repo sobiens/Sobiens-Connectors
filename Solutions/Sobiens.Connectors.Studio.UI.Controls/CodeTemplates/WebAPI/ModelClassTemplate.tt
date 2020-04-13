@@ -4,7 +4,9 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="System.Object" name="Tables" #>
 
+<#@ parameter type="System.String" name="SchemaName" #>
 <#@ parameter type="System.String" name="TableName" #>
 <#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
 
@@ -12,75 +14,101 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+<#
+    Sobiens.Connectors.Entities.SQLServer.SQLTable sqlTable = (Sobiens.Connectors.Entities.SQLServer.SQLTable)((List<Folder>)Tables).Where(t=>t.Title == TableName).First();
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+#>
 
 namespace SobyGrid_WebAPIExample.Models
 {
-	[Table("<#= TableName #>")]
-    public class <#= TableName #>Record
+	[Table("<#= SchemaName #>.<#= TableName #>")]
+    public class <#= fixedTableName #>Record
     {
 		<#
 		int keyColumnOrder = 0;
         bool hasPrimaryField = false;
+        bool hasDummyPrimaryKeyPlaced = false;
 		foreach (Field field in Fields)
         {
         	if (field.IsPrimary == true)
                 hasPrimaryField = true;
         }
+        List<string> usedForeignKeyTables = new List<string>();
 		foreach (Field field in Fields)
         {
+            string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetCsharpFieldTypeAsString(field);
+            /*
 			string fieldTypeString = "string";
 			switch (((Sobiens.Connectors.Entities.SQLServer.SQLField)field).SQLFieldTypeName)
             {
                 case "int":
-			        fieldTypeString = "int";
+			        fieldTypeString = "int" + (field.Required == true?"":"?");
                     break;
                 case "bigint":
-			        fieldTypeString = "long";
+			        fieldTypeString = "long" + (field.Required == true?"":"?");
                     break;
                 case "float":
                 case "decimal":
                 case "numeric":
-			        fieldTypeString = "decimal";
+                case "money":
+			        fieldTypeString = "decimal" + (field.Required == true?"":"?");
+                    break;
+                case "real":
+			        fieldTypeString = "System.Single" + (field.Required == true?"":"?");
                     break;
                 case "smallint":
-			        fieldTypeString = "Int16";
+			        fieldTypeString = "System.Int16" + (field.Required == true?"":"?");
                     break;
                 case "tinyint":
-			        fieldTypeString = "Byte";
+			        fieldTypeString = "System.Byte" + (field.Required == true?"":"?");
                     break;
                 case "bit":
-			        fieldTypeString = "bool";
+			        fieldTypeString = "bool" + (field.Required == true?"":"?");
                     break;
                 case "date":
                 case "datetime":
                 case "datetime2":
                 case "smalldatetime":
-                    fieldTypeString = "System.DateTime";
+                    fieldTypeString = "System.DateTime" + (field.Required == true?"":"?") ;
                     break;
             }
-
-
+            */
+            string columnAttributeSynxtax = "[Column(\"" + field.Name + "\")]";
 		#>
 		    <# if (field.Required == true){ #>[Required]<# } #>
-		    <# if (hasPrimaryField == false && keyColumnOrder == 0){ #>[Key][DatabaseGenerated(DatabaseGeneratedOption.None)]<# } #>
-		    <# if (field.IsPrimary == true){
+		    <# if (hasPrimaryField == false && hasDummyPrimaryKeyPlaced == false)
+                {
+                    hasDummyPrimaryKeyPlaced = true;
+                #>[Key][DatabaseGenerated(DatabaseGeneratedOption.None)]
+             <# } #>
+		    <# if (field.IsPrimary == true){#>[Key]<# }#>
+		    <# if (field.IsPrimary == true || field.Type == FieldTypes.Lookup){
 		    keyColumnOrder++;
+            columnAttributeSynxtax = "[Column(\"" + field.Name + "\", Order=" + keyColumnOrder + ")]";
 		     #>
-		    [Key]
-		    [Column(Order=<#= keyColumnOrder #>)]
 		    <# }#>
 
-            <# if(field.Type == FieldTypes.Lookup){#>
+            <# if(field.Type == FieldTypes.Lookup){
+                Sobiens.Connectors.Entities.SQLServer.SQLForeignKey foreignKey = sqlTable.ForeignKeys.Where(t => t.TableColumnNames.Contains(field.Name) == true).FirstOrDefault();
+                string navigationPropertyName = Sobiens.Connectors.Common.CodeWizardManager.GetFieldNavigationPropertyName(sqlTable, field);
+            #>
                 // Foreign Key
-		        [ForeignKey("<#= field.List #>Record")]
-		        public <#= fieldTypeString #> <#= field.Name #> { get; set; }
+		        [ForeignKey("<#= navigationPropertyName #>")]
+                <#= columnAttributeSynxtax #>
+		        public <#= fieldTypeString #> <#= Sobiens.Connectors.Common.CodeWizardManager.FixFieldNameForCode(field.Name) #> { get; set; }
+                <# if(usedForeignKeyTables.Contains(foreignKey.Title) == false) 
+                {
+                    usedForeignKeyTables.Add(foreignKey.Title);
+                #>
 		        // Navigation property
-		        public <#= field.List #>Record <#= field.List #>Record { get; set; }
+		        public <#= field.List #>Record <#= navigationPropertyName #> { get; set; }
+                <# } #>
             <#
             }
             else{
             #>
-    	        public <#= fieldTypeString #> <#= field.Name #>{ get; set; }
+                <#= columnAttributeSynxtax #>
+    	        public <#= fieldTypeString #> <#= Sobiens.Connectors.Common.CodeWizardManager.FixFieldNameForCode(field.Name) #>{ get; set; }
             <#
             }
             #>

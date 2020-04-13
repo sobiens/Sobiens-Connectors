@@ -175,15 +175,25 @@ namespace Sobiens.Connectors.Common.SQLServer
                         {
                             while (dr.Read())
                             {
-                                SQLForeignKey foreignKey = new SQLForeignKey();
-                                foreignKey.Title = dr[1].ToString();
-                                foreignKey.TableSchema = dr[2].ToString();
-                                foreignKey.TableName = dr[3].ToString();
-                                foreignKey.TableColumnName = dr[4].ToString();
-                                foreignKey.ReferencedTableSchema = dr[8].ToString();
-                                foreignKey.ReferencedTableName = dr[9].ToString();
-                                foreignKey.ReferencedTableColumnName = dr[10].ToString();
-                                foreignKeys.Add(foreignKey);
+                                string foreignKeyName = dr[1].ToString();
+                                SQLForeignKey foreignKey = foreignKeys.Where(t => t.Title.Equals(foreignKeyName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+                                if (foreignKey != null)
+                                {
+                                    foreignKey.TableColumnNames.Add(dr[4].ToString());
+                                    foreignKey.ReferencedTableColumnNames.Add(dr[10].ToString());
+                                }
+                                else
+                                {
+                                    foreignKey = new SQLForeignKey();
+                                    foreignKey.Title = dr[1].ToString();
+                                    foreignKey.TableSchema = dr[2].ToString();
+                                    foreignKey.TableName = dr[3].ToString();
+                                    foreignKey.TableColumnNames.Add(dr[4].ToString());
+                                    foreignKey.ReferencedTableSchema = dr[8].ToString();
+                                    foreignKey.ReferencedTableName = dr[9].ToString();
+                                    foreignKey.ReferencedTableColumnNames.Add(dr[10].ToString());
+                                    foreignKeys.Add(foreignKey);
+                                }
                             }
                         }
                     }
@@ -202,13 +212,14 @@ namespace Sobiens.Connectors.Common.SQLServer
         private string GetShowFieldName(ISiteSetting siteSetting, SQLTable table)
         {
             if (table.Fields == null)
-                table.Fields = GetFields(siteSetting, table.DBName, table.Title);
+                table.Fields = GetFields(siteSetting, table.DBName, table.Title, table.Schema);
             string showFieldName = string.Empty;
             foreach (Field field in table.Fields)
             {
                 if (field.Type == FieldTypes.Text)
                 {
                     showFieldName = field.Name;
+                    break;
                 }
             }
             if (string.IsNullOrEmpty(showFieldName) == true)
@@ -234,8 +245,10 @@ namespace Sobiens.Connectors.Common.SQLServer
                         {
                             while (dr.Read())
                             {
+                                string schemaName = dr[0].ToString();
                                 string tableName = dr[1].ToString();
                                 SQLTable table = new SQLTable(tableName, siteSetting.ID, tableName, folder.Title);
+                                table.Schema = schemaName;
                                 table.SiteSettingID = siteSetting.ID;
                                 //table.ListName = tableName;
                                 tables.Add(table);
@@ -246,7 +259,7 @@ namespace Sobiens.Connectors.Common.SQLServer
 
                 foreach(SQLTable table in tables)
                 {
-                    table.Fields = GetFields(siteSetting, folder.Title, table.Title);
+                    table.Fields = GetFields(siteSetting, folder.Title, table.Title, table.Schema);
                     table.ForeignKeys = GetForeignKeys(siteSetting, folder.Title, table.Title);
                     table.PrimaryKeys = GetPrimaryKeys(siteSetting, folder.Title, table.Title);
 
@@ -256,18 +269,23 @@ namespace Sobiens.Connectors.Common.SQLServer
                         if (table.PrimaryKeys.Contains(field.Name))
                             field.IsPrimary = true;
 
-                        SQLForeignKey foreignKey = table.ForeignKeys.Where(t => t.TableColumnName.Equals(field.Name) == true).FirstOrDefault();
+                        SQLForeignKey foreignKey = table.ForeignKeys.Where(t => t.TableColumnNames.Contains(field.Name) == true).FirstOrDefault();
                         if (foreignKey != null)
                         {
+                            int currentFieldIndexInForeignKey = 0;
+                            for (int i = 0; i < foreignKey.TableColumnNames.Count; i++)
+                            {
+                                if (foreignKey.TableColumnNames[i].Equals(field.Name, StringComparison.InvariantCultureIgnoreCase) == true)
+                                    currentFieldIndexInForeignKey = i;
+                            }
+
                             SQLTable referencedTable = tables.Where(t => t.ListName.Equals(foreignKey.ReferencedTableName, StringComparison.InvariantCultureIgnoreCase) == true).First();
                             ((SQLField)field).Type = FieldTypes.Lookup;
                             ((SQLField)field).ShowField = GetShowFieldName(siteSetting, referencedTable);
                             ((SQLField)field).List = foreignKey.ReferencedTableName;
-                            ((SQLField)field).ReferenceFieldName = foreignKey.ReferencedTableColumnName;
+                            ((SQLField)field).ReferenceFieldName = foreignKey.ReferencedTableColumnNames[currentFieldIndexInForeignKey];
                         }
                     }
-
-
                 }
 
                 return tables;
@@ -692,7 +710,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
         }
 
-        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string dbName, string tableName)
+        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string dbName, string tableName, string schemaName)
         {
             try
             {
@@ -705,7 +723,9 @@ namespace Sobiens.Connectors.Common.SQLServer
                     // this with the current connection.
                     using (SqlCommand cmd = new SqlCommand("SELECT A.name columnname, B.name columntype, A.is_nullable is_nullable, A.is_identity is_identity, A.max_length max_length FROM sys.columns A" +
                                                            " INNER JOIN sys.types B ON A.system_type_id = B.system_type_id" +
-                                                           " WHERE object_id = OBJECT_ID('" + tableName + "') and B.name <> 'sysname'", con))
+                                                           " WHERE object_id = OBJECT_ID('" + schemaName + "." + tableName + "') " +
+                                                           " AND B.name <> 'sysname' " +
+                                                           " AND (B.system_type_id = B.user_type_id OR B.name = 'hierarchyid')", con))
                     {
                         using (IDataReader dr = cmd.ExecuteReader())
                         {
@@ -715,9 +735,21 @@ namespace Sobiens.Connectors.Common.SQLServer
                                 bool required = !(bool)dr["is_nullable"];
                                 bool identity = (bool)dr["is_identity"];
                                 int maxLength = int.Parse(dr["max_length"].ToString())/2;
-                                FieldTypes fieldType = FieldTypes.Text;
+                                FieldTypes fieldType = FieldTypes.Unknown;
                                 switch (dr["columntype"].ToString().ToLower())
                                 {
+                                    case "char":
+                                    case "nchar":
+                                    case "nvarchar(MAX)":
+                                    case "nvarchar":
+                                    case "varchar(MAX)":
+                                    case "varchar":
+                                    case "ntext":
+                                    case "text":
+                                    case "hierarchyid":
+                                    case "uniqueidentifier":
+                                        fieldType = FieldTypes.Text;
+                                        break;
                                     case "int":
                                     case "bigint":
                                     case "float":
@@ -725,6 +757,8 @@ namespace Sobiens.Connectors.Common.SQLServer
                                     case "numeric":
                                     case "smallint":
                                     case "tinyint":
+                                    case "money":
+                                    case "real":
                                         fieldType = FieldTypes.Number;
                                         break;
                                     case "bit":
@@ -736,8 +770,15 @@ namespace Sobiens.Connectors.Common.SQLServer
                                     case "smalldatetime":
                                         fieldType = FieldTypes.DateTime;
                                         break;
+                                    case "image":
+                                        fieldType = FieldTypes.ByteImage;
+                                        break;
+                                    case "varbinary(MAX)":
+                                    case "binary":
+                                    case "varbinary":
+                                        fieldType = FieldTypes.ByteArray;
+                                        break;
                                 }
-
                                 SQLField field = new SQLField();
                                 field.Name = fieldName;
                                 field.DisplayName = fieldName;

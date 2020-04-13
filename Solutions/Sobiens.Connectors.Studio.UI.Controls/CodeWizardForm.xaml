@@ -24,7 +24,7 @@
                     <TreeView Margin="10,10,10,10" Grid.Row="1" Name="ObjectsTreeView"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="View Relations">
+            <TabItem Header="View Relations" Visibility="Hidden">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"></RowDefinition>

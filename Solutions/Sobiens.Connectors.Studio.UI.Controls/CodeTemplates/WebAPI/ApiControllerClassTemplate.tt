@@ -19,16 +19,19 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.OData;
 
+<#
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+#>
 namespace SobyGrid_WebAPIExample.Controllers
 {
-    public class <#= TableName #>ListController : ApiController
+    public class <#= fixedTableName #>ListController : ApiController
     {
         private TaskServiceContext db = new TaskServiceContext();
 
-        // GET api/<#= TableName #>List
-        public IQueryable<<#= TableName #>Record> Get()
+        // GET api/<#= fixedTableName #>List
+        public IQueryable<<#= fixedTableName #>Record> Get()
         {
-            return db.<#= TableName #>List;
+            return db.<#= fixedTableName #>List;
         }
     }
 }

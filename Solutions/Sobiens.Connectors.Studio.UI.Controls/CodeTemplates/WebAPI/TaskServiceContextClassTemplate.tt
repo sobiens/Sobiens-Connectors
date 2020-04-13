@@ -27,8 +27,9 @@ namespace SobyGrid_WebAPIExample.Models
 			List<Folder> tables = (List<Folder>)Tables;
 			foreach (Folder table in tables)
 			{
+                string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(table.Title);
 			#>
-			public System.Data.Entity.DbSet<<#= table.Title #>Record> <#= table.Title #>List { get; set; }
+			public System.Data.Entity.DbSet<<#= fixedTableName #>Record> <#= fixedTableName #>List { get; set; }
 			<#
 			}
 			#>

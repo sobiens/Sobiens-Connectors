@@ -6,7 +6,15 @@
 <#@ import namespace="Sobiens.Connectors.Entities" #>
 <#@ parameter type="System.String" name="TableName" #>
 <#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+<#@ parameter type="System.Object" name="Tables" #>
+<#@ parameter type="System.String" name="GridName" #>
+<#@ parameter type="System.String" name="GridTitle" #>
+<#@ parameter type="System.String" name="GridAltTitle" #>
+
 		<#
+    Sobiens.Connectors.Entities.SQLServer.SQLTable sqlTable = (Sobiens.Connectors.Entities.SQLServer.SQLTable)((List<Folder>)Tables).Where(t=>t.Title == TableName).First();
+	    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+
 		string serviceUrl = "soby_GetApiServiceUrl()";
 		int primaryFieldCount = 0;
 		foreach(Field field in Fields){
@@ -17,63 +25,71 @@
 		}
 		#>
 
-        var <#= TableName #>DataSourceBuilder = new soby_WSBuilder();
-        <#= TableName #>DataSourceBuilder.Filters = new SobyFilters(false);
-        var <#= TableName #>Service = new soby_WebServiceService(<#= TableName #>DataSourceBuilder);
-        var <#= TableName #>Grid = new soby_WebGrid("#soby_<#= TableName #>Div", "<#= TableName #>", <#= TableName #>Service, "There is no record found.");
-        <#= TableName #>Grid.ImagesFolderUrl = "/media/images";
+        var <#= fixedTableName #>DataSourceBuilder = new soby_WSBuilder();
+        <#= fixedTableName #>DataSourceBuilder.Filters = new SobyFilters(false);
+        var <#= fixedTableName #>Service = new soby_WebServiceService(<#= fixedTableName #>DataSourceBuilder);
+        var <#= GridName #> = new soby_WebGrid("#soby_<#= fixedTableName #>Div", "<#= GridTitle #>", <#= fixedTableName #>Service, "There is no record found.");
+        <#= GridName #>.AltTitle = "<#= GridAltTitle #>";
+        <#= GridName #>.ImagesFolderUrl = "/media/images";
 		<# if(primaryFieldCount != 1) { #>
-			<#= TableName #>Grid.IsEditable = false;
+			<#= GridName #>.IsEditable = false;
 		<# } #>
 		<# if(primaryFieldCount == 0) { #>
-			<#= TableName #>Grid.IsSelectable = false;
+			<#= GridName #>.IsSelectable = false;
 		<# } #>
-
 		<#
 			string queryStringParameters = "";
 			for(int i=0;i<Fields.Count;i++){
 				Field field = Fields[i];
 				if(field.IsPrimary == false)
 					continue;
-				queryStringParameters += ",key" + (i>0?(i-1).ToString():"") + "= #key" + (i>0?(i-1).ToString():"") + "#";
+
+				string jsFieldQueryStringKeyPrefixSuffix = Sobiens.Connectors.Common.CodeWizardManager.GetJsFieldQueryStringKeyPrefixSuffix(field);
+				queryStringParameters += ",key" + (i>0?(i-1).ToString():"") + "= " + jsFieldQueryStringKeyPrefixSuffix + "#key" + (i>0?(i-1).ToString():"") + "#" + jsFieldQueryStringKeyPrefixSuffix;
 			}
 		if(queryStringParameters.Length>0)
 			queryStringParameters = queryStringParameters.Substring(1);
-
 		#>
-        <#= TableName #>Service.Transport.Read = new soby_TransportRequest(<#= serviceUrl #> + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "GET");
-        <#= TableName #>Service.Transport.Add = new soby_TransportRequest(<#= serviceUrl #> + "/<#= TableName #>List", "json", "application/json; charset=utf-8", "POST");
-        <#= TableName #>Service.Transport.Update = new soby_TransportRequest(<#= serviceUrl #> + "/Update<#= TableName #>List(<#= queryStringParameters #>)", "json", "application/json; charset=utf-8", "PUT");
-        <#= TableName #>Service.Transport.Delete = new soby_TransportRequest(<#= serviceUrl #> + "/Delete<#= TableName #>List(<#= queryStringParameters #>)", "json", "application/json; charset=utf-8", "DELETE");
+        <#= fixedTableName #>Service.Transport.Read = new soby_TransportRequest(<#= serviceUrl #> + "/<#= fixedTableName #>List", "json", "application/json; charset=utf-8", "GET");
+        <#= fixedTableName #>Service.Transport.Add = new soby_TransportRequest(<#= serviceUrl #> + "/<#= fixedTableName #>List", "json", "application/json; charset=utf-8", "POST");
+        <#= fixedTableName #>Service.Transport.Update = new soby_TransportRequest(<#= serviceUrl #> + "/Update<#= fixedTableName #>List(<#= queryStringParameters #>)", "json", "application/json; charset=utf-8", "PUT");
+        <#= fixedTableName #>Service.Transport.Delete = new soby_TransportRequest(<#= serviceUrl #> + "/Delete<#= fixedTableName #>List(<#= queryStringParameters #>)", "json", "application/json; charset=utf-8", "DELETE");
 
 		<# for(int i=0;i<Fields.Count;i++){
 			Field field = Fields[i];
+			if(field.IsPrimary == false)
+				continue;
+
 			string parameterName = "#key" + (i>0?(i-1).ToString():"") + "#";
 		#>
-            <#= TableName #>Grid.AddKeyField("<#= field.Name #>", "<#= parameterName #>");
+        <#= GridName #>.AddKeyField("<#= field.Name #>", "<#= parameterName #>");
 		<# } #>
 
 
 		<#
 		foreach(Field field in Fields){
-            string fieldTypeString = "SobyFieldTypes.Text";
-			if(field.Type == FieldTypes.Number)
-                fieldTypeString = "SobyFieldTypes.Number";
+            string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetJsFieldTypeAsString(field);
 
 			string fieldEditable = (field.ReadOnly == true?"false":"true");
 
 			if(field.Type == FieldTypes.Lookup){
+			    string navigationPropertyName = Sobiens.Connectors.Common.CodeWizardManager.GetFieldNavigationPropertyName(sqlTable, field);
+				Sobiens.Connectors.Entities.SQLServer.SQLField sqlField = ((Sobiens.Connectors.Entities.SQLServer.SQLField)field);
+				string referenceFieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetJsFieldTypeAsStringByFieldName((List<Folder>)Tables, sqlField.List, sqlField.ReferenceFieldName);
 			#>
-				<#= TableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Lookup, { ModelName: "<#= field.List #>Record", ValueFieldType: SobyFieldTypes.Number, ValueFieldName: "<#= ((Sobiens.Connectors.Entities.SQLServer.SQLField)field).ReferenceFieldName #>", TitleFieldName: "<#= field.ShowField#>", ReadTransport: new soby_TransportRequest(<#= serviceUrl #> + "/<#= field.List #>List", "json", "application/json; charset=utf-8", "GET") });
-				<#= TableName #>Grid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, function (item) {
-			        return item.<#= field.List #>Record.<#= field.ShowField#>;
-			    }, null, true, true, <#= fieldEditable #>, null);
+		<#= fixedTableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Lookup, { ModelName: "<#= navigationPropertyName #>", ValueFieldType: <#= referenceFieldTypeString #>, ValueFieldName: "<#= ((Sobiens.Connectors.Entities.SQLServer.SQLField)field).ReferenceFieldName #>", TitleFieldName: "<#= field.ShowField#>", ReadTransport: new soby_TransportRequest(<#= serviceUrl #> + "/<#= field.List #>List", "json", "application/json; charset=utf-8", "GET") });
+		<#= GridName #>.AddColumn("<#= field.Name #>", "<#= field.List #>Record", SobyShowFieldsOn.All, function (item) {
+			if(item.<#= navigationPropertyName #> != null)
+				return item.<#= navigationPropertyName #>.<#= field.ShowField#>;
+			else
+				return "";
+		}, null, true, true, <#= fieldEditable #>, null);
 			<#
 			}
 			else{
 			#>
-				<#= TableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
-				<#= TableName #>Grid.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, <#= fieldEditable #>, null);
+		<#= fixedTableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
+		<#= GridName #>.AddColumn("<#= field.Name #>", "<#= field.Name #>", SobyShowFieldsOn.All, null, null, true, true, <#= fieldEditable #>, null);
 		<#
 			}
 		}

@@ -71,6 +71,8 @@ namespace Sobiens.Connectors.Entities
         URL = 16,
         Currency = 17,
         Calculated = 18,
-        OutcomeChoice = 19
+        OutcomeChoice = 19,
+        ByteImage = 20,
+        ByteArray = 21
     }
 }

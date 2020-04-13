@@ -26,14 +26,18 @@
         <#
 		for(int i=0;i<Database.Folders.Count;i++){
             Sobiens.Connectors.Entities.Folder folder = Database.Folders[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
 			#>
-            <li><a  href="#tabs-<#=i.ToString()#>" data-onloadfunction="soby_Populate<#= folder.Title #>()"><#= folder.Title #></a></li>
+            <li><a  href="#tabs-<#=i.ToString()#>" data-onloadfunction="soby_Populate<#= fixedTableName #>()"><#= folder.Title #></a></li>
 			<#
 		}
 		for(int i=0;i<Database.Folders.Count;i++){
             Sobiens.Connectors.Entities.Folder folder = Database.Folders[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+
+
 			#>
-            <div id="tabs-<#=i.ToString()#>"><div id='soby_<#= folder.Title #>Div'></div></div>
+            <div id="tabs-<#=i.ToString()#>"><div id='soby_<#= fixedTableName #>Div'></div></div>
 			<#
 		}#>
         </ul>

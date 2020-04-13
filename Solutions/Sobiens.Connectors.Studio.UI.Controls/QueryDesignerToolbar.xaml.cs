@@ -110,20 +110,27 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
         private void CodeWizardButton_Click(object sender, RoutedEventArgs e)
         {
-            Folder selectedObject = ApplicationContext.Current.SPCamlStudio.ServerObjectExplorer.SelectedObject;
-            ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(selectedObject.SiteSettingID);
-            if (siteSetting.SiteSettingType == SiteSettingTypes.SQLServer && selectedObject as SQLDB == null)
+            try
             {
-                MessageBox.Show("You need to select a Database from server explorer");
-                return;
+                Folder selectedObject = ApplicationContext.Current.SPCamlStudio.ServerObjectExplorer.SelectedObject;
+                ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(selectedObject.SiteSettingID);
+                if (siteSetting.SiteSettingType == SiteSettingTypes.SQLServer && selectedObject as SQLDB == null)
+                {
+                    MessageBox.Show("You need to select a Database from server explorer");
+                    return;
+                }
+
+                //EDMXManager.Save("c:\\temp\\newedmx.xml", selectedObject as SQLDB);
+
+                CodeWizardForm codeWizardForm = new CodeWizardForm();
+                codeWizardForm.Initialize(ApplicationContext.Current.SPCamlStudio.QueriesPanel.QueryPanels, selectedObject);
+                if (codeWizardForm.ShowDialog(this.ParentWindow, "Code Wizard") == true)
+                {
+                }
             }
-
-            //EDMXManager.Save("c:\\temp\\newedmx.xml", selectedObject as SQLDB);
-
-            CodeWizardForm codeWizardForm = new CodeWizardForm();
-            codeWizardForm.Initialize(ApplicationContext.Current.SPCamlStudio.QueriesPanel.QueryPanels, selectedObject);
-            if (codeWizardForm.ShowDialog(this.ParentWindow, "Code Wizard") == true)
+            catch(Exception ex)
             {
+                int g = 3;
             }
         }
 

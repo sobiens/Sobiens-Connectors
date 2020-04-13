@@ -43,42 +43,51 @@ using System.Web.Http;
 using System.Web.OData;
 using System.Web.OData.Routing;
 
-namespace SobyGrid_WebAPIExample.Controllers
-{
-    public class ");
+");
             
-            #line 25 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 24 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+
+	List<Folder> tables = (List<Folder>)Tables;
+    string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(TableName);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\nnamespace SobyGrid_WebAPIExample.Controllers\r\n{\r\n    public class ");
+            
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("ListController : ODataController\r\n    {\r\n        private TaskServiceContext db = " +
                     "new TaskServiceContext();\r\n\r\n        // GET api/");
             
-            #line 29 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 35 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("\r\n        [EnableQuery]\r\n        public IQueryable<");
             
-            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 37 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> Get()\r\n        {\r\n            return db.");
             
-            #line 33 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 39 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List;\r\n        }\r\n\r\n\t\t");
             
-            #line 36 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 42 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
 
 		string parametersWithOrder = string.Empty;
+		string updateKeyStatements = string.Empty;
 		string queryStringParameters = string.Empty;
 		string oDataParameters = string.Empty;
 		string functionParameters = string.Empty;
@@ -88,13 +97,28 @@ namespace SobyGrid_WebAPIExample.Controllers
 		for(int i=0;i<Fields.Count;i++){
 			if(Fields[i].IsPrimary == false)
 				continue;
+            
+            string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetCsharpFieldTypeAsString(Fields[i]);
+                
+                /*
 			string fieldTypeString = "string";
 			if (Fields[i].Type == FieldTypes.Boolean)
 				fieldTypeString = "bool";
 			else if (Fields[i].Type == FieldTypes.Number)
 				fieldTypeString = "int";
-			else if (Fields[i].Type == FieldTypes.Lookup)
-				fieldTypeString = "int";
+			else if (Fields[i].Type == FieldTypes.DateTime)
+				fieldTypeString = "System.DateTime";
+			else if (Fields[i].Type == FieldTypes.Lookup){
+            	Sobiens.Connectors.Entities.SQLServer.SQLTable referencedTable = (Sobiens.Connectors.Entities.SQLServer.SQLTable)tables.Where(t=>t.Title==Fields[i].List).First();
+                string referenceFieldName = ((Sobiens.Connectors.Entities.SQLServer.SQLField)Fields[i]).ReferenceFieldName;
+                Field referencedField = referencedTable.Fields.Where(t=>t.Name == referenceFieldName).First();
+			    fieldTypeString = "string";
+			    if (referencedField.Type == FieldTypes.Number || referencedField.Type == FieldTypes.Lookup)
+    				fieldTypeString = "int";
+			    if (referencedField.Type == FieldTypes.DateTime)
+    				fieldTypeString = "System.DateTime";
+            }
+            */
 			string keyName = "key";
             if(i>0)
                 keyName = "key" + (i-1).ToString();
@@ -104,6 +128,7 @@ namespace SobyGrid_WebAPIExample.Controllers
 			functionParameters += ", " + fieldTypeString + " " + keyName;
 			badRequestCheckParameters += " || updateEntity." + Fields[i].Name + " != " + keyName;
 			whereFilters += " e." + Fields[i].Name + " == " + keyName + "  && ";
+            updateKeyStatements += "updateEntity." + Fields[i].Name + "=" + keyName + ";" + Environment.NewLine;
 		}
 		if(parametersWithOrder.Length>0)
 			parametersWithOrder = parametersWithOrder.Substring(1);
@@ -123,7 +148,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             #line hidden
             this.Write("\r\n\t\t");
             
-            #line 78 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 101 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
 
 		if(parametersWithOrder.Length>0)
 		{
@@ -133,49 +158,49 @@ namespace SobyGrid_WebAPIExample.Controllers
             #line hidden
             this.Write("        [EnableQuery]\r\n        [ODataRoute(\"Get");
             
-            #line 83 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 106 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List(");
             
-            #line 83 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 106 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(oDataParameters));
             
             #line default
             #line hidden
             this.Write(")\")]\r\n        public SingleResult<");
             
-            #line 84 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 107 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> Get(");
             
-            #line 84 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 107 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(queryStringParameters));
             
             #line default
             #line hidden
             this.Write(")\r\n        {\r\n            IQueryable<");
             
-            #line 86 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 109 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> result = db.");
             
-            #line 86 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 109 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List.Where(");
             
-            #line 86 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 109 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(whereFilters));
             
             #line default
@@ -183,8 +208,8 @@ namespace SobyGrid_WebAPIExample.Controllers
             this.Write(");\r\n            return SingleResult.Create(result);\r\n        }\r\n\r\n        public " +
                     "async System.Threading.Tasks.Task<IHttpActionResult> Post(");
             
-            #line 90 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 113 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
@@ -192,8 +217,8 @@ namespace SobyGrid_WebAPIExample.Controllers
                     "\r\n                return BadRequest(ModelState);\r\n            }\r\n            db." +
                     "");
             
-            #line 96 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 119 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
@@ -201,15 +226,15 @@ namespace SobyGrid_WebAPIExample.Controllers
                     "n Created(addEntity);\r\n        }\r\n\r\n        public async System.Threading.Tasks." +
                     "Task<IHttpActionResult> Patch(");
             
-            #line 101 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 124 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(queryStringParameters));
             
             #line default
             #line hidden
             this.Write(", Delta<");
             
-            #line 101 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 124 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
@@ -217,14 +242,14 @@ namespace SobyGrid_WebAPIExample.Controllers
                     "  {\r\n                return BadRequest(ModelState);\r\n            }\r\n            " +
                     "var entity = await db.");
             
-            #line 107 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 130 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List.FindAsync(new object[]{");
             
-            #line 107 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 130 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parametersWithOrder));
             
             #line default
@@ -243,7 +268,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             {
                 if (!RecordExists(");
             
-            #line 119 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 142 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parametersWithOrder));
             
             #line default
@@ -262,38 +287,42 @@ namespace SobyGrid_WebAPIExample.Controllers
         
         [ODataRoute(""Update");
             
-            #line 131 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 154 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List(");
             
-            #line 131 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 154 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(oDataParameters));
             
             #line default
             #line hidden
             this.Write(")\")]\r\n        public async System.Threading.Tasks.Task<IHttpActionResult> Put(");
             
-            #line 132 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 155 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(queryStringParameters));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 132 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 155 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
-            this.Write(@"Record updateEntity)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            this.Write("Record updateEntity)\r\n        {\r\n            if (!ModelState.IsValid)\r\n          " +
+                    "  {\r\n                return BadRequest(ModelState);\r\n            }\r\n            " +
+                    "");
+            
+            #line 161 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(updateKeyStatements));
+            
+            #line default
+            #line hidden
+            this.Write(@"
             db.Entry(updateEntity).State = EntityState.Modified;
             try
             {
@@ -303,7 +332,7 @@ namespace SobyGrid_WebAPIExample.Controllers
             {
                 if (!RecordExists(");
             
-            #line 145 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 169 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parametersWithOrder));
             
             #line default
@@ -322,14 +351,14 @@ namespace SobyGrid_WebAPIExample.Controllers
 
         [ODataRoute(""Delete");
             
-            #line 157 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 181 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List(");
             
-            #line 157 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 181 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(oDataParameters));
             
             #line default
@@ -337,21 +366,21 @@ namespace SobyGrid_WebAPIExample.Controllers
             this.Write(")\")]\r\n        public async System.Threading.Tasks.Task<IHttpActionResult> Delete(" +
                     "");
             
-            #line 158 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 182 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(queryStringParameters));
             
             #line default
             #line hidden
             this.Write(")\r\n        {\r\n            var deleteEntity = db.");
             
-            #line 160 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 184 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List.Where(");
             
-            #line 160 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 184 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(whereFilters));
             
             #line default
@@ -359,8 +388,8 @@ namespace SobyGrid_WebAPIExample.Controllers
             this.Write(").FirstOrDefault();\r\n            if (deleteEntity == null)\r\n            {\r\n      " +
                     "          return NotFound();\r\n            }\r\n            db.");
             
-            #line 165 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 189 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
@@ -368,28 +397,28 @@ namespace SobyGrid_WebAPIExample.Controllers
                     " return StatusCode(HttpStatusCode.NoContent);\r\n        }\r\n        private bool R" +
                     "ecordExists(");
             
-            #line 169 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 193 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(functionParameters));
             
             #line default
             #line hidden
             this.Write(")\r\n        {\r\n            return db.");
             
-            #line 171 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TableName));
+            #line 195 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List.Count(");
             
-            #line 171 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 195 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(whereFilters));
             
             #line default
             #line hidden
             this.Write(") > 0;\r\n        }\r\n\t\t");
             
-            #line 173 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
+            #line 197 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\ODataControllerClassTemplate.tt"
 
 		}
 		
@@ -430,6 +459,19 @@ private global::Sobiens.Connectors.Entities.FieldCollection Fields
     }
 }
 
+private object _TablesField;
+
+/// <summary>
+/// Access the Tables parameter of the template.
+/// </summary>
+private object Tables
+{
+    get
+    {
+        return this._TablesField;
+    }
+}
+
 
 /// <summary>
 /// Initialize the template
@@ -464,6 +506,20 @@ if ((FieldsValueAcquired == false))
     if ((data != null))
     {
         this._FieldsField = ((global::Sobiens.Connectors.Entities.FieldCollection)(data));
+    }
+}
+bool TablesValueAcquired = false;
+if (this.Session.ContainsKey("Tables"))
+{
+    this._TablesField = ((object)(this.Session["Tables"]));
+    TablesValueAcquired = true;
+}
+if ((TablesValueAcquired == false))
+{
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Tables");
+    if ((data != null))
+    {
+        this._TablesField = ((object)(data));
     }
 }
 
