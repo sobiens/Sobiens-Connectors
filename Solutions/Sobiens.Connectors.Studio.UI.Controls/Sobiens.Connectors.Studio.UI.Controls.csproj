@@ -72,8 +72,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClosableBrowserTab.cs" />
+    <Compile Include="CodeTemplates\SharePoint\IndexSPCarouselPageTemplate.cs">
+      <DependentUpon>IndexSPCarouselPageTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CodeTemplates\WebAPI\ApiControllerClassTemplate.cs">
       <DependentUpon>ApiControllerClassTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeTemplates\SharePoint\IndexSPPageTemplate.cs">
+      <DependentUpon>IndexSPPageTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -92,20 +102,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.cs">
-      <DependentUpon>SobyGridComponentTemplate.tt</DependentUpon>
+    <Compile Include="CodeTemplates\SharePoint\SobyGridComponentSPTemplate.cs">
+      <DependentUpon>SobyGridComponentSPTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CodeTemplates\WebAPI\IndexPageTemplate.cs">
-      <DependentUpon>IndexPageTemplate.tt</DependentUpon>
+    <Compile Include="CodeTemplates\WebAPI\SobyGridComponentSQLTemplate.cs">
+      <DependentUpon>SobyGridComponentSQLTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CodeTemplates\WebAPI\SobyGridPageTemplate.cs">
+    <Compile Include="CodeTemplates\WebAPI\IndexSQLPageTemplate.cs">
+      <DependentUpon>IndexSQLPageTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SobyGridPageTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeTemplates\WebAPI\SobyGridPageSQLTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SobyGridPageSQLTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="CodeTemplates\WebAPI\TaskServiceContextClassTemplate.cs">
       <AutoGen>True</AutoGen>
@@ -122,6 +137,12 @@
     </Compile>
     <Compile Include="CompareSQLObjectsForm.xaml.cs">
       <DependentUpon>CompareSQLObjectsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\RadioButtonList.xaml.cs">
+      <DependentUpon>RadioButtonList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\CheckBoxList.xaml.cs">
+      <DependentUpon>CheckBoxList.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkflowCopyForm.xaml.cs">
       <DependentUpon>WorkflowCopyForm.xaml</DependentUpon>
@@ -256,6 +277,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BrowserTabsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\RadioButtonList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Selectors\CheckBoxList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -603,9 +632,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeTemplates\SharePoint\IndexSPCarouselPageTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IndexSPCarouselPageTemplate.cs</LastGenOutput>
+    </Content>
     <Content Include="CodeTemplates\WebAPI\ApiControllerClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ApiControllerClassTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\SharePoint\IndexSPPageTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IndexSPPageTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="CodeTemplates\WebAPI\ODataControllerClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -619,17 +656,21 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ModelClassTemplate.cs</LastGenOutput>
     </Content>
-    <Content Include="CodeTemplates\WebAPI\SobyGridComponentTemplate.tt">
+    <Content Include="CodeTemplates\SharePoint\SobyGridComponentSPTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>SobyGridComponentTemplate.cs</LastGenOutput>
+      <LastGenOutput>SobyGridComponentSPTemplate.cs</LastGenOutput>
     </Content>
-    <Content Include="CodeTemplates\WebAPI\IndexPageTemplate.tt">
+    <Content Include="CodeTemplates\WebAPI\SobyGridComponentSQLTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>IndexPageTemplate.cs</LastGenOutput>
+      <LastGenOutput>SobyGridComponentSQLTemplate.cs</LastGenOutput>
     </Content>
-    <Content Include="CodeTemplates\WebAPI\SobyGridPageTemplate.tt">
+    <Content Include="CodeTemplates\WebAPI\IndexSQLPageTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>SobyGridPageTemplate.cs</LastGenOutput>
+      <LastGenOutput>IndexSQLPageTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\WebAPI\SobyGridPageSQLTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SobyGridPageSQLTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

@@ -1,0 +1,63 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Folder" name="Database" #>
+<#@ parameter type="System.String" name="GridComponentsSyntax" #>
+<#@ parameter type="System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder>" name="Lists" #>
+
+
+
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <link href = 'https://www.mieleistanbulservis.com/media/css/soby.ui.components.css' rel = 'stylesheet' type = 'text/css' media = 'all' />
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.service.js'></script>
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.spservice.js'></script>
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.ui.components.js'></script>
+
+    <div id="tabs">
+        <ul>
+        <#
+		for(int i=0;i<Lists.Count;i++){
+            Sobiens.Connectors.Entities.Folder folder = Lists[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+			#>
+            <li><a  href="#tabs-<#=i.ToString()#>" data-onloadfunction="soby_Populate<#= fixedTableName #>()"><#= folder.Title #></a></li>
+			<#
+		}
+		for(int i=0;i<Lists.Count;i++){
+            Sobiens.Connectors.Entities.Folder folder = Lists[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+
+
+			#>
+            <div id="tabs-<#=i.ToString()#>"><div id='soby_<#= fixedTableName #>Div'></div></div>
+			<#
+		}#>
+        </ul>
+    </div>
+    <script>
+        $(function () {
+            $("#tabs").tabs({
+                activate: function (event, ui) {
+                    var isloaded = ui.newTab.find("a").attr("data-isloaded");
+                    if (isloaded != "1") {
+                        var onLoadFunction = ui.newTab.find("a").attr("data-onloadfunction");
+                        ui.newTab.find("a").attr("data-isloaded", "1");
+                        eval(onLoadFunction);
+                    }
+                }
+            });
+            SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() { 
+                var onLoadFunction = $("a[href='#tabs-0']").attr("data-onloadfunction");
+                $("a[href='#tabs-0']").attr("data-isloaded", "1");
+                eval(onLoadFunction);
+            });
+        });
+
+    <#= GridComponentsSyntax #>
+
+    </script>

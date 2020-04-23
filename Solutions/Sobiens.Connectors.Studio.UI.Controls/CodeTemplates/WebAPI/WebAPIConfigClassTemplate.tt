@@ -4,8 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder>" name="Tables" #>
 
-<#@ parameter type="System.Object" name="Tables" #>
 using SobyGrid_WebAPIExample.Models;
 using System;
 using System.Collections.Generic;
@@ -34,8 +34,7 @@ namespace SobyGrid_WebAPIExample
             // New code:
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 			<#
-			List<Folder> tables = (List<Folder>)Tables;
-			foreach (Folder _table in tables)
+			foreach (Folder _table in Tables)
 			{
             Sobiens.Connectors.Entities.SQLServer.SQLTable table = (Sobiens.Connectors.Entities.SQLServer.SQLTable)_table;
             string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(table.Title);

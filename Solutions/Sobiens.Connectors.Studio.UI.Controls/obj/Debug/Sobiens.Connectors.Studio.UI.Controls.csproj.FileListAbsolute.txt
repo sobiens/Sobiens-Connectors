@@ -323,6 +323,8 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CompareWizardForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CriteriaPane.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\BrowserTabsPanel.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Selectors\RadioButtonList.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Selectors\CheckBoxList.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\WorkflowCopyForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\SyncSchemaWizardForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ValueTransformationForm.g.cs
@@ -380,6 +382,8 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CompareSQLObjectsForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\CompareWizardForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\BrowserTabsPanel.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Selectors\RadioButtonList.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Selectors\CheckBoxList.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\WorkflowCopyForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\SyncSchemaWizardForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ValueTransformationForm.baml

@@ -2,9 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
-        Title="LoadingWindow" Height="65" Width="239" Topmost="True">
+        Title="LoadingWindow" Height="65" Width="239" Topmost="True" Closing="Window_Closing">
     <Grid Height="31" Width="215">
         <Image my:ImageBehavior.AnimatedSource="Images/loader.GIF" Width="25" Height="25" HorizontalAlignment="Left" Margin="0,0,0,0" Name="LoadingImage" />
-        <Label Content="{DynamicResource Loading}" Height="25" HorizontalAlignment="Left" Margin="40,0,0,0" Name="label1" Background="#FF963C3C" />
+        <Label Content="{DynamicResource Loading}" Height="25" HorizontalAlignment="Left" Margin="40,0,0,0" Name="label1" />
     </Grid>
 </Window>

@@ -4,51 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             xmlns:wpfcx="clr-namespace:Sobiens.Connectors.Studio.UI.Controls.Selectors"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
-        </Grid.RowDefinitions>
-        <TabControl HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.Row="0">
-            <TabItem Header="Selected Objects">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="100*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TreeView Margin="10,10,10,10" Grid.Row="1" Name="ObjectsTreeView"/>
+        <Grid Background="#FFE5E5E5">
+            <GroupBox  Margin="0,0,0,0" Height="25" VerticalAlignment="Top" >
+                <Grid>
+                    <RadioButton Content="Listings" Name="ComponentTypeListingsRadioButton" IsChecked="True" Checked="ComponentTypeRadioButton_Checked" />
+                    <RadioButton Content="Carousel" Name="ComponentTypeCarouselRadioButton" Margin="65, 0" Checked="ComponentTypeRadioButton_Checked" />
+                    <RadioButton Content="Calendar" Name="ComponentTypeCalendarRadioButton" Margin="130, 0" Checked="ComponentTypeRadioButton_Checked" />
                 </Grid>
-            </TabItem>
-            <TabItem Header="View Relations" Visibility="Hidden">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="100*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <ComboBox Name="ViewComboBox" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,10,0,0" />
-                    <Button Content="Add" Grid.Row="0" Name="AddButton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="150,10,0,0" Click="AddButton_Click" />
-                    <TreeView Margin="10,10,10,10" Grid.Row="1" Name="ViewRelationsTreeView"/>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Label Name="MasterFieldDisplayNameTextLabel" Content="Display Name Field" Height="25" VerticalAlignment="Top" FontWeight="Bold"></Label>
-                        <Label Name="MasterFieldDisplayNameValueLabel" Content="Display Name Field" Height="25" VerticalAlignment="Top" Margin="20,20,0,0"></Label>
-                        <Label Name="MasterFieldValueNameTextLabel" Content="Value Name Field" Height="25" VerticalAlignment="Top" FontWeight="Bold" Margin="0,40,0,0"></Label>
-                        <Label Name="MasterFieldValueNameValueLabel" Content="Value Name Field" Height="25" VerticalAlignment="Top" Margin="20,60,0,0"></Label>
-                        <Label Name="DetailFieldNameTextLabel" Content="Detail Name Field" Height="25" VerticalAlignment="Top" FontWeight="Bold" Margin="0,80,0,0"></Label>
-                        <Label Name="DetailFieldNameValueLabel" Content="Detail Name Field" Height="25" VerticalAlignment="Top" Margin="20,100,0,0"></Label>
+            </GroupBox>
+            <TabControl x:Name="ComponentTypeTabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,0,0" >
+                <TabItem Header="SQLListingOptions" Name="SQLListingOptionsTabItem">
+                    <Grid>
+                        <wpfcx:CheckBoxList x:Name="SQLLOSelectedListingsEntities" Margin="0, 0,0,0" Height="200" ></wpfcx:CheckBoxList>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="SPListingOptions" Name="SPListingOptionsTabItem">
+                    <Grid>
+                        <Label Name="SPLOPageLibraryLabel" Content="Page library" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPLOPageLibraryComboBox" Width="100" Height="30" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPLOResourceLibraryLabel" Content="Resource library" Width="100" Height="30" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPLOResourceLibraryComboBox" Width="100" Height="30" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPLOPageNameLabel" Content="Page name" Width="100" Height="30" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <TextBox Name="SPLOPageNameTextBox" Text="ListingTestPage" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0" ></TextBox>
+                        <wpfcx:CheckBoxList x:Name="SPLOSelectedListingsEntities" Margin="0, 100,0,0" Height="300" ></wpfcx:CheckBoxList>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="SPCarouselOptions" Name="SPCarouselOptionsTabItem">
+                    <Grid>
+                        <Label Name="SPCOPageLibraryLabel" Content="Page library" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOPageLibraryComboBox" Width="150" Height="25" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPCOResourceLibraryLabel" Content="Resource library" Width="100" Height="25" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOResourceLibraryComboBox" Width="150" Height="25" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPCOPageNameLabel" Content="Page name" Width="100" Height="25" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <TextBox Name="SPCOPageNameTextBox" Text="CarouselTestPage" Width="150" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0" ></TextBox>
+
+                        <Label Name="SPCOCarouselLibraryLabel" Content="Carousel library" Width="100" Height="25" Margin="300, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOCarouselLibraryComboBox" Width="150" Height="25" Margin="400, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="SPCOCarouselLibraryComboBox_SelectionChanged"></ComboBox>
+
+                        <Label Name="SPCOImageFieldLabel" Content="Image field" Width="100" Height="25" Margin="300, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOImageFieldComboBox" Width="150" Height="25" Margin="400, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPCOCaptionFieldLabel" Content="Caption field" Width="100" Height="25" Margin="300, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOCaptionFieldComboBox" Width="150" Height="25" Margin="400, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPCOContentFieldLabel" Content="Content field" Width="100" Height="25" Margin="300, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
+                        <ComboBox Name="SPCOContentFieldComboBox" Width="150" Height="25" Margin="400, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+
 
                     </Grid>
-                </Grid>
-            </TabItem>
-        </TabControl>
-
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </wpfc:HostControl>

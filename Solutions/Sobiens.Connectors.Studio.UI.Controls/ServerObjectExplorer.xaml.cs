@@ -225,6 +225,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             if (folder as CRMWeb != null)
             {
                 AddHeadingNode(rootNode, folder, "Entities", true);
+                AddHeadingNode(rootNode, folder, "Dashboards", true);
                 AddHeadingNode(rootNode, folder, "Option Sets", true);
                 AddHeadingNode(rootNode, folder, "Processes", true);
                 AddHeadingNode(rootNode, folder, "Plug-in Assemblies", true);
@@ -401,7 +402,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 Folder folder = null;
                 if (siteSetting.SiteSettingType == SiteSettingTypes.SharePoint)
                 {
-                    folder = new SPWeb(siteSetting.Url, siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString(), siteSetting.Url, siteSetting.Url, siteSetting.Url);
+                    folder = new Services.SharePoint.SharePointService().GetWeb(siteSetting, siteSetting.Url);
+//                    folder = new SPWeb(siteSetting.Url, siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString(), siteSetting.Url, siteSetting.Url, siteSetting.Url);
                 }
                 else if (siteSetting.SiteSettingType == SiteSettingTypes.SQLServer)
                 {
@@ -607,11 +609,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;
-                List<Sobiens.Connectors.Entities.Folder> folders = new List<Sobiens.Connectors.Entities.Folder>();
-                CRMWeb folder = new CRMWeb(siteSetting.Url, siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString(), siteSetting.Url, siteSetting.Url);
-                folder.Selected = false;
-                folders.Add(folder);
-                this.Initialize(folders, null);
+                this.Initialize();
                 this.RefreshNodes();
             }
         }
@@ -628,11 +626,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;
-                List<Sobiens.Connectors.Entities.Folder> folders = new List<Sobiens.Connectors.Entities.Folder>();
-                Entities.SQLServer.SQLServer folder = new Entities.SQLServer.SQLServer(siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString());
-                folder.Selected = false;
-                folders.Add(folder);
-                this.Initialize(folders, null);
+                this.Initialize();
                 this.RefreshNodes();
             }
         }

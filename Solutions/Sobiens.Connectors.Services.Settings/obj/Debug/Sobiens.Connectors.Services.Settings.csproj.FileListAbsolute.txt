@@ -19,13 +19,3 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Setti
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.dll
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.pdb
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.dll
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Services.Settings.pdb
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.dll
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.dll
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\Sobiens.Connectors.Entities.pdb
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\bin\Debug\NLog.xml
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csprojAssemblyReference.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.csproj.CopyComplete
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.dll
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Settings\obj\Debug\Sobiens.Connectors.Services.Settings.pdb

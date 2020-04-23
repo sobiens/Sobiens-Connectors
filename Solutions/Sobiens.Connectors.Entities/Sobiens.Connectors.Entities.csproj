@@ -116,6 +116,7 @@
     <Compile Include="CRM\CRMBusinessUnit.cs" />
     <Compile Include="CRM\CRMSecurityRole.cs" />
     <Compile Include="CRM\CRMTeam.cs" />
+    <Compile Include="CRM\CRMDashboard.cs" />
     <Compile Include="CRM\CRMView.cs" />
     <Compile Include="CRM\CRMViewCollection.cs" />
     <Compile Include="CRM\CRMUserCollection.cs" />

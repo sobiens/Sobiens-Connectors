@@ -642,6 +642,8 @@ namespace Sobiens.Connectors.Common
             string[] returnValue = new string[] { "Completed", "" };
             try
             {
+                
+                
                 object[] args = (object[])_args;
                 SyncTaskListItemsCopy syncTask = (SyncTaskListItemsCopy)args[0];
                 bool shouldSkipUpdates = (bool)args[1];

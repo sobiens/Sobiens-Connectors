@@ -44,6 +44,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Settings
             TypeComboBox.ItemsSource = list;
 
             SetCredentialControls();
+            URLTextBox.Focus();
         }
 
         private void SetCredentialControls()
@@ -73,16 +74,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Settings
         private void SiteSettingForm_OKButtonSelected(object sender, EventArgs e)
         {
             SiteSetting siteSetting = (SiteSetting)this.Tag;
-            LoadingWindow loadingWindow = new LoadingWindow();
-            loadingWindow.Show(Languages.Translate("Checking connection..."));
-            if (ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).CheckConnection(siteSetting) == false)
+            LoadingWindow.ShowDialog(Languages.Translate("Checking connection..."), delegate ()
             {
-                this.IsValid = false;
-                loadingWindow.Close();
-                MessageBox.Show(Languages.Translate("Checking connection failed. Please correct the entries."));
-                return;
-            }
-            loadingWindow.Close();
+                if (ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).CheckConnection(siteSetting) == false)
+                {
+                    this.IsValid = false;
+                    MessageBox.Show(Languages.Translate("Checking connection failed. Please correct the entries."));
+                    return;
+                }
+                this.IsValid = true;
+            });
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

@@ -1,9 +1,13 @@
 ﻿using Sobiens.Connectors.Common;
+using Sobiens.Connectors.Common.Interfaces;
 using Sobiens.Connectors.Common.SQLServer;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
+using Sobiens.Connectors.Entities.SharePoint;
 using Sobiens.Connectors.Entities.SQLServer;
+using Sobiens.Connectors.Services.SharePoint;
+using Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.SharePoint;
 using Sobiens.Connectors.Studio.UI.Controls.CodeTemplates.WebAPI;
 using System;
 using System.Collections.Generic;
@@ -48,130 +52,203 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private void InitializeForm()
         {
             this.OKButtonSelected += ViewRelationForm_OKButtonSelected;
+            ComponentTypeRadioButton_Checked(null, null);
         }
 
         void ViewRelationForm_OKButtonSelected(object sender, EventArgs e)
         {
-            ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
-            if (siteSetting.SiteSettingType == Entities.Settings.SiteSettingTypes.SQLServer)
+            if (ValidateCodeGenerationForm() == false)
+                return;
+            int componentTypeIndex = 0;
+            if (ComponentTypeListingsRadioButton.IsChecked == true)
             {
-                GenerateSQLServerCode();
+                componentTypeIndex = 0;
             }
-            else if (siteSetting.SiteSettingType == Entities.Settings.SiteSettingTypes.SharePoint)
+            else if (ComponentTypeCarouselRadioButton.IsChecked == true)
             {
-                GenerateSharePointCode();
+                componentTypeIndex = 1;
+            }
+
+            LoadingWindow.ShowDialog("Generating codes...", delegate ()
+            {
+                ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
+                if (siteSetting.SiteSettingType == Entities.Settings.SiteSettingTypes.SQLServer)
+                {
+                    GenerateSQLListingCode();
+                }
+                else if (siteSetting.SiteSettingType == Entities.Settings.SiteSettingTypes.SharePoint)
+                {
+                    if (componentTypeIndex == 0)
+                    {
+                        GenerateSPListingCode();
+                    }
+                    else if (componentTypeIndex == 1)
+                    {
+                        LoadingWindow.SetMessage("Generating carousel code...");
+                        GenerateSPCarouselCode();
+                    }
+                }
+                else if (siteSetting.SiteSettingType == Entities.Settings.SiteSettingTypes.CRM)
+                {
+                    //GenerateSharePointCode();
+                }
+            });
+
+            MessageBox.Show("Code generation has been completed");
+        }
+
+        private bool ValidateCodeGenerationForm() 
+        {
+            if (_MainObject as SPWeb != null)
+            {
+                SiteSetting siteSetting = (SiteSetting)ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
+                if (ComponentTypeListingsRadioButton.IsChecked == true)
+                {
+                    if (SPLOPageLibraryComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select a page library");
+                        SPLOPageLibraryComboBox.Focus();
+                        return false;
+                    }
+                    if (SPLOResourceLibraryComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select a resource library");
+                        SPLOResourceLibraryComboBox.Focus();
+                        return false;
+                    }
+                    if (string.IsNullOrEmpty(SPLOPageNameTextBox.Text) == true)
+                    {
+                        MessageBox.Show("Please enter a page name");
+                        SPLOPageNameTextBox.Focus();
+                        return false;
+                    }
+                    
+                    if (SPLOSelectedListingsEntities.SelectedItems.Count ==0)
+                    {
+                        MessageBox.Show("Please select at least one list");
+                        return false;
+                    }
+
+                    SPList pageLibrary = pageLibrary = ((SPList)SPLOPageLibraryComboBox.SelectedItem);
+                    string pageName = SPLOPageNameTextBox.Text;
+                    if((new SharePointService()).CheckFileExistency(siteSetting, _MainObject.GetWebUrl(), pageLibrary.Title,string.Empty, null, pageName + ".aspx") == true)
+                    {
+                        MessageBox.Show("This page already exists, please select a different page name");
+                        SPLOPageNameTextBox.Focus();
+                        return false;
+                    }
+
+                }
+                else if (ComponentTypeCarouselRadioButton.IsChecked == true)
+                {
+                    if (SPCOPageLibraryComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select page library");
+                        SPCOPageLibraryComboBox.Focus();
+                        return false;
+                    }
+                    if (SPCOResourceLibraryComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select resource library");
+                        SPCOResourceLibraryComboBox.Focus();
+                        return false;
+                    }
+                    if (string.IsNullOrEmpty(SPCOPageNameTextBox.Text) == true)
+                    {
+                        MessageBox.Show("Please enter a page name");
+                        SPCOPageNameTextBox.Focus();
+                        return false;
+                    }
+
+                    if (SPCOCarouselLibraryComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select carousel library");
+                        SPCOCarouselLibraryComboBox.Focus();
+                        return false;
+                    }
+                    if (SPCOImageFieldComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select image field");
+                        SPCOImageFieldComboBox.Focus();
+                        return false;
+                    }
+                    if (SPCOCaptionFieldComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select caption field");
+                        SPCOCaptionFieldComboBox.Focus();
+                        return false;
+                    }
+                    if (SPCOContentFieldComboBox.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select content field");
+                        SPCOContentFieldComboBox.Focus();
+                        return false;
+                    }
+                    SPList pageLibrary = pageLibrary = ((SPList)SPCOPageLibraryComboBox.SelectedItem);
+                    string pageName = SPCOPageNameTextBox.Text;
+                    if ((new SharePointService()).CheckFileExistency(siteSetting, _MainObject.GetWebUrl(), pageLibrary.Title, string.Empty, null, pageName + ".aspx") == true)
+                    {
+                        MessageBox.Show("This page already exists, please select a different page name");
+                        SPCOPageNameTextBox.Focus();
+                        return false;
+                    }
+                }
+                else if (ComponentTypeCalendarRadioButton.IsChecked == true)
+                {
+                }
+            }
+            else if (_MainObject as SQLDB != null)
+            {
+                if (ComponentTypeListingsRadioButton.IsChecked == true)
+                {
+                    if (SQLLOSelectedListingsEntities.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Please select at least one list");
+                        return false;
+                    }
+                }
+                else if (ComponentTypeCarouselRadioButton.IsChecked == true)
+                {
+                    SQLListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+                else if (ComponentTypeCalendarRadioButton.IsChecked == true)
+                {
+                    SQLListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+            }
+
+            return true;
+        }
+
+        public void GenerateFileFromCodeTemplate(dynamic template, string path, Dictionary<string, object> parameters)
+        {
+            string codeContent = TransformCodeTemplate(template, parameters);
+            File.WriteAllText(path, codeContent);
+        }
+        public string TransformCodeTemplate(dynamic template, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                template.Session = new System.Collections.Generic.Dictionary<string, object>();
+                foreach (string parameterKey in parameters.Keys)
+                {
+                    template.Session[parameterKey] = parameters[parameterKey];
+                }
+                template.Initialize();
+                return template.TransformText();
+            }
+            catch(Exception ex)
+            {
+                int x = 3;
+                throw ex;
             }
         }
 
-        public void GenerateModelCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            ModelClassTemplate t = new ModelClassTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public void GenerateODataControllerCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            ODataControllerClassTemplate t = new ODataControllerClassTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public void GenerateApiControllerCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            ApiControllerClassTemplate t = new ApiControllerClassTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public void GenerateWebAPIConfigCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            WebAPIConfigClassTemplate t = new WebAPIConfigClassTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public void GenerateTaskServiceContextCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            TaskServiceContextClassTemplate t = new TaskServiceContextClassTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public void GenerateSobyGridPageTemplateCodeFile(string path, Dictionary<string, object> parameters)
-        {
-            SobyGridPageTemplate t = new SobyGridPageTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
-
-        public string GenerateSobyGridComponentTemplateCodeContent(Dictionary<string, object> parameters)
-        {
-            SobyGridComponentTemplate t = new SobyGridComponentTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            return t.TransformText();
-        }
-        public void GenerateIndexPageTemplateCodeContent(string path, Dictionary<string, object> parameters)
-        {
-            IndexPageTemplate t = new IndexPageTemplate();
-            t.Session = new System.Collections.Generic.Dictionary<string, object>();
-            foreach (string parameterKey in parameters.Keys)
-            {
-                t.Session[parameterKey] = parameters[parameterKey];
-            }
-            t.Initialize();
-            string content = t.TransformText();
-            File.WriteAllText(path, content);
-        }
         public string GetTempPath()
         {
             string folderPath = System.IO.Path.GetTempPath() + "SPCamlStudio";
             if (System.IO.Directory.Exists(folderPath) == false)
                 System.IO.Directory.CreateDirectory(folderPath);
-//            folderPath = folderPath + "\\SPCamlStudio";
-//            if (System.IO.Directory.Exists(folderPath) == false)
-//                System.IO.Directory.CreateDirectory(folderPath);
             folderPath = folderPath + "\\" + Guid.NewGuid().ToString();
             if (System.IO.Directory.Exists(folderPath) == false)
                 System.IO.Directory.CreateDirectory(folderPath);
@@ -179,11 +256,15 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             return folderPath;
         }
 
-        void GenerateSQLServerCode()
+        void GenerateSQLListingCode()
         {
             try
             {
-                List<string> usedForeignKeyTables = new List<string>();
+                List<Folder> selectedTables = new List<Folder>();
+                foreach (Selectors.CheckBoxList.CheckBoxListItem selectedItem in SQLLOSelectedListingsEntities.SelectedItems)
+                {
+                    selectedTables.Add((SQLTable)selectedItem.Value);
+                }
 
                 //string zipPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\Resources\SobyGrid_WebAPIExample.zip";
                 string extractPath = GetTempPath();
@@ -215,42 +296,25 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
                 Dictionary<string, object> parameters = new Dictionary<string, object>();
                 parameters["Tables"] = _MainObject.Folders;
-                GenerateWebAPIConfigCodeFile(appStartPath + "\\WebApiConfig.cs", parameters);
-                GenerateTaskServiceContextCodeFile(modelsPath + "\\TaskServiceContext.cs", parameters);
+                GenerateFileFromCodeTemplate(new WebAPIConfigClassTemplate(), appStartPath + "\\WebApiConfig.cs", parameters);
+                GenerateFileFromCodeTemplate(new TaskServiceContextClassTemplate(), modelsPath + "\\TaskServiceContext.cs", parameters);
 
                 SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[_MainObject.SiteSettingID];
 
                 parameters = new Dictionary<string, object>();
                 parameters["Database"] = _MainObject;
+                //parameters["SelectedTables"] = selectedTables;
 
                 string gridComponentsCode = string.Empty;
                 foreach (Folder folder in _MainObject.Folders)
                 {
                     SQLTable table = (SQLTable)folder;
-                    FieldCollection fields = table.Fields.GetUsableFields();// ApplicationContext.Current.GetFields(siteSetting, folder);
-                    //FieldCollection primaryKeyFields = new FieldCollection();
-                    //string[] primaryKeys = table.PrimaryKeys;
-                    SQLForeignKey[] foreignKeys = table.ForeignKeys;
-                    List<SQLForeignKey> relatedForeignKeys = new List<SQLForeignKey>();
-                    //if (primaryKeys.Count() == 0)
-                    //    continue;
-
-                    //List<Folder> referencedTables = new List<Folder>();
-                    foreach (Folder otherTable in _MainObject.Folders)
-                    {
-                        if (otherTable.Title.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase) == true)
-                            continue;
-
-                        SQLForeignKey[] _foreignKeys = ((SQLTable)otherTable).ForeignKeys.Where(t => t.ReferencedTableName.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase)).ToArray();
-                        if (_foreignKeys.Count() > 0) { 
-                            //referencedTables.Add(otherTable);
-                            relatedForeignKeys.AddRange(_foreignKeys);
-                        }
-                    }
-
                     string tableName = folder.Title;
                     string schemaName = ((SQLTable)folder).Schema;
                     string fixedTableName = CodeWizardManager.FixTableNameForCode(tableName);
+                    FieldCollection fields = table.Fields.GetUsableFields();// ApplicationContext.Current.GetFields(siteSetting, folder);
+                                                                            //FieldCollection primaryKeyFields = new FieldCollection();
+                                                                            //string[] primaryKeys = table.PrimaryKeys;
                     string gridName = fixedTableName + "Grid";
                     parameters = new Dictionary<string, object>();
                     parameters["Tables"] = _MainObject.Folders;
@@ -260,77 +324,102 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     parameters["GridName"] = gridName;
                     parameters["GridTitle"] = folder.Title;
                     parameters["GridAltTitle"] = folder.Title;
-
-                    //parameters["ForeignKeys"] = foreignKeys;
-                    //parameters["ReferencedTables"] = referencedTables;
-
-                    string gridComponentCode = GenerateSobyGridComponentTemplateCodeContent(parameters);
-                    string showFieldName = string.Empty;
-                    List<Field> textFields = fields.Where(t => t.Type == FieldTypes.Text).ToList();
-                    if (textFields.Count > 0)
-                        showFieldName = textFields[0].Name;
-                    else
-                        showFieldName = fields[0].Name;
-                    foreach (SQLForeignKey referencedForeignKey in relatedForeignKeys)
+                    if (selectedTables.Contains(table) == true)
                     {
-                        string referencedGridName = fixedTableName + "_";
-                        string referencedTableColumnNames = string.Empty;
-                        string tableColumnNames = string.Empty;
-                        foreach (string referencedTableColumnName in referencedForeignKey.ReferencedTableColumnNames)
-                        {
-                            if (string.IsNullOrEmpty(referencedTableColumnNames) == false)
-                                referencedTableColumnNames += ",";
+                        SQLForeignKey[] foreignKeys = table.ForeignKeys;
+                        List<SQLForeignKey> relatedForeignKeys = new List<SQLForeignKey>();
+                        //if (primaryKeys.Count() == 0)
+                        //    continue;
 
-                            referencedTableColumnNames += referencedTableColumnName;
+                        //List<Folder> referencedTables = new List<Folder>();
+                        foreach (Folder otherTable in _MainObject.Folders)
+                        {
+                            if (otherTable.Title.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase) == true)
+                                continue;
+
+                            SQLForeignKey[] _foreignKeys = ((SQLTable)otherTable).ForeignKeys.Where(t => t.ReferencedTableName.Equals(folder.Title, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+                            if (_foreignKeys.Count() > 0)
+                            {
+                                //referencedTables.Add(otherTable);
+                                relatedForeignKeys.AddRange(_foreignKeys);
+                            }
                         }
 
-                        foreach (string tableColumnName in referencedForeignKey.TableColumnNames)
-                        {
-                            if (string.IsNullOrEmpty(tableColumnNames) == false)
-                                tableColumnNames += ",";
 
-                            tableColumnNames += tableColumnName;
-                            referencedGridName += "_" + tableColumnName;
+                        //parameters["ForeignKeys"] = foreignKeys;
+                        //parameters["ReferencedTables"] = referencedTables;
+
+                        string gridComponentCode = TransformCodeTemplate(new SobyGridComponentSQLTemplate(), parameters);
+
+                        string showFieldName = string.Empty;
+                        List<Field> textFields = fields.Where(t => t.Type == FieldTypes.Text).ToList();
+                        if (textFields.Count > 0)
+                            showFieldName = textFields[0].Name;
+                        else
+                            showFieldName = fields[0].Name;
+                        foreach (SQLForeignKey referencedForeignKey in relatedForeignKeys)
+                        {
+                            string referencedGridName = fixedTableName + "_";
+                            string referencedTableColumnNames = string.Empty;
+                            string tableColumnNames = string.Empty;
+                            foreach (string referencedTableColumnName in referencedForeignKey.ReferencedTableColumnNames)
+                            {
+                                if (string.IsNullOrEmpty(referencedTableColumnNames) == false)
+                                    referencedTableColumnNames += ",";
+
+                                referencedTableColumnNames += referencedTableColumnName;
+                            }
+
+                            foreach (string tableColumnName in referencedForeignKey.TableColumnNames)
+                            {
+                                if (string.IsNullOrEmpty(tableColumnNames) == false)
+                                    tableColumnNames += ",";
+
+                                tableColumnNames += tableColumnName;
+                                referencedGridName += "_" + tableColumnName;
+                            }
+
+                            referencedGridName += "_Grid";
+                            SQLTable referencedTable = (SQLTable)_MainObject.Folders.Where(t => t.Title.Equals(referencedForeignKey.TableName, StringComparison.InvariantCultureIgnoreCase)).First();
+                            FieldCollection referencedFields = referencedTable.Fields.GetUsableFields(); // ApplicationContext.Current.GetFields(siteSetting, referencedTable);
+                                                                                                         //FieldCollection referencedPrimaryKeyFields = new FieldCollection();
+                                                                                                         //string[] referencedPrimaryKeys = _referencedTable.PrimaryKeys;
+                                                                                                         //List<Field> referencedPrimaryKeyFieldObjects = (from x in fields where referencedPrimaryKeys.Contains(x.Name) select x).ToList();
+
+                            Dictionary<string, object> referencedTableParameters = new Dictionary<string, object>();
+                            referencedTableParameters["Tables"] = _MainObject.Folders;
+                            referencedTableParameters["TableName"] = referencedTable.Title;
+                            referencedTableParameters["SchemaName"] = schemaName;
+                            referencedTableParameters["Fields"] = referencedFields;
+                            referencedTableParameters["GridName"] = referencedGridName;
+                            referencedTableParameters["GridTitle"] = referencedTable.Title;
+                            referencedTableParameters["GridAltTitle"] = tableColumnNames + " --- " + referencedTableColumnNames;
+
+                            //referencedTableParameters["ForeignKeys"] = foreignKeys;
+                            gridComponentCode += TransformCodeTemplate(new SobyGridComponentSQLTemplate(), referencedTableParameters);
+                            gridComponentCode += "      " + gridName + ".AddDataRelation(\"" + showFieldName + "\", \"" + referencedTableColumnNames + "\", " + referencedGridName + ".GridID, \"" + tableColumnNames + "\");" + Environment.NewLine;
                         }
 
-                        referencedGridName += "_Grid";
-                        SQLTable referencedTable = (SQLTable)_MainObject.Folders.Where(t => t.Title.Equals(referencedForeignKey.TableName, StringComparison.InvariantCultureIgnoreCase)).First();
-                        FieldCollection referencedFields = referencedTable.Fields.GetUsableFields(); // ApplicationContext.Current.GetFields(siteSetting, referencedTable);
-                        //FieldCollection referencedPrimaryKeyFields = new FieldCollection();
-                        //string[] referencedPrimaryKeys = _referencedTable.PrimaryKeys;
-                        //List<Field> referencedPrimaryKeyFieldObjects = (from x in fields where referencedPrimaryKeys.Contains(x.Name) select x).ToList();
 
-                        Dictionary<string, object> referencedTableParameters = new Dictionary<string, object>();
-                        referencedTableParameters["Tables"] = _MainObject.Folders;
-                        referencedTableParameters["TableName"] = referencedTable.Title;
-                        referencedTableParameters["SchemaName"] = schemaName;
-                        referencedTableParameters["Fields"] = referencedFields;
-                        referencedTableParameters["GridName"] = referencedGridName;
-                        referencedTableParameters["GridTitle"] = referencedTable.Title;
-                        referencedTableParameters["GridAltTitle"] = tableColumnNames + " --- " + referencedTableColumnNames;
+                        gridComponentCode = "   function soby_Populate" + fixedTableName + "() {" +
+                            Environment.NewLine + gridComponentCode +
+                            Environment.NewLine + "     " + gridName + ".Initialize(true);" +
+                            Environment.NewLine + " }" + Environment.NewLine + Environment.NewLine;
 
-                        //referencedTableParameters["ForeignKeys"] = foreignKeys;
-                        gridComponentCode += GenerateSobyGridComponentTemplateCodeContent(referencedTableParameters);
-                        gridComponentCode += "      " + gridName + ".AddDataRelation(\"" + showFieldName + "\", \"" + referencedTableColumnNames + "\", " + referencedGridName + ".GridID, \"" + tableColumnNames + "\");" + Environment.NewLine;
+                        gridComponentsCode += gridComponentCode;
                     }
 
-                    GenerateModelCodeFile(modelsPath + "\\" + fixedTableName + "Record.cs", parameters);
+                    GenerateFileFromCodeTemplate(new ModelClassTemplate(), modelsPath + "\\" + fixedTableName + "Record.cs", parameters);
                     if (fields.Where(t => t.IsPrimary == true).Count() > 0 && table.Fields.HasUnusableFieldsPrimary() == false)
                     {
-                        GenerateODataControllerCodeFile(controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
+                        GenerateFileFromCodeTemplate(new ODataControllerClassTemplate(), controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
                     }
                     else
                     {
-                        GenerateApiControllerCodeFile(controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
+                        GenerateFileFromCodeTemplate(new ApiControllerClassTemplate(), controllersPath + "\\" + fixedTableName + "ListController.cs", parameters);
                     }
 
-                    gridComponentCode = "   function soby_Populate" + fixedTableName + "() {" +
-                        Environment.NewLine + gridComponentCode +
-                        Environment.NewLine + "     " + gridName + ".Initialize(true);" +
-                        Environment.NewLine + " }" + Environment.NewLine + Environment.NewLine;
-
-                    gridComponentsCode += gridComponentCode;
-                    parameters["GridComponentSyntax"] = gridComponentCode;
+                    //parameters["GridComponentSyntax"] = gridComponentCode;
                     XmlAttribute includeAttribute;
 
                     /*
@@ -359,7 +448,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 parameters = new Dictionary<string, object>();
                 parameters["Database"] = _MainObject;
                 parameters["GridComponentsSyntax"] = gridComponentsCode;
-                GenerateIndexPageTemplateCodeContent(rootPath + "\\Index.html", parameters);
+                parameters["SelectedTables"] = selectedTables;
+                GenerateFileFromCodeTemplate(new IndexSQLPageTemplate(), rootPath + "\\Index.html", parameters);
 
                 string connectionstring = (new SQLServerService()).GetConnectionString(siteSetting, ((SQLDB)_MainObject).Title);
                 SaveConnectionStrings(rootPath + "\\web.config", connectionstring);
@@ -392,207 +482,350 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             xDoc.Save(webConfigFilePath);
         }
 
-        void GenerateSharePointCode()
+        void GenerateSPListingCode()
         {
-            XmlDocument xDoc = new XmlDocument();
-            XmlNode contentNode = null;
-            //var assembly = Assembly.Load("Sobiens.Connectors.UI");
-            //var resourceName = "Sobiens.Connectors.UI.Resources.SPOnlineWebpart.dwp";
-            string dwpPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Resources\SPOnlineWebpart.dwp";
-
-            //using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            //using (StreamReader reader = new StreamReader(stream))
-            //{
-                string xmlString = File.ReadAllText(dwpPath);
-                xDoc.LoadXml(xmlString);
-                foreach (XmlNode node in xDoc.ChildNodes[1].ChildNodes)
-                {
-                    if (node.Name.Equals("Content", StringComparison.InvariantCultureIgnoreCase) == true)
-                    {
-                        contentNode = node;
-                        break;
-                    }
-                }
-            //}
-
-            StringBuilder sb = new StringBuilder();
-            foreach (object t in ViewRelationsTreeView.Items)
+            string pageName = "";
+            string includeFileName = "sobysplistinginclude_" + DateTime.Now.ToString("yyyyMMddmmss") + ".html";
+            SPList resourceLibrary = null; // ((SPList)SPCOResourceLibraryComboBox.SelectedItem);
+            SPList pageLibrary = null;// ((SPList)SPCOPageLibraryComboBox.SelectedItem);
+            List<Folder> selectedLists = new List<Folder>();
+            this.Dispatcher.Invoke((Action)(() =>
             {
-                TreeViewItem treeviewItem = (TreeViewItem)t;
-                ViewRelation viewRelation = (ViewRelation)treeviewItem.Tag;
-                string appendix = viewRelation.ID.ToString().Replace('-', '_');
-                sb.AppendLine("<div id='soby_GridDiv" + appendix + "'></div>");
-            }
-            sb.AppendLine("<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>");
-            sb.AppendLine("<script language='javascript' src='https://cdn.rawgit.com/serkantsamurkas/sobiens/master/soby.spservice.js'></script>");
-            sb.AppendLine("<script language='javascript' src='https://cdn.rawgit.com/serkantsamurkas/sobiens/master/soby.ui.components.js'></script>");
-            sb.AppendLine("<script language='javascript'>");
-            sb.Append(GenerateGridsScript(ViewRelationsTreeView.Items));
-            sb.AppendLine("</script>");
-            string path = GetTempPath();
-            contentNode.InnerText = sb.ToString();
+                resourceLibrary = ((SPList)SPLOResourceLibraryComboBox.SelectedItem);
+                pageLibrary = ((SPList)SPLOPageLibraryComboBox.SelectedItem);
+                pageName = SPLOPageNameTextBox.Text;
+                foreach (Selectors.CheckBoxList.CheckBoxListItem selectedItem in SPLOSelectedListingsEntities.SelectedItems)
+                {
+                    selectedLists.Add((SPList)selectedItem.Value);
+                }
+            }));
 
-            xDoc.Save(path + "\\soby_test.dwp");
-//            File.WriteAllText(path + "\\soby_test.dwp", sb.ToString());
-            Process.Start("Explorer.exe", path);
+            //this.ShowLoadingStatus("SharePoint code is being generated...");
+            SiteSetting siteSetting = (SiteSetting)ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
+            //this.ShowLoadingStatus("Generating page...");
+            SharePointService.CreatePage(siteSetting, _MainObject.GetWebUrl(), pageLibrary.Title, pageName + ".aspx");
+            //this.ShowLoadingStatus("Modifying page...");
+            SharePointService.AddContentEditorWebpartWithContentLink(siteSetting, pageLibrary.ServerRelativePath + "/" + pageName + ".aspx", "Main",1, ((SPWeb)_MainObject).ServerRelativePath + "/Style Library/" + includeFileName);
+
+            //this.ShowLoadingStatus("Generating page components...");
+            string componentsCode = GenerateSPGridsScript(selectedLists, siteSetting);
+            string filePath = GetTempPath() + "\\" + includeFileName;
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters["Database"] = _MainObject;
+            parameters["Lists"] = selectedLists;
+            parameters["GridComponentsSyntax"] = componentsCode;
+            GenerateFileFromCodeTemplate(new IndexSPPageTemplate(), filePath, parameters);
+
+            //this.ShowLoadingStatus("Generating page content...");
+            UploadItem uploadItem = new UploadItem();
+            uploadItem.FilePath = filePath;
+            uploadItem.FieldInformations = new Dictionary<object, object>();
+            uploadItem.Folder = new SPFolder()
+            {
+                RootFolderPath = resourceLibrary.RootFolderPath,
+                FolderPath = resourceLibrary.FolderPath,
+                WebUrl = siteSetting.Url,
+                SiteUrl = siteSetting.Url,
+                ListName = resourceLibrary.Title,
+                BaseType = 1,
+            };
+            Entities.Interfaces.IItem item = null;
+            Logger.Info("Uploading " + uploadItem.FilePath + " ...", "Service");
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            serviceManager.UploadFile(siteSetting, uploadItem, false, out item);
+            //this.HideLoadingStatus("Completed.");
+
         }
 
-        public void Initialize(List<IQueryPanel> queryPanels, Folder mainObject) 
+        void GenerateSPCarouselCode()
+        {
+            SiteSetting siteSetting = (SiteSetting)ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
+            string pageName = "";
+            string includeFileName = "sobyspcarouselinclude_" + DateTime.Now.ToString("yyyyMMddmmss") + ".html";
+            SPList resourceLibrary = null; // ((SPList)SPCOResourceLibraryComboBox.SelectedItem);
+            SPList pageLibrary = null;// ((SPList)SPCOPageLibraryComboBox.SelectedItem);
+            SPList carouselList = null;// (SPList)SPCOCarouselLibraryComboBox.SelectedItem;
+            Field imageField = null;//(Field)SPCOImageFieldComboBox.SelectedItem;
+            Field captionField = null;//(Field)SPCOCaptionFieldComboBox.SelectedItem;
+            Field contentField = null;//(Field)SPCOContentFieldComboBox.SelectedItem;
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                resourceLibrary = ((SPList)SPCOResourceLibraryComboBox.SelectedItem);
+                pageLibrary = ((SPList)SPCOPageLibraryComboBox.SelectedItem);
+                pageName = SPCOPageNameTextBox.Text;
+                carouselList = (SPList)SPCOCarouselLibraryComboBox.SelectedItem;
+                imageField = (Field)SPCOImageFieldComboBox.SelectedItem;
+                captionField = (Field)SPCOCaptionFieldComboBox.SelectedItem;
+                contentField = (Field)SPCOContentFieldComboBox.SelectedItem;
+            }));
+            FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, carouselList);
+
+            //this.ShowLoadingStatus("SharePoint code is being generated...");
+            //this.ShowLoadingStatus("Generating page...");
+            SharePointService.CreatePage(siteSetting, _MainObject.GetWebUrl(), pageLibrary.Title, pageName + ".aspx");
+            //this.ShowLoadingStatus("Modifying page...");
+            SharePointService.AddContentEditorWebpartWithContentLink(siteSetting, pageLibrary.ServerRelativePath + "/" + pageName + ".aspx", "Main", 1, ((SPWeb)_MainObject).ServerRelativePath + "/Style Library/" + includeFileName);
+
+            //this.ShowLoadingStatus("Generating page components...");
+
+
+            string filePath = GetTempPath() + "\\" + includeFileName;
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters["Database"] = _MainObject;
+            parameters["List"] = carouselList;
+            parameters["ImageField"] = imageField;
+            parameters["CaptionField"] = captionField;
+            parameters["ContentField"] = contentField;
+            parameters["Fields"] = fields;
+            GenerateFileFromCodeTemplate(new IndexSPCarouselPageTemplate(), filePath, parameters);
+
+            //this.ShowLoadingStatus("Generating page content...");
+            UploadItem uploadItem = new UploadItem();
+            uploadItem.FilePath = filePath;
+            uploadItem.FieldInformations = new Dictionary<object, object>();
+            uploadItem.Folder = new SPFolder()
+            {
+                RootFolderPath = resourceLibrary.RootFolderPath,
+                FolderPath = resourceLibrary.FolderPath,
+                WebUrl = siteSetting.Url,
+                SiteUrl = siteSetting.Url,
+                ListName = resourceLibrary.Title,
+                BaseType = 1,
+            };
+            Entities.Interfaces.IItem item = null;
+            //Logger.Info("Uploading " + uploadItem.FilePath + " ...", "Service");
+            IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
+            serviceManager.UploadFile(siteSetting, uploadItem, false, out item);
+            //this.HideLoadingStatus("Completed.");
+
+        }
+
+        public void Initialize(List<IQueryPanel> queryPanels, Folder mainObject)
         {
             _QueryPanels = queryPanels;
             _MainObject = mainObject;
-            ViewComboBox.Items.Clear();
             ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(_MainObject.SiteSettingID);
             string childFoldersCategoryName = "";
             if (_MainObject as SQLDB != null)
                 childFoldersCategoryName = "Tables";
             List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, _MainObject, null, childFoldersCategoryName);
 
-            foreach (IQueryPanel queryPanel in _QueryPanels){
-                ViewComboBox.Items.Add(new ComboBoxItem()
-                {
-                    Content = queryPanel.FileName,
-                    Tag = queryPanel
-                });
-            }
 
             _MainObject.Folders = subFolders;
             foreach (Folder subFolder in subFolders)
             {
-                AddNode(ObjectsTreeView.Items, subFolder);
+                if (subFolder as SPWeb != null)
+                    continue;
+
+                SPLOSelectedListingsEntities.Items.Add(new Selectors.CheckBoxList.CheckBoxListItem() { IsChecked = false, Text = subFolder.Title, Value = subFolder });
+                SQLLOSelectedListingsEntities.Items.Add(new Selectors.CheckBoxList.CheckBoxListItem() { IsChecked = true, Text = subFolder.Title, Value = subFolder });
             }
+
+            PopulatePageLibraries(SPLOPageLibraryComboBox, subFolders);
+            PopulateResourceLibraries(SPLOResourceLibraryComboBox, subFolders);
+
+            PopulatePageLibraries(SPCOPageLibraryComboBox, subFolders);
+            PopulateResourceLibraries(SPCOResourceLibraryComboBox, subFolders);
+            PopulateLibraries(SPCOCarouselLibraryComboBox, subFolders);
         }
 
-    private void AddNode(ItemCollection itemCollection, Folder folder)
+        private void PopulateImageFields(ComboBox comboBox, SPList list, List<Field> fields)
         {
-            TreeViewItem rootNode = new TreeViewItem();
-
-            DockPanel treenodeDock = new DockPanel();
-
-            DockPanel folderTitleDock = new DockPanel();
-            Image img = new Image();
-            Uri uri = new Uri("/Sobiens.Connectors.Studio.UI.Controls;component/Images/" + folder.IconName + ".GIF", UriKind.Relative);
-            ImageSource imgSource = new BitmapImage(uri);
-            img.Source = imgSource;
-
-            Label lbl = new Label();
-            lbl.Content = folder.Title;
-
-            folderTitleDock.Children.Add(img);
-            folderTitleDock.Children.Add(lbl);
-            treenodeDock.Children.Add(folderTitleDock);
-
-            rootNode.Header = treenodeDock;
-            //rootNode.Expanded += new RoutedEventHandler(rootNode_Expanded);
-            rootNode.Tag = folder;
-            itemCollection.Add(rootNode);
-
-            foreach (Folder subfolder in folder.Folders)
+            List<Field> imageFields = new List<Field>();
+            foreach (Field field in fields)
             {
-                AddNode(rootNode.Items, subfolder);
+                if (field.Type != FieldTypes.Text && field.Type != FieldTypes.URL && field.Name.Equals("FileLeafRef", StringComparison.InvariantCultureIgnoreCase) == false)
+                    continue;
+
+                imageFields.Add(field);
             }
 
-            if (folder.Folders.Count > 0)
+            comboBox.ItemsSource = imageFields;
+            comboBox.IsEnabled = true;
+            if (list.ServerTemplate == 101 || list.ServerTemplate == 851)
             {
-                rootNode.IsExpanded = true;
+                Field fileLeafRefField = imageFields.Where(t => t.Name.Equals("FileLeafRef", StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+                if (fileLeafRefField != null)
+                {
+                    comboBox.SelectedItem = fileLeafRefField;
+                    comboBox.IsEnabled = false;
+                }
             }
-
+            
+            if (comboBox.SelectedItem == null && imageFields.Count > 0)
+                comboBox.SelectedItem = imageFields[0];
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void PopulateTextFields(ComboBox comboBox, List<Field> fields)
         {
-            if(ViewComboBox.SelectedItem ==null)
-                return;
+            List<Field> textFields = new List<Field>();
+            foreach (Field field in fields)
+            {
+                if (field.Type != FieldTypes.Text && field.Type != FieldTypes.Note)
+                    continue;
 
-            TreeViewItem selectedTreeViewItem = null;
-            IQueryPanel masterQueryPanel = null;
-            Guid masterViewRelationID = Guid.Empty;
-            if (ViewRelationsTreeView.SelectedItem != null)
-            {
-                selectedTreeViewItem = (TreeViewItem)ViewRelationsTreeView.SelectedItem;
-                Guid detailQueryPanelID = ((ViewRelation)selectedTreeViewItem.Tag).DetailQueryPanelID;
-                masterViewRelationID = ((ViewRelation)selectedTreeViewItem.Tag).ID;
-                masterQueryPanel = ApplicationContext.Current.SPCamlStudio.QueriesPanel.GetQueryPanel(detailQueryPanelID);
-                //masterQueryPanel = (IQueryPanel)selectedTreeViewItem.Tag;
+                textFields.Add(field);
             }
-            ComboBoxItem selectedComboBoxItem = (ComboBoxItem)ViewComboBox.SelectedItem;
-            IQueryPanel detailQueryPanel = (IQueryPanel)selectedComboBoxItem.Tag;
-            ViewRelation viewRelation = ViewRelation.NewViewRelation();
-            viewRelation.MasterViewRelationID = masterViewRelationID;
-            viewRelation.DetailQueryPanelID = detailQueryPanel.ID;
-            viewRelation.Name = detailQueryPanel.FileName;
-            viewRelation.DetailSiteUrl = detailQueryPanel.AttachedObject.GetWebUrl();
-            viewRelation.DetailListName = detailQueryPanel.AttachedObject.GetListName();
-            if (selectedComboBoxItem.Parent == null)
-                viewRelation.IsRoot = true;
 
-            TreeViewItem newTreeViewItem = new TreeViewItem()
-                {
-                    Header = viewRelation.Name,
-                    Tag = viewRelation
-                };
-            if (selectedTreeViewItem == null)
+            comboBox.ItemsSource = textFields;
+            if (textFields.Count > 0)
+                comboBox.SelectedItem = textFields[0];
+        }
+
+        private void PopulatePageLibraries(ComboBox comboBox, List<Folder> folders)
+        {
+            List<Folder> pageLibraries = new List<Folder>();
+            Folder defaultPageLibrary = null;
+            foreach(Folder folder in folders)
             {
-                ViewRelationsTreeView.Items.Add(newTreeViewItem);
+                if (folder as SPList == null)
+                    continue;
+
+                if (((SPList)folder).ServerTemplate == 850)
+                {
+                    if (folder.Title == "Pages" || folder.Title == "Site Pages")
+                        defaultPageLibrary = folder;
+                    pageLibraries.Add(folder);
+                }
+
             }
-            else
+
+            comboBox.ItemsSource = pageLibraries;
+            if (defaultPageLibrary == null && pageLibraries.Count > 0)
+                defaultPageLibrary = pageLibraries[0];
+
+            if (defaultPageLibrary != null)
+                comboBox.SelectedItem = defaultPageLibrary;
+        }
+
+        private void PopulateLibraries(ComboBox comboBox, List<Folder> folders)
+        {
+            List<Folder> libraries = new List<Folder>();
+            foreach (Folder folder in folders)
             {
-                ViewRelationForm viewRelationForm = new ViewRelationForm();
-                viewRelationForm.Initialize(masterQueryPanel, detailQueryPanel);
-                viewRelationForm.Tag=viewRelation;
-                if (viewRelationForm.ShowDialog(this.ParentWindow, "View Relation") == true)
+                if (folder as SPList == null)
+                    continue;
+
+                libraries.Add(folder);
+            }
+
+            comboBox.ItemsSource = libraries;
+            if (libraries.Count > 0)
+                comboBox.SelectedItem = libraries[0];
+        }
+
+        private void PopulateResourceLibraries(ComboBox comboBox, List<Folder> folders)
+        {
+            List<Folder> resourceLibraries = new List<Folder>();
+            Folder defaultResourceLibrary = null;
+            foreach (Folder folder in folders)
+            {
+                if (folder as SPList == null)
+                    continue;
+
+                if (((SPList)folder).ServerTemplate == 101)
                 {
-                    selectedTreeViewItem.Items.Add(newTreeViewItem);
+                    if (folder.Title == "Style Library")
+                        defaultResourceLibrary = folder;
+
+                    resourceLibraries.Add(folder);
                 }
             }
 
+            comboBox.ItemsSource = resourceLibraries;
+            if (defaultResourceLibrary == null && resourceLibraries.Count > 0)
+                defaultResourceLibrary = resourceLibraries[0];
+
+            if (defaultResourceLibrary != null)
+                comboBox.SelectedItem = defaultResourceLibrary;
         }
 
-        private string GenerateGridsScript(ItemCollection items) 
+
+        private string GenerateSPGridsScript(List<Folder> lists, SiteSetting siteSetting) 
         {
             StringBuilder sb = new StringBuilder();
-            foreach (object t in items)
+            foreach (Selectors.CheckBoxList.CheckBoxListItem selectedItem in SPLOSelectedListingsEntities.SelectedItems)
             {
-                TreeViewItem treeviewItem = (TreeViewItem)t;
-                ViewRelation viewRelation = (ViewRelation)treeviewItem.Tag;
-                IQueryPanel queryPanel = ApplicationContext.Current.SPCamlStudio.QueriesPanel.GetQueryPanel(viewRelation.DetailQueryPanelID);
-                string appendix = viewRelation.ID.ToString().Replace('-', '_') ;
-                sb.AppendLine("var dataSourceBuilder" + appendix + " = new soby_CamlBuilder('" + viewRelation.DetailListName + "', '', 5, '" + viewRelation.DetailSiteUrl + "');");
-                sb.AppendLine("dataSourceBuilder" + appendix + ".Filters = new CamlFilters(false);");
-                sb.AppendLine("var spService" + appendix + " = new soby_SharePointService(dataSourceBuilder" + appendix + ");");
-                sb.AppendLine("var sobyGrid" + appendix + " = new soby_DataGrid('#soby_GridDiv" + appendix + "', '" + viewRelation.DetailListName + "', spService" + appendix + ", 'There is no record found.')");
-                List<CamlFieldRef> viewFields = queryPanel.GetViewFields();
-                foreach(CamlFieldRef viewField in viewFields){
-                    sb.AppendLine("dataSourceBuilder" + appendix + ".AddViewField('" + viewField.Name + "', '" + viewField.Name + "', CamlFieldTypes.Text);");
-                    sb.AppendLine("sobyGrid" + appendix + ".AddColumn('" + viewField.Name + "', '" + viewField.DisplayName + "');");
-                }
+                SPList spList = (SPList)selectedItem.Value;
+                FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, spList);
+                string tableName = spList.Title;
+                string fixedTableName = CodeWizardManager.FixTableNameForCode(tableName);
+                string gridName = fixedTableName + "Grid";
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters["Tables"] = lists;
+                parameters["TableName"] = tableName;
+                parameters["Fields"] = fields;
+                parameters["GridName"] = gridName;
+                parameters["GridTitle"] = spList.Title;
+                parameters["GridAltTitle"] = spList.Title;
 
-                foreach (object z in treeviewItem.Items)
-                {
-                    TreeViewItem treeviewItem1 = (TreeViewItem)z;
-                    ViewRelation viewRelation1 = (ViewRelation)treeviewItem1.Tag;
-                    if((from h in viewFields
-                                where h.Name == viewRelation1.MasterFieldValueName
-                                select h).ToList().Count == 0)
-                    {
-                        sb.AppendLine("dataSourceBuilder" + appendix + ".AddViewField('" + viewRelation1.MasterFieldValueName + "', '" + viewRelation1.MasterFieldValueName + "', CamlFieldTypes.Text);");
-                    }
-                }
+                string gridComponent = TransformCodeTemplate(new SobyGridComponentSPTemplate(), parameters);
+                gridComponent = "   function soby_Populate" + fixedTableName + "() {" +
+                                    Environment.NewLine + gridComponent +
+                                    Environment.NewLine + "     " + gridName + ".Initialize(true);" +
+                                    Environment.NewLine + " }" + Environment.NewLine + Environment.NewLine;
+                                    //Environment.NewLine + "$(function() { SP.SOD.executeFunc('sp.js', 'SP.ClientContext', soby_Populate" + fixedTableName + "); });"; 
 
-                if(string.IsNullOrEmpty(viewRelation.MasterFieldDisplayName) == false)
-                {
-                    sb.AppendLine("sobyGrid" + viewRelation.MasterViewRelationID.ToString().Replace('-', '_') + ".AddDataRelation('" + viewRelation.MasterFieldDisplayName + "', '" + viewRelation.MasterFieldValueName + "', sobyGrid" + appendix + ".GridID, '" + viewRelation.DetailFieldName + "')");
-                }
-                else
-                {
-                    sb.AppendLine("sobyGrid" + appendix + ".Initialize(true);");
-                }
-
-                sb.Append(GenerateGridsScript(treeviewItem.Items));
+                sb.Append(gridComponent);
             }
 
             return sb.ToString();
         }
 
+        private void ComponentTypeRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (ComponentTypeTabControl == null || ComponentTypeTabControl.Items == null)
+                return;
+
+            foreach(object tabItem in ComponentTypeTabControl.Items)
+            {
+                ((TabItem)tabItem).Visibility = Visibility.Hidden;
+                ((TabItem)tabItem).Height = 0;
+            }
+
+            if (_MainObject as SPWeb != null)
+            {
+                if (ComponentTypeListingsRadioButton.IsChecked == true)
+                {
+                    //SPListingOptionsTabItem.Visibility = Visibility.Visible;
+                    ComponentTypeTabControl.SelectedItem = SPListingOptionsTabItem;
+                }
+                else if (ComponentTypeCarouselRadioButton.IsChecked == true)
+                {
+                    //SPCarouselOptionsTabItem.Visibility = Visibility.Visible;
+                    ComponentTypeTabControl.SelectedItem = SPCarouselOptionsTabItem;
+                }
+                else if (ComponentTypeCalendarRadioButton.IsChecked == true)
+                {
+                    //SPListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+            }
+            else if (_MainObject as SQLDB != null)
+            {
+                if (ComponentTypeListingsRadioButton.IsChecked == true)
+                {
+                    //SQLListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+                else if (ComponentTypeCarouselRadioButton.IsChecked == true)
+                {
+                    //SQLListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+                else if (ComponentTypeCalendarRadioButton.IsChecked == true)
+                {
+                    //SQLListingOptionsTabItem.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void SPCOCarouselLibraryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SPList carouselList = (SPList)SPCOCarouselLibraryComboBox.SelectedItem;
+            ISiteSetting siteSetting = ApplicationContext.Current.GetSiteSetting(carouselList.SiteSettingID);
+            FieldCollection fields = ApplicationContext.Current.GetFields(siteSetting, carouselList);
+            PopulateImageFields(SPCOImageFieldComboBox, carouselList, fields);
+            PopulateTextFields(SPCOCaptionFieldComboBox, fields);
+            PopulateTextFields(SPCOContentFieldComboBox, fields);
+
+        }
     }
 }

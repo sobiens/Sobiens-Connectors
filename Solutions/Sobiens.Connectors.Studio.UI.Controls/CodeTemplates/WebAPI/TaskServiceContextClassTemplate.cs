@@ -51,8 +51,7 @@ namespace SobyGrid_WebAPIExample.Models
             
             #line 26 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
-			List<Folder> tables = (List<Folder>)Tables;
-			foreach (Folder table in tables)
+			foreach (Folder table in Tables)
 			{
                 string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(table.Title);
 			
@@ -61,21 +60,21 @@ namespace SobyGrid_WebAPIExample.Models
             #line hidden
             this.Write("\t\t\tpublic System.Data.Entity.DbSet<");
             
-            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("Record> ");
             
-            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 31 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fixedTableName));
             
             #line default
             #line hidden
             this.Write("List { get; set; }\r\n\t\t\t");
             
-            #line 33 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
+            #line 32 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
 			}
 			
@@ -88,12 +87,12 @@ namespace SobyGrid_WebAPIExample.Models
         
         #line 1 "C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeTemplates\WebAPI\TaskServiceContextClassTemplate.tt"
 
-private object _TablesField;
+private global::System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder> _TablesField;
 
 /// <summary>
 /// Access the Tables parameter of the template.
 /// </summary>
-private object Tables
+private global::System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder> Tables
 {
     get
     {
@@ -112,7 +111,7 @@ public virtual void Initialize()
 bool TablesValueAcquired = false;
 if (this.Session.ContainsKey("Tables"))
 {
-    this._TablesField = ((object)(this.Session["Tables"]));
+    this._TablesField = ((global::System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder>)(this.Session["Tables"]));
     TablesValueAcquired = true;
 }
 if ((TablesValueAcquired == false))
@@ -120,7 +119,7 @@ if ((TablesValueAcquired == false))
     object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Tables");
     if ((data != null))
     {
-        this._TablesField = ((object)(data));
+        this._TablesField = ((global::System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder>)(data));
     }
 }
 

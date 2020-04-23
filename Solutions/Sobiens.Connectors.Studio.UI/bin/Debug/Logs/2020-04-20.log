@@ -1,0 +1,84 @@
+Debug|2020-04-20 11:48:14.7013|2020-04-20 11:48:14,info,Service,Uploading c:\temp\log.txt ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 11:49:03.8809|2020-04-20 11:49:03,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/log.txt
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 11:49:03.8879|2020-04-20 11:49:03,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 11:52:01.7199|2020-04-20 11:52:01,info,Service,Uploading c:\temp\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 11:52:09.1958|2020-04-20 11:52:09,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 11:52:09.2018|2020-04-20 11:52:09,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:13:00.6405|2020-04-20 13:13:00,info,Service,Uploading c:\temp\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:13:03.5109|2020-04-20 13:13:03,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:13:03.5318|2020-04-20 13:13:03,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:00.2510|2020-04-20 13:44:00,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\c7c6b3e8-f8c7-4621-89e3-653d4786c21d\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:02.4352|2020-04-20 13:44:02,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:02.4541|2020-04-20 13:44:02,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:38.0499|2020-04-20 13:44:38,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\01192f0b-8813-445e-92a5-d2e793bf2e18\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:39.8730|2020-04-20 13:44:39,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 13:44:39.8730|2020-04-20 13:44:39,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:25:25.6820|2020-04-20 14:25:25,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:25:25.7050|2020-04-20 14:25:25,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:26:49.4401|2020-04-20 14:26:49,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:26:49.4401|2020-04-20 14:26:49,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:30:57.9757|2020-04-20 14:30:57,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:30:57.9956|2020-04-20 14:30:57,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:38:23.6353|2020-04-20 14:38:23,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:38:23.6553|2020-04-20 14:38:23,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:38:23.7041|2020-04-20 14:38:23,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\112d6a3a-8f22-4f3f-a72a-cdef4c8f4643\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:38:26.2912|2020-04-20 14:38:26,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:38:26.3181|2020-04-20 14:38:26,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:40:06.2788|2020-04-20 14:40:06,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:40:06.2788|2020-04-20 14:40:06,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:41:11.1473|2020-04-20 14:41:11,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\0649c1f8-f7ad-42af-a459-4e2ca2bbe482\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:41:40.9615|2020-04-20 14:41:40,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 14:41:40.9645|2020-04-20 14:41:40,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 16:14:48.2838|2020-04-20 16:14:48,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 16:14:48.3067|2020-04-20 16:14:48,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 16:19:59.1508|2020-04-20 16:19:59,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 16:19:59.1738|2020-04-20 16:19:59,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 17:56:11.6441|2020-04-20 17:56:11,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 17:56:11.6691|2020-04-20 17:56:11,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 17:57:15.3258|2020-04-20 17:57:15,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 17:57:50.2853|2020-04-20 17:57:50,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 17:57:50.3192|2020-04-20 17:57:50,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 18:12:08.3728|2020-04-20 18:12:08,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 18:12:08.3958|2020-04-20 18:12:08,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:16:05.5710|2020-04-20 23:16:05,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:16:05.5950|2020-04-20 23:16:05,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:16:05.6798|2020-04-20 23:16:05,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\e889b8fc-ede2-47f8-a233-88d7c0010f98\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:16:07.4111|2020-04-20 23:16:07,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:16:07.4111|2020-04-20 23:16:07,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:19:11.6374|2020-04-20 23:19:11,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:19:11.6583|2020-04-20 23:19:11,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:19:11.7401|2020-04-20 23:19:11,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\06bd8cea-f913-4ee6-9f7f-0838654dd2ef\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:19:13.4316|2020-04-20 23:19:13,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:19:13.4365|2020-04-20 23:19:13,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:45:55.3589|2020-04-20 23:45:55,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:45:55.3819|2020-04-20 23:45:55,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:45:55.4397|2020-04-20 23:45:55,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\3f56066f-db43-498c-9c3b-cad09fa6b9bf\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:45:57.4154|2020-04-20 23:45:57,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:45:57.4214|2020-04-20 23:45:57,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:59:52.6002|2020-04-20 23:59:52,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:59:52.6201|2020-04-20 23:59:52,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:59:52.6730|2020-04-20 23:59:52,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\ff7b44fc-a9d0-47ae-910f-fc51e6c7251f\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:59:54.4154|2020-04-20 23:59:54,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-20 23:59:54.4213|2020-04-20 23:59:54,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry

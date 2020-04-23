@@ -51,5 +51,10 @@ namespace Sobiens.Connectors.Entities.CRM
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return this.Title;
+        }
     }
 }

@@ -16,6 +16,7 @@ using Sobiens.Connectors.Entities.Workflows;
 using System.Globalization;
 using Microsoft.SharePoint.Client.Taxonomy;
 using Microsoft.SharePoint.Client.WorkflowServices;
+using Microsoft.SharePoint.Client.WebParts;
 //using Microsoft.SharePoint.Client.Workflow;
 
 namespace Sobiens.Connectors.Services.SharePoint
@@ -242,7 +243,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             List<Sobiens.Connectors.Entities.Folder> subFolders = new List<Sobiens.Connectors.Entities.Folder>();
             if (parentFolder as SPWeb != null)
             {
-                if (childFoldersCategoryName.Equals("Lists and Libraries", StringComparison.InvariantCultureIgnoreCase) == true)
+                if (childFoldersCategoryName == string.Empty || childFoldersCategoryName.Equals("Lists and Libraries", StringComparison.InvariantCultureIgnoreCase) == true)
                 {
                     SPWeb web = (SPWeb)parentFolder;
                     try
@@ -415,24 +416,20 @@ namespace Sobiens.Connectors.Services.SharePoint
                 ClientContext context = GetClientContext(siteSetting);
                 Web web = context.Web;
                 Site site = context.Site;
-
-                context.Load(site);
-                context.Load(web);
+                context.Load(site, t => t.Url, t => t.ServerRelativeUrl);
+                context.Load(web, t=>t.ServerRelativeUrl, t=>t.Title, t=>t.Id);
                 context.ExecuteQuery();
 
-                /*
-                SharePointWebsWS.Webs ws = GetWebsWebService(siteSetting, webUrl);
-                XmlNode element = ws.GetWeb(webUrl);
-                XmlNode element1 = ws.GetWebCollection();
-                string message = string.Format("SharePointService GetWeb method returned xml:{0}", element.OuterXml);
-                Logger.Info(message, "Service");
-                string url = element.Attributes["Url"].Value;
-                string title = element.Attributes["Title"].Value;
-                */
-
                 string siteUrl = site.Url;
+                string webSiteRelativeUrl = string.Empty;
+                if(web.ServerRelativeUrl.Equals(site.ServerRelativeUrl, StringComparison.InvariantCultureIgnoreCase) == false)
+                {
+                    webSiteRelativeUrl = web.ServerRelativeUrl.Substring(site.ServerRelativeUrl.Length);
+                }
+
+                string _webUrl = siteUrl + webSiteRelativeUrl;
                 string title = web.Title;
-                return new SPWeb(web.Url, title, siteSetting.ID, web.Id.ToString(), siteUrl, web.Url, web.ServerRelativeUrl);
+                return new SPWeb(_webUrl, title, siteSetting.ID, web.Id.ToString(), siteUrl, _webUrl, web.ServerRelativeUrl);
             }
             catch (Exception ex)
             {
@@ -630,21 +627,55 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
+                /*
+                ClientContext context = GetClientContext(siteSetting);
+                Web web = context.Web;
+                Site site = context.Site;
+                context.Load(site, t => t.Url, t => t.ServerRelativeUrl);
+                context.Load(web, t => t.ServerRelativeUrl, t => t.Title, t => t.Id);
+                context.ExecuteQuery();
+
+                string siteUrl = site.Url;
+                string webSiteRelativeUrl = string.Empty;
+                if (web.ServerRelativeUrl.Equals(site.ServerRelativeUrl, StringComparison.InvariantCultureIgnoreCase) == false)
+                {
+                    webSiteRelativeUrl = web.ServerRelativeUrl.Substring(site.ServerRelativeUrl.Length);
+                }
+
+                string _webUrl = siteUrl + webSiteRelativeUrl;
+                string title = web.Title;
+                return new SPWeb(_webUrl, title, siteSetting.ID, web.Id.ToString(), siteUrl, _webUrl, web.ServerRelativeUrl);
+                */
+
+
+
+
                 List<SPWeb> webs = new List<SPWeb>();
                 ClientContext context = GetClientContext(siteSetting);
                 Web web = context.Web;
                 Site site = context.Site;
-                WebCollection _webs = web.Webs;
+                var _webs = context.LoadQuery(
+                    context.Web.Webs.Include(
+                        web1 => web1.Title,
+                        web1 => web1.ServerRelativeUrl,
+                        web1 => web1.Id
+                    )
+                );
 
-                context.Load(web);
-                context.Load(site);
-                context.Load(_webs);
+                context.Load(web, t => t.ServerRelativeUrl, t => t.Title, t => t.Id);
+                context.Load(site, t => t.Url, t => t.ServerRelativeUrl);
                 context.ExecuteQuery();
 
+                string siteUrl = site.Url;
                 foreach (Web _web in _webs)
                 {
-
-                    SPWeb __web = new SPWeb(_web.Url, _web.Title, siteSetting.ID, _web.Id.ToString(), site.Url, webUrl);
+                    string webSiteRelativeUrl = string.Empty;
+                    if (_web.ServerRelativeUrl.Equals(site.ServerRelativeUrl, StringComparison.InvariantCultureIgnoreCase) == false)
+                    {
+                        webSiteRelativeUrl = _web.ServerRelativeUrl.Substring(site.ServerRelativeUrl.Length);
+                    }
+                    string _webUrl = siteUrl + webSiteRelativeUrl;
+                    SPWeb __web = new SPWeb(_webUrl, _web.Title, siteSetting.ID, _web.Id.ToString(), site.Url, _webUrl);
                     webs.Add(__web);
                 }
 
@@ -729,16 +760,28 @@ namespace Sobiens.Connectors.Services.SharePoint
 
                 foreach (List _list in listCollection)
                 {
-                    Microsoft.SharePoint.Client.Folder rootFolder = _list.RootFolder;
-                    context.Load(rootFolder);
-                    context.ExecuteQuery();
+                    try
+                    {
+                        if (_list.Hidden == true)
+                            continue;
 
-                    string folderPath = rootFolder.ServerRelativeUrl.Replace(site.ServerRelativeUrl, string.Empty).TrimStart(new char[] { '/' });
-                    string webApplicationUrl = site.Url.Replace(site.ServerRelativeUrl, string.Empty);
-                    SPList list = ParseSPList(_list, siteSetting.ID, site.Url, webUrl, folderPath, webApplicationUrl);
-                    list.ServerRelativePath = rootFolder.ServerRelativeUrl;
+                        Microsoft.SharePoint.Client.Folder rootFolder = _list.RootFolder;
+                        context.Load(rootFolder);
+                        context.ExecuteQuery();
 
-                    lists.Add(list);
+                        string folderPath = rootFolder.ServerRelativeUrl.Replace(site.ServerRelativeUrl, string.Empty).TrimStart(new char[] { '/' });
+                        string webApplicationUrl = site.Url.Replace(site.ServerRelativeUrl, string.Empty);
+                        SPList list = ParseSPList(_list, siteSetting.ID, site.Url, webUrl, folderPath, webApplicationUrl);
+                        list.ServerRelativePath = rootFolder.ServerRelativeUrl;
+
+                        lists.Add(list);
+                    }
+                    catch (Exception ex)
+                    {
+                        string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                        //LogManager.LogAndShowException(methodName, ex);
+                        throw ex;
+                    }
                 }
 
                 return lists;
@@ -3641,6 +3684,97 @@ namespace Sobiens.Connectors.Services.SharePoint
                 throw ex;
             }
         }
+        public static void AddContentEditorWebpartWithContentLink(ISiteSetting siteSetting, string pageServerRelativeUrl, string zoneName, int webpartIndex, string contentLink)
+        {
+            try
+            {
+                string webPartXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                                "<WebPart xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.microsoft.com/WebPart/v2\">" +
+                                "<Title>MyInfo</Title>" +
+                                "<FrameType>None</FrameType>" +
+                                "<Description>Allows authors to enter rich text content.</Description>" +
+                                "<IsIncluded>true</IsIncluded>" +
+                                "<ZoneID>BottomZone</ZoneID>" +
+                                "<PartOrder>0</PartOrder>" +
+                                "<FrameState>Normal</FrameState>" +
+                                "<Height />" +
+                                "<Width />" +
+                                "<AllowRemove>true</AllowRemove>" +
+                                "<AllowZoneChange>true</AllowZoneChange>" +
+                                "<AllowMinimize>true</AllowMinimize>" +
+                                "<AllowConnect>true</AllowConnect>" +
+                                "<AllowEdit>true</AllowEdit>" +
+                                "<AllowHide>true</AllowHide>" +
+                                "<IsVisible>true</IsVisible>" +
+                                "<DetailLink />" +
+                                "<HelpLink />" +
+                                "<HelpMode>Modeless</HelpMode>" +
+                                "<Dir>Default</Dir>" +
+                                "<PartImageSmall />" +
+                                "<MissingAssembly>Cannot import this Web Part.</MissingAssembly>" +
+                                "<PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>" +
+                                "<IsIncludedFilter />" +
+                                "<Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>" +
+                                "<TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>" +
+                                "<ContentLink xmlns=\"http://schemas.microsoft.com/WebPart/v2/ContentEditor\">" + contentLink + "</ContentLink>" +
+                                "<Content xmlns=\"http://schemas.microsoft.com/WebPart/v2/ContentEditor\" />" +
+                                "<PartStorage xmlns=\"http://schemas.microsoft.com/WebPart/v2/ContentEditor\" />" +
+                                "</WebPart>";
+                ClientContext ctx = GetClientContext(siteSetting);
+                var page = ctx.Web.GetFileByServerRelativeUrl(pageServerRelativeUrl);
+                ctx.Load(page);
+                ctx.ExecuteQuery(); 
+                /*
+                if (page.CheckOutType != CheckOutType.Online)
+                {
+                    // Check out  
+                    page.CheckOut();
+                }
+                */
+                // Gets the webparts available on the page  
+                var wpm = page.GetLimitedWebPartManager(PersonalizationScope.Shared);
+
+                // Import the webpart xml  
+                var importedWebPart = wpm.ImportWebPart(webPartXml); //wpXML denotes the webpart xml file.  
+                                                                     // Add it to page  
+                var webPart = wpm.AddWebPart(importedWebPart.WebPart, zoneName, webpartIndex);
+                ctx.ExecuteQuery();
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+        public static void CreatePage(ISiteSetting siteSetting, string webUrl, string listName, string pageName)
+        {
+            try
+            {
+                ClientContext ctx = GetClientContext(siteSetting);
+                Web web = ctx.Web;
+                ctx.Load(web);
+                ctx.ExecuteQuery();
+
+                List sitePagesList = web.Lists.GetByTitle(listName); //"Site Pages"
+
+                ctx.Load(sitePagesList);
+                ctx.Load(sitePagesList.RootFolder);
+                ctx.ExecuteQuery();
+
+                Microsoft.SharePoint.Client.File page = sitePagesList.RootFolder.Files.AddTemplateFile(sitePagesList.RootFolder.ServerRelativeUrl + "/" + pageName, TemplateFileType.StandardPage);
+
+                ctx.ExecuteQuery();
+
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
         public static Sobiens.Connectors.Entities.ContentType ParseContentType(Microsoft.SharePoint.Client.ContentType _contentType, ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
         {
             Sobiens.Connectors.Entities.ContentType contentType = new Sobiens.Connectors.Entities.ContentType();

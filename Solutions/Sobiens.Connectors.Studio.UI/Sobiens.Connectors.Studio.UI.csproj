@@ -38,7 +38,7 @@
     <ProductName>Sobiens Studio</ProductName>
     <PublisherName>Sobiens Information Technology LTD</PublisherName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>37</ApplicationRevision>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>1.6.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

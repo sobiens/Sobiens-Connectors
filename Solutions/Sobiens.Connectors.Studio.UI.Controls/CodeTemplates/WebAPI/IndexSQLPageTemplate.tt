@@ -1,0 +1,75 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="System.Collections.Generic.List<Sobiens.Connectors.Entities.Folder>" name="SelectedTables" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Folder" name="Database" #>
+<#@ parameter type="System.String" name="GridComponentsSyntax" #>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>testt</title>
+</head>
+<body>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="/media/css/soby.ui.components.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/media/js/soby.service.js"></script>
+    <script src="/media/js/soby.ui.components.js"></script>
+
+    <div id="tabs">
+        <ul>
+        <#
+		for(int i=0;i<SelectedTables.Count;i++){
+            Sobiens.Connectors.Entities.Folder folder = SelectedTables[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+			#>
+            <li><a  href="#tabs-<#=i.ToString()#>" data-onloadfunction="soby_Populate<#= fixedTableName #>()"><#= folder.Title #></a></li>
+			<#
+		}
+		for(int i=0;i<SelectedTables.Count;i++){
+            Sobiens.Connectors.Entities.Folder folder = SelectedTables[i];
+            string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(folder.Title);
+
+
+			#>
+            <div id="tabs-<#=i.ToString()#>"><div id='soby_<#= fixedTableName #>Div'></div></div>
+			<#
+		}#>
+        </ul>
+    </div>
+    <script>
+        $(function () {
+            $("#tabs").tabs({
+                activate: function (event, ui) {
+                    var isloaded = ui.newTab.find("a").attr("data-isloaded");
+                    if (isloaded != "1") {
+                        var onLoadFunction = ui.newTab.find("a").attr("data-onloadfunction");
+                        ui.newTab.find("a").attr("data-isloaded", "1");
+                        eval(onLoadFunction);
+                    }
+                }
+            });
+            var onLoadFunction = $("a[href='#tabs-0']").attr("data-onloadfunction");
+            $("a[href='#tabs-0']").attr("data-isloaded", "1");
+            eval(onLoadFunction);
+        });
+
+    function soby_GetODataServiceUrl() {
+        return "/odataapi";
+    }
+    function soby_GetApiServiceUrl() {
+        return "/api";
+    }
+
+    <#= GridComponentsSyntax #>
+
+    </script>
+
+</body>
+</html>

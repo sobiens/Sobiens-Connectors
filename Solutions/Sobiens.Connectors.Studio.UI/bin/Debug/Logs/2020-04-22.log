@@ -1,0 +1,222 @@
+Debug|2020-04-22 08:19:36.1165|2020-04-22 08:19:36,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:19:36.1434|2020-04-22 08:19:36,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:19:36.3977|2020-04-22 08:19:36,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\b1305c30-263b-47aa-a3f4-8ac92aa95a4e\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:19:38.2667|2020-04-22 08:19:38,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:19:38.2747|2020-04-22 08:19:38,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:21:18.3919|2020-04-22 08:21:18,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:21:18.3919|2020-04-22 08:21:18,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:28:46.0744|2020-04-22 08:28:46,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:28:46.1163|2020-04-22 08:28:46,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:28:48.7513|2020-04-22 08:28:48,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\21d71c4d-f5f1-44f1-8542-cb729926e7ca\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:28:54.4869|2020-04-22 08:28:54,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:28:54.5059|2020-04-22 08:28:54,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:35:00.3882|2020-04-22 08:35:00,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:35:00.4082|2020-04-22 08:35:00,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:35:00.5159|2020-04-22 08:35:00,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\f6af14f1-2033-4b63-99a5-96e86000bcc2\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:35:01.5611|2020-04-22 08:35:01,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:35:01.5611|2020-04-22 08:35:01,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:29.5638|2020-04-22 08:39:29,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:29.6027|2020-04-22 08:39:29,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:36.9400|2020-04-22 08:39:36,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:36.9400|2020-04-22 08:39:36,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:38.0461|2020-04-22 08:39:38,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:38.0461|2020-04-22 08:39:38,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:38.0910|2020-04-22 08:39:38,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\0b0a96fd-b1a8-492d-8271-bf40376bc436\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:39.2259|2020-04-22 08:39:39,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:39:39.2259|2020-04-22 08:39:39,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:47:13.5707|2020-04-22 08:47:13,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:47:13.5986|2020-04-22 08:47:13,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:47.8831|2020-04-22 08:53:47,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:47.9151|2020-04-22 08:53:47,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:55.4459|2020-04-22 08:53:55,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:55.4459|2020-04-22 08:53:55,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:57.4675|2020-04-22 08:53:57,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:57.4675|2020-04-22 08:53:57,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:57.5263|2020-04-22 08:53:57,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\bef535b4-b6a8-4aa5-934d-42d58e2de864\index.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:58.6483|2020-04-22 08:53:58,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/index.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 08:53:58.6483|2020-04-22 08:53:58,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:18.1769|2020-04-22 14:08:18,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:18.1969|2020-04-22 14:08:18,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:21.3083|2020-04-22 14:08:21,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:21.3083|2020-04-22 14:08:21,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:21.3652|2020-04-22 14:08:21,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\39906c5a-3dd5-4f3b-8393-f74e8608d569\sobysplistinginclude_202004220801.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:27.4856|2020-04-22 14:08:27,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobysplistinginclude_202004220801.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 14:08:27.4986|2020-04-22 14:08:27,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 15:57:31.4155|2020-04-22 15:57:31,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 15:57:31.4394|2020-04-22 15:57:31,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 15:58:25.3941|2020-04-22 15:58:25,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 15:58:25.3941|2020-04-22 15:58:25,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:41:49.6122|2020-04-22 16:41:49,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:41:49.6362|2020-04-22 16:41:49,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:06.5733|2020-04-22 16:42:06,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:06.5733|2020-04-22 16:42:06,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:47.8280|2020-04-22 16:42:47,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:47.8280|2020-04-22 16:42:47,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:47.9596|2020-04-22 16:42:47,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\de8bc035-b80f-43cc-9a97-1bb5c0f415d6\sobyspcarouselinclude_202004224227.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:50.9336|2020-04-22 16:42:50,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004224227.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:42:50.9336|2020-04-22 16:42:50,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:46:33.8703|2020-04-22 16:46:33,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:46:33.8983|2020-04-22 16:46:33,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:46:50.1426|2020-04-22 16:46:50,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:46:50.1426|2020-04-22 16:46:50,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:47:19.7963|2020-04-22 16:47:19,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:47:19.7963|2020-04-22 16:47:19,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:47:19.8990|2020-04-22 16:47:19,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\d16cb483-38cb-4208-8d4a-cf542719bac2\sobyspcarouselinclude_202004224700.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:47:22.0862|2020-04-22 16:47:22,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004224700.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:47:22.0862|2020-04-22 16:47:22,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:48:24.3407|2020-04-22 16:48:24,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:48:24.3407|2020-04-22 16:48:24,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:49:03.0002|2020-04-22 16:49:03,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:49:03.0002|2020-04-22 16:49:03,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:49:03.0072|2020-04-22 16:49:03,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\3501342e-e1df-4ac7-8cdb-2c058e935f3f\sobyspcarouselinclude_202004224848.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:49:04.9251|2020-04-22 16:49:04,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004224848.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 16:49:04.9251|2020-04-22 16:49:04,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:05:28.0310|2020-04-22 17:05:28,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:05:28.0310|2020-04-22 17:05:28,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:05:44.9687|2020-04-22 17:05:44,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:05:44.9687|2020-04-22 17:05:44,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:06:10.1394|2020-04-22 17:06:10,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:06:10.1394|2020-04-22 17:06:10,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:15:23.5351|2020-04-22 17:15:23,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:15:23.5570|2020-04-22 17:15:23,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:15:47.1569|2020-04-22 17:15:47,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:15:47.1569|2020-04-22 17:15:47,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:16:39.9028|2020-04-22 17:16:39,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:16:39.9028|2020-04-22 17:16:39,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:16:40.0544|2020-04-22 17:16:40,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\8faea522-8398-4f78-b081-359e831c9783\sobyspcarouselinclude_202004221607.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:16:42.7063|2020-04-22 17:16:42,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004221607.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:16:42.7233|2020-04-22 17:16:42,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:22:20.8179|2020-04-22 17:22:20,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:22:20.8439|2020-04-22 17:22:20,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:22:57.2904|2020-04-22 17:22:57,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:22:57.2904|2020-04-22 17:22:57,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:22:57.4101|2020-04-22 17:22:57,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\7fae4a49-a487-4fd4-8c98-dccae9309ce7\sobyspcarouselinclude_202004222228.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:23:00.0430|2020-04-22 17:23:00,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004222228.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:23:00.0430|2020-04-22 17:23:00,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:03.7728|2020-04-22 17:25:03,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:03.7728|2020-04-22 17:25:03,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:39.6787|2020-04-22 17:25:39,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:39.6787|2020-04-22 17:25:39,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:39.6787|2020-04-22 17:25:39,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\0ed79af8-fbfa-4ac4-9fe0-50473b1570bf\sobyspcarouselinclude_202004222510.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:45.4124|2020-04-22 17:25:45,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004222510.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:25:45.4153|2020-04-22 17:25:45,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:41:26.8843|2020-04-22 17:41:26,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:41:26.9083|2020-04-22 17:41:26,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:41:49.4779|2020-04-22 17:41:49,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:41:49.4779|2020-04-22 17:41:49,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:42:28.4068|2020-04-22 17:42:28,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:42:28.4068|2020-04-22 17:42:28,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:42:28.5404|2020-04-22 17:42:28,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\33c44a33-e854-4ba8-8662-621eb1f67569\sobyspcarouselinclude_202004224155.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:42:36.4642|2020-04-22 17:42:36,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004224155.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:42:36.4832|2020-04-22 17:42:36,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:50:27.2365|2020-04-22 17:50:27,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:50:27.2585|2020-04-22 17:50:27,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:50:49.2829|2020-04-22 17:50:49,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:50:49.2829|2020-04-22 17:50:49,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:51:58.3601|2020-04-22 17:51:58,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:51:58.3601|2020-04-22 17:51:58,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:51:58.4848|2020-04-22 17:51:58,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\057d85f4-946a-4437-ae20-bc9c9e5fce7b\sobyspcarouselinclude_202004225122.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:52:05.6497|2020-04-22 17:52:05,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004225122.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 17:52:05.6497|2020-04-22 17:52:05,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:40:20.1736|2020-04-22 21:40:20,error,Service,SharePointService GetLists method returned error:The underlying connection was closed: A connection that was expected to be kept alive was closed by the server.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:52:43.5618|2020-04-22 21:52:43,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:52:43.5842|2020-04-22 21:52:43,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:53:21.6250|2020-04-22 21:53:21,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:53:21.6250|2020-04-22 21:53:21,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:57:40.5815|2020-04-22 21:57:40,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:57:40.6144|2020-04-22 21:57:40,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:58:05.6580|2020-04-22 21:58:05,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 21:58:05.6580|2020-04-22 21:58:05,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:02:43.3163|2020-04-22 22:02:43,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:02:43.3383|2020-04-22 22:02:43,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:02:50.3884|2020-04-22 22:02:50,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:02:50.3884|2020-04-22 22:02:50,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:05:33.2554|2020-04-22 22:05:33,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:05:33.2774|2020-04-22 22:05:33,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:05:39.8608|2020-04-22 22:05:39,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:05:39.8608|2020-04-22 22:05:39,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:22.2354|2020-04-22 22:06:22,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:22.2354|2020-04-22 22:06:22,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:22.4129|2020-04-22 22:06:22,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\ce9a9429-6a88-407b-a12a-8f36f251e2d9\sobyspcarouselinclude_202004220615.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:23.9608|2020-04-22 22:06:23,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004220615.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:23.9608|2020-04-22 22:06:23,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:38.0102|2020-04-22 22:06:38,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:38.0102|2020-04-22 22:06:38,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:38.0102|2020-04-22 22:06:38,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\b5b02a70-8724-4886-8e78-155859ac6385\sobyspcarouselinclude_202004220631.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:39.2110|2020-04-22 22:06:39,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004220631.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:06:39.2110|2020-04-22 22:06:39,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:07:27.3283|2020-04-22 22:07:27,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:07:27.3283|2020-04-22 22:07:27,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:07:27.3283|2020-04-22 22:07:27,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\a0d058ba-7a8e-4d46-8645-1f8bb32fa2cb\sobyspcarouselinclude_202004220720.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:07:28.3984|2020-04-22 22:07:28,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004220720.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:07:28.3984|2020-04-22 22:07:28,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:13:02.5335|2020-04-22 22:13:02,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:13:02.5554|2020-04-22 22:13:02,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:13:10.4852|2020-04-22 22:13:10,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:13:10.4852|2020-04-22 22:13:10,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:15:47.2778|2020-04-22 22:15:47,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:15:47.3067|2020-04-22 22:15:47,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:15:54.3608|2020-04-22 22:15:54,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:15:54.3608|2020-04-22 22:15:54,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:18:11.9121|2020-04-22 22:18:11,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:18:11.9530|2020-04-22 22:18:11,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:18:19.1249|2020-04-22 22:18:19,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:18:19.1249|2020-04-22 22:18:19,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:25.6262|2020-04-22 22:27:25,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:25.7465|2020-04-22 22:27:25,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:47.9709|2020-04-22 22:27:47,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:47.9709|2020-04-22 22:27:47,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:56.4851|2020-04-22 22:27:56,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:27:56.4851|2020-04-22 22:27:56,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:02.1609|2020-04-22 22:28:02,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004222755.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:02.1679|2020-04-22 22:28:02,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:20.9717|2020-04-22 22:28:20,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:20.9717|2020-04-22 22:28:20,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:26.5498|2020-04-22 22:28:26,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004222819.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:28:26.5498|2020-04-22 22:28:26,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:30:45.4389|2020-04-22 22:30:45,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:30:45.4608|2020-04-22 22:30:45,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:31:20.8203|2020-04-22 22:31:20,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:31:20.8203|2020-04-22 22:31:20,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:31:26.2378|2020-04-22 22:31:26,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004223119.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-22 22:31:26.2438|2020-04-22 22:31:26,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry

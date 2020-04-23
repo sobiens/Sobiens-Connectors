@@ -65,40 +65,40 @@ namespace Sobiens.Connectors.Common
                     fieldTypeString = "System.DateTime" + (field.Required == true ? "" : "?");
                     break;
             }
-/*
-            string fieldTypeString = "string";
-            if (field.Type == FieldTypes.Boolean)
-                fieldTypeString = "bool";
-            if (field.Type == FieldTypes.)
-                fieldTypeString = "bool";
-            else if (field.Type == FieldTypes.Number)
-                fieldTypeString = "int";
-            else if (field.Type == FieldTypes.DateTime)
-                fieldTypeString = "System.DateTime";
-            else if (field.Type == FieldTypes.Lookup)
-            {
-                fieldTypeString = "int";
-                if (field as SQLField != null)
-                {
-                    string sqlFieldType = ((SQLField)field).SQLFieldTypeName;
-                    switch (sqlFieldType.ToLower())
-                    {
-                        case "char":
-                        case "nchar":
-                        case "nvarchar(MAX)":
-                        case "nvarchar":
-                        case "varchar(MAX)":
-                        case "varchar":
-                        case "ntext":
-                        case "text":
-                        case "hierarchyid":
-                        case "uniqueidentifier":
-                            fieldTypeString = "string";
-                            break;
-                    }
-                }
-            }
-            */
+            /*
+                        string fieldTypeString = "string";
+                        if (field.Type == FieldTypes.Boolean)
+                            fieldTypeString = "bool";
+                        if (field.Type == FieldTypes.)
+                            fieldTypeString = "bool";
+                        else if (field.Type == FieldTypes.Number)
+                            fieldTypeString = "int";
+                        else if (field.Type == FieldTypes.DateTime)
+                            fieldTypeString = "System.DateTime";
+                        else if (field.Type == FieldTypes.Lookup)
+                        {
+                            fieldTypeString = "int";
+                            if (field as SQLField != null)
+                            {
+                                string sqlFieldType = ((SQLField)field).SQLFieldTypeName;
+                                switch (sqlFieldType.ToLower())
+                                {
+                                    case "char":
+                                    case "nchar":
+                                    case "nvarchar(MAX)":
+                                    case "nvarchar":
+                                    case "varchar(MAX)":
+                                    case "varchar":
+                                    case "ntext":
+                                    case "text":
+                                    case "hierarchyid":
+                                    case "uniqueidentifier":
+                                        fieldTypeString = "string";
+                                        break;
+                                }
+                            }
+                        }
+                        */
             return fieldTypeString;
         }
         public static string GetJsFieldQueryStringKeyPrefixSuffix(Field field)
@@ -150,6 +150,10 @@ namespace Sobiens.Connectors.Common
 
 
             return fieldTypeString;
+        }
+        public static string GetFieldNavigationPropertyName(Entities.SharePoint.SPList list, Field field)
+        {
+            return "Title";
         }
         public static string GetFieldNavigationPropertyName(SQLTable sqlTable, Field field)
         {

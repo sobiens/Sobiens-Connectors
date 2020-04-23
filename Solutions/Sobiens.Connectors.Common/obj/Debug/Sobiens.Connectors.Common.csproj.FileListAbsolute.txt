@@ -65,6 +65,7 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Deb
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.dll
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Common.dll.config
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Common.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Common.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\DocumentFormat.OpenXml.dll
@@ -80,6 +81,7 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\De
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.Xrm.Sdk.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.IdentityModel.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.SharePoint.Client.Taxonomy.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Entities.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Services.CRM.pdb
@@ -96,5 +98,3 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\De
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\obj\Debug\Sobiens.Connectors.Common.pdb
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Sobiens.Connectors.Common.dll.config
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Common\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll

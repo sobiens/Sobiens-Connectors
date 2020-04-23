@@ -17,7 +17,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
     /// </summary>
     public class SPWeb : SPBaseFolder
     {
-        
+
         public SPWeb() : base() { }
         public SPWeb(string url, string title, Guid siteSettingID, string uniqueIdentifier, string siteUrl, string webUrl, string serverRelativePath)
             : base()
@@ -70,5 +70,7 @@ namespace Sobiens.Connectors.Entities.SharePoint
         {
             throw new NotImplementedException();
         }
+
+    
     }
 }

@@ -1,0 +1,92 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Sobiens.Connectors.Entities" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Folder" name="Database" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Field" name="ImageField" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Field" name="CaptionField" #>
+<#@ parameter type="Sobiens.Connectors.Entities.Field" name="ContentField" #>
+<#@ parameter type="Sobiens.Connectors.Entities.SharePoint.SPList" name="List" #>
+<#@ parameter type="Sobiens.Connectors.Entities.FieldCollection" name="Fields" #>
+
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <link href = 'https://www.mieleistanbulservis.com/media/css/soby.ui.components.css' rel = 'stylesheet' type = 'text/css' media = 'all' />
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.service.js'></script>
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.spservice.js'></script>
+   <script language='javascript' src='https://www.mieleistanbulservis.com/media/js/soby.ui.components.js'></script>
+
+    <#
+        string fixedTableName = Sobiens.Connectors.Common.CodeWizardManager.FixTableNameForCode(List.Title);
+        string gridContainerId = "soby_" + fixedTableName + "Div";
+		string imageListServerRelativePath = "";
+	#>
+
+    <div id='<#= gridContainerId #>'></div>
+    <script>
+        $(function () {
+            SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() { 
+				sobyPopulateCarousel();
+            });
+        });
+
+		function sobyPopulateCarousel(){
+			var <#= fixedTableName #>DataSourceBuilder = new soby_SPCSOMBuilder();
+			<#= fixedTableName #>DataSourceBuilder.ListTitle = "<#= List.Title #>";
+			<#= fixedTableName #>DataSourceBuilder.SiteUrl = "<#= List.WebUrl #>";
+
+			<#= fixedTableName #>DataSourceBuilder.Filters = new SobyFilters(false);
+			var <#= fixedTableName #>Service = new soby_SharePointService(<#= fixedTableName #>DataSourceBuilder);
+			<#= fixedTableName #>Service.Transport.Read = new soby_TransportRequest("", "json", "application/json; charset=utf-8", "GET");
+			<#
+			foreach(Field field in Fields){
+				if(field.FromBaseType == true && field.Name != "Title" && field.Name != "Name" && field.Name != "ID" && field.Name != "FileLeafRef")
+					continue;
+
+				string fieldTypeString = Sobiens.Connectors.Common.CodeWizardManager.GetJsFieldTypeAsString(field);
+				string fieldEditable = (field.ReadOnly == true?"false":"true");
+
+				if(field.Type == FieldTypes.Lookup){
+					string navigationPropertyName = Sobiens.Connectors.Common.CodeWizardManager.GetFieldNavigationPropertyName(List, field);
+					Sobiens.Connectors.Entities.Field spField = ((Sobiens.Connectors.Entities.Field)field);
+					string referenceFieldTypeString = "SobyFieldTypes.Text"; //Sobiens.Connectors.Common.CodeWizardManager.GetJsFieldTypeAsStringByFieldName((List<Folder>)Tables, spField.List, spField.ReferenceFieldName);
+				#>
+			<#= fixedTableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", SobyFieldTypes.Lookup, { ModelName: "<#= navigationPropertyName #>", ValueFieldType: <#= referenceFieldTypeString #>, ValueFieldName: "<#= ((Sobiens.Connectors.Entities.Field)field).Title #>", TitleFieldName: "<#= field.ShowField#>", ReadTransport: new soby_TransportRequest("/<#= field.List #>List", "json", "application/json; charset=utf-8", "GET") });
+				<#
+				}
+				else{
+				#>
+			<#= fixedTableName #>DataSourceBuilder.AddSchemaField("<#= field.Name #>", <#= fieldTypeString #>, null);
+			<#
+				}
+			}
+
+			if(ImageField.Name == "FileLeafRef"){
+				imageListServerRelativePath = List.ServerRelativePath + "/";
+			}
+			#>
+
+			var carousel = new soby_Carousel("#<#=gridContainerId#>", "Carousel", <#= fixedTableName #>Service, "There is no record found.", "<#=ImageField.Name#>", "<#=CaptionField.Name#>", "<#=ContentField.Name#>", false);
+			carousel.MaxWidth = 600;
+			carousel.ItemDataBound = function (cellIndex, dataItem) {
+				var container = $("<div></div>");
+				var imageSrc = "<#= imageListServerRelativePath #>" + dataItem[this.ImageFieldName];
+				var caption = dataItem[this.CaptionFieldName];
+				var image = $("<img alt='...' class='carouselimage'>");
+				image.attr("src", imageSrc);
+				container.append(image);
+				var captionDiv = $("<div class='carousel-caption'></div>");
+				var h3 = $("<h3></h3>");
+				h3.html(caption);
+				captionDiv.append(h3);
+				container.append(captionDiv);
+				return container.html();
+			};
+			carousel.Initialize(true);
+
+		}
+    </script>
+

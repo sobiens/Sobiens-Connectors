@@ -1,0 +1,143 @@
+Debug|2020-04-23 02:06:09.1972|2020-04-23 02:06:09,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:06:09.2291|2020-04-23 02:06:09,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:11:58.6196|2020-04-23 02:11:58,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:11:58.6445|2020-04-23 02:11:58,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:13:35.6131|2020-04-23 02:13:35,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:13:35.6470|2020-04-23 02:13:35,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:18:36.0463|2020-04-23 02:18:36,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:18:36.0672|2020-04-23 02:18:36,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:23:28.0971|2020-04-23 02:23:28,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:23:28.1180|2020-04-23 02:23:28,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:26:55.2560|2020-04-23 02:26:55,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:26:55.2779|2020-04-23 02:26:55,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:31:20.0648|2020-04-23 02:31:20,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:31:20.0868|2020-04-23 02:31:20,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:34:12.4857|2020-04-23 02:34:12,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 02:34:12.4857|2020-04-23 02:34:12,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:02:45.2245|2020-04-23 09:02:45,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:02:45.2534|2020-04-23 09:02:45,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:06.2308|2020-04-23 09:09:06,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:06.2597|2020-04-23 09:09:06,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:35.4520|2020-04-23 09:09:35,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:35.4520|2020-04-23 09:09:35,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:36.6737|2020-04-23 09:09:36,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:36.6737|2020-04-23 09:09:36,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:36.7046|2020-04-23 09:09:36,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\3e8f97ce-aa23-4d7d-b870-2d6d9897f38f\sobysplistinginclude_202004230929.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:38.4171|2020-04-23 09:09:38,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobysplistinginclude_202004230929.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:09:38.4420|2020-04-23 09:09:38,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:25.2192|2020-04-23 09:10:25,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:25.2192|2020-04-23 09:10:25,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:30.9558|2020-04-23 09:10:30,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:30.9558|2020-04-23 09:10:30,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:35.6941|2020-04-23 09:10:35,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobyspcarouselinclude_202004231029.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:10:35.6941|2020-04-23 09:10:35,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:10.9874|2020-04-23 09:24:10,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:11.0084|2020-04-23 09:24:11,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:27.7157|2020-04-23 09:24:27,info,Service,SharePointService CheckFileExistency method returned ListName:Pages queryOptions:<QueryOptions><IncludeMandatoryColumns>TRUE</IncludeMandatoryColumns>
+                          <DateInUtc>TRUE</DateInUtc>
+                          <Folder><![CDATA[]]></Folder></QueryOptions> 
+ query:<Query><Where><And>
+                                    <Eq>
+                                     <FieldRef Name="FSObjType" />
+                                     <Value Type="Lookup">0</Value>
+                                    </Eq>
+                                     <Eq>
+                                      <FieldRef Name="FileLeafRef" />
+                                      <Value Type="Text">ListingTestPage.aspx</Value>
+                                     </Eq>
+                                    </And></Where></Query> 
+ xml:<listitems xmlns:s="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:rs="urn:schemas-microsoft-com:rowset" xmlns:z="#RowsetSchema" xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+<rs:data ItemCount="1">
+   <z:row ows_ContentTypeId="0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF39003A1599B3164F1E49A95E3A2B91BD59EE" ows_FileLeafRef="75;#ListingTestPage.aspx" ows_File_x0020_Type="aspx" ows_ID="75" ows_ContentType="Page" ows_Created="2020-04-23T06:09:29Z" ows_Author="365;#Serkant Samurkas" ows_Modified="2020-04-23T06:09:29Z" ows_Editor="365;#Serkant Samurkas" ows__ModerationStatus="3" ows_FileRef="75;#submissions/Pages/ListingTestPage.aspx" ows_FileDirRef="75;#submissions/Pages" ows_Last_x0020_Modified="75;#2020-04-23T06:09:29Z" ows_Created_x0020_Date="75;#2020-04-23T06:09:29Z" ows_File_x0020_Size="75;#2718" ows_FSObjType="75;#0" ows_SortBehavior="75;#0" ows_PermMask="0x7fffffffffffffff" ows_CheckedOutUserId="75;#365" ows_IsCheckedoutToLocal="75;#0" ows_CheckoutUser="365;#Serkant Samurkas" ows_UniqueId="75;#{7738A2FD-DDF2-47EF-A7CE-F389D6B55F51}" ows_ProgId="75;#" ows_ScopeId="75;#{91540755-E78D-4F80-8C15-4EA8947B3DD5}" ows_VirusStatus="75;#2718" ows_CheckedOutTitle="75;#Serkant Samurkas" ows__CheckinComment="75;#" ows_LinkCheckedOutTitle="Serkant Samurkas" ows__EditMenuTableStart="ListingTestPage.aspx" ows__EditMenuTableStart2="75" ows__EditMenuTableEnd="75" ows_LinkFilenameNoMenu="ListingTestPage.aspx" ows_LinkFilename="ListingTestPage.aspx" ows_LinkFilename2="ListingTestPage.aspx" ows_DocIcon="aspx" ows_ServerUrl="/submissions/Pages/ListingTestPage.aspx" ows_EncodedAbsUrl="https://collaborate.unfccc.int/submissions/Pages/ListingTestPage.aspx" ows_BaseName="ListingTestPage" ows_FileSizeDisplay="2718" ows_MetaInfo="75;#" ows__Level="255" ows__IsCurrentVersion="1" ows_ItemChildCount="75;#0" ows_FolderChildCount="75;#0" ows_SelectTitle="75" ows_SelectFilename="75" ows_owshiddenversion="1" ows__UIVersion="1" ows__UIVersionString="0.1" ows_Order="7500.00000000000" ows_GUID="{AD432C3D-754C-4C20-AD92-2D11D6CFFF41}" ows_WorkflowVersion="1" ows_ParentVersionString="75;#" ows_ParentLeafName="75;#" Etag="{7738A2FD-DDF2-47EF-A7CE-F389D6B55F51},1" ows_Combine="0" ows_RepairDocument="0" />
+</rs:data>
+</listitems>|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:42.0244|2020-04-23 09:24:42,info,Service,SharePointService CheckFileExistency method returned ListName:Pages queryOptions:<QueryOptions><IncludeMandatoryColumns>TRUE</IncludeMandatoryColumns>
+                          <DateInUtc>TRUE</DateInUtc>
+                          <Folder><![CDATA[]]></Folder></QueryOptions> 
+ query:<Query><Where><And>
+                                    <Eq>
+                                     <FieldRef Name="FSObjType" />
+                                     <Value Type="Lookup">0</Value>
+                                    </Eq>
+                                     <Eq>
+                                      <FieldRef Name="FileLeafRef" />
+                                      <Value Type="Text">ListingTestPage11.aspx</Value>
+                                     </Eq>
+                                    </And></Where></Query> 
+ xml:<listitems xmlns:s="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:rs="urn:schemas-microsoft-com:rowset" xmlns:z="#RowsetSchema" xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+<rs:data ItemCount="0">
+</rs:data>
+</listitems>|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:50.1487|2020-04-23 09:24:50,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:50.1487|2020-04-23 09:24:50,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:50.2683|2020-04-23 09:24:50,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\9a68e66e-beaf-430d-ad44-b2a0a68736e6\sobysplistinginclude_202004232444.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:51.7544|2020-04-23 09:24:51,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobysplistinginclude_202004232444.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:24:51.7594|2020-04-23 09:24:51,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:42:42.7936|2020-04-23 09:42:42,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:42:42.8136|2020-04-23 09:42:42,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:01.3071|2020-04-23 09:43:01,info,Service,SharePointService CheckFileExistency method returned ListName:Pages queryOptions:<QueryOptions><IncludeMandatoryColumns>TRUE</IncludeMandatoryColumns>
+                          <DateInUtc>TRUE</DateInUtc>
+                          <Folder><![CDATA[]]></Folder></QueryOptions> 
+ query:<Query><Where><And>
+                                    <Eq>
+                                     <FieldRef Name="FSObjType" />
+                                     <Value Type="Lookup">0</Value>
+                                    </Eq>
+                                     <Eq>
+                                      <FieldRef Name="FileLeafRef" />
+                                      <Value Type="Text">ListingTestPage.aspx</Value>
+                                     </Eq>
+                                    </And></Where></Query> 
+ xml:<listitems xmlns:s="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:rs="urn:schemas-microsoft-com:rowset" xmlns:z="#RowsetSchema" xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+<rs:data ItemCount="1">
+   <z:row ows_ContentTypeId="0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF39003A1599B3164F1E49A95E3A2B91BD59EE" ows_FileLeafRef="75;#ListingTestPage.aspx" ows_File_x0020_Type="aspx" ows_ID="75" ows_ContentType="Page" ows_Created="2020-04-23T06:09:29Z" ows_Author="365;#Serkant Samurkas" ows_Modified="2020-04-23T06:09:29Z" ows_Editor="365;#Serkant Samurkas" ows__ModerationStatus="3" ows_FileRef="75;#submissions/Pages/ListingTestPage.aspx" ows_FileDirRef="75;#submissions/Pages" ows_Last_x0020_Modified="75;#2020-04-23T06:09:29Z" ows_Created_x0020_Date="75;#2020-04-23T06:09:29Z" ows_File_x0020_Size="75;#2718" ows_FSObjType="75;#0" ows_SortBehavior="75;#0" ows_PermMask="0x7fffffffffffffff" ows_CheckedOutUserId="75;#365" ows_IsCheckedoutToLocal="75;#0" ows_CheckoutUser="365;#Serkant Samurkas" ows_UniqueId="75;#{7738A2FD-DDF2-47EF-A7CE-F389D6B55F51}" ows_ProgId="75;#" ows_ScopeId="75;#{91540755-E78D-4F80-8C15-4EA8947B3DD5}" ows_VirusStatus="75;#2718" ows_CheckedOutTitle="75;#Serkant Samurkas" ows__CheckinComment="75;#" ows_LinkCheckedOutTitle="Serkant Samurkas" ows__EditMenuTableStart="ListingTestPage.aspx" ows__EditMenuTableStart2="75" ows__EditMenuTableEnd="75" ows_LinkFilenameNoMenu="ListingTestPage.aspx" ows_LinkFilename="ListingTestPage.aspx" ows_LinkFilename2="ListingTestPage.aspx" ows_DocIcon="aspx" ows_ServerUrl="/submissions/Pages/ListingTestPage.aspx" ows_EncodedAbsUrl="https://collaborate.unfccc.int/submissions/Pages/ListingTestPage.aspx" ows_BaseName="ListingTestPage" ows_FileSizeDisplay="2718" ows_MetaInfo="75;#" ows__Level="255" ows__IsCurrentVersion="1" ows_ItemChildCount="75;#0" ows_FolderChildCount="75;#0" ows_SelectTitle="75" ows_SelectFilename="75" ows_owshiddenversion="1" ows__UIVersion="1" ows__UIVersionString="0.1" ows_Order="7500.00000000000" ows_GUID="{AD432C3D-754C-4C20-AD92-2D11D6CFFF41}" ows_WorkflowVersion="1" ows_ParentVersionString="75;#" ows_ParentLeafName="75;#" Etag="{7738A2FD-DDF2-47EF-A7CE-F389D6B55F51},1" ows_Combine="0" ows_RepairDocument="0" />
+</rs:data>
+</listitems>|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:12.7176|2020-04-23 09:43:12,info,Service,SharePointService CheckFileExistency method returned ListName:Pages queryOptions:<QueryOptions><IncludeMandatoryColumns>TRUE</IncludeMandatoryColumns>
+                          <DateInUtc>TRUE</DateInUtc>
+                          <Folder><![CDATA[]]></Folder></QueryOptions> 
+ query:<Query><Where><And>
+                                    <Eq>
+                                     <FieldRef Name="FSObjType" />
+                                     <Value Type="Lookup">0</Value>
+                                    </Eq>
+                                     <Eq>
+                                      <FieldRef Name="FileLeafRef" />
+                                      <Value Type="Text">ListingTestPage12.aspx</Value>
+                                     </Eq>
+                                    </And></Where></Query> 
+ xml:<listitems xmlns:s="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:rs="urn:schemas-microsoft-com:rowset" xmlns:z="#RowsetSchema" xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+<rs:data ItemCount="0">
+</rs:data>
+</listitems>|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:18.1610|2020-04-23 09:43:18,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:18.1640|2020-04-23 09:43:18,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:19.5643|2020-04-23 09:43:19,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:19.5643|2020-04-23 09:43:19,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:19.6092|2020-04-23 09:43:19,info,Service,Uploading C:\Users\serkant2\AppData\Local\Temp\SPCamlStudio\c12cc426-e4bf-4ba9-a9b5-e072ff8dd2ab\sobysplistinginclude_202004234312.html ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:21.1921|2020-04-23 09:43:21,info,Service,SharePointService UploadFile method returned resultLog: DestinationUrl:https://collaborate.unfccc.int/submissions/Style Library/sobysplistinginclude_202004234312.html
+ ErrorCode:Success
+ ErrorMessage: |Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:43:21.1991|2020-04-23 09:43:21,info,Service,GetListItems method is started|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:44:04.1056|2020-04-23 09:44:04,info,Service,webUrl:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:44:04.1056|2020-04-23 09:44:04,info,listName,listName:https://collaborate.unfccc.int/submissions|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:47:34.4176|2020-04-23 09:47:34,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:47:34.4515|2020-04-23 09:47:34,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:47:47.2961|2020-04-23 09:47:47,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:47:47.2961|2020-04-23 09:47:47,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:49:21.3065|2020-04-23 09:49:21,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:49:21.3065|2020-04-23 09:49:21,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:50:27.2691|2020-04-23 09:50:27,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:50:27.2691|2020-04-23 09:50:27,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:53:03.6768|2020-04-23 09:53:03,info,Service,webUrl:https://collaborate.unfccc.int/submissions/AReg|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 09:55:03.7197|2020-04-23 09:55:03,info,Service,webUrl:https://collaborate.unfccc.int/submissions/AdaptationRegistry|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 10:24:59.6878|2020-04-23 10:24:59,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 10:24:59.6988|2020-04-23 10:24:59,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 10:27:09.2443|2020-04-23 10:27:09,info,Service,webUrl:https://collaborate.unfccc.int/submissions/test123|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-04-23 10:29:15.3221|2020-04-23 10:29:15,info,Service,webUrl:https://collaborate.unfccc.int/submissions/ndc|Sobiens.Connectors.Entities.Logger.WriteEntry

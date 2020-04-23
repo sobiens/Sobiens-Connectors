@@ -79,7 +79,6 @@ namespace Sobiens.Connectors.Services.CRM
 
                     cachedServices.Add(siteSetting.ID, organizationService);
                 }
-
                 return cachedServices[siteSetting.ID];
             }
             catch (System.Exception exception)
@@ -127,10 +126,15 @@ namespace Sobiens.Connectors.Services.CRM
                     {
                         subFolders = this.GetSecurityRoles(siteSetting).ToList<Folder>();
                     }
+                    else if (childFoldersCategoryName.Equals("Dashboards", StringComparison.InvariantCultureIgnoreCase) == true)
+                    {
+                        subFolders = this.GetDashboards(siteSetting).ToList<Folder>();
+                    }
+
                 }
                 catch (Exception ex)
                 {
-                   string message = string.Format("CRMService GetLists method returned error:{0}", ex.Message);
+                    string message = string.Format("CRMService GetLists method returned error:{0}", ex.Message);
                     Logger.Error(message, "Service");
                 }
             }
@@ -230,7 +234,7 @@ namespace Sobiens.Connectors.Services.CRM
                         Logger.Warning("GetCurrentUserDetails result for fullName:" + fullName, "GetCurrentUserDetails");
                         Logger.Warning("GetCurrentUserDetails result for email:" + email, "GetCurrentUserDetails");
                         */
-            return new string[] { userId, email, fullName};
+            return new string[] { userId, email, fullName };
         }
 
         public int GetUserObjectAccessDetails(ISiteSetting siteSetting, Guid objectId, Guid userId)
@@ -278,7 +282,7 @@ namespace Sobiens.Connectors.Services.CRM
                     else if (optionSetMetadataBase as BooleanOptionSetMetadata != null)
                     {
                         BooleanOptionSetMetadata _optionSetMetadata = (BooleanOptionSetMetadata)optionSetMetadataBase;
-                        
+
                         optionSet.Options.Add(_optionSetMetadata.TrueOption.Value.HasValue == true ? _optionSetMetadata.TrueOption.Value.Value : -1, _optionSetMetadata.TrueOption.Label.LocalizedLabels.Count > 0 ? _optionSetMetadata.TrueOption.Label.LocalizedLabels[0].Label : string.Empty);
                         optionSet.Options.Add(_optionSetMetadata.FalseOption.Value.HasValue == true ? _optionSetMetadata.FalseOption.Value.Value : -1, _optionSetMetadata.FalseOption.Label.LocalizedLabels.Count > 0 ? _optionSetMetadata.FalseOption.Label.LocalizedLabels[0].Label : string.Empty);
                     }
@@ -325,6 +329,32 @@ namespace Sobiens.Connectors.Services.CRM
             return securityRoles;
         }
 
+        public List<CRMDashboard> GetDashboards(ISiteSetting siteSetting)
+        {
+            List<CRMDashboard> dashboards = new List<CRMDashboard>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            QueryExpression query = new QueryExpression("systemform");
+            CamlFilters filters = new CamlFilters();
+            filters.IsOr = false;
+            query.Criteria = GetFilterExpression(filters);
+            query.ColumnSet = new ColumnSet(true);
+            EntityCollection items = organizationService.RetrieveMultiple(query);
+            foreach (Entity _entity in items.Entities)
+            {
+                dashboards.Add(new CRMDashboard(_entity.Id.ToString(), _entity["name"].ToString(), siteSetting.ID));
+            }
+
+            return dashboards;
+        }
+        public void CreateDashboard(ISiteSetting siteSetting, string name, string formXml)
+        {
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+            Entity account = new Entity("systemform");
+            account["name"] = name;
+            account["formxml"] = formXml;
+            Guid accountId = organizationService.Create(account);
+        }
+
         public List<CRMTeam> GetTeams(ISiteSetting siteSetting)
         {
             List<CRMTeam> teams = new List<CRMTeam>();
@@ -335,7 +365,7 @@ namespace Sobiens.Connectors.Services.CRM
             query.Criteria = GetFilterExpression(filters);
             query.ColumnSet = new ColumnSet(true);
             EntityCollection items = organizationService.RetrieveMultiple(query);
-            foreach(Entity _entity in items.Entities)
+            foreach (Entity _entity in items.Entities)
             {
                 teams.Add(new CRMTeam(_entity.Id.ToString(), _entity["name"].ToString()));
             }
@@ -388,6 +418,52 @@ namespace Sobiens.Connectors.Services.CRM
             account["accessrightsmask"] = accessrightmask;
             Guid _accountId = organizationService.Create(account);
             */
+        }
+
+        public List<IView> GetEntityViews(ISiteSetting siteSetting, CRMEntity entity)
+        {
+            List<IView> views = new List<IView>();
+            IOrganizationService organizationService = GetClientContext(siteSetting);
+
+            QueryExpression mySavedQuery = new QueryExpression
+            {
+                ColumnSet = new ColumnSet(true),
+                EntityName = "savedquery",
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+            {
+                new ConditionExpression
+                {
+                    AttributeName = "querytype",
+                    Operator = ConditionOperator.Equal,
+                    Values = {0}
+                },
+                new ConditionExpression
+                {
+                    AttributeName = "returnedtypecode",
+                    Operator = ConditionOperator.Equal,
+                    Values = { entity.SchemaName }
+                }
+            }
+                }
+            };
+            RetrieveMultipleRequest retrieveSavedQueriesRequest = new RetrieveMultipleRequest { Query = mySavedQuery };
+
+            RetrieveMultipleResponse retrieveSavedQueriesResponse = (RetrieveMultipleResponse)organizationService.Execute(retrieveSavedQueriesRequest);
+
+            DataCollection<Entity> savedQueries = retrieveSavedQueriesResponse.EntityCollection.Entities;
+
+            foreach (Entity savedQuery in savedQueries)
+            {
+                string viewName = savedQuery["name"].ToString();
+                string viewFetchXml = savedQuery["fetchxml"].ToString();
+                //EntityReference viewOwnerIdRef = (EntityReference)savedQuery["ownerid"];
+
+                CRMView view = new CRMView(savedQuery.Id.ToString(), viewName, siteSetting.ID, entity);
+                views.Add(view);
+            }
+            return views;
         }
 
         public List<IView> GetPersonalViews(ISiteSetting siteSetting, CRMEntity entity)
