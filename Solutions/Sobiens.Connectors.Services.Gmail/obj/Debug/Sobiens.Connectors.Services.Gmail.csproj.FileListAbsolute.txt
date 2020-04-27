@@ -18,3 +18,13 @@ C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csproj.CopyComplete
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.dll
 C:\GitHub\sobiens\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Services.Gmail.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Entities.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\NLog.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\Sobiens.Connectors.Entities.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\bin\Debug\NLog.xml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csproj.CopyComplete
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.dll
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Services.Gmail\obj\Debug\Sobiens.Connectors.Services.Gmail.csprojAssemblyReference.cache

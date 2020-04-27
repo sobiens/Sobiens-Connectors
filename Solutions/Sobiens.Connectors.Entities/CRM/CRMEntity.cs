@@ -8,7 +8,7 @@ namespace Sobiens.Connectors.Entities.CRM
     [Serializable]
     public class CRMEntity : CRMBaseFolder
     {
-        public FieldCollection Fields = new FieldCollection();
+        //public FieldCollection Fields = new FieldCollection();
 
         public CRMEntity() : base() { }
         public CRMEntity(Guid siteSettingID, string uniqueIdentifier, string logicalName, string schemaName, string title)

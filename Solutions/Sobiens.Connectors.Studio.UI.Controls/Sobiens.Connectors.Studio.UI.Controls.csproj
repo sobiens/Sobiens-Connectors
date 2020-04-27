@@ -280,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Style\MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Selectors\RadioButtonList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -604,15 +608,13 @@
     <Resource Include="Images\SPFOLDER.gif" />
     <Resource Include="Images\SPList.gif" />
     <Resource Include="Images\SPWeb.gif" />
-    <Resource Include="Images\SQLServer.jpg" />
+    <Resource Include="Images\SQLServer.gif" />
     <Resource Include="Images\ValidateCaml.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Sobiens.Connectors.Common\Sobiens.Connectors.Common.csproj">
       <Project>{b654d14d-dbc7-41db-9286-ec9794340402}</Project>
@@ -680,6 +682,15 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIConfigClassTemplate.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\sobiens_logo.gif" />
+    <Resource Include="Images\SQLDB.gif" />
+    <Resource Include="Images\Column.gif" />
+    <Resource Include="Images\empty.gif" />
+    <Resource Include="Images\Relationship.gif" />
+    <Resource Include="Images\SQLTable.gif" />
+    <Resource Include="Images\UniqueConstraint.gif" />
+    <Resource Include="Images\View.gif" />
+    <Resource Include="Images\Sobiens_20x20.gif" />
     <Resource Include="Images\CopySchema.gif" />
     <Resource Include="Images\EMMGroup.png" />
     <Resource Include="Images\Filter.png" />

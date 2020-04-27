@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -44,6 +35,22 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }));
         }
 
+        public void _SetMessage(int percentage, string message)
+        {
+            label1.Content = message;
+            //label1.InvalidateVisual();
+            StatusProgressBar.Value = percentage;
+            //StatusProgressBar.InvalidateVisual();
+        }
+
+        public static void SetMessage(int percentage, string message)
+        {
+            Instance.Dispatcher.Invoke((Action)(() =>
+            {
+                Instance._SetMessage(percentage, message);
+            }));
+        }
+
         public void ExecuteAction(string message, Action actionEvent)
         {
             this.ActionEvent = actionEvent;
@@ -56,6 +63,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             {
                 Instance.ExecuteAction(message, actionEvent);
                 Instance.IsOpened = false;
+                Instance.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 Instance.ShowDialog();
             }
             catch (Exception ex) {
@@ -81,7 +89,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
             catch(Exception ex)
             {
-
+                int d = 4;
             }
             this.Dispatcher.Invoke((Action)(() =>
             {
@@ -93,6 +101,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             e.Cancel = true;
             this.Visibility = Visibility.Hidden;
+        }
+
+        private void StatusProgressBar_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            StatusProgressBar.Value = 70;
         }
     }
 }

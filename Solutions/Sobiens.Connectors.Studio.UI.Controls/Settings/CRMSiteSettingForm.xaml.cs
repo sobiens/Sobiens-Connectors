@@ -15,6 +15,7 @@ using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Common;
 using Sobiens.Connectors.Entities;
+using Sobiens.Connectors.Entities.Cryptography;
 
 namespace Sobiens.Connectors.Studio.UI.Controls.Settings
 {
@@ -72,7 +73,10 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Settings
 
         private void SiteSettingForm_OKButtonSelected(object sender, EventArgs e)
         {
-            SiteSetting siteSetting = (SiteSetting)this.Tag;
+            SiteSetting siteSetting = (SiteSetting)((SiteSetting)this.Tag).Clone();
+            if (string.IsNullOrEmpty(siteSetting.Password) == false)
+                siteSetting.Password = AesOperation.EncryptString(siteSetting.Password);
+
             LoadingWindow.ShowDialog(Languages.Translate("Checking connection..."), delegate() {
                 if (ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).CheckConnection(siteSetting) == false)
                 {

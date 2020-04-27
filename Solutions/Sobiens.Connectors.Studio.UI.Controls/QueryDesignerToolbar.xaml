@@ -6,62 +6,71 @@
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="300">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <Button ToolTip="New Query" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="NewQueryButton_Click" Background="Transparent" Name="NewQueryButton">
+            <Button ToolTip="New Query" Click="NewQueryButton_Click" Name="NewQueryButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images/NewQuery.png" Height="18" Width="18" />
-                        <Label Content="New Query" Height="20" Margin="0,0,0,0" FontSize="9"/>
+                        <Label Content="New Query" Height="20" Margin="0,0,0,0" FontSize="9" Foreground="White"/>
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button ToolTip="Show Criteria Pane" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ShowCriteriaPaneButton_Click" Background="Transparent" Name="ShowCriteriaPaneButton">
+            <Button ToolTip="Show Criteria Pane" Click="ShowCriteriaPaneButton_Click" Name="ShowCriteriaPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/ShowCriteriaPane.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Show Caml Pane" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ShowCamlTextPaneButton_Click" Background="Transparent" Name="ShowCamlTextPaneButton">
+            <Button ToolTip="Show Caml Pane" Click="ShowCamlTextPaneButton_Click" Name="ShowCamlTextPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/ShowCamlTextPane.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Show Results Pane" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ShowResultsPaneButton_Click" Background="Transparent" Name="ShowResultsPaneButton">
+            <Button ToolTip="Show Results Pane" Click="ShowResultsPaneButton_Click" Name="ShowResultsPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/ShowResultsPane.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Execute Query" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ExecuteQueryButton_Click" Background="Transparent" Name="ExecuteQueryButton">
+            <Button ToolTip="Execute Query" Click="ExecuteQueryButton_Click" Name="ExecuteQueryButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/ExecuteQuery.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Validate Caml" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ValidateCamlButton_Click" Background="Transparent" Name="ValidateCamlButton" Visibility="Hidden">
+            <Button ToolTip="Validate Caml" Click="ValidateCamlButton_Click" Name="ValidateCamlButton" Visibility="Hidden" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/ValidateCaml.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Code Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CodeWizardButton_Click" Background="Transparent" Name="CodeWizardButton" Visibility="Visible">
+            <Button ToolTip="Code Wizard" Click="CodeWizardButton_Click" Name="CodeWizardButton" Visibility="Visible" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/CodeWizard.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Data Import Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="DataImportWizardButton_Click" Background="Transparent" Name="DataImportWizardButton" Visibility="Hidden">
+            <Button ToolTip="Data Import Wizard" Click="DataImportWizardButton_Click" Name="DataImportWizardButton" Visibility="Hidden" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/CodeWizard.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Copy Schema Wizard" BorderThickness="0" Height="21" Padding="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopySchemaWizardButton_Click" Background="Transparent" Name="CopySchemaWizardButton">
+            <Button ToolTip="Copy Schema Wizard"  Click="CopySchemaWizardButton_Click" Name="CopySchemaWizardButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/CopySchema.gif" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Copy List Wizard" BorderThickness="0" Height="21" Padding="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopyListWizardButton_Click" Background="Transparent" Name="CopyListWizardButton">
+            <Button ToolTip="Copy List Wizard" Click="CopyListWizardButton_Click" Name="CopyListWizardButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/DataExport.png" Height="18" Width="18" />
                 </Button.Content>
             </Button>
-            <Button ToolTip="Copy MMS Wizard" BorderThickness="0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CopyMMSWizardButton_Click" Background="Transparent" Name="CopyMMSWizardButton">
+            <Button ToolTip="Copy MMS Wizard" Click="CopyMMSWizardButton_Click" Name="CopyMMSWizardButton" Style="{DynamicResource RibbonBarButtonStyle}">
                 <Button.Content>
                     <Image Source="Images/EMMGroup.png" Height="18" Width="18" />
                 </Button.Content>

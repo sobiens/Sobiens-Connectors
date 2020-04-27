@@ -24,5 +24,13 @@ namespace Sobiens.Connectors.Entities.SQLServer
             return (view != null)
                 && (ToSQLSyntax() == view.ToSQLSyntax());
         }
+
+        public override string IconName
+        {
+            get
+            {
+                return "View";
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using Sobiens.Connectors.Entities.SQLServer;
 using System.Linq;
 using System.Text;
+using Sobiens.Connectors.Entities.Cryptography;
 
 namespace Sobiens.Connectors.Common.SQLServer
 {
@@ -17,7 +18,16 @@ namespace Sobiens.Connectors.Common.SQLServer
             string userNamePasswordPart = "Integrated Security=True";
             if (siteSetting.UseDefaultCredential == false)
             {
-                userNamePasswordPart = "Integrated Security=True";
+                string decryptedPassword = siteSetting.Password;
+                try
+                {
+                    decryptedPassword = AesOperation.DecryptString(siteSetting.Password);
+                }
+                catch (Exception ex)
+                {
+                    // Means old version, not encrypted password
+                }
+                userNamePasswordPart = "Integrated Security=False;uid=" + siteSetting.Username + "; pwd=" + decryptedPassword;
             }
             string initialCatalogPart = string.Empty;
             if(string.IsNullOrEmpty(initialCatalog) == false)

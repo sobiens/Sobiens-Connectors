@@ -260,10 +260,16 @@ namespace Sobiens.Connectors.Common.CRM
 
         public FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
-            return (new CRMService()).GetFields(siteSetting, folder.GetListName());
+            CRMEntity entity = (CRMEntity)folder;
+            FieldCollection fields = (new CRMService()).GetFields(siteSetting, folder.GetListName(), out entity.PrimaryIdFieldName, out entity.PrimaryNameFieldName);
 
-            //SPFolder spFolder = folder as SPFolder;
-            //return null;
+            Field primaryField = fields.Where(t => t.Name.Equals(entity.PrimaryIdFieldName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+            if (primaryField != null)
+            {
+                primaryField.IsPrimary = true;
+            }
+
+            return fields;
         }
 
         public void CreateFields(ISiteSetting siteSetting, Folder folder, List<Field> fields)
@@ -508,34 +514,77 @@ namespace Sobiens.Connectors.Common.CRM
         {
             throw new NotImplementedException();
         }
-        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject, Action<int, string> reportProgressAction)
         {
-            List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+            try
+            {
+                List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
+                if (sourceObject as CRMWeb != null)
+                {
+                    reportProgressAction(10, "Retrieving source entities");
+                    List<CRMEntity> sourceEntities = new CRMService().GetEntities(sourceSiteSetting);
+                    reportProgressAction(20, "Retrieving source business units");
+                    List<CRMBusinessUnit> sourceBussinessUnits = new CRMService().GetBusinessUnits(sourceSiteSetting);
+                    reportProgressAction(30, "Retrieving source teams");
+                    List<CRMTeam> sourceTeams = new CRMService().GetTeams(sourceSiteSetting);
+                    reportProgressAction(40, "Retrieving source processes");
+                    List<CRMProcess> sourceProcesses = new CRMService().GetProcesses(sourceSiteSetting);
+                    reportProgressAction(50, "Retrieving source security roles");
+                    List<CRMSecurityRole> sourceSecurityRoles = new CRMService().GetSecurityRoles(sourceSiteSetting);
 
-            List<CRMEntity> sourceEntities = new CRMService().GetEntities(sourceSiteSetting);
-            List<CRMBusinessUnit> sourceBussinessUnits = new CRMService().GetBusinessUnits(sourceSiteSetting);
-            List<CRMTeam> sourceTeams = new CRMService().GetTeams(sourceSiteSetting);
-            List<CRMProcess> sourceProcesses = new CRMService().GetProcesses(sourceSiteSetting);
-            List<CRMSecurityRole> sourceSecurityRoles = new CRMService().GetSecurityRoles(sourceSiteSetting);
+                    reportProgressAction(60, "Retrieving source entities");
+                    List<CRMEntity> destinationEntities = new CRMService().GetEntities(destinationSiteSetting);
+                    reportProgressAction(70, "Retrieving source business units");
+                    List<CRMBusinessUnit> destinationBusinessUnits = new CRMService().GetBusinessUnits(destinationSiteSetting);
+                    reportProgressAction(80, "Retrieving source teams");
+                    List<CRMTeam> destinationTeams = new CRMService().GetTeams(destinationSiteSetting);
+                    reportProgressAction(85, "Retrieving source processes");
+                    List<CRMProcess> destinationProcesses = new CRMService().GetProcesses(destinationSiteSetting);
+                    reportProgressAction(90, "Retrieving source security roles");
+                    List<CRMSecurityRole> destinationSecurityRoles = new CRMService().GetSecurityRoles(destinationSiteSetting);
 
-            List<CRMEntity> destinationEntities = new CRMService().GetEntities(destinationSiteSetting);
-            List<CRMBusinessUnit> destinationBusinessUnits = new CRMService().GetBusinessUnits(destinationSiteSetting);
-            List<CRMTeam> destinationTeams = new CRMService().GetTeams(destinationSiteSetting);
-            List<CRMProcess> destinationProcesses = new CRMService().GetProcesses(destinationSiteSetting);
-            List<CRMSecurityRole> destinationSecurityRoles = new CRMService().GetSecurityRoles(destinationSiteSetting);
-
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceEntities.ToList<Folder>(), destinationSiteSetting, destinationEntities.ToList<Folder>(), destinationObject, "Entity", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceBussinessUnits.ToList<Folder>(), destinationSiteSetting, destinationBusinessUnits.ToList<Folder>(), destinationObject, "Business Unit", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTeams.ToList<Folder>(), destinationSiteSetting, destinationTeams.ToList<Folder>(), destinationObject, "Team", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceProcesses.ToList<Folder>(), destinationSiteSetting, destinationProcesses.ToList<Folder>(), destinationObject, "Process", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceSecurityRoles.ToList<Folder>(), destinationSiteSetting, destinationSecurityRoles.ToList<Folder>(), destinationObject, "Security Role", CheckIfEquals));
-
-            return compareObjectsResults;
+                    reportProgressAction(95, "Comparing retrieved objects");
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceEntities.ToList<Folder>(), destinationSiteSetting, destinationEntities.ToList<Folder>(), destinationObject, "Entity", CheckIfEquals));
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceBussinessUnits.ToList<Folder>(), destinationSiteSetting, destinationBusinessUnits.ToList<Folder>(), destinationObject, "Business Unit", CheckIfEquals));
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTeams.ToList<Folder>(), destinationSiteSetting, destinationTeams.ToList<Folder>(), destinationObject, "Team", CheckIfEquals));
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceProcesses.ToList<Folder>(), destinationSiteSetting, destinationProcesses.ToList<Folder>(), destinationObject, "Process", CheckIfEquals));
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceSecurityRoles.ToList<Folder>(), destinationSiteSetting, destinationSecurityRoles.ToList<Folder>(), destinationObject, "Security Role", CheckIfEquals));
+                }
+                else if (sourceObject as CRMEntity != null)
+                {
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, null, destinationSiteSetting, null, destinationObject, "Table", CheckIfEquals));
+                }
+                return compareObjectsResults;
+            }
+            catch (Exception ex) {
+                int g = 3;
+                throw ex;
+            }
         }
 
 
         public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
+            if (sourceObject as CRMEntity != null)
+            {
+
+                FieldCollection sourceFields = GetFields(sourceSiteSetting, sourceObject);
+                FieldCollection objectToCompareWithFields = GetFields(destinationSiteSetting, destinationObject);
+                bool hasFieldChange = false;
+                foreach (Field field in objectToCompareWithFields)
+                {
+                    if (sourceFields.Where(t => t.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                    {
+                        hasFieldChange = true;
+                    }
+                }
+
+                if (hasFieldChange == true)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 

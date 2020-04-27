@@ -28,34 +28,48 @@ namespace Sobiens.Connectors.Common
         public List<CompareObjectsResult> GetObjectsDifferences(ISiteSetting sourceSiteSetting, Folder sourceParentObject, List<Folder> sourceObjects, ISiteSetting destinationSiteSetting, List<Folder> destinationObjects, Folder destinationParentObject, string objectTypeName, CheckIfEqualsDelegate checkIfEqualsDelegate)
         {
             List<CompareObjectsResult> items = new List<CompareObjectsResult>();
-            foreach (Folder sourceObject in sourceObjects)
+            if (sourceObjects != null)
             {
-                Dictionary<string, object> parameters = new Dictionary<string, object>();
-                Folder destinationObject = destinationObjects.Where(t => t.Title.Equals(sourceObject.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                if (destinationObject == null)
+                foreach (Folder sourceObject in sourceObjects)
                 {
-                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Additional", sourceObject, null, sourceParentObject, destinationParentObject)); ;
-                }
-                else
-                {
-                    if (checkIfEqualsDelegate(sourceSiteSetting, sourceObject, destinationSiteSetting, destinationObject) == false)
+                    Dictionary<string, object> parameters = new Dictionary<string, object>();
+                    Folder destinationObject = destinationObjects.Where(t => t.Title.Equals(sourceObject.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if (destinationObject == null)
                     {
-                        items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Update", sourceObject, destinationObject, sourceParentObject, destinationParentObject)); ;
+                        items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Additional", sourceObject, null, sourceParentObject, destinationParentObject)); ;
                     }
                     else
                     {
-                        items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Equal", sourceObject, destinationObject, sourceParentObject, destinationParentObject)); ;
+                        if (checkIfEqualsDelegate(sourceSiteSetting, sourceObject, destinationSiteSetting, destinationObject) == false)
+                        {
+                            items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Update", sourceObject, destinationObject, sourceParentObject, destinationParentObject)); ;
+                        }
+                        else
+                        {
+                            items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceObject.Title, "Equal", sourceObject, destinationObject, sourceParentObject, destinationParentObject)); ;
+                        }
+                    }
+                }
+
+                foreach (Folder destinationObject in destinationObjects)
+                {
+                    Dictionary<string, object> parameters = new Dictionary<string, object>();
+                    Folder sourceFolder = sourceObjects.Where(t => t.Title.Equals(destinationObject.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if (sourceFolder == null)
+                    {
+                        items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, destinationObject.Title, "Missing", null, destinationObject, sourceParentObject, destinationParentObject)); ;
                     }
                 }
             }
-
-            foreach (Folder destinationObject in destinationObjects)
+            else
             {
-                Dictionary<string, object> parameters = new Dictionary<string, object>();
-                Folder sourceFolder = sourceObjects.Where(t => t.Title.Equals(destinationObject.Title, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                if (sourceFolder == null)
+                if (checkIfEqualsDelegate(sourceSiteSetting, sourceParentObject, destinationSiteSetting, destinationParentObject) == false)
                 {
-                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, destinationObject.Title, "Missing", null, destinationObject, sourceParentObject, destinationParentObject)); ;
+                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceParentObject.Title, "Update", sourceParentObject, destinationParentObject, sourceParentObject, destinationParentObject)); ;
+                }
+                else
+                {
+                    items.Add(new CompareObjectsResult(string.Empty, string.Empty, objectTypeName, sourceParentObject.Title, "Equal", sourceParentObject, destinationParentObject, sourceParentObject, destinationParentObject)); ;
                 }
             }
 

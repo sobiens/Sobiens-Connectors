@@ -44,10 +44,19 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             SiteSetting destinationSiteSetting = ApplicationContext.Current.Configuration.SiteSettings[DestinationObject.SiteSettingID];
             SourceObjectLabel.Content = SourceObject.Title;
             DestinationObjectLabel.Content = DestinationObject.Title;
-            List<CompareObjectsResult> items = ApplicationContext.Current.GetObjectDifferences(sourceSiteSetting, SourceObject, destinationSiteSetting, DestinationObject);
-            ListCollectionView customers = new ListCollectionView(items);
-            customers.GroupDescriptions.Add(new PropertyGroupDescription("DifferenceType"));
-            CompareGrid.ItemsSource = customers;
+            List<CompareObjectsResult> items = null;
+            LoadingWindow.ShowDialog("Generating codes...", delegate ()
+            {
+                items = ApplicationContext.Current.GetObjectDifferences(sourceSiteSetting, SourceObject, destinationSiteSetting, DestinationObject, delegate(int percentage, string message) {
+                    LoadingWindow.SetMessage(percentage, message);
+                });
+                ListCollectionView customers = new ListCollectionView(items);
+                customers.GroupDescriptions.Add(new PropertyGroupDescription("DifferenceType"));
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    CompareGrid.ItemsSource = customers;
+                }));
+            });
         }
 
 

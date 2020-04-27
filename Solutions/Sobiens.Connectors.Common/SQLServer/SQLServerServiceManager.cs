@@ -193,7 +193,9 @@ namespace Sobiens.Connectors.Common.SQLServer
         }
         public List<IItem> GetListItemsWithoutPaging(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName)
         {
-            throw new NotImplementedException();
+            string listItemCollectionPositionNext;
+            int itemCount;
+            return this.GetListItems(siteSetting, orderBys, filters, viewFields, queryOptions, webUrl, listName, out listItemCollectionPositionNext, out itemCount);
         }
 
 
@@ -362,27 +364,46 @@ namespace Sobiens.Connectors.Common.SQLServer
         {
             throw new NotImplementedException();
         }
-        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject, Action<int, string> reportProgressAction)
         {
             List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
 
-            List<SQLTable> sourceTables = new SQLServerService().GetTables(sourceSiteSetting, sourceObject);
-            List<SQLFunction> sourceFunctions = new SQLServerService().GetFunctions(sourceSiteSetting, sourceObject);
-            List<SQLView> sourceViews = new SQLServerService().GetViews(sourceSiteSetting, sourceObject);
-            List<SQLStoredProcedure> sourceStoredProcedures = new SQLServerService().GetStoredProcedures(sourceSiteSetting, sourceObject);
-            List<SQLTrigger> sourceTriggers = new SQLServerService().GetTriggers(sourceSiteSetting, sourceObject);
+            if(sourceObject as SQLDB != null)
+            {
+                reportProgressAction(10, "Retrieving source tables...");
+                List<SQLTable> sourceTables = new SQLServerService().GetTables(sourceSiteSetting, sourceObject);
+                reportProgressAction(20, "Retrieving source functions...");
+                List<SQLFunction> sourceFunctions = new SQLServerService().GetFunctions(sourceSiteSetting, sourceObject);
+                reportProgressAction(30, "Retrieving source views...");
+                List<SQLView> sourceViews = new SQLServerService().GetViews(sourceSiteSetting, sourceObject);
+                reportProgressAction(35, "Retrieving source stored procedures...");
+                List<SQLStoredProcedure> sourceStoredProcedures = new SQLServerService().GetStoredProcedures(sourceSiteSetting, sourceObject);
+                reportProgressAction(40, "Retrieving source triggers...");
+                List<SQLTrigger> sourceTriggers = new SQLServerService().GetTriggers(sourceSiteSetting, sourceObject);
 
-            List<SQLTable> destinationTables = new SQLServerService().GetTables(destinationSiteSetting, destinationObject);
-            List<SQLFunction> destinationFunctions = new SQLServerService().GetFunctions(destinationSiteSetting, destinationObject);
-            List<SQLView> destinationViews = new SQLServerService().GetViews(destinationSiteSetting, destinationObject);
-            List<SQLStoredProcedure> destinationStoredProcedures = new SQLServerService().GetStoredProcedures(destinationSiteSetting, destinationObject);
-            List<SQLTrigger> destinationTriggers = new SQLServerService().GetTriggers(destinationSiteSetting, destinationObject);
+                reportProgressAction(50, "Retrieving destination tables...");
+                List<SQLTable> destinationTables = new SQLServerService().GetTables(destinationSiteSetting, destinationObject);
+                reportProgressAction(60, "Retrieving destination functions...");
+                List<SQLFunction> destinationFunctions = new SQLServerService().GetFunctions(destinationSiteSetting, destinationObject);
+                reportProgressAction(70, "Retrieving destination views...");
+                List<SQLView> destinationViews = new SQLServerService().GetViews(destinationSiteSetting, destinationObject);
+                reportProgressAction(80, "Retrieving destination stored procedures...");
+                List<SQLStoredProcedure> destinationStoredProcedures = new SQLServerService().GetStoredProcedures(destinationSiteSetting, destinationObject);
+                reportProgressAction(85, "Retrieving destination triggers...");
+                List<SQLTrigger> destinationTriggers = new SQLServerService().GetTriggers(destinationSiteSetting, destinationObject);
 
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), destinationObject, "View", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger", CheckIfEquals));
+                reportProgressAction(90, "Comparing retrieved objects...");
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTables.ToList<Folder>(), destinationSiteSetting, destinationTables.ToList<Folder>(), destinationObject, "Table", CheckIfEquals));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFunctions.ToList<Folder>(), destinationSiteSetting, destinationFunctions.ToList<Folder>(), destinationObject, "Function", CheckIfEquals));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), destinationObject, "View", CheckIfEquals));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceStoredProcedures.ToList<Folder>(), destinationSiteSetting, destinationStoredProcedures.ToList<Folder>(), destinationObject, "Stored Procedure", CheckIfEquals));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceTriggers.ToList<Folder>(), destinationSiteSetting, destinationTriggers.ToList<Folder>(), destinationObject, "Trigger", CheckIfEquals));
+            }
+            else if (sourceObject as SQLTable != null)
+            {
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, null, destinationSiteSetting, null, destinationObject, "Table", CheckIfEquals));
+            }
+
 
             return compareObjectsResults;
         }

@@ -21,7 +21,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         public HostWindow()
         {
             InitializeComponent();
-            this.Resources.MergedDictionaries.Add(Sobiens.Connectors.Entities.Languages.Dict);
+            //this.Resources.MergedDictionaries.Add(Sobiens.Connectors.Entities.Languages.Dict);
         }
 
         private HostControl HostControl

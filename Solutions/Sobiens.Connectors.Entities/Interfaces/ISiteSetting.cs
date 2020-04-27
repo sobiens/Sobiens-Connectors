@@ -13,6 +13,8 @@ namespace Sobiens.Connectors.Entities.Interfaces
         string Url { get; set; }
         string Username { get; set; }
         string Password { get; set; }
+        string Parameters { get; set; }
+
         bool UseDefaultCredential { get; set; }
         bool UseClaimAuthentication { get; set; }
         bool CheckInAfterCopy { get; set; }

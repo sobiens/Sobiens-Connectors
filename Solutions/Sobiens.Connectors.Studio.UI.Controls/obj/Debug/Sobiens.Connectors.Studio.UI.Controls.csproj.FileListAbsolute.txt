@@ -436,3 +436,4 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Sobiens.Connectors.Studio.UI.Controls.csproj.CopyComplete
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Sobiens.Connectors.Studio.UI.Controls.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Sobiens.Connectors.Studio.UI.Controls.pdb
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Style\MainStyle.baml

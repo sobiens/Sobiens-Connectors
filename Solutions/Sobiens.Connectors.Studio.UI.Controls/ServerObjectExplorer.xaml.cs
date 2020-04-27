@@ -15,6 +15,7 @@ using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Studio.UI.Controls.Settings;
 using Sobiens.Connectors.Entities.CRM;
 using Sobiens.Connectors.Entities.SQLServer;
+using Sobiens.Connectors.Entities.Cryptography;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -402,8 +403,27 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 Folder folder = null;
                 if (siteSetting.SiteSettingType == SiteSettingTypes.SharePoint)
                 {
-                    folder = new Services.SharePoint.SharePointService().GetWeb(siteSetting, siteSetting.Url);
-//                    folder = new SPWeb(siteSetting.Url, siteSetting.Url, siteSetting.ID, Guid.NewGuid().ToString(), siteSetting.Url, siteSetting.Url, siteSetting.Url);
+                    if (string.IsNullOrEmpty(siteSetting.Parameters) == true)
+                    {
+                        try
+                        {
+                            folder = new Services.SharePoint.SharePointService().GetWeb(siteSetting, siteSetting.Url);
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                    }
+                    else { 
+                        string[] parameters = siteSetting.Parameters.Split(new string[] { "#;" }, StringSplitOptions.None);
+                        string webTitle = parameters[0];
+                        string webId = parameters[1];
+                        string siteUrl = parameters[2];
+                        string webUrl = parameters[3];
+                        string serverRelativePath = parameters[4];
+
+                        folder = new SPWeb(webUrl, webTitle, siteSetting.ID, webId, siteUrl, webUrl, serverRelativePath);
+                    }
                 }
                 else if (siteSetting.SiteSettingType == SiteSettingTypes.SQLServer)
                 {
@@ -438,7 +458,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 disconnectMenuItem.Click += disconnectMenuItem_Click;
                 this.FoldersTreeView.ContextMenu.Items.Add(disconnectMenuItem);
             }
-            if (item.Tag as SPFolder != null) 
+            if (item.Tag as SPFolder != null && item.Tag as CRMEntity != null && item.Tag as SQLTable != null) 
             {
                 MenuItem newQueryMenuItem = new MenuItem() { Header = "New Query", Tag = item };
                 newQueryMenuItem.Click += newQueryMenuItem_Click;
@@ -462,7 +482,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 this.FoldersTreeView.ContextMenu.Items.Add(exportMenuItem);
             }
 
-            if (item.Tag as SPWeb != null || item.Tag as CRMWeb != null || item.Tag as SQLDB != null)
+            if (item.Tag as SPWeb != null || item.Tag as CRMWeb != null || item.Tag as SQLDB != null
+                || item.Tag as SQLTable != null || item.Tag as SPList != null || item.Tag as CRMEntity != null)
             {
                 MenuItem compareMenuItem = new MenuItem() { Header = "Compare", Tag = item };
                 compareMenuItem.Click += compareMenuItem_Click;
@@ -494,7 +515,32 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             Folder sourceObject = ((TreeViewItem)menuItem.Tag).Tag as Folder;
 
             SelectEntityForm selectEntityForm = new SelectEntityForm();
-            selectEntityForm.Initialize(new Type[] { typeof(SPWeb), typeof(SQLDB), typeof(CRMWeb) });
+            Type[] allowedTypes = null;
+            if (sourceObject as SPWeb != null) {
+                allowedTypes = new Type[] { typeof(SPWeb) };
+            }
+            else if (sourceObject as CRMWeb != null)
+            {
+                allowedTypes = new Type[] { typeof(CRMWeb) };
+            }
+            else if (sourceObject as SQLDB != null)
+            {
+                allowedTypes = new Type[] { typeof(SQLDB) };
+            }
+            else if (sourceObject as SQLTable != null)
+            {
+                allowedTypes = new Type[] { typeof(SQLTable) };
+            }
+            else if (sourceObject as SPList != null)
+            {
+                allowedTypes = new Type[] { typeof(SPList) };
+            }
+            else if (sourceObject as CRMEntity != null)
+            {
+                allowedTypes = new Type[] { typeof(CRMEntity) };
+            }
+            selectEntityForm.Initialize(allowedTypes);
+
             if (selectEntityForm.ShowDialog(this.ParentWindow, "Select an object to compare with") == true)
             {
                 Folder objectToCompareWith = selectEntityForm.SelectedObject;
@@ -519,7 +565,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         void newQueryMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = e.OriginalSource as MenuItem;
-            SPFolder selectedFolder = ((TreeViewItem)menuItem.Tag).Tag as SPFolder;
+            Folder selectedFolder = ((TreeViewItem)menuItem.Tag).Tag as Folder;
 
             ApplicationContext.Current.AddNewQueryPanel(selectedFolder, null);
             ApplicationContext.Current.SPCamlStudio.QueryDesignerToolbar.ValidateButtonEnabilities();
@@ -582,6 +628,9 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             siteSettingForm.BindControls(siteSetting);
             if (siteSettingForm.ShowDialog(this.ParentWindow, Languages.Translate("Site Settings")) == true)
             {
+                string encryptedPassword = AesOperation.EncryptString(siteSetting.Password);
+                siteSetting.Password = encryptedPassword;
+
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;
@@ -606,6 +655,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             siteSettingForm.BindControls(siteSetting);
             if (siteSettingForm.ShowDialog(this.ParentWindow, Languages.Translate("Site Settings")) == true)
             {
+                string encryptedPassword = AesOperation.EncryptString(siteSetting.Password);
+                siteSetting.Password = encryptedPassword;
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;
@@ -623,6 +674,9 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             sqlServerSettingForm.BindControls(siteSetting);
             if (sqlServerSettingForm.ShowDialog(this.ParentWindow, Languages.Translate("Site Settings")) == true)
             {
+                string encryptedPassword = AesOperation.EncryptString(siteSetting.Password);
+                siteSetting.Password = encryptedPassword;
+
                 ConfigurationManager.GetInstance().Configuration.SiteSettings.Add(siteSetting);
                 ConfigurationManager.GetInstance().SaveAppConfiguration();
                 ApplicationContext.Current.Configuration.SiteSettings = ConfigurationManager.GetInstance().Configuration.SiteSettings;

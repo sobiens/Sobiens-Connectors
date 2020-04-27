@@ -15,6 +15,8 @@ using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Common;
 using Sobiens.Connectors.Entities;
+using Sobiens.Connectors.Entities.Cryptography;
+using Sobiens.Connectors.Entities.SharePoint;
 
 namespace Sobiens.Connectors.Studio.UI.Controls.Settings
 {
@@ -73,11 +75,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls.Settings
 
         private void SiteSettingForm_OKButtonSelected(object sender, EventArgs e)
         {
-            SiteSetting siteSetting = (SiteSetting)this.Tag;
+            SiteSetting siteSetting = (SiteSetting)((SiteSetting)this.Tag).Clone();
+            if(string.IsNullOrEmpty(siteSetting.Password) == false)
+                siteSetting.Password = AesOperation.EncryptString(siteSetting.Password);
             LoadingWindow.ShowDialog(Languages.Translate("Checking connection..."), delegate ()
             {
                 if (ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType).CheckConnection(siteSetting) == false)
                 {
+                    SPWeb web = new Services.SharePoint.SharePointService().GetWeb(siteSetting, siteSetting.Url);
+                    ((SiteSetting)this.Tag).Parameters = web.Title + "#;" + web.UniqueIdentifier + "#;" + web.SiteUrl + "#;" + web.Url + "#;" + web.ServerRelativePath;
+
                     this.IsValid = false;
                     MessageBox.Show(Languages.Translate("Checking connection failed. Please correct the entries."));
                     return;

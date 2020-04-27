@@ -8,10 +8,11 @@
                   
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
-        <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="75" Click="RefreshButton_Click"/>
-        <Button x:Name="DeleteTaskButton" Content="Delete" HorizontalAlignment="Left" Margin="455,5,0,0" VerticalAlignment="Top" Width="75" Click="DeleteTaskButton_Click"/>
-        <Button x:Name="OpenFolderButton" Content="Open Folder" HorizontalAlignment="Left" Margin="360,5,0,0" VerticalAlignment="Top" Width="76" Click="OpenFolderButton_Click"/>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="196" Margin="30,75,0,0" VerticalAlignment="Top" Width="500">
+        <Button x:Name="OpenFolderButton" Content="Open Folder" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="OpenFolderButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
+        <DatePicker Name="HistoryDatePicker" Height="30" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" SelectedDateChanged="HistoryDatePicker_SelectedDateChanged"/>
+        <Label x:Name="label" Content="Completed task history date" HorizontalAlignment="Left" Margin="270,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.658,0.346"/>
+        <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="450,60,0,0" VerticalAlignment="Top" Click="RefreshButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="196" Margin="10,90,0,0" VerticalAlignment="Top" Width="540">
             <TabItem Header="Current">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid  AutoGenerateColumns="False" Width="500"
@@ -61,8 +62,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <DatePicker Name="HistoryDatePicker" HorizontalAlignment="Left" Margin="428,51,0,0" VerticalAlignment="Top" SelectedDateChanged="HistoryDatePicker_SelectedDateChanged"/>
-        <Label x:Name="label" Content="Completed task history date" HorizontalAlignment="Left" Margin="264,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.658,0.346"/>
+        <Button x:Name="DeleteTaskButton" Content="Delete" HorizontalAlignment="Left" Margin="450,290,0,0" VerticalAlignment="Top" Click="DeleteTaskButton_Click" Style="{DynamicResource DeleteButtonStyle}"/>
 
     </Grid>
 </wpfc:HostControl>

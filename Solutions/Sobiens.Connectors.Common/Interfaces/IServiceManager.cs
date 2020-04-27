@@ -121,7 +121,7 @@ namespace Sobiens.Connectors.Common.Interfaces
         SPTerm CreateTerm(ISiteSetting siteSetting, SPTerm term);
         //void SyncSchema(ISiteSetting sourceSiteSetting, Entities.Folder sourceObject, ISiteSetting destinationSiteSetting, Entities.Folder destinationObject);
         Folder CreateFolder(ISiteSetting siteSetting, string title, int templateType);
-        List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder);
+        List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder, Action<int, string> reportProgressAction);
         void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting);
 
     }

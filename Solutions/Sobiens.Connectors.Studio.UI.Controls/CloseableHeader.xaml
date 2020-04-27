@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="23" d:DesignWidth="81" Margin="0">
-    <Grid>
-        <Button Content="X"  Height="19" HorizontalAlignment="Right" Margin="0,3,4,0" Name="button_close" VerticalAlignment="Top" Width="20" FontFamily="Courier" FontWeight="Bold" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontStretch="Normal" Visibility="Visible" FontSize="14" Padding="0" ToolTip="Close"/>
+             d:DesignHeight="23" d:DesignWidth="81" Margin="0" Background="Yellow">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+    <Grid Style="{DynamicResource ClosableHeaderGridStyle}" Background="DarkSalmon">
+        <Button Content="X" Height="19" HorizontalAlignment="Right" Margin="0,3,4,0" Name="button_close" VerticalAlignment="Top" Width="20" FontFamily="Courier" FontWeight="Bold" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontStretch="Normal" Visibility="Visible" FontSize="14" Padding="0" ToolTip="Close"/>
         <Label Content="TabItem"  Height="23" HorizontalAlignment="Left" Margin="4,1,0,0" Name="label_TabTitle" VerticalAlignment="Top" FontFamily="Courier" FontSize="12" />
     </Grid>
 </UserControl>

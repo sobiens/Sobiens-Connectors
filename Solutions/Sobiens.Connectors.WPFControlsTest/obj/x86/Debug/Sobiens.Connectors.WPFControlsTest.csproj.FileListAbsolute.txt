@@ -39,6 +39,5 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTe
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.g.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.Properties.Resources.resources
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.csproj.GenerateResource.cache
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.csproj.CoreCompileInputs.cache
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.exe
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.WPFControlsTest\obj\x86\Debug\Sobiens.Connectors.WPFControlsTest.pdb

@@ -444,7 +444,7 @@ namespace Sobiens.Connectors.Common
         {
             throw new NotImplementedException();
         }
-        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject, Action<int, string> reportProgressAction)
         {
             List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
 

@@ -17,6 +17,7 @@ using System.Globalization;
 using Microsoft.SharePoint.Client.Taxonomy;
 using Microsoft.SharePoint.Client.WorkflowServices;
 using Microsoft.SharePoint.Client.WebParts;
+using Sobiens.Connectors.Entities.Cryptography;
 //using Microsoft.SharePoint.Client.Workflow;
 
 namespace Sobiens.Connectors.Services.SharePoint
@@ -64,14 +65,24 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 string userName = siteSetting.Username;
                 string[] userNameStringArray = userName.Split(new char[] { '\\' });
+                string decryptedPassword = siteSetting.Password;
+                try
+                {
+                    decryptedPassword = AesOperation.DecryptString(siteSetting.Password);
+                }
+                catch (Exception ex)
+                {
+                    // Means old version, not encrypted password
+                }
                 if (userNameStringArray.Length > 1)//there is domain
                 {
-                    context.Credentials = new NetworkCredential(userNameStringArray[1], siteSetting.Password, userNameStringArray[0]);
+                    context.Credentials = new NetworkCredential(userNameStringArray[1], decryptedPassword, userNameStringArray[0]);
                 }
                 else
                 {
+
                     System.Security.SecureString passWord = new System.Security.SecureString();
-                    foreach (char c in siteSetting.Password.ToCharArray())
+                    foreach (char c in decryptedPassword.ToCharArray())
                         passWord.AppendChar(c);
                     context.Credentials = new SharePointOnlineCredentials(siteSetting.Username, passWord);
                 }
@@ -243,9 +254,9 @@ namespace Sobiens.Connectors.Services.SharePoint
             List<Sobiens.Connectors.Entities.Folder> subFolders = new List<Sobiens.Connectors.Entities.Folder>();
             if (parentFolder as SPWeb != null)
             {
-                if (childFoldersCategoryName == string.Empty || childFoldersCategoryName.Equals("Lists and Libraries", StringComparison.InvariantCultureIgnoreCase) == true)
+                SPWeb web = (SPWeb)parentFolder;
+                if (childFoldersCategoryName == string.Empty)
                 {
-                    SPWeb web = (SPWeb)parentFolder;
                     try
                     {
                         List<SPWeb> webs = this.GetWebs(siteSetting, web.Url);
@@ -259,7 +270,9 @@ namespace Sobiens.Connectors.Services.SharePoint
                         string message = string.Format("SharePointService GetWebs method returned error:{0}", ex.Message);
                         Logger.Error(message, "Service");
                     }
-
+                }
+                if (childFoldersCategoryName == string.Empty || childFoldersCategoryName.Equals("Lists and Libraries", StringComparison.InvariantCultureIgnoreCase) == true)
+                {
                     try
                     {
                         List<SPList> lists = this.GetLists(siteSetting, web.Url);
@@ -627,31 +640,8 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
-                /*
-                ClientContext context = GetClientContext(siteSetting);
-                Web web = context.Web;
-                Site site = context.Site;
-                context.Load(site, t => t.Url, t => t.ServerRelativeUrl);
-                context.Load(web, t => t.ServerRelativeUrl, t => t.Title, t => t.Id);
-                context.ExecuteQuery();
-
-                string siteUrl = site.Url;
-                string webSiteRelativeUrl = string.Empty;
-                if (web.ServerRelativeUrl.Equals(site.ServerRelativeUrl, StringComparison.InvariantCultureIgnoreCase) == false)
-                {
-                    webSiteRelativeUrl = web.ServerRelativeUrl.Substring(site.ServerRelativeUrl.Length);
-                }
-
-                string _webUrl = siteUrl + webSiteRelativeUrl;
-                string title = web.Title;
-                return new SPWeb(_webUrl, title, siteSetting.ID, web.Id.ToString(), siteUrl, _webUrl, web.ServerRelativeUrl);
-                */
-
-
-
-
                 List<SPWeb> webs = new List<SPWeb>();
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 Web web = context.Web;
                 Site site = context.Site;
                 var _webs = context.LoadQuery(
@@ -680,22 +670,6 @@ namespace Sobiens.Connectors.Services.SharePoint
                 }
 
                 return webs;
-
-                /*
-                SharePointWebsWS.Webs ws = GetWebsWebService(siteSetting, webUrl);
-                XmlNode subWebs = ws.GetWebCollection();
-                string message = string.Format("SharePointService GetWebs method returned xml:{0}", subWebs.OuterXml);
-                Logger.Info(message, "Service");
-
-                foreach (XmlElement element in subWebs)
-                {
-                    string url = element.Attributes["Url"].Value;
-                    string title = element.Attributes["Title"].Value;
-                    SPWeb web = new SPWeb(url, title, siteSetting.ID, url, webUrl, url, url);
-                    webs.Add(web);
-                }
-                return webs;
-                */
             }
             catch (Exception ex)
             {
@@ -748,14 +722,26 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<SPList> lists = new List<SPList>();
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 Web web = context.Web;
                 Site site = context.Site;
                 ListCollection listCollection = web.Lists;
 
                 context.Load(site);
                 context.Load(web);
-                context.Load(listCollection);
+                context.Load(listCollection, t=>t.Include(z=>z.RootFolder),
+                    t => t.Include(z => z.Hidden),
+                    t => t.Include(z => z.Id),
+                    t => t.Include(z => z.Title),
+                    t => t.Include(z => z.BaseTemplate),
+                    t => t.Include(z => z.EnableAttachments),
+                    t => t.Include(z => z.EnableModeration),
+                    t => t.Include(z => z.EnableVersioning),
+                    t => t.Include(z => z.EnableMinorVersions),
+                    t => t.Include(z => z.ForceCheckout),
+                    t => t.Include(z => z.BaseType)
+                    );
+
                 context.ExecuteQuery();
 
                 foreach (List _list in listCollection)
@@ -766,8 +752,8 @@ namespace Sobiens.Connectors.Services.SharePoint
                             continue;
 
                         Microsoft.SharePoint.Client.Folder rootFolder = _list.RootFolder;
-                        context.Load(rootFolder);
-                        context.ExecuteQuery();
+                        //context.Load(rootFolder);
+                        //context.ExecuteQuery();
 
                         string folderPath = rootFolder.ServerRelativeUrl.Replace(site.ServerRelativeUrl, string.Empty).TrimStart(new char[] { '/' });
                         string webApplicationUrl = site.Url.Replace(site.ServerRelativeUrl, string.Empty);
@@ -1214,8 +1200,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 CamlQuery camlQuery = new CamlQuery();
-
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 List list = context.Web.Lists.GetByTitle(listName);
                 Site site = context.Site;
                 Web web = context.Web;
@@ -1363,7 +1348,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 List list = context.Web.Lists.GetByTitle(listName);
                 Site site = context.Site;
                 Web web = context.Web;
@@ -2041,12 +2026,14 @@ namespace Sobiens.Connectors.Services.SharePoint
                             if (anchorId == Guid.Empty && termSetId != Guid.Empty)
                             {
                                 SPTermSet termSet = new SharePointService().GetTermSet(siteSetting, termSetId);
-                                ((SPTaxonomyField)field).Path = termSet.Path;
+                                if(termSet !=null)
+                                    ((SPTaxonomyField)field).Path = termSet.Path;
                             }
                             else if (anchorId != Guid.Empty)
                             {
                                 SPTerm term = new SharePointService().GetTerm(siteSetting, anchorId);
-                                ((SPTaxonomyField)field).Path = term.Path;
+                                if (term != null)
+                                    ((SPTaxonomyField)field).Path = term.Path;
                             }
 
                             ((SPTaxonomyField)field).LCID = lcid;
@@ -2751,7 +2738,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 //LogManager.LogAndShowException(methodName, ex);
-                throw ex;
+                return null;
             }
         }
 
@@ -2859,7 +2846,8 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 //LogManager.LogAndShowException(methodName, ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
         }
 
@@ -3059,7 +3047,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 Microsoft.SharePoint.Client.FieldCollection _fields = context.Web.Lists.GetByTitle(listName).Fields;
                 context.Load(_fields);
                 context.ExecuteQuery();
@@ -3089,8 +3077,8 @@ namespace Sobiens.Connectors.Services.SharePoint
         {
             try
             {
-                ClientContext context = GetClientContext(siteSetting);
-                Microsoft.SharePoint.Client.FieldCollection _fields = context.Web.Fields;
+                ClientContext context = GetClientContext(siteSetting, webUrl);
+                Microsoft.SharePoint.Client.FieldCollection _fields = context.Web.AvailableFields;
                 context.Load(_fields);
                 context.ExecuteQuery();
                 Sobiens.Connectors.Entities.FieldCollection fields = ParseToFieldCollection(_fields, siteSetting, true);
@@ -3605,7 +3593,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.Lists.GetByTitle(listName).ContentTypes;
                 context.Load(_contentTypes);
                 context.ExecuteQuery();
@@ -3635,16 +3623,25 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
-                ClientContext context = GetClientContext(siteSetting);
-                Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.ContentTypes;
-                context.Load(_contentTypes);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
+                Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.AvailableContentTypes;
+                context.Load(_contentTypes, 
+                    t=>t.Include(tx=>tx.Fields)
+                    , t => t.Include(tx => tx.Id)
+                    , t => t.Include(tx => tx.Name)
+                    , t => t.Include(tx => tx.Description)
+                    , t => t.Include(tx => tx.Group)
+                    , t => t.Include(tx => tx.DocumentTemplateUrl)
+                    , t => t.Include(tx => tx.Id)
+                    );
+
                 context.ExecuteQuery();
                 foreach (Microsoft.SharePoint.Client.ContentType _contentType in _contentTypes)
                 {
-                    context.Load(_contentType.Fields);
-                    context.ExecuteQuery();
+                    //context.Load(_contentType.Fields);
+                    //context.ExecuteQuery();
                     Sobiens.Connectors.Entities.ContentType contentType = ParseContentType(_contentType, siteSetting, webUrl, rootFolderPath, string.Empty, includeReadOnly);
-                    contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
+                    //contentType.Fields = ParseToFieldCollection(_contentType.Fields, siteSetting, includeReadOnly);
                     if (contentType.Fields != null && contentType.Fields.Count > 0)
                     {
                         contentTypes.Add(contentType);
@@ -3666,7 +3663,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
-                ClientContext context = GetClientContext(siteSetting);
+                ClientContext context = GetClientContext(siteSetting, webUrl);
                 Microsoft.SharePoint.Client.ContentType _contentType = context.Web.Lists.GetByTitle(listName).ContentTypes.GetById(contentTypeID);
                 context.Load(_contentType);
                 context.ExecuteQuery();

@@ -123,6 +123,7 @@
     <Compile Include="CRM\CRMWeb.cs" />
     <Compile Include="CRM\ICRMService.cs" />
     <Compile Include="CRM\CRMRecord.cs" />
+    <Compile Include="Cryptography\AesOperation.cs" />
     <Compile Include="Data\CriteriaPaneItem.cs" />
     <Compile Include="Interfaces\ICamlFilter.cs" />
     <Compile Include="Interfaces\IQueriesPanel.cs" />

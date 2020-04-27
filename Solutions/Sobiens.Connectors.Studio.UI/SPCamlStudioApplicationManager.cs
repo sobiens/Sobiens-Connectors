@@ -98,10 +98,12 @@ namespace Sobiens.Connectors.UI
 
         public override FieldCollection GetFields(ISiteSetting siteSetting, Folder folder)
         {
+            /*
             if(folder as CRMEntity != null)
             {
                 return ((CRMEntity)folder).Fields;
             }
+            */
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
             return serviceManager.GetFields(siteSetting, folder);
         }
@@ -322,10 +324,10 @@ namespace Sobiens.Connectors.UI
             else
                 throw new NotImplementedException();
         }
-        public override List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder)
+        public override List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceFolder, ISiteSetting destinationSiteSetting, Folder destinationFolder, Action<int, string> reportProgressAction)
         {
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(sourceSiteSetting.SiteSettingType);
-            return serviceManager.GetObjectDifferences(sourceSiteSetting, sourceFolder, destinationSiteSetting, destinationFolder);
+            return serviceManager.GetObjectDifferences(sourceSiteSetting, sourceFolder, destinationSiteSetting, destinationFolder, reportProgressAction);
         }
 
         public override void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting)

@@ -664,29 +664,62 @@ namespace Sobiens.Connectors.Common.SharePoint
 
         }
 
-        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
+        public List<CompareObjectsResult> GetObjectDifferences(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject, Action<int, string> reportProgressAction)
         {
             List<CompareObjectsResult> compareObjectsResults = new List<CompareObjectsResult>();
 
-            List<SPList> sourceLists = new SharePointService().GetLists(sourceSiteSetting, ((SPWeb)sourceObject).Url);
-            List<ContentType> sourceContentTypes = new SharePointService().GetContentTypes(sourceSiteSetting, ((SPWeb)sourceObject).Url, string.Empty, false);
-            List<Field> sourceFields = new SharePointService().GetFields(sourceSiteSetting, ((SPWeb)sourceObject).Url);
+            if (sourceObject as SPWeb != null)
+            {
+                reportProgressAction(10, "Retrieving source lists...");
+                List<SPList> sourceLists = new SharePointService().GetLists(sourceSiteSetting, ((SPWeb)sourceObject).Url);
+                reportProgressAction(30, "Retrieving source content types...");
+                List<ContentType> sourceContentTypes = new SharePointService().GetContentTypes(sourceSiteSetting, ((SPWeb)sourceObject).Url, string.Empty, false);
+                reportProgressAction(40, "Retrieving source fields...");
+                List<Field> sourceFields = new SharePointService().GetFields(sourceSiteSetting, ((SPWeb)sourceObject).Url);
 
-            List<SPList> destinationLists = new SharePointService().GetLists(destinationSiteSetting, ((SPWeb)destinationObject).Url);
-            List<ContentType> destinationContentTypes = new SharePointService().GetContentTypes(destinationSiteSetting, ((SPWeb)destinationObject).Url, string.Empty, false);
-            List<Field> destinationFields = new SharePointService().GetFields(destinationSiteSetting, ((SPWeb)destinationObject).Url);
+                reportProgressAction(50, "Retrieving destination lists...");
+                List<SPList> destinationLists = new SharePointService().GetLists(destinationSiteSetting, ((SPWeb)destinationObject).Url);
+                reportProgressAction(60, "Retrieving destination content types...");
+                List<ContentType> destinationContentTypes = new SharePointService().GetContentTypes(destinationSiteSetting, ((SPWeb)destinationObject).Url, string.Empty, false);
+                reportProgressAction(70, "Retrieving destination fields...");
+                List<Field> destinationFields = new SharePointService().GetFields(destinationSiteSetting, ((SPWeb)destinationObject).Url);
 
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceLists.ToList<Folder>(), destinationSiteSetting, destinationLists.ToList<Folder>(), destinationObject, "List", CheckIfEquals));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type", CheckIfEquals));
-            //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
-            compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field", CheckIfEquals));
-
+                reportProgressAction(85, "Comparing retrieved objects...");
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceLists.ToList<Folder>(), destinationSiteSetting, destinationLists.ToList<Folder>(), destinationObject, "List", CheckIfEquals));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type", CheckIfEquals));
+                //compareObjectsResults.AddRange(GetObjectsDifferences(sourceSiteSetting, sourceViews.ToList<Folder>(), destinationSiteSetting, destinationViews.ToList<Folder>(), "View"));
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field", CheckIfEquals));
+            }
+            else if (sourceObject as SPList != null)
+            {
+                compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, null, destinationSiteSetting, null, destinationObject, "Table", CheckIfEquals));
+            }
             return compareObjectsResults;
         }
 
 
         public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
+            if (sourceObject as SPList != null)
+            {
+
+                FieldCollection sourceFields = GetFields(sourceSiteSetting, sourceObject);
+                FieldCollection objectToCompareWithFields = GetFields(destinationSiteSetting, destinationObject);
+                bool hasFieldChange = false;
+                foreach (Field field in objectToCompareWithFields)
+                {
+                    if (sourceFields.Where(t => t.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+                    {
+                        hasFieldChange = true;
+                    }
+                }
+
+                if (hasFieldChange == true)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 

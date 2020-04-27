@@ -42,6 +42,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             _CamlTextEditorPane = new CamlTextEditorPane();
             _CriteriaPane.After_CriteriaChange += _CriteriaPane_After_CriteriaChange;
 
+            this.Background = Brushes.Aquamarine;
             this.Content = _Grid;
             SetGridControls(true, true, true);
         }
@@ -165,6 +166,14 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 _Grid.Children.Add(gs1);
                 _Grid.Children.Add(gs2);
             }
+
+            /*
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new System.Uri("pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml", UriKind.Absolute);
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+            Style style = this.FindResource("TabItemStyle") as Style;
+            this.Style = style; // "{DynamicResource TabItemStyle}"
+            */
         }
 
 
@@ -245,13 +254,13 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         // Button MouseEnter - When the mouse is over the button - change color to Red
         void button_close_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((CloseableHeader)this.Header).button_close.Foreground = Brushes.Red;
+            //((CloseableHeader)this.Header).button_close.Foreground = Brushes.Red;
         }
 
         // Button MouseLeave - When mouse is no longer over button - change color back to black
         void button_close_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((CloseableHeader)this.Header).button_close.Foreground = Brushes.Black;
+            //((CloseableHeader)this.Header).button_close.Foreground = Brushes.Black;
         }
 
 

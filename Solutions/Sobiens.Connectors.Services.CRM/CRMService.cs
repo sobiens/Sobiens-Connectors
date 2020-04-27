@@ -20,6 +20,7 @@ using Microsoft.Xrm.Sdk.Query;
 using System.ServiceModel.Description;
 using Microsoft.Crm.Sdk.Messages;
 using System.Text;
+using Sobiens.Connectors.Entities.Cryptography;
 
 namespace Sobiens.Connectors.Services.CRM
 {
@@ -59,7 +60,16 @@ namespace Sobiens.Connectors.Services.CRM
                         if (string.IsNullOrEmpty(domainName) == true)
                         {
                             credentials.UserName.UserName = userName;
-                            credentials.UserName.Password = siteSetting.Password;
+                            string decryptedPassword = siteSetting.Password;
+                            try
+                            {
+                                decryptedPassword = AesOperation.DecryptString(siteSetting.Password);
+                            }
+                            catch (Exception ex)
+                            {
+                                // Means old version, not encrypted password
+                            }
+                            credentials.UserName.Password = decryptedPassword;
                         }
                         else
                         {
@@ -571,40 +581,50 @@ namespace Sobiens.Connectors.Services.CRM
         */
 
         public List<CRMEntity> GetEntities(ISiteSetting siteSetting) {
-            IOrganizationService organizationService = GetClientContext(siteSetting);
-            //Dictionary<string, string> attributesData = new Dictionary<string, string>();
-            RetrieveAllEntitiesRequest metaDataRequest = new RetrieveAllEntitiesRequest();
-            RetrieveAllEntitiesResponse metaDataResponse = new RetrieveAllEntitiesResponse();
-            metaDataRequest.EntityFilters = EntityFilters.Attributes;
-
-            //XmlDictionaryReaderQuotas myReaderQuotas = new XmlDictionaryReaderQuotas();
-            //myReaderQuotas.MaxNameTableCharCount = 2147483647;
-
-            // Execute the request.
-            
-            metaDataResponse = (RetrieveAllEntitiesResponse)organizationService.Execute(metaDataRequest);
-            List<CRMEntity> entities = new List<CRMEntity>();
-            foreach (EntityMetadata entityMetadata in metaDataResponse.EntityMetadata)
+            try
             {
-                //if (entityMetadata.IsCustomizable.Value == false)
-                //    continue;
+                IOrganizationService organizationService = GetClientContext(siteSetting);
+                //Dictionary<string, string> attributesData = new Dictionary<string, string>();
+                RetrieveAllEntitiesRequest metaDataRequest = new RetrieveAllEntitiesRequest();
+                RetrieveAllEntitiesResponse metaDataResponse = new RetrieveAllEntitiesResponse();
+                metaDataRequest.EntityFilters = EntityFilters.Entity;
 
-                CRMEntity entity = new CRMEntity(siteSetting.ID, entityMetadata.MetadataId.Value.ToString(), entityMetadata.LogicalName, entityMetadata.SchemaName, (entityMetadata.DisplayName.UserLocalizedLabel != null ? entityMetadata.DisplayName.UserLocalizedLabel.Label : entityMetadata.SchemaName));
-                entity.Fields = ParseFields(entityMetadata.Attributes);
-                entity.PrimaryIdFieldName = entityMetadata.PrimaryIdAttribute;
-                entity.PrimaryNameFieldName = entityMetadata.PrimaryNameAttribute;
-                Field primaryField = entity.Fields.Where(t => t.Name.Equals(entity.PrimaryIdFieldName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
-                if(primaryField != null)
+                //XmlDictionaryReaderQuotas myReaderQuotas = new XmlDictionaryReaderQuotas();
+                //myReaderQuotas.MaxNameTableCharCount = 2147483647;
+
+                // Execute the request.
+
+                metaDataResponse = (RetrieveAllEntitiesResponse)organizationService.Execute(metaDataRequest);
+                List<CRMEntity> entities = new List<CRMEntity>();
+                foreach (EntityMetadata entityMetadata in metaDataResponse.EntityMetadata)
                 {
-                    primaryField.IsPrimary = true;
+                    //if (entityMetadata.IsCustomizable.Value == false)
+                    //    continue;
+
+                    CRMEntity entity = new CRMEntity(siteSetting.ID, entityMetadata.MetadataId.Value.ToString(), entityMetadata.LogicalName, entityMetadata.SchemaName, (entityMetadata.DisplayName.UserLocalizedLabel != null ? entityMetadata.DisplayName.UserLocalizedLabel.Label : entityMetadata.SchemaName));
+                    /*
+                    entity.Fields = ParseFields(entityMetadata.Attributes);
+                    entity.PrimaryIdFieldName = entityMetadata.PrimaryIdAttribute;
+                    entity.PrimaryNameFieldName = entityMetadata.PrimaryNameAttribute;
+                    Field primaryField = entity.Fields.Where(t => t.Name.Equals(entity.PrimaryIdFieldName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+                    if (primaryField != null)
+                    {
+                        primaryField.IsPrimary = true;
+                    }
+                    */
+                    //entity.PrimaryFileReferenceFieldName = entityMetadata.PrimaryImageAttribute;
+                    entities.Add(entity);
                 }
-                //entity.PrimaryFileReferenceFieldName = entityMetadata.PrimaryImageAttribute;
-                entities.Add(entity);
+
+                entities = (from x in entities orderby x.Title select x).ToList();
+
+                return entities;
             }
-
-            entities = (from x in entities orderby x.Title select x).ToList();
-
-            return entities;
+            catch(Exception ex)
+            {
+                int y = 5;
+                throw ex;
+            }
         }
 
         private Sobiens.Connectors.Entities.FieldCollection ParseFields(AttributeMetadata[] attributes)
@@ -716,13 +736,16 @@ namespace Sobiens.Connectors.Services.CRM
             return fields;
         }
 
-        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string entityName)
+        public Sobiens.Connectors.Entities.FieldCollection GetFields(ISiteSetting siteSetting, string entityName, out string primaryIdAttribute, out string primaryNameAttribute)
         {
             try
             {
                 IOrganizationService organizationService = GetClientContext(siteSetting);
                 RetrieveEntityRequest request = new RetrieveEntityRequest { EntityFilters = EntityFilters.Attributes, LogicalName = entityName };
                 RetrieveEntityResponse response = (RetrieveEntityResponse)organizationService.Execute(request);
+                primaryIdAttribute = response.EntityMetadata.PrimaryIdAttribute;
+                primaryNameAttribute = response.EntityMetadata.PrimaryNameAttribute;
+
                 return ParseFields(response.EntityMetadata.Attributes);
             }
             catch (Exception ex)
