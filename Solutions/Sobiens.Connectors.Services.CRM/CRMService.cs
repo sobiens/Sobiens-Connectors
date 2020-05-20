@@ -26,9 +26,9 @@ namespace Sobiens.Connectors.Services.CRM
 {
     public class CRMService : ICRMService
     {
-        private static Dictionary<Guid, IOrganizationService> cachedServices = new Dictionary<Guid, IOrganizationService>();
+        private Dictionary<Guid, IOrganizationService> cachedServices = new Dictionary<Guid, IOrganizationService>();
 
-        public static IOrganizationService GetClientContext(ISiteSetting siteSetting)
+        public IOrganizationService GetClientContext(ISiteSetting siteSetting)
         {
             try
             {
@@ -73,9 +73,18 @@ namespace Sobiens.Connectors.Services.CRM
                         }
                         else
                         {
+                            string decryptedPassword = siteSetting.Password;
+                            try
+                            {
+                                decryptedPassword = AesOperation.DecryptString(siteSetting.Password);
+                            }
+                            catch (Exception ex)
+                            {
+                                // Means old version, not encrypted password
+                            }
                             credentials.Windows.ClientCredential =
                                 new System.Net.NetworkCredential(userName,
-                                    siteSetting.Password,
+                                    decryptedPassword,
                                     domainName);
                         }
                     }
@@ -584,15 +593,9 @@ namespace Sobiens.Connectors.Services.CRM
             try
             {
                 IOrganizationService organizationService = GetClientContext(siteSetting);
-                //Dictionary<string, string> attributesData = new Dictionary<string, string>();
                 RetrieveAllEntitiesRequest metaDataRequest = new RetrieveAllEntitiesRequest();
                 RetrieveAllEntitiesResponse metaDataResponse = new RetrieveAllEntitiesResponse();
                 metaDataRequest.EntityFilters = EntityFilters.Entity;
-
-                //XmlDictionaryReaderQuotas myReaderQuotas = new XmlDictionaryReaderQuotas();
-                //myReaderQuotas.MaxNameTableCharCount = 2147483647;
-
-                // Execute the request.
 
                 metaDataResponse = (RetrieveAllEntitiesResponse)organizationService.Execute(metaDataRequest);
                 List<CRMEntity> entities = new List<CRMEntity>();
@@ -602,17 +605,6 @@ namespace Sobiens.Connectors.Services.CRM
                     //    continue;
 
                     CRMEntity entity = new CRMEntity(siteSetting.ID, entityMetadata.MetadataId.Value.ToString(), entityMetadata.LogicalName, entityMetadata.SchemaName, (entityMetadata.DisplayName.UserLocalizedLabel != null ? entityMetadata.DisplayName.UserLocalizedLabel.Label : entityMetadata.SchemaName));
-                    /*
-                    entity.Fields = ParseFields(entityMetadata.Attributes);
-                    entity.PrimaryIdFieldName = entityMetadata.PrimaryIdAttribute;
-                    entity.PrimaryNameFieldName = entityMetadata.PrimaryNameAttribute;
-                    Field primaryField = entity.Fields.Where(t => t.Name.Equals(entity.PrimaryIdFieldName, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
-                    if (primaryField != null)
-                    {
-                        primaryField.IsPrimary = true;
-                    }
-                    */
-                    //entity.PrimaryFileReferenceFieldName = entityMetadata.PrimaryImageAttribute;
                     entities.Add(entity);
                 }
 
@@ -621,6 +613,26 @@ namespace Sobiens.Connectors.Services.CRM
                 return entities;
             }
             catch(Exception ex)
+            {
+                int y = 5;
+                throw ex;
+            }
+        }
+
+        public CRMEntity GetEntity(ISiteSetting siteSetting, string entityName)
+        {
+            try
+            {
+                IOrganizationService organizationService = GetClientContext(siteSetting);
+                RetrieveEntityRequest metaDataRequest = new RetrieveEntityRequest();
+                RetrieveEntityResponse metaDataResponse = new RetrieveEntityResponse();
+                metaDataRequest.EntityFilters = EntityFilters.Entity;
+                metaDataResponse = (RetrieveEntityResponse)organizationService.Execute(metaDataRequest);
+                EntityMetadata entityMetadata = metaDataResponse.EntityMetadata;
+                CRMEntity entity = new CRMEntity(siteSetting.ID, entityMetadata.MetadataId.Value.ToString(), entityMetadata.LogicalName, entityMetadata.SchemaName, (entityMetadata.DisplayName.UserLocalizedLabel != null ? entityMetadata.DisplayName.UserLocalizedLabel.Label : entityMetadata.SchemaName));
+                return entity;
+            }
+            catch (Exception ex)
             {
                 int y = 5;
                 throw ex;
@@ -642,19 +654,28 @@ namespace Sobiens.Connectors.Services.CRM
                 }
                 string internalFieldName = attributeMetadata.LogicalName.ToString();
                 bool isRetrievable = attributeMetadata.IsRetrievable.HasValue?attributeMetadata.IsRetrievable.Value:true;
-                if(attributeMetadata.AttributeType.ToString().ToLower() == "state")
+                bool fromBaseType = attributeMetadata.IsCustomAttribute.HasValue ? !attributeMetadata.IsCustomAttribute.Value : true;
+                bool readOnly = attributeMetadata.IsValidForUpdate.HasValue ? !attributeMetadata.IsValidForUpdate.Value : true;
+                if (attributeMetadata.AttributeType.ToString().ToLower() == "state"
+                    || attributeMetadata.AttributeType.ToString().ToLower() == "lookup")
                 {
                     isRetrievable = true;
                 }
 
+
                 bool required = (attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.ApplicationRequired || attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.SystemRequired) ? true : false;
                 int maxLength = 2500;
                 FieldTypes fieldType = FieldTypes.Text;
+                CRMField field = new CRMField();
+                field.CRMFieldTypeName = attributeMetadata.AttributeType.ToString().ToLower();
                 switch (attributeMetadata.AttributeType.ToString().ToLower())
                 {
                     case "string":
                         fieldType = FieldTypes.Text;
-                        isRetrievable = true;
+                        if(attributeMetadata.IsLogical == true)
+                            isRetrievable = false;
+                        else
+                            isRetrievable = true;
                         break;
                     case "money":
                     case "integer":
@@ -680,6 +701,8 @@ namespace Sobiens.Connectors.Services.CRM
                         break;
                     case "lookup":
                         fieldType = FieldTypes.Lookup;
+                        LookupAttributeMetadata lookupAttributeMetadata = (LookupAttributeMetadata)attributeMetadata;
+                        field.List = lookupAttributeMetadata.Targets[0];
                         break;
                     case "virtual":
                         fieldType = FieldTypes.Virtual;
@@ -691,15 +714,28 @@ namespace Sobiens.Connectors.Services.CRM
                         break;
                         
                 }
+                if (string.IsNullOrEmpty(attributeMetadata.AttributeOf) == false
+                    || internalFieldName == "timezoneruleversionnumber"
+                    || internalFieldName == "utcconversiontimezonecode")
+                {
+                    isRetrievable = false;
+                    readOnly = true;
+                }
 
+                if (internalFieldName == "ownerid")
+                {
+                    readOnly = true;
+                }
 
-                Field field = new Field();
+                field.Title = displayFieldName;
                 field.Name = internalFieldName;
                 field.DisplayName = displayFieldName;
                 field.Required = required;
                 field.MaxLength = maxLength;
                 field.Type = fieldType;
+                field.ReadOnly = readOnly;
                 field.IsRetrievable = isRetrievable;
+                field.FromBaseType = fromBaseType;
 
                 if (attributeMetadata as StateAttributeMetadata != null)
                 {
@@ -711,6 +747,30 @@ namespace Sobiens.Connectors.Services.CRM
                         {
                             field.ChoiceItems.Add(new ChoiceDataItem(option.Value.ToString(), option.Label.LocalizedLabels[0].Label));
                         }
+                    }
+                }
+                if (attributeMetadata as StatusAttributeMetadata != null)
+                {
+                    StatusAttributeMetadata statusAttributeMetadata = (StatusAttributeMetadata)attributeMetadata;
+                    if (statusAttributeMetadata.OptionSet != null && statusAttributeMetadata.OptionSet.Options != null)
+                    {
+                        field.ChoiceItems = new List<ChoiceDataItem>();
+                        foreach (var option in statusAttributeMetadata.OptionSet.Options)
+                        {
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Add("State", ((StatusOptionMetadata)option).State.Value.ToString());
+                            field.ChoiceItems.Add(new ChoiceDataItem(option.Value.ToString(), option.Label.LocalizedLabels[0].Label, parameters));
+                        }
+                    }
+                }
+                if (attributeMetadata as BooleanAttributeMetadata != null)
+                {
+                    BooleanAttributeMetadata booleanAttributeMetadata = (BooleanAttributeMetadata)attributeMetadata;
+                    if (booleanAttributeMetadata.OptionSet != null)
+                    {
+                        field.ChoiceItems = new List<ChoiceDataItem>();
+                        field.ChoiceItems.Add(new ChoiceDataItem(booleanAttributeMetadata.OptionSet.FalseOption.Value.ToString(), booleanAttributeMetadata.OptionSet.FalseOption.Label.LocalizedLabels[0].Label, null));
+                        field.ChoiceItems.Add(new ChoiceDataItem(booleanAttributeMetadata.OptionSet.TrueOption.Value.ToString(), booleanAttributeMetadata.OptionSet.TrueOption.Label.LocalizedLabels[0].Label, null));
                     }
                 }
                 if (attributeMetadata as PicklistAttributeMetadata != null)
@@ -945,12 +1005,12 @@ namespace Sobiens.Connectors.Services.CRM
             }
         }
 
-        private static FilterExpression GetFilterExpression(CamlFilters filters)
+        private FilterExpression GetFilterExpression(CamlFilters filters)
         {
             return GetSQLFiltersString(filters);
         }
 
-        private static ConditionExpression GetSQLFilterString(CamlFilter filter)
+        private ConditionExpression GetSQLFilterString(CamlFilter filter)
         {
             ConditionExpression conditionExpression = new ConditionExpression();
             string filterString = string.Empty;
@@ -1016,7 +1076,7 @@ namespace Sobiens.Connectors.Services.CRM
             return conditionExpression;
         }
 
-        private static FilterExpression GetSQLFiltersString(CamlFilters filters)
+        private FilterExpression GetSQLFiltersString(CamlFilters filters)
         {
             FilterExpression filterExpression = new FilterExpression();
             filterExpression.FilterOperator = filters.IsOr == true ? LogicalOperator.Or : LogicalOperator.And;
@@ -1035,14 +1095,17 @@ namespace Sobiens.Connectors.Services.CRM
             return filterExpression;
         }
 
-        public void CreateEntity(ISiteSetting siteSetting, string entityName)
+        public void CreateEntityRecord(ISiteSetting siteSetting, string entityName, Dictionary<string, object> parameters)
         {
             try
             {
                 IOrganizationService organizationService = GetClientContext(siteSetting);
-                Entity account = new Entity(entityName);
-                account["name"] = entityName;
-                Guid accountId = organizationService.Create(account);
+                Entity entityRecord = new Entity(entityName);
+                foreach (string fieldName in parameters.Keys) 
+                {
+                    entityRecord[fieldName] = parameters[fieldName];
+                }
+                Guid accountId = organizationService.Create(entityRecord);
             }
             catch (Exception ex)
             {
@@ -1051,6 +1114,221 @@ namespace Sobiens.Connectors.Services.CRM
                 throw ex;
             }
         }
+
+        public void UpdateEntityRecord(ISiteSetting siteSetting, string entityName, Guid recordId, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                IOrganizationService organizationService = GetClientContext(siteSetting);
+                Entity entityRecord = organizationService.Retrieve(entityName, recordId, new ColumnSet(true));
+                foreach (string fieldName in parameters.Keys)
+                {
+                    entityRecord[fieldName] = parameters[fieldName];
+                }
+                organizationService.Update(entityRecord);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                //LogManager.LogAndShowException(methodName, ex);
+                throw ex;
+            }
+        }
+
+        public bool ValidateImportValue(ISiteSetting siteSetting, Entities.Field field, string value, Dictionary<string, string> parameters, out string errorMessage)
+        {
+            CRMField crmField = (CRMField)field;
+            errorMessage = string.Empty;
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                if (field.Required == true)
+                {
+                    errorMessage = "Value on " + field.DisplayName + " is required.";
+                }
+            }
+            else
+            {
+                switch (field.Type)
+                {
+                    case FieldTypes.Text:
+                    case FieldTypes.Note:
+                        if (field.MaxLength < value.Length)
+                        {
+                            errorMessage = "Value on " + field.DisplayName + " field exceeded max length. Value:" + value;
+                        }
+                        break;
+                    case FieldTypes.Boolean:
+                        if (value.Trim().ToLower() != "true"
+                            && value.Trim().ToLower() != "false"
+                            && value.Trim().ToLower() != field.ChoiceItems[0].DisplayName.Trim().ToLower()
+                            && value.Trim().ToLower() != field.ChoiceItems[1].DisplayName.Trim().ToLower()
+                            && value.Trim() != "0"
+                            && value.Trim() != "1")
+                        {
+                            errorMessage = "Value on " + field.DisplayName + " field should be either of (true, false, 1, 0). Value:" + value;
+                        }
+                        break;
+                    case FieldTypes.Number:
+                        if (crmField.CRMFieldTypeName == "integer"
+                            || crmField.CRMFieldTypeName == "int"
+                            || crmField.CRMFieldTypeName == "bigint"
+                            || crmField.CRMFieldTypeName == "smallint"
+                            || crmField.CRMFieldTypeName == "tinyint"
+                            )
+                        {
+                            int testNumber;
+                            if (int.TryParse(value, out testNumber) == false)
+                            {
+                                errorMessage = "Value on " + field.DisplayName + " field should be a numeric value. Value:" + value;
+                            }
+                        }
+                        else
+                        {
+                            double testNumber;
+                            if (double.TryParse(value, out testNumber) == false)
+                            {
+                                errorMessage = "Value on " + field.DisplayName + " field should be a numeric value. Value:" + value;
+                            }
+                        }
+
+                        break;
+                    case FieldTypes.Choice:
+                        ChoiceDataItem dataItem = field.ChoiceItems.Where(t => t.DisplayName.Equals(value, StringComparison.InvariantCultureIgnoreCase) == true).FirstOrDefault();
+                        if(dataItem == null)
+                        {
+                            errorMessage = "Value on " + field.DisplayName + " does not exists on field choices. Value:" + value;
+                        }
+                        break;
+                    case FieldTypes.Lookup:
+                        string primaryIdAttribute;
+                        string primaryNameAttribute;
+                        List<Field> entityFields = new CRMService().GetFields(siteSetting, field.List, out primaryIdAttribute, out primaryNameAttribute);
+                        CamlFilters filters = new CamlFilters();
+                        filters.IsOr = false;
+                        filters.Add(new CamlFilter(primaryNameAttribute, FieldTypes.Text, CamlFilterTypes.Equals, value));
+
+                        if (parameters.ContainsKey("ExcludeInActiveRecordFieldNames") == true && string.IsNullOrEmpty(parameters["ExcludeInActiveRecordFieldNames"]) == false)
+                        {
+                            string[] excludeInActiveRecordFieldNames = parameters["ExcludeInActiveRecordFieldNames"].Split(new string[] { ";#" }, StringSplitOptions.None);
+                            if (excludeInActiveRecordFieldNames.Contains(field.Name) == true)
+                            {
+                                Field statusField = entityFields.Where(t => t.Name.Equals("statuscode", StringComparison.InvariantCultureIgnoreCase) == true).First();
+                                foreach (ChoiceDataItem cdi in statusField.ChoiceItems)
+                                {
+                                    if (cdi.Parameters["State"] == "1")
+                                        filters.Add(new CamlFilter("statuscode", FieldTypes.Number, CamlFilterTypes.NotEqual, cdi.Value));
+                                }
+                            }
+                        }
+
+                        List<CamlFieldRef> fieldRefs = new List<CamlFieldRef>();
+                        fieldRefs.Add(new CamlFieldRef(primaryIdAttribute));
+                        fieldRefs.Add(new CamlFieldRef(primaryNameAttribute));
+                        string listItemCollectionPositionNext;
+                        int itemCount;
+                        List<IItem> items = new CRMService().GetListItems(siteSetting, new List<CamlOrderBy>(), filters, fieldRefs, new CamlQueryOptions(), siteSetting.Url, field.List, out listItemCollectionPositionNext, out itemCount);
+                        if (itemCount == 0)
+                        {
+                            errorMessage = "No match found for " + value;
+                        }
+                        if (itemCount > 1)
+                        {
+                            errorMessage = "Multiple match found for " + value + " Match records;";
+                            foreach (IItem item in items)
+                            {
+                                errorMessage += Environment.NewLine + item.Properties[primaryIdAttribute].ToString() + " ; " + item.Properties[primaryNameAttribute].ToString();
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (string.IsNullOrEmpty(errorMessage) == true)
+                return true;
+            else
+                return false;
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            CRMField crmField = (CRMField)field;
+            object objectValue = null;
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                objectValue = null;
+            }
+            else
+            {
+                switch (field.Type)
+                {
+                    case FieldTypes.Text:
+                    case FieldTypes.Note:
+                        objectValue = value;
+                        break;
+                    case FieldTypes.Boolean:
+                        ChoiceDataItem trueChoiceItem = field.ChoiceItems.Where(t => t.Value == "1").First();
+                        ChoiceDataItem falseChoiceItem = field.ChoiceItems.Where(t => t.Value == "0").First();
+                        if (value.Trim().ToLower() == trueChoiceItem.DisplayName
+                            || value.Trim().ToLower() == "true"
+                            || value.Trim() == "1")
+                        {
+                            objectValue = true;
+                        }
+                        else
+                        {
+                            objectValue = false;
+                        }
+                        break;
+                    case FieldTypes.Number:
+                        if(crmField.CRMFieldTypeName == "integer"
+                            || crmField.CRMFieldTypeName == "int"
+                            || crmField.CRMFieldTypeName == "bigint"
+                            || crmField.CRMFieldTypeName == "smallint"
+                            || crmField.CRMFieldTypeName == "tinyint"
+                            )
+                            objectValue = int.Parse(value);
+                        else
+                            objectValue = double.Parse(value);
+                        break;
+                    case FieldTypes.Choice:
+                        string _value = field.ChoiceItems.Where(t => t.DisplayName.Equals(value, StringComparison.InvariantCultureIgnoreCase) == true).First().Value;
+                        objectValue = new OptionSetValue(int.Parse(_value));
+                        break;
+                    case FieldTypes.Lookup:
+                        string primaryIdAttribute;
+                        string primaryNameAttribute;
+                        List<Field> entityFields = new CRMService().GetFields(siteSetting, field.List, out primaryIdAttribute, out primaryNameAttribute);
+                        CamlFilters filters = new CamlFilters();
+                        filters.IsOr = false;
+                        filters.Add(new CamlFilter(primaryNameAttribute, FieldTypes.Text, CamlFilterTypes.Equals, value));
+
+                        if (parameters.ContainsKey("ExcludeInActiveRecords") == true && parameters["ExcludeInActiveRecords"] == "1")
+                        {
+                            Field statusField = entityFields.Where(t => t.Name.Equals("statuscode", StringComparison.InvariantCultureIgnoreCase) == true).First();
+                            foreach (ChoiceDataItem cdi in statusField.ChoiceItems)
+                            {
+                                if (cdi.Parameters["State"] == "1")
+                                    filters.Add(new CamlFilter("statuscode", FieldTypes.Number, CamlFilterTypes.NotEqual, cdi.Value));
+                            }
+                        }
+
+                        List<CamlFieldRef> fieldRefs = new List<CamlFieldRef>();
+                        fieldRefs.Add(new CamlFieldRef(primaryIdAttribute));
+                        fieldRefs.Add(new CamlFieldRef(primaryNameAttribute));
+                        string listItemCollectionPositionNext;
+                        int itemCount;
+                        List<IItem> items = new CRMService().GetListItems(siteSetting, new List<CamlOrderBy>(), filters, fieldRefs, new CamlQueryOptions(), siteSetting.Url, field.List, out listItemCollectionPositionNext, out itemCount);
+                        if (itemCount > 0)
+                        {
+                            objectValue = new EntityReference(field.List, new Guid(items[0].Properties[primaryIdAttribute]));
+                        }
+                        break;
+                }
+            }
+
+            return objectValue;
+        }
+
 
     }
 }

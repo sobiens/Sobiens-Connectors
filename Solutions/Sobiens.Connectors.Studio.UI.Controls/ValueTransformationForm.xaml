@@ -6,13 +6,21 @@
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="500" Height="270">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
-        <Label Margin="0,5,0,0">Sample Data</Label>
-        <Label Margin="0,35,0,0">Output</Label>
-        <Label Margin="0,70,0,0">Code</Label>
-        <TextBox Width="400" HorizontalAlignment="Left" Name="TestValueTextBox" Height="25" VerticalAlignment="Top" Margin="80,5,0,0" TextChanged="TestValueTextBox_TextChanged" >Hello World</TextBox>
-        <TextBox Width="400" HorizontalAlignment="Left" Name="OutputTextBox" Height="25" VerticalAlignment="Top" Margin="80,35,0,0" >Hello World</TextBox>
-        <TextBox Width="400" HorizontalAlignment="Left" Name="CodeTextBox" Height="150" VerticalAlignment="Top" Margin="80,70,0,0" TextChanged="CodeTextBox_TextChanged" >return value;</TextBox>
-        <Button x:Name="RemoveButton" Width="60" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Click="RemoveButton_Click">Delete</Button>
+        <Label Margin="0,5,0,0" Style="{DynamicResource GenericLabelStyle}">Sample Data</Label>
+        <Label Margin="0,35,0,0" Style="{DynamicResource GenericLabelStyle}">Output</Label>
+        <Label Margin="0,70,0,0" Style="{DynamicResource GenericLabelStyle}">Code</Label>
+        <TextBox Width="400" HorizontalAlignment="Left" Name="TestValueTextBox" Height="25" VerticalAlignment="Top" Margin="80,5,0,0" TextChanged="TestValueTextBox_TextChanged"  Style="{DynamicResource GenericTextBoxStyle}">Hello World</TextBox>
+        <TextBox Width="400" HorizontalAlignment="Left" Name="OutputTextBox" Height="25" VerticalAlignment="Top" Margin="80,35,0,0" Style="{DynamicResource GenericTextBoxStyle}">Hello World</TextBox>
+        <TextBox Width="400" HorizontalAlignment="Left" Name="CodeTextBox" Height="150" VerticalAlignment="Top" Margin="80,70,0,0" TextChanged="CodeTextBox_TextChanged" Style="{DynamicResource GenericTextBoxStyle}">return value;</TextBox>
+        <Button x:Name="RemoveButton" Width="60" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Click="RemoveButton_Click" Style="{DynamicResource GenericButtonStyle}">Delete</Button>
     </Grid>
 </wpfc:HostControl>

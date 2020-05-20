@@ -26,6 +26,8 @@ namespace Sobiens.Connectors.Common.Interfaces
 
         bool UploadFile(ISiteSetting siteSetting, UploadItem uploadItem, bool saveAsWord, out IItem listItem);
 
+        bool ValidateImportValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters, out string errorMessage);
+        object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters);
         bool DownloadAdministrativeConfiguration(ISiteSetting ss, string url, string savePath);
 
         string GetTermsByLabel(ISiteSetting siteSetting, string webUrl, string label, int lcid, int resultCollectionSize, string termIds, bool addIfNotFound);
@@ -112,8 +114,8 @@ namespace Sobiens.Connectors.Common.Interfaces
 
 
 
-        void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation);
-        void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, System.Collections.Generic.Dictionary<object, object> fields);
+        void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, System.Collections.Generic.Dictionary<string, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation);
+        void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, System.Collections.Generic.Dictionary<string, object> fields);
         string GetUser(ISiteSetting siteSetting, string UserName);
         void DeleteUniquePermissions(ISiteSetting siteSetting, Folder folder, bool applyToAllSubItems);
         SPTermSet CreateTermSet(ISiteSetting siteSetting, SPTermSet termSet);

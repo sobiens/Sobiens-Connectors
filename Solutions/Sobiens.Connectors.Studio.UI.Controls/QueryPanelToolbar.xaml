@@ -1,0 +1,74 @@
+﻿<wpfc:HostControl x:Class="Sobiens.Connectors.Studio.UI.Controls.QueryPanelToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="300">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button ToolTip="Save Query" Click="SaveQueryButton_Click" Name="SaveQueryButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Images/Saveitem.gif" Height="18" Width="18" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Show Criteria Pane" Click="ShowCriteriaPaneButton_Click" Name="ShowCriteriaPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ShowCriteriaPane.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Show Caml Pane" Click="ShowCamlTextPaneButton_Click" Name="ShowCamlTextPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ShowCamlTextPane.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Show Results Pane" Click="ShowResultsPaneButton_Click" Name="ShowResultsPaneButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ShowResultsPane.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Execute Query" Click="ExecuteQueryButton_Click" Name="ExecuteQueryButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ExecuteQuery.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Validate Caml" Click="ValidateCamlButton_Click" Name="ValidateCamlButton" Visibility="Hidden" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ValidateCaml.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Code Wizard" Click="CodeWizardButton_Click" Name="CodeWizardButton" Visibility="Visible" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/CodeWizard.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Export to Excel"  Click="ExportToExcelButton_Click" Name="ExportToExcelButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/ExportToExcel16x16.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Copy Data Wizard" Click="CopyListWizardButton_Click" Name="CopyListWizardButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/DataExport.png" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="Import Data" Click="DataImportWizardButton_Click" Name="DataImportWizardButton" Style="{DynamicResource RibbonBarButtonStyle}">
+                <Button.Content>
+                    <Image Source="Images/importfile.gif" Height="18" Width="18" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
+</wpfc:HostControl>

@@ -20,6 +20,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private ResultPane _ResultPane;
         private CamlTextEditorPane _CamlTextEditorPane;
         private Grid _Grid;
+        private QueryPanelToolbar _QueryPanelToolbar;
 
         // Constructor
         public ClosableTab()
@@ -29,7 +30,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             // Assign the usercontrol to the tab header
             this.Header = closableTabHeader;
-
+             
             // Attach to the CloseableHeader events (Mouse Enter/Leave, Button Click, and Label resize)
             closableTabHeader.button_close.MouseEnter += new MouseEventHandler(button_close_MouseEnter);
             closableTabHeader.button_close.MouseLeave += new MouseEventHandler(button_close_MouseLeave);
@@ -40,9 +41,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             _CriteriaPane = new CriteriaPane() ;
             _ResultPane = new ResultPane() ;
             _CamlTextEditorPane = new CamlTextEditorPane();
+            _QueryPanelToolbar = new QueryPanelToolbar();
             _CriteriaPane.After_CriteriaChange += _CriteriaPane_After_CriteriaChange;
 
-            this.Background = Brushes.Aquamarine;
+            this.Margin = new Thickness(0, 0, 0, 0);
+            this.Padding = new Thickness(0, 0, 0, 0);
             this.Content = _Grid;
             SetGridControls(true, true, true);
         }
@@ -96,6 +99,39 @@ namespace Sobiens.Connectors.Studio.UI.Controls
 
             _Grid.Children.Clear();
             _Grid.RowDefinitions.Clear();
+            _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(30, GridUnitType.Pixel) });
+            _QueryPanelToolbar.SetValue(Grid.RowProperty, 0);
+            _Grid.Children.Add(_QueryPanelToolbar);
+            List<UserControl> visibleControls = new List<UserControl>();
+            if (showCriteriaPane == true)
+            {
+                visibleControls.Add(_CriteriaPane);
+            }
+            if (showResultPane == true)
+            {
+                visibleControls.Add(_ResultPane);
+            }
+            if (showCamlTextEditorPane == true)
+            {
+                visibleControls.Add(_CamlTextEditorPane);
+            }
+
+            for (int i = 0; i < visibleControls.Count; i++)
+            {
+                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100/ visibleControls.Count, GridUnitType.Star) });
+                visibleControls[i].SetValue(Grid.RowProperty, (i*2)+1);
+                _Grid.Children.Add(visibleControls[i]);
+
+                if (i != visibleControls.Count - 1)
+                {
+                    _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(10, GridUnitType.Pixel) });
+                    GridSplitter gs1 = new GridSplitter() { HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch };
+                    gs1.SetValue(Grid.RowProperty, (i * 2) + 2);
+                    _Grid.Children.Add(gs1);
+                }
+            }
+
+            /*
             if (totalVisibleComponent == 0) 
             {
             }
@@ -166,7 +202,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 _Grid.Children.Add(gs1);
                 _Grid.Children.Add(gs2);
             }
-
+            */
             /*
             ResourceDictionary dict = new ResourceDictionary();
             dict.Source = new System.Uri("pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml", UriKind.Absolute);
@@ -216,6 +252,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             base.OnSelected(e);
             ((CloseableHeader)this.Header).button_close.Visibility = Visibility.Visible;
+            ((CloseableHeader)this.Header).Border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#464775"));
         }
 
         // Override OnUnSelected - Hide the Close Button
@@ -223,6 +260,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             base.OnUnselected(e);
             ((CloseableHeader)this.Header).button_close.Visibility = Visibility.Hidden;
+            ((CloseableHeader)this.Header).Border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#6264a7"));
         }
 
         // Override OnMouseEnter - Show the Close Button

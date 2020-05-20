@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:my1="clr-namespace:Sobiens.Connectors.Studio.UI.Controls;assembly=Sobiens.Connectors.Studio.UI.Controls"
         xmlns:local="clr-namespace:Sobiens.Connectors.Studio.UI"
-        Background="#6264a7" WindowStyle="None"
-        Title="Sobiens Studio" Height="500" Width="500" Loaded="Window_Loaded" Initialized="Window_Initialized" Icon="Images/Sobiens_20x20.gif" Closing="Window_Closing"
+    Background="#f3f2f1"
+    WindowStyle="None"
+         AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
+        Title="Sobiens Studio" BorderThickness="0,0,0,0" Margin="0" Padding="0" Height="500" Width="500" Loaded="Window_Loaded" Initialized="Window_Initialized" Icon="Images/Sobiens_20x20.gif" Closing="Window_Closing"
         mc:Ignorable="d">
+    <!--Background="#f3f2f1"-->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,8 +19,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid Height="32" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+    <Grid >
+        <Grid Height="32" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#6264a7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -43,11 +46,14 @@
                 </MenuItem>
                 <MenuItem Header="Help" Name="HelpMenuItem" Click="HelpMenuItem_Click" Background="#6264a7"></MenuItem>
             </Menu>
-
-            <Label Grid.Column="2" x:Name="ApplicationVersionLabel" Style="{DynamicResource GenericLabelStyle}" Foreground="White" Width="150" VerticalAlignment="Center"></Label>
+            <Grid Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseDown="Grid_MouseDown">
+                <Label x:Name="ApplicationVersionLabel" Style="{DynamicResource GenericLabelStyle}" Foreground="White" Width="150" VerticalAlignment="Center"></Label>
+            </Grid>
 
             <Button
+                Name="MinimizeButton"
 		Grid.Column="3"
+                Foreground="White"
 		Click="OnMinimizeButtonClick"
 		RenderOptions.EdgeMode="Aliased"
 		Style="{StaticResource TitleBarButtonStyle}">
@@ -60,9 +66,10 @@
 			StrokeThickness="1" />
             </Button>
             <Button
-		Name="maximizeButton"
+		Name="MaximizeButton"
 		Grid.Column="4"
 		Click="OnMaximizeRestoreButtonClick"
+                Foreground="White"
 		Style="{StaticResource TitleBarButtonStyle}">
                 <Path
 			Width="46"
@@ -73,8 +80,9 @@
 			StrokeThickness="1" />
             </Button>
             <Button
-		Name="restoreButton"
-		Grid.Column="5"
+		Name="RestoreButton"
+        Foreground="White"
+		Grid.Column="4"
 		Click="OnMaximizeRestoreButtonClick"
 		Style="{StaticResource TitleBarButtonStyle}">
                 <Path
@@ -86,7 +94,8 @@
 			StrokeThickness="1" />
             </Button>
             <Button
-		Grid.Column="6"
+		Grid.Column="5"
+                Foreground="White"
 		Click="OnCloseButtonClick"
 		Style="{StaticResource TitleBarCloseButtonStyle}">
                 <Path
@@ -98,7 +107,7 @@
 			StrokeThickness="1" />
             </Button>
     </Grid>
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,35,0,0">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,32,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="100*"/>
@@ -109,7 +118,7 @@
             <ColumnDefinition Width="60*"/>
         </Grid.ColumnDefinitions>
 
-        <my1:QueryDesignerToolbar Background="#6264a7" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="queryDesignerToolbar" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="30" />
+        <my1:MainRibbonToolbar Background="#6264a7" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="queryDesignerToolbar" Margin="0,0,0,0" Padding="5,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="30" />
         <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="244*" />
@@ -123,12 +132,16 @@
             <my1:QueriesPanel Grid.Column="2" x:Name="queriesPanel" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="3" />
         </Grid>
 
-        <StatusBar HorizontalAlignment="Left" Height="35" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#6264a7">
-            <StatusBarItem Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Content="Start service" Name="StartBackgrounProcessButton" Click="Button_Click" Style="{DynamicResource GenericButtonStyle}"></Button>
+        <StatusBar HorizontalAlignment="Stretch" Height="35" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#6264a7">
+            <StatusBarItem Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button Content="Start service" Name="StartBackgrounProcessButton" Click="StartBackgrounProcessButton_Click" Style="{DynamicResource GenericButtonStyle}"></Button>
             </StatusBarItem>
-            <StatusBarItem Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <ProgressBar Value="50" Width="90" Height="16" />
+            <StatusBarItem Height="30" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Grid Margin="0">
+                        <ProgressBar Value="100" Width="200" Height="18" Name="StatusProgressBar" Margin="0,0,0,0" Padding="0" VerticalAlignment="Center" Background="DarkGray" />
+                        <Label Content="Done" Width="165" Height="18" Margin="20,0,0,0" Padding="0" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Center" Name="StatusLabel" Background="Transparent" MouseLeftButtonUp="StatusLabel_MouseLeftButtonUp" Style="{DynamicResource ClickableLabelStyle}"></Label>
+                        <Image my1:ImageBehavior.AnimatedSource="Images/loader.GIF" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Name="LoadingImage" Visibility="Hidden" />
+                    </Grid>
             </StatusBarItem>
         </StatusBar>
     </Grid>

@@ -17,7 +17,7 @@ namespace Sobiens.Connectors.Entities
         public Folder Folder;
         //public List<Field> Fields;
         public ContentType ContentType;
-        public System.Collections.Generic.Dictionary<object, object> FieldInformations;
+        public System.Collections.Generic.Dictionary<string, object> FieldInformations;
         public List<UploadItem> Attachments = new List<UploadItem>();
 
         //public SharePointListViewControl SharePointListViewControl;

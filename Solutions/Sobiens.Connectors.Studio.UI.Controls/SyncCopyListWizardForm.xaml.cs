@@ -255,6 +255,23 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
             Logger.Error("13", "SyncCopyListWizardForm");
 
+            if (SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.SiteSetting.SiteSettingType == SiteSettingTypes.SQLServer)
+            {
+                if (AllowDeltaUpdateCheckBox.IsChecked == true && ((QueryResultMappingSelectField)LastModifiedSourceFieldComboBox.SelectedItem).FieldName != string.Empty)
+                {
+                    QueryResultMappingSelectField LastModifiedSourceQueryResultMappingSelectField = (QueryResultMappingSelectField)LastModifiedSourceFieldComboBox.SelectedItem;
+                    SyncTask.SourceModifiedFieldName = LastModifiedSourceQueryResultMappingSelectField.FieldName;
+                }
+                else
+                {
+                    SyncTask.SourceModifiedFieldName = string.Empty;
+                }
+            }
+            else
+            {
+                SyncTask.SourceModifiedFieldName = string.Empty;
+            }
+
             SyncTask.DestinationListName = DestinationFolder.GetListName();
             SyncTask.DestinationRootFolderPath = DestinationFolder.GetPath();
             SyncTask.DestinationFolderPath = DestinationFolder.GetPath();
@@ -354,6 +371,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 sourceFields.AddRange(sourceQueryResultMapping.SelectFields);
             }
 
+            QueryResultMappingSelectField pleaseSelectField = new QueryResultMappingSelectField()
+            {
+                FieldName = string.Empty,
+                OutputHeaderName = "--- Please select"
+            };
 
             QueryResultMappingSelectField notMappedField = new QueryResultMappingSelectField()
             {
@@ -365,12 +387,35 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 FieldName = string.Empty,
                 OutputHeaderName = "--- Apply Manuel Value"
             };
+            List<QueryResultMappingSelectField> lastModifiedSourceFields = sourceFields.ToList();
+            lastModifiedSourceFields.Insert(0, pleaseSelectField);
+
+            LastModifiedSourceFieldComboBox.ItemsSource = lastModifiedSourceFields;
             UpdateSourceFieldComboBox.ItemsSource = sourceFields.ToList();
             UpdateDestinationFieldComboBox.ItemsSource = DestinationFolderFields.ToList();
             if(string.IsNullOrEmpty(SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName)== false)
             {
                 QueryResultMappingSelectField primaryIdQueryResultMappingSelectField = sourceFields.Where(t => t.FieldName.Equals(SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.PrimaryIdFieldName)).FirstOrDefault();
                 UpdateSourceFieldComboBox.SelectedItem = primaryIdQueryResultMappingSelectField;
+            }
+
+            if (SyncTask.SourceQueryResultMapping.Mappings[0].QueryResult.SiteSetting.SiteSettingType == SiteSettingTypes.SQLServer) {
+                if (string.IsNullOrEmpty(SyncTask.SourceModifiedFieldName) == false) {
+                    AllowDeltaUpdateCheckBox.IsChecked = true;
+                    QueryResultMappingSelectField sourceModifiedFieldQueryResultMappingSelectField = lastModifiedSourceFields.Where(t => t.FieldName.Equals(SyncTask.SourceModifiedFieldName)).FirstOrDefault();
+                    if (sourceModifiedFieldQueryResultMappingSelectField != null)
+                    {
+                        UpdateSourceFieldComboBox.SelectedItem = sourceModifiedFieldQueryResultMappingSelectField;
+                    }
+                }
+                else
+                {
+                    LastModifiedSourceFieldComboBox.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                AllowDeltaUpdateGroupBox.Visibility = Visibility.Hidden;
             }
 
             sourceFields.Insert(0, manuelValue);
@@ -762,6 +807,16 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }
 
             grid.ItemsSource = dataTable.AsDataView();
+        }
+
+        private void AllowDeltaUpdateCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            LastModifiedSourceFieldComboBox.IsEnabled = AllowDeltaUpdateCheckBox.IsChecked.Value;
+        }
+
+        private void AllowDeltaUpdateCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            LastModifiedSourceFieldComboBox.IsEnabled = AllowDeltaUpdateCheckBox.IsChecked.Value;
         }
     }
 }

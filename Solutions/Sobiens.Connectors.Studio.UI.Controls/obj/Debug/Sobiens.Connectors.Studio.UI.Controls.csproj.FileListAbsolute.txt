@@ -360,7 +360,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ProjectEditForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ProjectLoadForm.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueriesPanel.g.cs
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryDesignerToolbar.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryFilterGeneratorControl.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryGeneratorControl.g.cs
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ResultPane.g.cs
@@ -416,7 +415,6 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ObjectAccessMaintenanceForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ProjectEditForm.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\ProjectLoadForm.baml
-C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryDesignerToolbar.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryFilterGeneratorControl.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryGeneratorControl.baml
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\SelectEntityForm.baml
@@ -437,3 +435,7 @@ C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Con
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Sobiens.Connectors.Studio.UI.Controls.dll
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Sobiens.Connectors.Studio.UI.Controls.pdb
 C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\Style\MainStyle.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryPanelToolbar.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\MainRibbonToolbar.g.cs
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\QueryPanelToolbar.baml
+C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\MainRibbonToolbar.baml

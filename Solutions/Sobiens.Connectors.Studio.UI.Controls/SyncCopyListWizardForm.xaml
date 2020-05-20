@@ -6,9 +6,18 @@
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Loaded="HostControl_Loaded">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
     <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TabControl SelectionChanged="TabControl_SelectionChanged" Name="WizardTabControl">
-            <TabItem Header="Source">
+            <TabItem Header="Source" Style="{DynamicResource TabItemStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100*"/>
@@ -19,10 +28,10 @@
                     </Grid.RowDefinitions>
                     <wpfc:QueryGeneratorControl x:Name="SourceQueryGeneratorControl" Margin="0,0,0,0"/>
 
-                    <Button x:Name="SourceNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="SourceNextButton_Click"/>
+                    <Button x:Name="SourceNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Grid.Row="1"  Grid.Column="1" Style="{DynamicResource GenericButtonStyle}" Click="SourceNextButton_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Destination">
+            <TabItem Header="Destination" Style="{DynamicResource TabItemStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60*"/>
@@ -33,13 +42,13 @@
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="2" Click="DestinationBackButton_Click"/>
-                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="DestinationNextButton_Click"/>
-                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" Margin="42,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212"/>
-                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="14,87,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="1"/>
+                    <Button x:Name="DestinationBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="2" Click="DestinationBackButton_Click" Style="{DynamicResource GenericButtonStyle}" />
+                    <Button x:Name="DestinationNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="DestinationNextButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
+                    <Label x:Name="DestionationLabel" Content="Destination:" HorizontalAlignment="Left" Margin="42,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212" Style="{DynamicResource GenericLabelStyle}"/>
+                    <Button x:Name="DestinationSelectButton" Content="Please select..." HorizontalAlignment="Left" Margin="14,87,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.601,-2.3" Click="DestinationSelectButton_Click" Grid.Column="1" Style="{DynamicResource GenericButtonStyle}"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Mapping">
+            <TabItem Header="Mapping" Style="{DynamicResource TabItemStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="247*"/>
@@ -47,17 +56,41 @@
                         <ColumnDefinition Width="233*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="150"></RowDefinition>
                         <RowDefinition Height="50*"></RowDefinition>
                         <RowDefinition Height="50*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Margin="12,5,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.Row="0" >
-                        <CheckBox Margin="0,5,0,0" Name="AllowUpdateCheckBox" Content="Enable update field mapping" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Checked="AllowUpdateCheckBox_Checked" Unchecked="AllowUpdateCheckBox_Unchecked"></CheckBox>
-                        <Label Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Source field:" Height="30"></Label>
-                        <ComboBox Name="UpdateSourceFieldComboBox" Margin="100,30,0,0" HorizontalAlignment="Left" Width="100" Height="30" IsEnabled="False"></ComboBox>
-                        <Label Margin="220,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Destination field:" Height="30"></Label>
-                        <ComboBox Name="UpdateDestinationFieldComboBox" Margin="350,30,0,0" HorizontalAlignment="Left" Width="100" Height="30" IsEnabled="False"></ComboBox>
+                        <GroupBox Width="450" Height="60" Margin="0,0,0,0" VerticalAlignment="Top">
+                            <GroupBox.Header>
+                                <Grid Height="25">
+                                    <CheckBox Margin="0,0,0,0" Name="AllowUpdateCheckBox" Content="Enable update field mapping" Width="170" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Checked="AllowUpdateCheckBox_Checked" Unchecked="AllowUpdateCheckBox_Unchecked"  Style="{DynamicResource GenericCheckBoxStyle}"></CheckBox>
+                                </Grid>
+                            </GroupBox.Header>
+                            <Grid HorizontalAlignment = "Stretch" VerticalAlignment = "Stretch">
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Source field:" Height="30" Style="{DynamicResource GenericLabelStyle}"></Label>
+                                <ComboBox Name="UpdateSourceFieldComboBox" Margin="100,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" IsEnabled="False" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                                <Label Margin="220,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Destination field:" Height="30" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                                <ComboBox Name="UpdateDestinationFieldComboBox" Margin="320,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" IsEnabled="False" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Width="450" Height="70" Margin="0,60,0,0" VerticalAlignment="Top" Name="AllowDeltaUpdateGroupBox">
+                            <GroupBox.Header>
+                                <Grid Height="25">
+                                    <CheckBox Margin="0,0,0,0" Name="AllowDeltaUpdateCheckBox" Content="Enable delta update" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Checked="AllowDeltaUpdateCheckBox_Checked" Unchecked="AllowDeltaUpdateCheckBox_Unchecked"  Style="{DynamicResource GenericCheckBoxStyle}"></CheckBox>
+                                </Grid>
+                            </GroupBox.Header>
+                            <GroupBox.Content>
+                                <Grid>
+                                    <Label Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Last Modified Field:" Height="30" Style="{DynamicResource GenericLabelStyle}"></Label>
+                                    <ComboBox Name="LastModifiedSourceFieldComboBox" Margin="130,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" IsEnabled="False" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                                </Grid>
+                            </GroupBox.Content>
+                        </GroupBox>
+
+
                     </Grid>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.ColumnSpan="3" Grid.Row="1" Background="Aqua">
                         <Grid Margin="12,0,12,32" Name="FieldMappingsStackPanel" VerticalAlignment="Top" HorizontalAlignment="Left" />
@@ -68,28 +101,28 @@
                         </DataGrid>
                     </ScrollViewer>
 
-                    <Button x:Name="MappingBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingBackButton_Click"/>
-                    <Button x:Name="MappingNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingNextButton_Click"/>
+                    <Button x:Name="MappingBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingBackButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
+                    <Button x:Name="MappingNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,5" Width="75" Grid.Row="3"  Grid.Column="2" Click="MappingNextButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Schedule">
+            <TabItem Header="Schedule" Style="{DynamicResource TabItemStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="ScheduleBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="ScheduleBackButton_Click"/>
-                    <Button x:Name="ScheduleNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,0" Width="75" Grid.Row="1" Click="ScheduleNextButton_Click" Height="20" VerticalAlignment="Top"/>
-                    <CheckBox Margin="10,10,0,0" Name="SkipUpdateEventsCheckBox" Content="Skip update events" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"></CheckBox>
+                    <Button x:Name="ScheduleBackButton" Content="Back" HorizontalAlignment="Right" Margin="0,5,90,5" Width="75" Grid.Row="1"  Grid.Column="1" Click="ScheduleBackButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
+                    <Button x:Name="ScheduleNextButton" Content="Next" HorizontalAlignment="Right" Margin="0,5,5,0" Width="75" Grid.Row="1" Click="ScheduleNextButton_Click" Height="20" VerticalAlignment="Top" Style="{DynamicResource GenericButtonStyle}"/>
+                    <CheckBox Margin="10,10,0,0" Name="SkipUpdateEventsCheckBox" Content="Skip update events" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Style="{DynamicResource GenericCheckBoxStyle}"></CheckBox>
 
                     <GroupBox x:Name="RunOnceRadioButton" Header="Schedule" HorizontalAlignment="Left" Height="154" Margin="35,110,0,0" VerticalAlignment="Top" Width="314">
                         <Grid>
-                            <Label x:Name="label" Content="Frequency" HorizontalAlignment="Left" Margin="35,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135"/>
-                            <TextBox x:Name="FrequencyTextBox" HorizontalAlignment="Left" Height="23" Margin="122,65,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                            <RadioButton x:Name="RunOnceRadioButtonNo" Content="No"  HorizontalAlignment="Left" Margin="178,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonNo_Checked"/>
-                            <RadioButton x:Name="RunOnceRadioButtonYes" Content="Yes"  HorizontalAlignment="Left" Margin="122,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonYes_Checked" IsChecked="True" RenderTransformOrigin="1.458,-4.067"/>
-                            <Label x:Name="label_Copy" Content="One time job?" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135"/>
+                            <Label x:Name="label" Content="Frequency" HorizontalAlignment="Left" Margin="35,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135" Style="{DynamicResource GenericLabelStyle}"/>
+                            <TextBox x:Name="FrequencyTextBox" HorizontalAlignment="Left" Height="23" Margin="122,65,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource GenericTextBoxStyle}"/>
+                            <RadioButton x:Name="RunOnceRadioButtonNo" Content="No"  HorizontalAlignment="Left" Margin="178,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonNo_Checked" Style="{DynamicResource GenericRadioButtonStyle}"/>
+                            <RadioButton x:Name="RunOnceRadioButtonYes" Content="Yes"  HorizontalAlignment="Left" Margin="122,36,0,0" VerticalAlignment="Top" Checked="RunOnceRadioButtonYes_Checked" IsChecked="True" RenderTransformOrigin="1.458,-4.067" Style="{DynamicResource GenericRadioButtonStyle}"/>
+                            <Label x:Name="label_Copy" Content="One time job?" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.75,-1.135" Style="{DynamicResource GenericLabelStyle}"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

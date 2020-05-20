@@ -12,7 +12,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
     /// </summary>
     public partial class CloseableHeader : UserControl
     {
-
+        public bool IsSelected { get; set; }
         public CloseableHeader()
         {
             InitializeComponent();

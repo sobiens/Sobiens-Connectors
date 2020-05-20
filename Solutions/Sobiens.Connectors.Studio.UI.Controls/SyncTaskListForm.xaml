@@ -7,13 +7,21 @@
              mc:Ignorable="d" 
                   
              d:DesignHeight="300" d:DesignWidth="700">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
         <Button x:Name="OpenFolderButton" Content="Open Folder" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="OpenFolderButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
         <DatePicker Name="HistoryDatePicker" Height="30" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" SelectedDateChanged="HistoryDatePicker_SelectedDateChanged"/>
         <Label x:Name="label" Content="Completed task history date" HorizontalAlignment="Left" Margin="270,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.658,0.346"/>
         <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="450,60,0,0" VerticalAlignment="Top" Click="RefreshButton_Click" Style="{DynamicResource GenericButtonStyle}"/>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="196" Margin="10,90,0,0" VerticalAlignment="Top" Width="540">
-            <TabItem Header="Current">
+            <TabItem Header="Current" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid  AutoGenerateColumns="False" Width="500"
                         IsReadOnly="True"
@@ -42,7 +50,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Completed">
+            <TabItem Header="Completed" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid  AutoGenerateColumns="False" Width="500"
                         IsReadOnly="True"

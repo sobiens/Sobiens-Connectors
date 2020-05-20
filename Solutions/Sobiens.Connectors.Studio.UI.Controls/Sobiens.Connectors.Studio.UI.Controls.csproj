@@ -138,6 +138,9 @@
     <Compile Include="CompareSQLObjectsForm.xaml.cs">
       <DependentUpon>CompareSQLObjectsForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QueryPanelToolbar.xaml.cs">
+      <DependentUpon>QueryPanelToolbar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Selectors\RadioButtonList.xaml.cs">
       <DependentUpon>RadioButtonList.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BrowserTabsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueryPanelToolbar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -432,7 +439,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="QueryDesignerToolbar.xaml">
+    <Page Include="MainRibbonToolbar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -538,8 +545,8 @@
     <Compile Include="QueriesPanel.xaml.cs">
       <DependentUpon>QueriesPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="QueryDesignerToolbar.xaml.cs">
-      <DependentUpon>QueryDesignerToolbar.xaml</DependentUpon>
+    <Compile Include="MainRibbonToolbar.xaml.cs">
+      <DependentUpon>MainRibbonToolbar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResultPane.xaml.cs">
       <DependentUpon>ResultPane.xaml</DependentUpon>
@@ -682,6 +689,8 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIConfigClassTemplate.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\importfile.gif" />
+    <Resource Include="Images\SAVEITEM.GIF" />
     <Resource Include="Images\sobiens_logo.gif" />
     <Resource Include="Images\SQLDB.gif" />
     <Resource Include="Images\Column.gif" />

@@ -46,6 +46,7 @@ namespace Sobiens.Connectors.Entities.Settings
             siteSetting.useMajorVersionAsDefault = this.useMajorVersionAsDefault;
             siteSetting.CheckInAfterEditProperties = this.CheckInAfterEditProperties;
             siteSetting.limitFolderEditableProperties = this.limitFolderEditableProperties;
+            siteSetting.SiteSettingType = this.SiteSettingType;
             return siteSetting;
         }
     }

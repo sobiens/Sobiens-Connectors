@@ -348,8 +348,8 @@ namespace Sobiens.Connectors.WPF.Controls
             if (editControl.ShowDialog(null, Languages.Translate("Edit Properties")) == true)
             {
                 ContentType contentType;
-                Dictionary<object, object> values = editControl.GetValues(out contentType);
-                serviceManager.UpdateListItem(siteSetting, webUrl, listName, listItemID, values, new Dictionary<string, object>());
+                Dictionary<string, object> values = editControl.GetValues(out contentType);
+                serviceManager.UpdateListItem(siteSetting, webUrl, listName, listItemID.ToString(), values, new Dictionary<string, object>());
 
                 if (siteSetting.CheckInAfterEditProperties && editControl.requiredFieldsOk&(item as SPListItem !=null))
                 {

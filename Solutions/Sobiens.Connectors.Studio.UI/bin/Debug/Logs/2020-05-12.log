@@ -1,0 +1,16 @@
+Debug|2020-05-12 15:42:17.5043|2020-05-12 15:42:17,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:42:17.5302|2020-05-12 15:42:17,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:42:17.5521|2020-05-12 15:42:17,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:42:17.5561|2020-05-12 15:42:17,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:42:20.6379|2020-05-12 15:42:20,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:42:47.8072|2020-05-12 15:42:47,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:43:17.8269|2020-05-12 15:43:17,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:43:47.8357|2020-05-12 15:43:47,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:44:17.8414|2020-05-12 15:44:17,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:44:47.8532|2020-05-12 15:44:47,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:17.8609|2020-05-12 15:45:17,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:29.0580|2020-05-12 15:45:29,info,BackgroundDataService,Stopping service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:29.0580|2020-05-12 15:45:29,info,BackgroundDataService,Timer disabled, waiting for pending requests to complete ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:29.0580|2020-05-12 15:45:29,info,BackgroundDataService,No of enqued requests is 0, waiting to terminate ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:29.1437|2020-05-12 15:45:29,info,BackgroundDataService,Service successfully terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-12 15:45:29.1437|2020-05-12 15:45:29,info,BackgroundDataService,Worker thread for processing request queue is terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry

@@ -18,6 +18,7 @@ using Microsoft.SharePoint.Client.Taxonomy;
 using Microsoft.SharePoint.Client.WorkflowServices;
 using Microsoft.SharePoint.Client.WebParts;
 using Sobiens.Connectors.Entities.Cryptography;
+using Field = Sobiens.Connectors.Entities.Field;
 //using Microsoft.SharePoint.Client.Workflow;
 
 namespace Sobiens.Connectors.Services.SharePoint
@@ -1858,9 +1859,19 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 string userName = siteSetting.Username;
                 string[] userNameStringArray = userName.Split(new char[] { '\\' });
+                string decryptedPassword = siteSetting.Password;
+                try
+                {
+                    decryptedPassword = AesOperation.DecryptString(siteSetting.Password);
+                }
+                catch (Exception ex)
+                {
+                    // Means old version, not encrypted password
+                }
+
                 if (userNameStringArray.Length > 1)//there is domain
                 {
-                    return new NetworkCredential(userNameStringArray[1], siteSetting.Password, userNameStringArray[0]);
+                    return new NetworkCredential(userNameStringArray[1], decryptedPassword, userNameStringArray[0]);
                 }
                 else
                 {
@@ -1869,7 +1880,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                     //CredentialCache myCredentialCache = new CredentialCache();
                     //myCredentialCache.Add(new Uri(siteSetting.Url), "Basic", myNetworkCredential);
                     //return myCredentialCache;
-                    return new NetworkCredential(siteSetting.Username, siteSetting.Password);
+                    return new NetworkCredential(siteSetting.Username, decryptedPassword);
                 }
             }
         }
@@ -3110,7 +3121,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         /// <param name="fields">The fields.</param>
         /// <param name="listItem">The list item.</param>
         /// <returns>null on failure.</returns>
-        public static uint? UploadFile(ISiteSetting siteSetting, string listName, string rootFolderPath, string siteURL, string webURL, string copySource, string[] copyDest, byte[] myByteArray, System.Collections.Generic.Dictionary<object, object> fields, Sobiens.Connectors.Entities.ContentType contentType, out SPListItem listItem)
+        public static uint? UploadFile(ISiteSetting siteSetting, string listName, string rootFolderPath, string siteURL, string webURL, string copySource, string[] copyDest, byte[] myByteArray, System.Collections.Generic.Dictionary<string, object> fields, Sobiens.Connectors.Entities.ContentType contentType, out SPListItem listItem)
         {
             try
             {
@@ -3207,7 +3218,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        public static Hashtable getChangedProperties(Sobiens.Connectors.Entities.ContentType contentType, System.Collections.Generic.Dictionary<object, object> fields)
+        public static Hashtable getChangedProperties(Sobiens.Connectors.Entities.ContentType contentType, System.Collections.Generic.Dictionary<string, object> fields)
         {
             Hashtable changedProperties = new Hashtable();
 
@@ -3218,7 +3229,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             {
                 Sobiens.Connectors.Entities.Field field = (Sobiens.Connectors.Entities.Field)entry;
                 Sobiens.Connectors.Services.SharePoint.SharePointCopyWS.FieldType fieldType = getFieldTypesForWS(field.Type);
-                object value = fields[entry];
+                object value = fields[field.Name];
 
                 if (field == null)
                 {
@@ -3250,7 +3261,7 @@ namespace Sobiens.Connectors.Services.SharePoint
         public static int? UploadListItemWithAttachment(ISiteSetting siteSetting, string listName, string rootFolderPath, UploadItem uploadItem, string webURL)
         {
             string log = String.Empty;
-            System.Collections.Generic.Dictionary<object, object> fields = uploadItem.FieldInformations;
+            System.Collections.Generic.Dictionary<string, object> fields = uploadItem.FieldInformations;
             try
             {
                 int id = SharePointService.CreateListItem(siteSetting, rootFolderPath, webURL, listName, fields);
@@ -3276,7 +3287,7 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        public static int CreateListItem(ISiteSetting siteSetting, string rootFolderPath, string webUrl, string listName, System.Collections.Generic.Dictionary<object, object> fields)
+        public static int CreateListItem(ISiteSetting siteSetting, string rootFolderPath, string webUrl, string listName, System.Collections.Generic.Dictionary<string, object> fields)
         {
             try
             {
@@ -3315,27 +3326,41 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        private static FieldInformation[] GetFieldInformations(System.Collections.Generic.Dictionary<object, object> fields)
+        private static FieldInformation[] GetFieldInformations(System.Collections.Generic.Dictionary<string, object> fields)
         {
             List<SharePointCopyWS.FieldInformation> fieldInformations = new List<SharePointCopyWS.FieldInformation>();
             try
             {
                 Hashtable returnHashTable = new Hashtable();
-                foreach (object entry in fields.Keys)
+                foreach (string fieldName in fields.Keys)
                 {
-                    Sobiens.Connectors.Entities.Field field = (Sobiens.Connectors.Entities.Field)entry;
-                    object value = fields[entry];
+                    object value = fields[fieldName];
 
-                    if (field == null || value == null)
+                    if (fieldName == null || value == null)
                         continue;
 
                     SharePointCopyWS.FieldInformation myFieldInfo = new SharePointCopyWS.FieldInformation();
-                    myFieldInfo.Id = field.ID;
-                    myFieldInfo.InternalName = field.Name;
-                    myFieldInfo.DisplayName = field.DisplayName;
+                    //myFieldInfo.Id = field.ID;
+                    myFieldInfo.InternalName = fieldName;
+                    //myFieldInfo.DisplayName = field.DisplayName;
                     string stringValue = string.Empty;
-                    switch (field.Type)
+                    if (value is DateTime == true)
                     {
+                        myFieldInfo.Type = SharePointCopyWS.FieldType.DateTime;
+                        stringValue = convertToISO8601((DateTime)value);
+                    }
+                    else if (value is bool == true)
+                    {
+                        myFieldInfo.Type = SharePointCopyWS.FieldType.Boolean;
+                        stringValue = ((bool)value) ? "True" : "False";
+                    }
+                    else
+                    {
+                        myFieldInfo.Type = SharePointCopyWS.FieldType.Text;
+                        stringValue = value.ToString();
+                        //value = (stringValue.Length > field.MaxLength ? stringValue.Substring(0, field.MaxLength) : stringValue);
+                    }
+                    /*
                         case FieldTypes.Note:
                             myFieldInfo.Type = SharePointCopyWS.FieldType.Note;
                             stringValue = value.ToString();
@@ -3359,6 +3384,7 @@ namespace Sobiens.Connectors.Services.SharePoint
                             stringValue = value.ToString();
                             break;
                     }
+                    */
 
                     myFieldInfo.Value = stringValue;
 
@@ -3401,17 +3427,17 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        private static System.Collections.Generic.Dictionary<object, object> getFieldInfosSubset(System.Collections.Generic.Dictionary<object, object> fields, FieldInformation[] myFieldInfoArray)
+        private static System.Collections.Generic.Dictionary<string, object> getFieldInfosSubset(System.Collections.Generic.Dictionary<string, object> fields, FieldInformation[] myFieldInfoArray)
         {
-            System.Collections.Generic.Dictionary<object, object> returnHashTable = new System.Collections.Generic.Dictionary<object, object>();
+            System.Collections.Generic.Dictionary<string, object> returnHashTable = new System.Collections.Generic.Dictionary<string, object>();
             foreach (object entry in fields.Keys)
             {
                 Sobiens.Connectors.Entities.Field field = (Sobiens.Connectors.Entities.Field)entry;
-                object value = fields[entry];
+                object value = fields[field.Name];
                 foreach (FieldInformation myFieldInfo in myFieldInfoArray)
                 {
                     if (field.Name == myFieldInfo.InternalName)
-                        returnHashTable.Add(field, value);
+                        returnHashTable.Add(field.Name, value);
                 }
             }
             return returnHashTable;
@@ -3588,14 +3614,21 @@ namespace Sobiens.Connectors.Services.SharePoint
             }
         }
 
-        public static List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
+        public List<Sobiens.Connectors.Entities.ContentType> GetContentTypes(ISiteSetting siteSetting, string webUrl, string rootFolderPath, string listName, bool includeReadOnly)
         {
             try
             {
                 List<Sobiens.Connectors.Entities.ContentType> contentTypes = new List<Sobiens.Connectors.Entities.ContentType>();
                 ClientContext context = GetClientContext(siteSetting, webUrl);
                 Microsoft.SharePoint.Client.ContentTypeCollection _contentTypes = context.Web.Lists.GetByTitle(listName).ContentTypes;
-                context.Load(_contentTypes);
+                context.Load(_contentTypes, t => t.Include(tx => tx.Fields)
+                    , t => t.Include(tx => tx.Id)
+                    , t => t.Include(tx => tx.Name)
+                    , t => t.Include(tx => tx.Description)
+                    , t => t.Include(tx => tx.Group)
+                    , t => t.Include(tx => tx.DocumentTemplateUrl)
+                    , t => t.Include(tx => tx.Id)
+                    );
                 context.ExecuteQuery();
                 foreach (Microsoft.SharePoint.Client.ContentType _contentType in _contentTypes)
                 {
@@ -4238,6 +4271,110 @@ namespace Sobiens.Connectors.Services.SharePoint
             context.ExecuteQuery();
             item.ResetRoleInheritance();
             context.ExecuteQuery();
+        }
+
+        public bool ValidateImportValue(ISiteSetting siteSetting, Entities.Field field, string value, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            switch (field.Type)
+            {
+                case FieldTypes.Text:
+                case FieldTypes.Note:
+                    if (field.MaxLength < value.Length)
+                    {
+                        errorMessage  ="Value on " + field.DisplayName + " field exceeded max length. Value:" + value;
+                    }
+                    break;
+                case FieldTypes.Boolean:
+                    if (value.Trim().ToLower() != "true"
+                        && value.Trim().ToLower() != "false"
+                        && value.Trim() != "0"
+                        && value.Trim() != "1")
+                    {
+                        errorMessage = "Value on " + field.DisplayName + " field should be either of (true, false, 1, 0). Value:" + value;
+                    }
+                    break;
+                case FieldTypes.Number:
+                    double testNumber;
+                    if (double.TryParse(value, out testNumber) == false)
+                    {
+                        errorMessage = "Value on " + field.DisplayName + " field should be a numeric value. Value:" + value;
+                    }
+                    break;
+
+
+            }
+
+            if (string.IsNullOrEmpty(errorMessage) == true)
+                return true;
+            else
+                return false;
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            object objectValue = null;
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                objectValue = null;
+            }
+            else
+            {
+                switch (field.Type)
+                {
+                    case FieldTypes.Text:
+                    case FieldTypes.Note:
+                        objectValue = value;
+                        break;
+                    case FieldTypes.Boolean:
+                        if (value.Trim().ToLower() == "true"
+                            || value.Trim() == "1")
+                        {
+                            objectValue = true;
+                        }
+                        else
+                        {
+                            objectValue = false;
+                        }
+                        break;
+                    case FieldTypes.Number:
+                        objectValue = double.Parse(value);
+                        break;
+                    case FieldTypes.Choice:
+                        string _value = field.ChoiceItems.Where(t => t.DisplayName.Equals(value, StringComparison.InvariantCultureIgnoreCase) == true).First().Value;
+                        objectValue = int.Parse(_value);
+                        break;
+                    case FieldTypes.Lookup:
+                        List<Field> entityFields = new SharePointService().GetFields(siteSetting, siteSetting.Url, field.List);
+                        CamlFilters filters = new CamlFilters();
+                        filters.IsOr = false;
+                        filters.Add(new CamlFilter("Title", FieldTypes.Text, CamlFilterTypes.Equals, value));
+
+                        if (parameters.ContainsKey("ExcludeInActiveRecords") == true && parameters["ExcludeInActiveRecords"] == "1")
+                        {
+                            Field statusField = entityFields.Where(t => t.Name.Equals("statuscode", StringComparison.InvariantCultureIgnoreCase) == true).First();
+                            foreach (ChoiceDataItem cdi in statusField.ChoiceItems)
+                            {
+                                if (cdi.Parameters["State"] == "1")
+                                    filters.Add(new CamlFilter("statuscode", FieldTypes.Number, CamlFilterTypes.NotEqual, cdi.Value));
+                            }
+                        }
+
+                        List<CamlFieldRef> fieldRefs = new List<CamlFieldRef>();
+                        fieldRefs.Add(new CamlFieldRef("ID"));
+                        fieldRefs.Add(new CamlFieldRef("Title"));
+                        string listItemCollectionPositionNext;
+                        int itemCount;
+                        List<IItem> items = new SharePointService().GetListItems(siteSetting, new List<CamlOrderBy>(), filters, fieldRefs, new CamlQueryOptions(), siteSetting.Url, field.List, out listItemCollectionPositionNext, out itemCount);
+                        if (itemCount > 1)
+                        {
+                            objectValue = int.Parse(items[0].Properties["ID"]);
+                        }
+                        break;
+                }
+            }
+
+            return objectValue;
         }
 
     }

@@ -26,6 +26,9 @@ namespace Sobiens.Connectors.Entities.CRM
 
         public override string GetUrl()
         {
+            if (string.IsNullOrEmpty(this.WebUrl) == true)
+                return string.Empty;
+
             string serverRelativeUrl = this.WebUrl.Substring(this.WebUrl.IndexOf('/', 9));
             string folderPath = this.FolderPath;
             if (this.FolderPath.IndexOf(serverRelativeUrl) == 0)

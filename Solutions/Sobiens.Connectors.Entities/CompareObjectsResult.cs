@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Sobiens.Connectors.Entities.CRM;
+using Sobiens.Connectors.Entities.SharePoint;
+using Sobiens.Connectors.Entities.SQLServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +49,18 @@ namespace Sobiens.Connectors.Entities
             get
             {
                 if (DifferenceType == "Update")
-                    return Visibility.Visible;
+                {
+                    if(SourceObject as SQLFolder != null
+                        || SourceObject as SPList != null
+                        || SourceObject as CRMEntity != null)
+                    {
+                        return Visibility.Visible;
+                    }
+                    else
+                    {
+                        return Visibility.Hidden;
+                    }
+                }
                 else
                     return Visibility.Hidden;
             }

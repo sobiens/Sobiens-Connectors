@@ -9,6 +9,7 @@ namespace Sobiens.Connectors.Entities
     public class SyncTaskListItemsCopy : SyncTask
     {
         public QueryResultMappings SourceQueryResultMapping { get; set; }
+        public string SourceModifiedFieldName { get; set; }
         public string[] SourceUniqueFieldHeaderNames { get; set; }
         public string[] SourceFieldHeaderMappings { get; set; }
 

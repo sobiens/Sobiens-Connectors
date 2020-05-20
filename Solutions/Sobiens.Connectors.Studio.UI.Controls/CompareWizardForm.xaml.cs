@@ -8,6 +8,8 @@ using Sobiens.Connectors.Entities.Settings;
 using Sobiens.Connectors.Common;
 using Sobiens.Connectors.Entities;
 using System.Windows.Data;
+using Sobiens.Connectors.Entities.SQLServer;
+using Sobiens.Connectors.Entities.SharePoint;
 
 namespace Sobiens.Connectors.Studio.UI.Controls
 {
@@ -19,19 +21,6 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         private const int LoadingNodeTagValue = -1;
         public Folder SourceObject;
         public Folder DestinationObject;
-
-        /*
-        public Folder SelectedObject
-        {
-            get
-            {
-                if (FoldersTreeView.SelectedItem != null && ((TreeViewItem)FoldersTreeView.SelectedItem).Tag as Folder != null)
-                    return (Folder)((TreeViewItem)FoldersTreeView.SelectedItem).Tag;
-
-                return null;
-            }
-        }
-        */
 
         public CompareWizardForm()
         {
@@ -105,20 +94,8 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         {
             this.SourceObject = sourceObject;
             this.DestinationObject = objectToCompareWith;
-            this.FoldersTreeView.ContextMenu = new ContextMenu();
         }
 
-        private void FoldersTreeView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
-        {
-            TreeViewItem item = FindControls.FindParent<TreeViewItem>(e.OriginalSource as DependencyObject);
-            if (item == null)
-            {
-                return;
-            }
-
-            this.FoldersTreeView.ContextMenu.Items.Clear();
-            TreeViewItem parentItem = item.Parent as TreeViewItem;
-        }
 
         private void CreateMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -171,9 +148,25 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                     CompareObjectsResult compareObjectsResult = (CompareObjectsResult)row.Item;
                     if (compareObjectsResult.DifferenceType == "Update")
                     {
-                        CompareSQLObjectsForm csof = new CompareSQLObjectsForm();
-                        csof.Initialize((Folder)compareObjectsResult.SourceObject, (Folder)compareObjectsResult.ObjectToCompareWith);
-                        csof.ShowDialog(this.ParentWindow, "Compare and Edit",false, true);
+                        /*
+                        if(compareObjectsResult.ObjectToCompareWith as SQLFolder == null)
+                        {
+                            MessageBox.Show("For now this functionality can be used for SQL only.");
+                            return;
+                        }
+                        */
+                        if (compareObjectsResult.SourceObject as SPList != null)
+                        {
+                            CompareWizardForm compareWizardForm = new CompareWizardForm();
+                            compareWizardForm.Initialize((Folder)compareObjectsResult.SourceObject, (Folder)compareObjectsResult.ObjectToCompareWith);
+                            compareWizardForm.ShowDialog(this.ParentWindow, "Compare Wizard", false, true);
+                        }
+                        else
+                        {
+                            CompareSQLObjectsForm csof = new CompareSQLObjectsForm();
+                            csof.Initialize((Folder)compareObjectsResult.SourceObject, (Folder)compareObjectsResult.ObjectToCompareWith);
+                            csof.ShowDialog(this.ParentWindow, "Compare and Edit", false, true);
+                        }
 //                        ApplicationContext.Current.ApplyMissingCompareObjectsResult(compareObjectsResult, sourceSiteSetting, destinationSiteSetting);
                     }
                 }

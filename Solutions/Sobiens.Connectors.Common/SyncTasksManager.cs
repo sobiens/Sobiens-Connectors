@@ -247,7 +247,7 @@ namespace Sobiens.Connectors.Common
             //ProcessSyncTaskExport(sourceExportFilePath, sourceExportDocumentsFolderPath, syncTask.SourceSiteSetting, syncTask.SourceListName, syncTask.SourceFieldMappings);
 
             backgroundWorker.ReportProgress(10, "Exporting source items...");
-            ProcessSyncTaskExport(sourceExportFilePath, sourceExportDocumentsFolderPath, syncTask.SourceQueryResultMapping, syncTask.DestinationFieldMappings, shouldExportSourceListItems, shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, includeVersionsLimit, syncTask.DestinationListName);
+            ProcessSyncTaskExport(sourceExportFilePath, sourceExportDocumentsFolderPath, syncTask.SourceQueryResultMapping, syncTask.DestinationFieldMappings, shouldExportSourceListItems, shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, includeVersionsLimit, syncTask.DestinationListName, syncTask.SourceModifiedFieldName);
             backgroundWorker.ReportProgress(100, "Exporting source items completed");
 
             QueryResultMappings queryResultMappings = new QueryResultMappings();
@@ -277,7 +277,7 @@ namespace Sobiens.Connectors.Common
             queryResultMappings.Mappings.Add(queryResultMapping);
 
             backgroundWorker.ReportProgress(10, "Exporting destination items...");
-            ProcessSyncTaskExport(destinationExportFilePath, string.Empty, queryResultMappings, syncTask.DestinationFieldMappings, shouldExportDestinationtListItems, false, backgroundWorker, null, 1, syncTask.DestinationListName);
+            ProcessSyncTaskExport(destinationExportFilePath, string.Empty, queryResultMappings, syncTask.DestinationFieldMappings, shouldExportDestinationtListItems, false, backgroundWorker, null, 1, syncTask.DestinationListName, syncTask.SourceModifiedFieldName);
             backgroundWorker.ReportProgress(100, "Exporting destination items completed");
         }
 
@@ -658,7 +658,7 @@ namespace Sobiens.Connectors.Common
 //                auditInformation.Add("IsFolder", dataRow[7]);
 
                 IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(syncTask.DestinationSiteSetting.SiteSettingType);
-                Dictionary<object, object> values = new Dictionary<object, object>();
+                Dictionary<string, object> values = new Dictionary<string, object>();
 
                 for (int i = 0; i < syncTask.DestinationFieldMappings.Count; i++)
                 {
@@ -754,7 +754,7 @@ namespace Sobiens.Connectors.Common
                     {
                         continue;
                     }
-                    values.Add(field, value);
+                    values.Add(field.Name, value);
                 }
 
                 string action = dataRow[0];
@@ -794,7 +794,7 @@ namespace Sobiens.Connectors.Common
                         Entities.Interfaces.IItem item = null;
                         Logger.Info("Uploading " + uploadItem.FilePath + " ...", "Service");
                         serviceManager.UploadFile(syncTask.DestinationSiteSetting, uploadItem, false, out item);
-                        serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, int.Parse(item.GetID()), values, auditInformation);
+                        serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, item.GetID(), values, auditInformation);
                     }
                     else
                     {
@@ -806,7 +806,7 @@ namespace Sobiens.Connectors.Common
                 {
                     int listItemId = int.Parse(dataRow[3]);
                     Logger.Info("Updating list item listItemId:" + listItemId + " ... ", "Service");
-                    serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, listItemId, values, auditInformation);
+                    serviceManager.UpdateListItem(syncTask.DestinationSiteSetting, webUrl, syncTask.DestinationListName, listItemId.ToString(), values, auditInformation);
                 }
             }
             catch(Exception ex)
@@ -1019,7 +1019,7 @@ namespace Sobiens.Connectors.Common
             return syncTasks;
         }
 
-        private void ProcessSyncTaskExport(string filePath, string documentsFolder, QueryResultMappings queryResultMappings, List<QueryResultMappingSelectField> destinationFieldMappings, bool shouldExportSourceListItems, bool shouldSourceExportDocuments, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, int includeVersionsLimit /* Positive -> version limit, 1-> last version, 0 -> all versions*/, string destionationListName)
+        private void ProcessSyncTaskExport(string filePath, string documentsFolder, QueryResultMappings queryResultMappings, List<QueryResultMappingSelectField> destinationFieldMappings, bool shouldExportSourceListItems, bool shouldSourceExportDocuments, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, int includeVersionsLimit /* Positive -> version limit, 1-> last version, 0 -> all versions*/, string destionationListName, string sourceModifiedFieldName)
         {
             if (shouldExportSourceListItems == false && shouldSourceExportDocuments == false)
                 return;
@@ -1052,7 +1052,7 @@ namespace Sobiens.Connectors.Common
             data.DataRows.Add(headerRow);
 
             //ProcessSyncTaskExport1(data, documentsFolder, queryResultMappings, 0, -1, headerRow.ToArray(), shouldSourceExportDocuments, backgroundWorker);
-            ProcessSyncTaskExport2(data, documentsFolder, queryResultMappings, 0, headerRow.ToArray(), shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, destionationListName);
+            ProcessSyncTaskExport2(data, documentsFolder, queryResultMappings, 0, headerRow.ToArray(), shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, destionationListName, sourceModifiedFieldName);
 
             if(includeVersionsLimit != 1 && versioningEnabled == true)
             {
@@ -1258,6 +1258,8 @@ namespace Sobiens.Connectors.Common
 
         private string GetDateTimeFilterString(SiteSetting siteSetting, DateTime date)
         {
+            if (siteSetting.SiteSettingType == SiteSettingTypes.SQLServer)
+                return date.ToString("yyyy-MM-ddTHH:mm:ssZ");
             if (siteSetting.SiteSettingType == SiteSettingTypes.SharePoint)
                 return date.ToString("yyyy-MM-ddTHH:mm:ssZ");
             if (siteSetting.SiteSettingType == SiteSettingTypes.CRM)
@@ -1265,15 +1267,13 @@ namespace Sobiens.Connectors.Common
 
             throw new NotImplementedException();
         }
-        private void ProcessSyncTaskExport2(SLExcelData data, string documentsFolder, QueryResultMappings queryResultMappings, int queryResultMappingIndex, string[] headers, bool shouldSourceExportDocuments, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, string destionationListName)
+        private void ProcessSyncTaskExport2(SLExcelData data, string documentsFolder, QueryResultMappings queryResultMappings, int queryResultMappingIndex, string[] headers, bool shouldSourceExportDocuments, BackgroundWorker backgroundWorker, DateTime? lastProcessStartDate, string destionationListName, string sourceModifiedFieldName)
         {
             QueryResultMapping queryResultMapping = queryResultMappings.Mappings[queryResultMappingIndex];
 
             SiteSetting siteSetting = queryResultMapping.QueryResult.SiteSetting;
             QueryResult queryResult = queryResultMapping.QueryResult;
             IServiceManager serviceManager = ServiceManagerFactory.GetServiceManager(siteSetting.SiteSettingType);
-            //Folder rootFolder = serviceManager.GetRootFolder(siteSetting);
-            //Folder rootFolder = serviceManager.get
 
             List<CamlFieldRef> viewFields = new List<CamlFieldRef>();
             foreach (string fieldName in queryResultMapping.QueryResult.Fields)
@@ -1281,7 +1281,6 @@ namespace Sobiens.Connectors.Common
                     if (string.IsNullOrEmpty(fieldName) == false)
                     viewFields.Add(new CamlFieldRef(fieldName, fieldName));
             }
-            //viewFields.Add(new CamlFieldRef("FileRef", "FileRef"));
 
             if (queryResultMapping.DestinationFilterField != null && queryResultMapping.DestinationFilterField.Equals("$FolderFilter") == true)
                 viewFields.Add(new CamlFieldRef("FileDirRef", "FileDirRef"));
@@ -1393,12 +1392,16 @@ namespace Sobiens.Connectors.Common
                                 currentFilters.Add(_filters);
                             }
 
-                    if (lastProcessStartDate.HasValue == true && lastProcessStartDate != DateTime.MinValue)
+                    if (lastProcessStartDate.HasValue == true && lastProcessStartDate != DateTime.MinValue
+                        && (siteSetting.SiteSettingType != SiteSettingTypes.SQLServer || string.IsNullOrEmpty(sourceModifiedFieldName) == false)
+                        )
                     {
                         //var result = new DateTimeOffset(input.DateTime, TimeZoneInfo.FindSystemTimeZoneById(input.TimeZoneId).GetUtcOffset(input.DateTime));
 
+                        if (string.IsNullOrEmpty(sourceModifiedFieldName) == true)
+                            sourceModifiedFieldName = GetModifiedFieldName(siteSetting);
                         string lastProcessStartDateString = GetDateTimeFilterString(siteSetting, lastProcessStartDate.Value);
-                        currentFilters.Add(new CamlFilter(GetModifiedFieldName(siteSetting), FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
+                        currentFilters.Add(new CamlFilter(sourceModifiedFieldName, FieldTypes.DateTime, CamlFilterTypes.EqualsGreater, lastProcessStartDateString));
                     }
 
                     string webUrl = siteSetting.Url;
@@ -1541,7 +1544,7 @@ namespace Sobiens.Connectors.Common
                 }
 
                 if (queryResultMappingIndex < queryResultMappings.Mappings.Count - 1)
-                    ProcessSyncTaskExport2(data, documentsFolder, queryResultMappings, (queryResultMappingIndex + 1), headers, shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, destionationListName);
+                    ProcessSyncTaskExport2(data, documentsFolder, queryResultMappings, (queryResultMappingIndex + 1), headers, shouldSourceExportDocuments, backgroundWorker, lastProcessStartDate, destionationListName, sourceModifiedFieldName);
             }
         }
 

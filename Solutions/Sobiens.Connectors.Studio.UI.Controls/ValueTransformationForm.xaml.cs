@@ -63,5 +63,22 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             ValueTransformationSyntax = string.Empty;
             this.Close(true);
         }
+
+        protected override void OnLoad()
+        {
+            base.OnLoad();
+            this.OKButtonSelected += ValueTransformationForm_OKButtonSelected;
+            this.CancelButtonSelected += ValueTransformationForm_CancelButtonSelected;
+        }
+
+        private void ValueTransformationForm_CancelButtonSelected(object sender, EventArgs e)
+        {
+            this.Close(false);
+        }
+
+        private void ValueTransformationForm_OKButtonSelected(object sender, EventArgs e)
+        {
+            this.Close(true);
+        }
     }
 }

@@ -246,74 +246,74 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Common.dll" size="219648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Common.dll" size="223232">
       <assemblyIdentity name="Sobiens.Connectors.Common" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CfSTgbwZi3nYec7vK8gzc9Hi99F8zQKgNYeajxZLyzI=</dsig:DigestValue>
+        <dsig:DigestValue>HMQOViOorTc5X1beRGxH/gKICbEdzM5SxQi1+7ylH/s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Entities.dll" size="162304">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Entities.dll" size="163328">
       <assemblyIdentity name="Sobiens.Connectors.Entities" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lEufNvOAh26HZo2+3VtQ/pyJoeid8dvVwBxbgiCri30=</dsig:DigestValue>
+        <dsig:DigestValue>X7zK1cny2AaGO8vbXACY7S0OEJUAENB6tvA74xXSTZ0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.CRM.dll" size="27648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.CRM.dll" size="34304">
       <assemblyIdentity name="Sobiens.Connectors.Services.CRM" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Nw2HJKWk00HjAEatKGvuIThOJqeNFwiqaa//gA4rAlY=</dsig:DigestValue>
+        <dsig:DigestValue>opa35hiK1OVS/jVXLdHjFAw4KpHFiV3z1UjSydqzUgI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.SharePoint.dll" size="285184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Services.SharePoint.dll" size="288256">
       <assemblyIdentity name="Sobiens.Connectors.Services.SharePoint" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tT48amgEjfwfbfk3yu+Vljw9iWC1k/t2CaMHGMgx+wU=</dsig:DigestValue>
+        <dsig:DigestValue>SZBUCAuyxp4KMB9CBmG/whc5TtaNekWiA25AeuYpB7U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Studio.UI.exe" size="39862256">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Studio.UI.exe" size="39866864">
       <assemblyIdentity name="Sobiens.Connectors.Studio.UI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>okYfyutcF2U3e507TiEaI/wHD/K37uwxfZ40DtJIgo8=</dsig:DigestValue>
+        <dsig:DigestValue>QKGvcGEIweFFZDonNWkGNcJedemLhqlvSlOzAB50Kk4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Studio.UI.Controls.dll" size="484352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sobiens.Connectors.Studio.UI.Controls.dll" size="507904">
       <assemblyIdentity name="Sobiens.Connectors.Studio.UI.Controls" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1CjmqrBQQx7Gmfk51pgy83dU2r0K8jNlTLGnlR9pSuQ=</dsig:DigestValue>
+        <dsig:DigestValue>WaCcQwmVnyQ6Zk5Jrr/XjQEd21/Z4TDh9h5AOcRQwys=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -325,7 +325,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OXUTw+Y4Sw8QGUvdhGa0V4jK7Qqm87P3BI+D8TTfkiM=</dsig:DigestValue>
+        <dsig:DigestValue>RJb+vFcfusSZ1xEGQoNqsv5Bqgkr5W79qHyvNRRBeTU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -337,7 +337,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>geRXS4O0pRUEDwGLvwiZl8xZUBi+WyHY5JlVZjHqndw=</dsig:DigestValue>
+        <dsig:DigestValue>mDGGY1bxMMd8qhHUQ4CpU8Cc0rk+uwhQX5fOn1NiiAk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

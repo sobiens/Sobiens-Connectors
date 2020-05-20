@@ -7,50 +7,58 @@
              xmlns:wpfcx="clr-namespace:Sobiens.Connectors.Studio.UI.Controls.Selectors"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
         <Grid Background="#FFE5E5E5">
             <GroupBox  Margin="0,0,0,0" Height="25" VerticalAlignment="Top" >
                 <Grid>
-                    <RadioButton Content="Listings" Name="ComponentTypeListingsRadioButton" IsChecked="True" Checked="ComponentTypeRadioButton_Checked" />
-                    <RadioButton Content="Carousel" Name="ComponentTypeCarouselRadioButton" Margin="65, 0" Checked="ComponentTypeRadioButton_Checked" />
-                    <RadioButton Content="Calendar" Name="ComponentTypeCalendarRadioButton" Margin="130, 0" Checked="ComponentTypeRadioButton_Checked" />
+                    <RadioButton Content="Listings" Name="ComponentTypeListingsRadioButton" IsChecked="True" Checked="ComponentTypeRadioButton_Checked" Style="{DynamicResource GenericRadioButtonStyle}" />
+                    <RadioButton Content="Carousel" Name="ComponentTypeCarouselRadioButton" Margin="65, 0" Checked="ComponentTypeRadioButton_Checked" Style="{DynamicResource GenericRadioButtonStyle}" />
+                    <RadioButton Content="Calendar" Name="ComponentTypeCalendarRadioButton" Margin="130, 0" Checked="ComponentTypeRadioButton_Checked" Style="{DynamicResource GenericRadioButtonStyle}" />
                 </Grid>
             </GroupBox>
             <TabControl x:Name="ComponentTypeTabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,0,0" >
-                <TabItem Header="SQLListingOptions" Name="SQLListingOptionsTabItem">
+                <TabItem Header="SQLListingOptions" Name="SQLListingOptionsTabItem" Style="{DynamicResource TabItemStyle}">
                     <Grid>
                         <wpfcx:CheckBoxList x:Name="SQLLOSelectedListingsEntities" Margin="0, 0,0,0" Height="200" ></wpfcx:CheckBoxList>
                     </Grid>
                 </TabItem>
-                <TabItem Header="SPListingOptions" Name="SPListingOptionsTabItem">
+                <TabItem Header="SPListingOptions" Name="SPListingOptionsTabItem" Style="{DynamicResource TabItemStyle}">
                     <Grid>
-                        <Label Name="SPLOPageLibraryLabel" Content="Page library" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPLOPageLibraryComboBox" Width="100" Height="30" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPLOResourceLibraryLabel" Content="Resource library" Width="100" Height="30" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPLOResourceLibraryComboBox" Width="100" Height="30" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPLOPageNameLabel" Content="Page name" Width="100" Height="30" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <TextBox Name="SPLOPageNameTextBox" Text="ListingTestPage" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0" ></TextBox>
+                        <Label Name="SPLOPageLibraryLabel" Content="Page library" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPLOPageLibraryComboBox" Width="100" Height="30" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPLOResourceLibraryLabel" Content="Resource library" Width="100" Height="30" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Style="{DynamicResource GenericLabelStyle}"></Label>
+                        <ComboBox Name="SPLOResourceLibraryComboBox" Width="100" Height="30" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPLOPageNameLabel" Content="Page name" Width="100" Height="30" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Style="{DynamicResource GenericLabelStyle}"></Label>
+                        <TextBox Name="SPLOPageNameTextBox" Text="ListingTestPage" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0" Style="{DynamicResource GenericTextBoxStyle}" ></TextBox>
                         <wpfcx:CheckBoxList x:Name="SPLOSelectedListingsEntities" Margin="0, 100,0,0" Height="300" ></wpfcx:CheckBoxList>
                     </Grid>
                 </TabItem>
-                <TabItem Header="SPCarouselOptions" Name="SPCarouselOptionsTabItem">
+                <TabItem Header="SPCarouselOptions" Name="SPCarouselOptionsTabItem" Style="{DynamicResource TabItemStyle}">
                     <Grid>
-                        <Label Name="SPCOPageLibraryLabel" Content="Page library" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOPageLibraryComboBox" Width="150" Height="25" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPCOResourceLibraryLabel" Content="Resource library" Width="100" Height="25" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOResourceLibraryComboBox" Width="150" Height="25" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPCOPageNameLabel" Content="Page name" Width="100" Height="25" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <TextBox Name="SPCOPageNameTextBox" Text="CarouselTestPage" Width="150" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0" ></TextBox>
+                        <Label Name="SPCOPageLibraryLabel" Content="Page library" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOPageLibraryComboBox" Width="150" Height="25" Margin="100, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPCOResourceLibraryLabel" Content="Resource library" Width="100" Height="25" Margin="0, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOResourceLibraryComboBox" Width="150" Height="25" Margin="100, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPCOPageNameLabel" Content="Page name" Width="100" Height="25" Margin="0, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <TextBox Name="SPCOPageNameTextBox" Text="CarouselTestPage" Width="150" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100, 60,0,0"  Style="{DynamicResource GenericTextBoxStyle}"></TextBox>
 
-                        <Label Name="SPCOCarouselLibraryLabel" Content="Carousel library" Width="100" Height="25" Margin="300, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOCarouselLibraryComboBox" Width="150" Height="25" Margin="400, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="SPCOCarouselLibraryComboBox_SelectionChanged"></ComboBox>
+                        <Label Name="SPCOCarouselLibraryLabel" Content="Carousel library" Width="100" Height="25" Margin="300, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOCarouselLibraryComboBox" Width="150" Height="25" Margin="400, 0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="SPCOCarouselLibraryComboBox_SelectionChanged" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
 
-                        <Label Name="SPCOImageFieldLabel" Content="Image field" Width="100" Height="25" Margin="300, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOImageFieldComboBox" Width="150" Height="25" Margin="400, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPCOCaptionFieldLabel" Content="Caption field" Width="100" Height="25" Margin="300, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOCaptionFieldComboBox" Width="150" Height="25" Margin="400, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
-                        <Label Name="SPCOContentFieldLabel" Content="Content field" Width="100" Height="25" Margin="300, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Label>
-                        <ComboBox Name="SPCOContentFieldComboBox" Width="150" Height="25" Margin="400, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                        <Label Name="SPCOImageFieldLabel" Content="Image field" Width="100" Height="25" Margin="300, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOImageFieldComboBox" Width="150" Height="25" Margin="400, 30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPCOCaptionFieldLabel" Content="Caption field" Width="100" Height="25" Margin="300, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOCaptionFieldComboBox" Width="150" Height="25" Margin="400, 60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
+                        <Label Name="SPCOContentFieldLabel" Content="Content field" Width="100" Height="25" Margin="300, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericLabelStyle}" ></Label>
+                        <ComboBox Name="SPCOContentFieldComboBox" Width="150" Height="25" Margin="400, 90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource GenericComboBoxStyle}"></ComboBox>
 
 
                     </Grid>

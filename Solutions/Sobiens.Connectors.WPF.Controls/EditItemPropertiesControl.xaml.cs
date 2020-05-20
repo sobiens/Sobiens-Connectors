@@ -41,7 +41,7 @@ namespace Sobiens.Connectors.WPF.Controls
         private string _webURL;
         private bool fieldRequiredPresnet;
         private bool fieldRequiredValidate = true;
-        private Dictionary<object, object> mappings;
+        private Dictionary<string, object> mappings;
         private bool mappingIsSet = false;
 
         private bool _IsValid;
@@ -307,17 +307,17 @@ namespace Sobiens.Connectors.WPF.Controls
         /// </summary>
         /// <param name="contentType"></param>
         /// <returns></returns>
-        public Dictionary<object, object> GetValues(out ContentType contentType)
+        public Dictionary<string, object> GetValues(out ContentType contentType)
         {
             contentType = (ContentType)ContentTypeComboBox.SelectedValue;
             if (mappingIsSet) return mappings;
             return setMappings();
         }
 
-        private Dictionary<object, object> setMappings()
+        private Dictionary<string, object> setMappings()
         {
             mappingIsSet = true;
-            mappings = new Dictionary<object, object>();
+            mappings = new Dictionary<string, object>();
             fieldRequiredValidate = true;
 
             foreach (UIElement control in FieldMappingsStackPanel.Children)
@@ -328,7 +328,7 @@ namespace Sobiens.Connectors.WPF.Controls
                     object value = fieldMappingControl.GetFieldValue();
                     if (value != null)
                     {
-                        mappings.Add(fieldMappingControl.GetField(), value);
+                        mappings.Add(fieldMappingControl.GetField().Name, value);
                     }
                 }
             }
@@ -337,9 +337,9 @@ namespace Sobiens.Connectors.WPF.Controls
                 if (control is EditItemControl)
                 {
                     EditItemControl editItemControl = control as EditItemControl;
-                    if (!mappings.ContainsKey(editItemControl.Field))
+                    if (!mappings.ContainsKey(editItemControl.Field.Name))
                     {
-                        if (editItemControl.hasBeenModified) mappings.Add(editItemControl.Field, editItemControl.Value);
+                        if (editItemControl.hasBeenModified) mappings.Add(editItemControl.Field.Name, editItemControl.Value);
 
                         bool isNull = editItemControl.Value == null;
                         if (!isNull) isNull = string.IsNullOrEmpty(editItemControl.Value.ToString());

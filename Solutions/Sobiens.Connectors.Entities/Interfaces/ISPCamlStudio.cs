@@ -11,5 +11,7 @@ namespace Sobiens.Connectors.Entities.Interfaces
         IQueriesPanel QueriesPanel { get; }
         IQueryDesignerToolbar QueryDesignerToolbar { get; }
         IServerObjectExplorer ServerObjectExplorer { get; }
+
+        void ReportProgress(int? percentage, string message);
     }
 }

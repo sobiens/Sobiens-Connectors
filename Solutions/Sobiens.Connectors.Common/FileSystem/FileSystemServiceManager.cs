@@ -234,7 +234,7 @@ namespace Sobiens.Connectors.Common.SharePoint
             string newDestinationUrl = destinationFolderUrl + "/";
             string copySource = uploadItem.FilePath;
             string filename = string.Empty;
-            KeyValuePair<object, object> title = uploadItem.FieldInformations.Where(f => ((Field)f.Key).Name == "Title").FirstOrDefault();
+            KeyValuePair<string, object> title = uploadItem.FieldInformations.Where(f => f.Key == "Title").FirstOrDefault();
             if (title.Value != null)
             {
                 filename = title.Value.ToString() + new FileInfo(copySource).Extension;
@@ -250,57 +250,9 @@ namespace Sobiens.Connectors.Common.SharePoint
 
             string newFileName = copySource;
 
-            #region Conflicts
-            /* This should be done before this function is called
-            IOutlookConnector connector = OutlookConnector.GetConnector(uploadItem.Folder.SiteSetting);
-            bool doThisForNextConflicts = false;
-            if ((doThisForNextConflicts == true && lastFileExistDialogResults == FileExistDialogResults.Skip) || lastFileExistDialogResults == FileExistDialogResults.Cancel)
-            {
-                uploadItem.SharePointListViewControl.DeleteUploadItemInvoke(uploadItem.UniqueID);
-                return;
-            }
-
-            bool isCurrentFileUploadCanceled = false;
-            if ((doThisForNextConflicts == false) || (doThisForNextConflicts == true && lastFileExistDialogResults == FileExistDialogResults.Copy))
-            {
-                while (connector.CheckFileExistency(uploadItem.Folder, null, newFileName) == true)
-                {
-                    FileExistConfirmationForm fileExistConfirmationForm = new FileExistConfirmationForm(copyDest[0]);
-                    fileExistConfirmationForm.ShowDialog();
-                    lastFileExistDialogResults = fileExistConfirmationForm.FileExistDialogResult;
-                    doThisForNextConflicts = fileExistConfirmationForm.DoThisForNextConflicts;
-
-                    newFileName = fileExistConfirmationForm.NewFileName;
-                    if (lastFileExistDialogResults == FileExistDialogResults.Skip || lastFileExistDialogResults == FileExistDialogResults.Cancel)
-                    {
-                        uploadItem.SharePointListViewControl.DeleteUploadItemInvoke(uploadItem.UniqueID);
-                        isCurrentFileUploadCanceled = true;
-                        break;
-                    }
-                    if (lastFileExistDialogResults == FileExistDialogResults.CopyAndReplace)
-                    {
-                        break;
-                    }
-                    string newCopyDest = copyDest[0].Substring(0, copyDest[0].LastIndexOf("/")) + "/" + newFileName;
-                    copyDest = new string[] { newCopyDest };
-                }
-            }
-            if (isCurrentFileUploadCanceled == true)
-                return;
-            */
-            #endregion Conflicts
-
             if (spFolder.IsDocumentLibrary)
             {
                 uint? result = SharePointService.UploadFile(siteSetting, listName, rootFolderPath, siteURL, webURL, copySource, copyDest, myByteArray, uploadItem.FieldInformations, uploadItem.ContentType, out spListItem);
-                #region NotifyUploadItemInvoke
-                /* This should be done before this function is called
-                if (uploadItem.SharePointListViewControl != null && listItem != null) 
-                {
-                    uploadItem.SharePointListViewControl.NotifyUploadItemInvoke(uploadItem.UniqueID, listItem);
-                }
-                */
-                #endregion NotifyUploadItemInvoke
                 if (result.HasValue && spListItem != null)
                     uploadSucceeded = true;
             }
@@ -310,14 +262,6 @@ namespace Sobiens.Connectors.Common.SharePoint
                 uploadSucceeded = result.HasValue;
             }
 
-            #region UploadFalied / UploadSucceeded callback
-            /* This should be done before this function is called
-            if (!uploadSucceeded && UploadFailed != null) //why is UploadFailed null sometimes? JJ
-                UploadFailed(this, new EventArgs());
-            else if (UploadSucceeded != null)
-                UploadSucceeded(this, new EventArgs());
-            */
-            #endregion UploadFalied / UploadSucceeded callback
             return uploadSucceeded;
         }
 
@@ -345,7 +289,7 @@ namespace Sobiens.Connectors.Common.SharePoint
         public List<ContentType> GetContentTypes(ISiteSetting siteSetting, Folder folder, bool includeReadOnly)
         {
             SPFolder spFolder = folder as SPFolder;
-            return SharePointService.GetContentTypes(siteSetting, spFolder.WebUrl, spFolder.RootFolderPath, spFolder.ListName, includeReadOnly);
+            return new SharePointService().GetContentTypes(siteSetting, spFolder.WebUrl, spFolder.RootFolderPath, spFolder.ListName, includeReadOnly);
         }
 
         public ContentType GetContentType(ISiteSetting siteSetting, Folder folder, string contentTypeID, bool includeReadOnly)
@@ -502,10 +446,10 @@ namespace Sobiens.Connectors.Common.SharePoint
             return properies.ContainsKey(actualKey) ? properies[actualKey] : null;
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, System.Collections.Generic.Dictionary<string, object> fields)
         {
             Hashtable changedProperties = SharePointService.getChangedProperties(null, fields);
-            SharePointService.UpdateListItem(siteSetting, webUrl, listName, listItemID, changedProperties,true);
+            SharePointService.UpdateListItem(siteSetting, webUrl, listName, int.Parse(listItemID), changedProperties,true);
         }
 
         public List<IItem> GetListItems(ISiteSetting siteSetting, List<CamlOrderBy> orderBys, CamlFilters filters, List<CamlFieldRef> viewFields, CamlQueryOptions queryOptions, string webUrl, string listName, out string listItemCollectionPositionNext, out int itemCount)
@@ -518,12 +462,12 @@ namespace Sobiens.Connectors.Common.SharePoint
         }
 
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, Dictionary<object, object> fields, Dictionary<string, object> auditInformation)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, Dictionary<string, object> fields, Dictionary<string, object> auditInformation)
         {
             throw new NotImplementedException();
         }
 
-        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, Dictionary<object, object> fields)
+        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, Dictionary<string, object> fields)
         {
             throw new NotImplementedException();
         }
@@ -608,6 +552,18 @@ namespace Sobiens.Connectors.Common.SharePoint
             return true;
         }
         public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) { }
+
+        public bool ValidateImportValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            return value;
+        }
+
 
     }
 }

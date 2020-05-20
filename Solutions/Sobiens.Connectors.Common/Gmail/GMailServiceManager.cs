@@ -341,7 +341,7 @@ namespace Sobiens.Connectors.Common
             return views;
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, System.Collections.Generic.Dictionary<string, object> fields)
         {
             throw new Exception("Not implemented yet");
         }
@@ -360,12 +360,12 @@ namespace Sobiens.Connectors.Common
             throw new NotImplementedException();
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, Dictionary<object, object> fields, Dictionary<string, object> auditInformation)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, Dictionary<string, object> fields, Dictionary<string, object> auditInformation)
         {
             throw new NotImplementedException();
         }
 
-        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, Dictionary<object, object> fields)
+        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, Dictionary<string, object> fields)
         {
             throw new NotImplementedException();
         }
@@ -457,6 +457,18 @@ namespace Sobiens.Connectors.Common
             return true;
         }
         public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) { }
+
+        public bool ValidateImportValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            return value;
+        }
+
 
     }
 }

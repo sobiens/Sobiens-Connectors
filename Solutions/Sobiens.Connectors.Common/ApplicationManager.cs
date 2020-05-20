@@ -19,7 +19,7 @@ namespace Sobiens.Connectors.Common
         public ISPCamlStudio SPCamlStudio { get; set; }
         public abstract IQueryPanel AddNewQueryPanel(Folder folder, ISiteSetting siteSetting);
 
-        public delegate Dictionary<object, object> GetFieldMappings(string webURL, List<ApplicationItemProperty> properties, List<ContentType> contentTypes, FolderSettings folderSettings, FolderSetting defaultFolderSetting, ISiteSetting siteSetting, string rootFolder, out ContentType contentType,bool displayFileName);
+        public delegate Dictionary<string, object> GetFieldMappings(string webURL, List<ApplicationItemProperty> properties, List<ContentType> contentTypes, FolderSettings folderSettings, FolderSetting defaultFolderSetting, ISiteSetting siteSetting, string rootFolder, out ContentType contentType,bool displayFileName);
 
         protected object Application { get; set; }
         public bool IsInitialized = false;
@@ -120,7 +120,7 @@ namespace Sobiens.Connectors.Common
                         uploadItem.UniqueID = Guid.NewGuid();
                         //uploadItem.ContentType = user defined //SharePointManager.GetContentTypes(folder.SiteSetting, folder.WebUrl, folder.ListName);
                         //uploadItem.FieldInformations = field -> value mapping
-                        uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<object, object>();
+                        uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<string, object>();
                         //                        //uploadItem.FieldInformations.Add(fieldCollection[0], fileName);
                         //                      //uploadItem.FieldInformations.Add(fieldCollection[1], fileName);
                         uploadItem.FilePath = fileName;
@@ -157,7 +157,7 @@ namespace Sobiens.Connectors.Common
                     FolderSettings folderSettings = ConfigurationManager.GetInstance().GetFolderSettings(ApplicationContext.Current.GetApplicationType()).GetRelatedFolderSettings(destinationFolder.GetUrl());
                     FolderSetting defaultFolderSetting = ConfigurationManager.GetInstance().GetFolderSettings(ApplicationContext.Current.GetApplicationType()).GetDefaultFolderSetting();
 
-                    Dictionary<object, object> fieldMappings;
+                    Dictionary<string, object> fieldMappings;
                     string initialFileName = tempPath + filenames[0];
 
                     if (Path.GetExtension(initialFileName) == ".msg")//this is a mail
@@ -202,15 +202,15 @@ namespace Sobiens.Connectors.Common
 
                             UploadItem uploadItem = new UploadItem();
                             uploadItem.UniqueID = Guid.NewGuid();
-                            uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<object, object>();
+                            uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<string, object>();
 
                             if (Path.GetExtension(filename) == ".msg")
                             {//for message mapping needed
                                 List<ApplicationItemProperty> properties = GetApplicationFields(filename);
 
-                                foreach (Field field in fieldMappings.Keys)
+                                foreach (string fieldName in fieldMappings.Keys)
                                 {
-                                    object obj = fieldMappings[field];
+                                    object obj = fieldMappings[fieldName];
                                     object value = string.Empty;
                                     if (obj is ApplicationItemProperty)
                                     {
@@ -220,7 +220,7 @@ namespace Sobiens.Connectors.Common
                                     {
                                         value = obj;
                                     }
-                                    uploadItem.FieldInformations.Add(field, value);
+                                    uploadItem.FieldInformations.Add(fieldName, value);
                                 }
                             }
                             else
@@ -290,7 +290,7 @@ namespace Sobiens.Connectors.Common
 
                     UploadItem uploadItem = new UploadItem();
                     uploadItem.UniqueID = Guid.NewGuid();
-                    uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<object, object>();
+                    uploadItem.FieldInformations = new System.Collections.Generic.Dictionary<string, object>();
                     uploadItem.FilePath = fileName;
                     uploadItem.Folder = destinationFolder;
                     uploadItems.Add(uploadItem);
@@ -347,5 +347,7 @@ namespace Sobiens.Connectors.Common
         public abstract void AttachAsAHyperLink(ISiteSetting siteSetting, IItem item, object _inspector);
 
         public abstract void AttachAsAnAttachment(ISiteSetting siteSetting, IItem item, object _inspector);
+        public abstract void ReportProgress(int? percentage, string message);
+
     }
 }

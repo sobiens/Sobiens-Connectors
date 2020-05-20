@@ -9,6 +9,78 @@
     <Style x:Key="GenericLabelStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="Label">
     </Style>
 
+    <Style x:Key="GenericRadioButtonStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="RadioButton">
+    </Style>
+
+    <Style x:Key="GenericCheckBoxStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="CheckBox">
+    </Style>
+
+    <Style x:Key="GenericTextBlockStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="TextBlock">
+    </Style>
+
+    <Style x:Key="GenericTextBoxStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="TextBox">
+    </Style>
+
+    <Style x:Key="GenericComboBoxStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="ComboBox">
+    </Style>
+
+    <Style x:Key="GenericControlStyle" BasedOn="{StaticResource ControlBaseStyle}">
+    </Style>
+
+    <Style x:Key="GenericDataGridCellStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="DataGridCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Border x:Name="border"
+			Background="Transparent"
+			BorderBrush="Transparent"
+			BorderThickness="1"
+			SnapsToDevicePixels="True">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
+    <Style x:Key="CloseableTabControlStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="TabControl">
+        <Style.Resources>
+            <Style TargetType="TabPanel">
+                <Setter Property="Control.Background"  Value="#F3F2F1"></Setter>
+            </Style>
+            <Style TargetType="TabItem">
+                <Setter Property="Control.Margin"  Value="0"></Setter>
+                <Setter Property="Control.Padding"  Value="0"></Setter>
+            </Style>
+
+            <!--<Style TargetType="TabItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>-->
+        </Style.Resources>
+    </Style>
+
     <Style x:Key="GenericButtonStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="Button">
         <Setter Property="Control.VerticalAlignment"  Value="Center"></Setter>
         <Setter Property="Control.HorizontalAlignment"  Value="Center"></Setter>
@@ -132,7 +204,7 @@
         <Setter Property="Control.VerticalAlignment"  Value="Top"></Setter>
         <Setter Property="Control.HorizontalAlignment"  Value="Left"></Setter>
         <Setter Property="Control.Background"  Value="Transparent"></Setter>
-        <Setter Property="Control.Padding"  Value="0,0,10,0"></Setter>
+        <Setter Property="Control.Margin"  Value="0,0,5,0"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -239,6 +311,20 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ClickableLabelStyle" BasedOn="{StaticResource ControlBaseStyle}" TargetType="Label">
+        <Setter Property="Button.Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" BlurRadius="5" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#464775"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!--
     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource ControlBaseStyle}"/>
     <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource ControlBaseStyle}"/>

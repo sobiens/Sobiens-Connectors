@@ -115,7 +115,7 @@ namespace Sobiens.Connectors.WPF.Controls
                 Sobiens.Connectors.Entities.UploadItem uploadItem = new Entities.UploadItem();
                 uploadItem.FilePath = filePath;
                 uploadItem.Folder = UploadLocation.SelectedFolder;
-                uploadItem.FieldInformations = new Dictionary<object, object>();
+                uploadItem.FieldInformations = new Dictionary<string, object>();
 
                 Sobiens.Connectors.Common.ApplicationContext.Current.UploadFile(siteSetting, uploadItem, null, false, false, Upload_Success, Upload_Failed);
             }

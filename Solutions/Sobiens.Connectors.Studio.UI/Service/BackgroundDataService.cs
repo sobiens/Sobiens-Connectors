@@ -30,7 +30,7 @@ namespace Sobiens.Connectors.UI.Service
             Logger.Info("Starting service ...", "BackgroundDataService");
             Logger.Info("Creating Service context ...", "BackgroundDataService");
 
-            timer = new System.Timers.Timer(30000);
+            timer = new System.Timers.Timer(3000);
             timer.Elapsed += new ElapsedEventHandler(EnqueueRequests);
             timer.Enabled = true;
 

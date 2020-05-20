@@ -1,0 +1,282 @@
+Debug|2020-05-09 11:32:59.0769|2020-05-09 11:32:59,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:32:59.1008|2020-05-09 11:32:59,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:32:59.1008|2020-05-09 11:32:59,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:32:59.1008|2020-05-09 11:32:59,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:33:02.1162|2020-05-09 11:33:02,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:33:29.2494|2020-05-09 11:33:29,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:33:59.3108|2020-05-09 11:33:59,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:34:00.1871|2020-05-09 11:34:00,info,BackgroundDataService,Stopping service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:34:00.1871|2020-05-09 11:34:00,info,BackgroundDataService,Timer disabled, waiting for pending requests to complete ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:34:00.1871|2020-05-09 11:34:00,info,BackgroundDataService,No of enqued requests is 0, waiting to terminate ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:34:00.2339|2020-05-09 11:34:00,info,BackgroundDataService,Service successfully terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:34:00.2339|2020-05-09 11:34:00,info,BackgroundDataService,Worker thread for processing request queue is terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:39:12.3248|2020-05-09 11:39:12,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:39:12.3248|2020-05-09 11:39:12,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:39:12.3248|2020-05-09 11:39:12,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:39:13.4767|2020-05-09 11:39:13,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:43.5468|2020-05-09 11:46:43,info,BackgroundDataService,Stopping service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:43.5468|2020-05-09 11:46:43,info,BackgroundDataService,Timer disabled, waiting for pending requests to complete ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:43.5468|2020-05-09 11:46:43,info,BackgroundDataService,No of enqued requests is 0, waiting to terminate ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:43.6475|2020-05-09 11:46:43,info,BackgroundDataService,Service successfully terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:56.7075|2020-05-09 11:46:56,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:56.7346|2020-05-09 11:46:56,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:56.7346|2020-05-09 11:46:56,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:56.7346|2020-05-09 11:46:56,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:46:59.7419|2020-05-09 11:46:59,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:01.7589|2020-05-09 11:47:01,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:01.7764|2020-05-09 11:47:01,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:16.7839|2020-05-09 11:47:16,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:16.7839|2020-05-09 11:47:16,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:22.9780|2020-05-09 11:47:22,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:22.9912|2020-05-09 11:47:22,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:24.1367|2020-05-09 11:47:24,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:24.1367|2020-05-09 11:47:24,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:26.9277|2020-05-09 11:47:26,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:47:56.9609|2020-05-09 11:47:56,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:48:26.9689|2020-05-09 11:48:26,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:41.2315|2020-05-09 11:58:41,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:41.2634|2020-05-09 11:58:41,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:41.2904|2020-05-09 11:58:41,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:41.2994|2020-05-09 11:58:41,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:44.2901|2020-05-09 11:58:44,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:51.5873|2020-05-09 11:58:51,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:58:51.6171|2020-05-09 11:58:51,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:59:11.5213|2020-05-09 11:59:11,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:59:19.3664|2020-05-09 11:59:19,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:59:19.3664|2020-05-09 11:59:19,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 11:59:41.5331|2020-05-09 11:59:41,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:00.6822|2020-05-09 12:00:00,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:00.6851|2020-05-09 12:00:00,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:12.7277|2020-05-09 12:00:12,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:37.9121|2020-05-09 12:00:37,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:37.9121|2020-05-09 12:00:37,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:00:57.4720|2020-05-09 12:00:57,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:01:02.9064|2020-05-09 12:01:02,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:01:02.9529|2020-05-09 12:01:02,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:01:27.4852|2020-05-09 12:01:27,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:01:30.7277|2020-05-09 12:01:30,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:01:30.7277|2020-05-09 12:01:30,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:04.9467|2020-05-09 12:02:04,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:35.0682|2020-05-09 12:02:35,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:38.8186|2020-05-09 12:02:38,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:38.8186|2020-05-09 12:02:38,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:59.3108|2020-05-09 12:02:59,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:02:59.3108|2020-05-09 12:02:59,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:03:09.6709|2020-05-09 12:03:09,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:43.3629|2020-05-09 12:04:43,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:43.3953|2020-05-09 12:04:43,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:43.3953|2020-05-09 12:04:43,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:43.4028|2020-05-09 12:04:43,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:46.4051|2020-05-09 12:04:46,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:50.2176|2020-05-09 12:04:50,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:04:50.2435|2020-05-09 12:04:50,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:05:06.0318|2020-05-09 12:05:06,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:05:06.0318|2020-05-09 12:05:06,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:05:13.5943|2020-05-09 12:05:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:05:43.6007|2020-05-09 12:05:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:06:13.6071|2020-05-09 12:06:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:06:41.8831|2020-05-09 12:06:41,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:06:41.8831|2020-05-09 12:06:41,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:06:46.1244|2020-05-09 12:06:46,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:07:20.8249|2020-05-09 12:07:20,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 12:07:50.8274|2020-05-09 12:07:50,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:10.1083|2020-05-09 18:44:10,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:10.1500|2020-05-09 18:44:10,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:10.1586|2020-05-09 18:44:10,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:10.1586|2020-05-09 18:44:10,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:13.1609|2020-05-09 18:44:13,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:16.6066|2020-05-09 18:44:16,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:16.6350|2020-05-09 18:44:16,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:25.1540|2020-05-09 18:44:25,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:25.1540|2020-05-09 18:44:25,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:40.5410|2020-05-09 18:44:40,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:51.1659|2020-05-09 18:44:51,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:44:51.1659|2020-05-09 18:44:51,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:45:12.4048|2020-05-09 18:45:12,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:30.3531|2020-05-09 18:47:30,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:30.3994|2020-05-09 18:47:30,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:30.4295|2020-05-09 18:47:30,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:30.4446|2020-05-09 18:47:30,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:33.4063|2020-05-09 18:47:33,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:33.5926|2020-05-09 18:47:33,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:33.5926|2020-05-09 18:47:33,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:47.8419|2020-05-09 18:47:47,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:47:47.8419|2020-05-09 18:47:47,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:00.6252|2020-05-09 18:48:00,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:04.3978|2020-05-09 18:48:04,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:04.3978|2020-05-09 18:48:04,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:09.1835|2020-05-09 18:48:09,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:09.1854|2020-05-09 18:48:09,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:48:30.6300|2020-05-09 18:48:30,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:03.5502|2020-05-09 18:49:03,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:09.5620|2020-05-09 18:49:09,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:09.5620|2020-05-09 18:49:09,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:12.7766|2020-05-09 18:49:12,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:12.7766|2020-05-09 18:49:12,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:49:34.4723|2020-05-09 18:49:34,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:50:07.3461|2020-05-09 18:50:07,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:40.2968|2020-05-09 18:54:40,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:40.3238|2020-05-09 18:54:40,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:40.3258|2020-05-09 18:54:40,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:40.3466|2020-05-09 18:54:40,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:43.3306|2020-05-09 18:54:43,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:47.4930|2020-05-09 18:54:47,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:47.4970|2020-05-09 18:54:47,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:55.5665|2020-05-09 18:54:55,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:54:55.5665|2020-05-09 18:54:55,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:55:01.6241|2020-05-09 18:55:01,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:55:01.6241|2020-05-09 18:55:01,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:55:03.9652|2020-05-09 18:55:03,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:55:03.9652|2020-05-09 18:55:03,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 18:55:11.0924|2020-05-09 18:55:11,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:41.8049|2020-05-09 19:03:41,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:41.8324|2020-05-09 19:03:41,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:41.8568|2020-05-09 19:03:41,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:41.8568|2020-05-09 19:03:41,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:44.8471|2020-05-09 19:03:44,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:59.3496|2020-05-09 19:03:59,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:03:59.3606|2020-05-09 19:03:59,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:12.0434|2020-05-09 19:04:12,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:13.2124|2020-05-09 19:04:13,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:13.2124|2020-05-09 19:04:13,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:22.3683|2020-05-09 19:04:22,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:22.3683|2020-05-09 19:04:22,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:24.7895|2020-05-09 19:04:24,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:24.7895|2020-05-09 19:04:24,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:42.0505|2020-05-09 19:04:42,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:44.6736|2020-05-09 19:04:44,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:44.6736|2020-05-09 19:04:44,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:46.9900|2020-05-09 19:04:46,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:04:46.9900|2020-05-09 19:04:46,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:05:12.0565|2020-05-09 19:05:12,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:13.5056|2020-05-09 19:19:13,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:13.5328|2020-05-09 19:19:13,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:13.5328|2020-05-09 19:19:13,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:13.5328|2020-05-09 19:19:13,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:16.5686|2020-05-09 19:19:16,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:17.0960|2020-05-09 19:19:17,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:17.0960|2020-05-09 19:19:17,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:19:43.8188|2020-05-09 19:19:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:13.8842|2020-05-09 19:20:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:43.8891|2020-05-09 19:20:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:57.8247|2020-05-09 19:20:57,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:57.8247|2020-05-09 19:20:57,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:57.8247|2020-05-09 19:20:57,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:20:58.7381|2020-05-09 19:20:58,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:21:13.8933|2020-05-09 19:21:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:21:43.8960|2020-05-09 19:21:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:12.4257|2020-05-09 19:22:12,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:13.9003|2020-05-09 19:22:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:20.1438|2020-05-09 19:22:20,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:21.3778|2020-05-09 19:22:21,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:22.7307|2020-05-09 19:22:22,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:24.0207|2020-05-09 19:22:24,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:25.3957|2020-05-09 19:22:25,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:26.7848|2020-05-09 19:22:26,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:28.0740|2020-05-09 19:22:28,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:29.3755|2020-05-09 19:22:29,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:30.6838|2020-05-09 19:22:30,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:32.0519|2020-05-09 19:22:32,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:33.3735|2020-05-09 19:22:33,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:34.7125|2020-05-09 19:22:34,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:35.9696|2020-05-09 19:22:35,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:37.2546|2020-05-09 19:22:37,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:38.5511|2020-05-09 19:22:38,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:39.8476|2020-05-09 19:22:39,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:41.1368|2020-05-09 19:22:41,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:42.4218|2020-05-09 19:22:42,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:43.7609|2020-05-09 19:22:43,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:43.9022|2020-05-09 19:22:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:45.0747|2020-05-09 19:22:45,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:46.3893|2020-05-09 19:22:46,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:47.6999|2020-05-09 19:22:47,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:48.9775|2020-05-09 19:22:48,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:50.2415|2020-05-09 19:22:50,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:51.5109|2020-05-09 19:22:51,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:52.8029|2020-05-09 19:22:52,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:54.2365|2020-05-09 19:22:54,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:55.5852|2020-05-09 19:22:55,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:57.0099|2020-05-09 19:22:57,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:22:58.5245|2020-05-09 19:22:58,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:00.0223|2020-05-09 19:23:00,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:01.3327|2020-05-09 19:23:01,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:02.6563|2020-05-09 19:23:02,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:04.0923|2020-05-09 19:23:04,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:05.3337|2020-05-09 19:23:05,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:06.6613|2020-05-09 19:23:06,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:07.9155|2020-05-09 19:23:07,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:09.3493|2020-05-09 19:23:09,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:10.8257|2020-05-09 19:23:10,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:12.3018|2020-05-09 19:23:12,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:13.8702|2020-05-09 19:23:13,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:13.9036|2020-05-09 19:23:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:15.5166|2020-05-09 19:23:15,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:17.2409|2020-05-09 19:23:17,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:21.1157|2020-05-09 19:23:21,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:22.8172|2020-05-09 19:23:22,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:24.5402|2020-05-09 19:23:24,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:26.2017|2020-05-09 19:23:26,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:27.8213|2020-05-09 19:23:27,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:29.4471|2020-05-09 19:23:29,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:30.9868|2020-05-09 19:23:30,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:32.5307|2020-05-09 19:23:32,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:34.0176|2020-05-09 19:23:34,info,GetDefaultSiteCollectionTermStore,Error:Cannot find proxy for type with id "{981cbc68-9edc-4f8d-872f-71146fcbb84f}".|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:34.0336|2020-05-09 19:23:34,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:35.0637|2020-05-09 19:23:35,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:35.0637|2020-05-09 19:23:35,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:36.6952|2020-05-09 19:23:36,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:36.6952|2020-05-09 19:23:36,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:37.7030|2020-05-09 19:23:37,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:37.7030|2020-05-09 19:23:37,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:39.3623|2020-05-09 19:23:39,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:39.3623|2020-05-09 19:23:39,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:40.3239|2020-05-09 19:23:40,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:40.3250|2020-05-09 19:23:40,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:41.8800|2020-05-09 19:23:41,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:41.8800|2020-05-09 19:23:41,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:42.8813|2020-05-09 19:23:42,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:42.8813|2020-05-09 19:23:42,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:43.9112|2020-05-09 19:23:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:44.4656|2020-05-09 19:23:44,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:44.4656|2020-05-09 19:23:44,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:45.4539|2020-05-09 19:23:45,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:45.4539|2020-05-09 19:23:45,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:47.1445|2020-05-09 19:23:47,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:47.1445|2020-05-09 19:23:47,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:48.0653|2020-05-09 19:23:48,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:48.0653|2020-05-09 19:23:48,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:49.4245|2020-05-09 19:23:49,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:49.4245|2020-05-09 19:23:49,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:50.2872|2020-05-09 19:23:50,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:50.2872|2020-05-09 19:23:50,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:51.7476|2020-05-09 19:23:51,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:51.7476|2020-05-09 19:23:51,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:52.6424|2020-05-09 19:23:52,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:52.6424|2020-05-09 19:23:52,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:54.0338|2020-05-09 19:23:54,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:54.0338|2020-05-09 19:23:54,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:55.0021|2020-05-09 19:23:55,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:55.0021|2020-05-09 19:23:55,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:56.4842|2020-05-09 19:23:56,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:56.4842|2020-05-09 19:23:56,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:57.3637|2020-05-09 19:23:57,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:57.3637|2020-05-09 19:23:57,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:58.7592|2020-05-09 19:23:58,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:58.7592|2020-05-09 19:23:58,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:59.7394|2020-05-09 19:23:59,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:23:59.7394|2020-05-09 19:23:59,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:24:01.2860|2020-05-09 19:24:01,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:24:01.2860|2020-05-09 19:24:01,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:24:13.9156|2020-05-09 19:24:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:24:43.9292|2020-05-09 19:24:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:05.3842|2020-05-09 19:25:05,info,Service,webUrl:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:05.3842|2020-05-09 19:25:05,info,listName,listName:http://process.dev.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:09.5336|2020-05-09 19:25:09,info,Service,webUrl:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:09.5336|2020-05-09 19:25:09,info,listName,listName:https://process.unfccc.int/sites/roe|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:13.9407|2020-05-09 19:25:13,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:25:43.9565|2020-05-09 19:25:43,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:26:12.9697|2020-05-09 19:26:12,info,BackgroundDataService,Stopping service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:26:12.9697|2020-05-09 19:26:12,info,BackgroundDataService,Timer disabled, waiting for pending requests to complete ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:26:12.9697|2020-05-09 19:26:12,info,BackgroundDataService,No of enqued requests is 0, waiting to terminate ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:26:13.0145|2020-05-09 19:26:13,info,BackgroundDataService,Service successfully terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-09 19:26:13.0145|2020-05-09 19:26:13,info,BackgroundDataService,Worker thread for processing request queue is terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry

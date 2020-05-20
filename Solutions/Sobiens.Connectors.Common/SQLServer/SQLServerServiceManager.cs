@@ -285,12 +285,12 @@ namespace Sobiens.Connectors.Common.SQLServer
             throw new Exception("Not implemented yet");
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, System.Collections.Generic.Dictionary<string, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
         {
             throw new Exception("Not implemented yet");
         }
 
-        public void CreateListItem(ISiteSetting siteSetting, string dbName, string tableName, System.Collections.Generic.Dictionary<object, object> fields)
+        public void CreateListItem(ISiteSetting siteSetting, string dbName, string tableName, System.Collections.Generic.Dictionary<string, object> fields)
         {
             new SQLServerService().CreateListItem(siteSetting, dbName, tableName, fields);
         }
@@ -309,7 +309,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             throw new Exception("Not implemented");
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, Dictionary<object, object> fields)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, Dictionary<string, object> fields)
         {
             throw new NotImplementedException();
         }
@@ -496,5 +496,13 @@ namespace Sobiens.Connectors.Common.SQLServer
             }
         }
 
+        public bool ValidateImportValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters, out string errorMessage)
+        {
+            return new SQLServerService().ValidateImportValue(siteSetting, field, value, out errorMessage);
+        }
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            return new SQLServerService().ConvertImportValueToFieldValue(siteSetting, field, value, parameters);
+        }
     }
 }

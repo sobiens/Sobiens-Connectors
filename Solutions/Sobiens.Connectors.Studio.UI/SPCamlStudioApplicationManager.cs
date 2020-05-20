@@ -336,5 +336,9 @@ namespace Sobiens.Connectors.UI
             serviceManager.ApplyMissingCompareObjectsResult(compareObjectsResult, sourceSiteSetting, destinationSiteSetting);
         }
 
+        public override void ReportProgress(int? percentage, string message)
+        {
+            this.SPCamlStudio.ReportProgress(percentage, message);
+        }
     }
 }

@@ -13,8 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
-    <Grid Background="Brown">
-        <TabControl Name="QueriesTabControl" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="DarkOrange" >
+    <Grid>
+        <TabControl Name="QueriesTabControl" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Style="{DynamicResource CloseableTabControlStyle}" >
         </TabControl>
     </Grid>
 </UserControl>

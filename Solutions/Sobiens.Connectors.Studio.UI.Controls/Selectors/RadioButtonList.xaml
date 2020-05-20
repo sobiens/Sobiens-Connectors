@@ -6,11 +6,19 @@
              xmlns:local="clr-namespace:Sobiens.Connectors.Studio.UI.Controls.Selectors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
         <ListBox Name="listBoxZone" ItemsSource="{Binding Items}" Background="Azure" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <RadioButton Name="RadioButtonZone" Content="{Binding Text}" Tag="{Binding Value}" IsChecked="{Binding IsChecked}" Checked="RadioButtonZone_Checked" Margin="10,10,0,0" />
+                    <RadioButton Name="RadioButtonZone" Content="{Binding Text}" Tag="{Binding Value}" IsChecked="{Binding IsChecked}" Checked="RadioButtonZone_Checked" Margin="10,10,0,0" Style="{DynamicResource GenericRadioButtonStyle}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

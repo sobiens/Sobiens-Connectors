@@ -519,7 +519,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             //this.ShowLoadingStatus("Generating page content...");
             UploadItem uploadItem = new UploadItem();
             uploadItem.FilePath = filePath;
-            uploadItem.FieldInformations = new Dictionary<object, object>();
+            uploadItem.FieldInformations = new Dictionary<string, object>();
             uploadItem.Folder = new SPFolder()
             {
                 RootFolderPath = resourceLibrary.RootFolderPath,
@@ -582,7 +582,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             //this.ShowLoadingStatus("Generating page content...");
             UploadItem uploadItem = new UploadItem();
             uploadItem.FilePath = filePath;
-            uploadItem.FieldInformations = new Dictionary<object, object>();
+            uploadItem.FieldInformations = new Dictionary<string, object>();
             uploadItem.Folder = new SPFolder()
             {
                 RootFolderPath = resourceLibrary.RootFolderPath,

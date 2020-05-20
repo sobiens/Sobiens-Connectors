@@ -6,46 +6,72 @@
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="700">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <TabControl HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.Row="0">
-            <TabItem Header="Selected Objects">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="100*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60*"></ColumnDefinition>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="18.865"></ColumnDefinition>
-                        <ColumnDefinition Width="131.135"/>
-                    </Grid.ColumnDefinitions>
-                    <TreeView Margin="10,10,10,10" Grid.Row="1" Name="ObjectsTreeView" Grid.ColumnSpan="2"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="View Relations">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="100*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Content="Select..." Grid.Row="0" x:Name="SelectImportFileButton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="128,2,0,0" Click="SelectImportFileButton_Click" />
-                    <Grid Grid.Row="1" Grid.Column="1"/>
-                    <Label x:Name="SelectedFileLabel" Content="No file selected" HorizontalAlignment="Left" Margin="18,2,0,0" VerticalAlignment="Top"/>
-                    <Grid Margin="10,10,0,0" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="DynamicGrid">
-                    </Grid>
-                    <ProgressBar x:Name="SyncDataProgressBar" HorizontalAlignment="Left" Height="33" Margin="258,-5,0,0" VerticalAlignment="Top" Width="224" Value="10" Background="Black"/>
-                    <TextBox x:Name="ProgressTextBox" HorizontalAlignment="Left" Height="23" Margin="258,2,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="224" RenderTransformOrigin="0.514,-0.044" Background="{x:Null}" Foreground="White" FontWeight="SemiBold" BorderBrush="{x:Null}"/>
-                    <Button Content="Import" Grid.Row="0" x:Name="ImportButton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="519,5,0,0" Click="ImportButton_Click" />
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Label x:Name="SelectedEntityLabelLabel" Content="Entity" HorizontalAlignment="Left" Margin="18,2,0,0" VerticalAlignment="Top" Style="{DynamicResource GenericLabelStyle}"/>
+            <Label x:Name="SelectedEntityNameLabel" Content="Entity" HorizontalAlignment="Left" Margin="100,2,0,0" VerticalAlignment="Top" Style="{DynamicResource GenericLabelStyle}"/>
+            <Button Content="Select..." x:Name="SelectImportFileButton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="200,30,0,0" Click="SelectImportFileButton_Click" Style="{DynamicResource GenericButtonStyle}" />
+            <Label x:Name="SelectedFileLabel" Content="No file selected" HorizontalAlignment="Left" Margin="18,30,0,0" VerticalAlignment="Top" Style="{DynamicResource GenericLabelStyle}"/>
+            <Label x:Name="InActiveRecordsExcludedFieldsLabel" Content="Exclude inactive records on " HorizontalAlignment="Left" Margin="300,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212" Style="{DynamicResource GenericLabelStyle}"/>
+            <Label x:Name="SelectedInActiveRecordsExcludedFieldsLabel" Content="Not Selected" HorizontalAlignment="Left" Margin="470,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.645,-0.212" MouseDoubleClick="SelectedInActiveRecordsExcludedFieldsLabel_MouseDoubleClick" Style="{DynamicResource GenericLabelStyle}"/>
+            <Menu Width="20" Height="20" Margin="450,38,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <MenuItem Name="InActiveRecordsExcludedFieldsMenuItem" Margin="0,0,0,0">
+                    <MenuItem.Header>
+                        <Image Source="Images/ArrowDown.png" Margin="-7,0,0,0"></Image>
+                    </MenuItem.Header>
+                </MenuItem>
 
+            </Menu>
+
+        </Grid>
+        <GroupBox Grid.Row="1" Header="Field Mappings" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,0,0" Height="150">
+                <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="DynamicGrid">
+                </Grid>
+            </ScrollViewer>
+        </GroupBox>
+        <Grid Grid.Row="2">
+            <DataGrid CanUserAddRows="False"  Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="ResultGrid" AutoGenerateColumns="False">
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="ToolTip" Value="{Binding SobiensFieldStatusMessage}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SobiensFieldStatus}" Value="Imported">
+                                <Setter Property="Foreground" Value="Green" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SobiensFieldStatus}" Value="Invalid">
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SobiensFieldStatus}" Value="Valid">
+                                <Setter Property="Foreground" Value="Blue" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <ProgressBar x:Name="ImportDataProgressBar" HorizontalAlignment="Right" Height="30" Margin="0,0,210,0" VerticalAlignment="Top" Width="224" Value="10" Background="Black"/>
+            <Label x:Name="ImportDataProgressTextBox" HorizontalAlignment="Right" Height="23" Margin="0,5,240,0" Content="Done" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.514,-0.044" Foreground="White" Style="{DynamicResource GenericLabelStyle}"/>
+            <Button Content="Validate" x:Name="ImportButton" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="75" Margin="0,0,20,0" Click="ImportButton_Click" Style="{DynamicResource GenericButtonStyle}" />
+        </Grid>
     </Grid>
 </wpfc:HostControl>

@@ -46,15 +46,31 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            MainGrid.RowDefinitions.Clear();
+
+            if (this.ShowLogo == false)
+            {
+                TopGrid.Visibility = System.Windows.Visibility.Collapsed;
+                MainPanel.SetValue(Grid.RowProperty, 0);
+            }
+            else
+            {
+                MainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(55, GridUnitType.Pixel) });
+                TopGrid.SetValue(Grid.RowProperty, 0);
+                MainPanel.SetValue(Grid.RowProperty, 1);
+            }
+            MainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100, GridUnitType.Star) });
+
             if (this.ShowActionButtons == false)
             {
                 BottomGrid.Visibility = System.Windows.Visibility.Collapsed;
                 OKButton.Visibility = Visibility.Hidden;
                 CancelButton.Visibility = Visibility.Hidden;
             }
-            if (this.ShowLogo == false)
+            else
             {
-                TopGrid.Visibility = System.Windows.Visibility.Collapsed;
+                MainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(70, GridUnitType.Pixel) });
+                BottomGrid.SetValue(Grid.RowProperty, (this.ShowLogo == false ? 1 : 2));
             }
         }
 
@@ -128,19 +144,22 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             this.MainPanel.Children.Clear();
             control.VerticalContentAlignment = VerticalAlignment.Stretch;
             control.HorizontalContentAlignment = HorizontalAlignment.Stretch ;
+            control.VerticalAlignment = VerticalAlignment.Stretch;
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            double height = this.Height;
             if (this.Height == 0)
-            {
-                this.WindowState = System.Windows.WindowState.Maximized;
-                control.Height = SystemParameters.WorkArea.Height;
+                height = SystemParameters.WorkArea.Height;
+
+            if (this.ShowLogo == true) {
+                height = height - 55;
             }
-            else
+
+            if (this.ShowActionButtons == false)
             {
-                control.Height = this.Height - 200;
+                height = height - 70;
             }
-            //control.Width = 0;
-            //control.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //control.VerticalAlignment= VerticalAlignment.Stretch;
-            //control.dock
+            control.Height = height;
+
             this.MainPanel.Children.Add(control);
         }
 

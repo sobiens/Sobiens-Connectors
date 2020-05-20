@@ -5,9 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpfc="clr-namespace:Sobiens.Connectors.Studio.UI.Controls"
              mc:Ignorable="d" Width="500">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.Resources>
+            <Style TargetType="DataGridCell">
+                <Setter Property="BorderThickness" Value="0,3,0,0" />
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
             <Style TargetType="DataGridRow">
+                <Setter Property="BorderThickness" Value="0,3,0,0" />
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding DifferenceType}" Value="Missing">
                         <Setter Property="Background" Value="Red" />
@@ -15,9 +31,11 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding DifferenceType}" Value="Update">
                         <Setter Property="Background" Value="Orange" />
+                        <Setter Property="Foreground" Value="White" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding DifferenceType}" Value="Additional">
                         <Setter Property="Background" Value="Blue" />
+                        <Setter Property="Foreground" Value="White" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -35,7 +53,7 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Path=Name}" />
+                                <TextBlock Text="{Binding Path=Name}" Style="{DynamicResource GenericControlStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
@@ -47,10 +65,10 @@
                                         <Expander>
                                             <Expander.Header>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Path=Name}" />
-                                                    <TextBlock Text=" "/>
-                                                    <TextBlock Text="{Binding Path=ItemCount}"/>
-                                                    <TextBlock Text=" Items"/>
+                                                    <TextBlock Text="{Binding Path=Name}" FontFamily="Calibri" FontSize="12" />
+                                                    <TextBlock Text=" " />
+                                                    <TextBlock Text="{Binding Path=ItemCount}"  FontFamily="Calibri" FontSize="12" />
+                                                    <TextBlock Text=" Items"  FontFamily="Calibri" FontSize="12" />
                                                 </StackPanel>
                                             </Expander.Header>
                                             <ItemsPresenter />
@@ -66,26 +84,25 @@
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="Parent Object Type" IsReadOnly="True" Binding="{Binding ParentObjectType}" />
                 <DataGridTextColumn Header="Parent Object" IsReadOnly="True" Binding="{Binding ParentObjectName}" />-->
-                <DataGridTextColumn Header="Object Type" IsReadOnly="True" Binding="{Binding ObjectType}"  />
-                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Difference Type" Binding="{Binding DifferenceType}" />
+                <DataGridTextColumn Header="Object Type" IsReadOnly="True" Binding="{Binding ObjectType}" ElementStyle="{DynamicResource GenericDataGridCellStyle}" HeaderStyle="{DynamicResource ControlBaseStyle}" CellStyle="{DynamicResource GenericDataGridCellStyle}" />
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" ElementStyle="{DynamicResource GenericDataGridCellStyle}" HeaderStyle="{DynamicResource ControlBaseStyle}" CellStyle="{DynamicResource GenericDataGridCellStyle}" />
+                <DataGridTextColumn Header="Difference Type" Binding="{Binding DifferenceType}" ElementStyle="{DynamicResource GenericDataGridCellStyle}" HeaderStyle="{DynamicResource ControlBaseStyle}" CellStyle="{DynamicResource GenericDataGridCellStyle}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button Name="ApplyChangeButton" Click="ApplyChangeButton_Click" Visibility="{Binding ApplyButtonVisibility}">Apply</Button>
-                                <Button Name="ShowDifferencesButton" Click="ShowDifferencesButton_Click" Visibility="{Binding ShowDifferencesButtonVisibility}">Update</Button>
+                                <Button Name="ApplyChangeButton" Click="ApplyChangeButton_Click" Visibility="{Binding ApplyButtonVisibility}" Style="{DynamicResource GenericButtonStyle}" Height="25" Width="75">Apply</Button>
+                                <Button Name="ShowDifferencesButton" Click="ShowDifferencesButton_Click" Visibility="{Binding ShowDifferencesButtonVisibility}" Style="{DynamicResource GenericButtonStyle}" Height="25" Width="75">Update</Button>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TreeView  Grid.Row="0" Name="FoldersTreeView"  VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContextMenuOpening="FoldersTreeView_ContextMenuOpening" Visibility="Hidden"></TreeView>
-        <Label x:Name="label" Content="Source Object:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="SourceObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0"/>
-        <Label x:Name="label1" Content="Destination Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0"/>
-        <Label x:Name="DestinationObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,0,0,0"/>
+        <Label x:Name="label" Content="Source Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource GenericLabelStyle}"/>
+        <Label x:Name="SourceObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0" Style="{DynamicResource GenericLabelStyle}"/>
+        <Label x:Name="label1" Content="Destination Object:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Style="{DynamicResource GenericLabelStyle}"/>
+        <Label x:Name="DestinationObjectLabel" Content="***" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,0,0,0" Style="{DynamicResource GenericLabelStyle}"/>
     </Grid>
     
 </wpfc:HostControl>

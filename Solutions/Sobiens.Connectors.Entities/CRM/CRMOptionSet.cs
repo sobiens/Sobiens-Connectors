@@ -31,7 +31,7 @@ namespace Sobiens.Connectors.Entities.CRM
             Title = name;
         }
 
-        public override string GetUrl() { throw new NotImplementedException(); }
+        public override string GetUrl() { return string.Empty; }
         public override string GetPath() { throw new NotImplementedException(); }
         public override string GetListName() { throw new NotImplementedException(); }
         public override string GetRoot() { throw new NotImplementedException(); }

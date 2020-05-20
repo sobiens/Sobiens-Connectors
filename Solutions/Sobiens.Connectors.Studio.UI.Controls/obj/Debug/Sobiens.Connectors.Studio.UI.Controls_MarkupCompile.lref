@@ -1,9 +1,10 @@
-﻿C:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CodeWizardForm.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CompareSQLObjectsForm.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\CompareWizardForm.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\BrowserTabsPanel.xaml;;
+FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\QueryPanelToolbar.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\Style\MainStyle.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\Selectors\RadioButtonList.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\Selectors\CheckBoxList.xaml;;
@@ -39,7 +40,7 @@ FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Co
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ObjectAccessMaintenanceForm.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ProjectEditForm.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\ProjectLoadForm.xaml;;
-FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\QueryDesignerToolbar.xaml;;
+FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\MainRibbonToolbar.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\QueryFilterGeneratorControl.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\QueryGeneratorControl.xaml;;
 FC:\Projects\GitHub\Sobiens-Connectors\Solutions\Sobiens.Connectors.Studio.UI.Controls\SelectEntityForm.xaml;;

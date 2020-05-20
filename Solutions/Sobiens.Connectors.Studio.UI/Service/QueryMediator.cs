@@ -22,6 +22,8 @@ namespace Sobiens.Connectors.UI.Service
             IsEnqueueInProgress = true;
             try
             {
+                //ApplicationContext.Current.ReportProgress(null, "Checking schedules...");
+
                 var time = referenceTime.TimeOfDay;
                 //List<SyncTask> synctasks = SyncTasksManager.GetInstance().GetTestListItemSyncTasks().ToList();
                 IEnumerable<SyncTask> synctasks = SyncTasksManager.GetInstance().SyncTasks.Where(t => t.Scheduled == true);
@@ -49,6 +51,8 @@ namespace Sobiens.Connectors.UI.Service
                         EnqueAction(synctask);
                     }
                 }
+
+                ReportProgress();
             }
             catch(Exception ex)
             {
@@ -56,6 +60,23 @@ namespace Sobiens.Connectors.UI.Service
             }
 
             IsEnqueueInProgress = false;
+        }
+
+        public static void ReportProgress()
+        {
+            int totalCount = QueuedRequests.Count;
+            int inProgressCount = GetInProgressRequests().Length;
+            string message = "Progressing " + inProgressCount + "/" + totalCount + " ...";
+            if (totalCount > 0)
+            {
+                int barValue = 100 / (2 * totalCount);
+                int percentage = inProgressCount * barValue;
+                if (percentage == 0)
+                    percentage = 10;
+                ApplicationContext.Current.ReportProgress(percentage, message);
+            }
+            else
+                ApplicationContext.Current.ReportProgress(100, "Done");
         }
 
         public static void PerformRequests()
@@ -84,6 +105,8 @@ namespace Sobiens.Connectors.UI.Service
                     runner.RunAsync();
                 }
             }
+
+            ReportProgress();
         }
 
         public static void TimeOutRequests()
@@ -101,6 +124,8 @@ namespace Sobiens.Connectors.UI.Service
                     */
                 }
             }
+
+            ReportProgress();
         }
 
         public static void CancelRequests() 
@@ -118,6 +143,8 @@ namespace Sobiens.Connectors.UI.Service
                 QueuedRequests.Clear();
                 //logger.Info(String.Format("Removed {0} requests from the queue...", removedItems));
             }
+
+            ReportProgress();
         }
 
         private static void EnqueAction(SyncTask task)
@@ -144,6 +171,8 @@ namespace Sobiens.Connectors.UI.Service
                 //runner.OnStateChange += QueryStateChanged;
                 QueuedRequests.Add(runner);
             }
+
+            ReportProgress();
         }
 
         private static void Dequeue(QueryRunner runner){
@@ -156,6 +185,8 @@ namespace Sobiens.Connectors.UI.Service
                 //logger.Debug("Dequeued request {0}", runner.Request);
             }
             //logger.Debug("Dequeued1 request {0}", runner.Request);
+
+            ReportProgress();
         }
 
         public static QueryRunner[] GetQueuedRequests()
@@ -178,70 +209,5 @@ namespace Sobiens.Connectors.UI.Service
             }
         }
 
-        /*
-        private static void QueryStateChanged(object sender, QueryStateArgs args)
-        {
-            if (args.Response == null)
-                return;
-
-            try
-            {
-                if (args.Success)
-                {
-                    //logger.Error("SSX request has been completed succesfully.");
-                    if (args.Response == null)
-                    {
-                        //logger.Error("Request appears to have completed successfully, however the response is null!");
-                    }
-                    if (args.Response.Skip == true)
-                    {
-                        //logger.Error("Request appears does not need to be processed, most likely data already exist");
-                    }
-                    else
-                    {
-                        //IResponseHandler responseHandler = ResponseHandlerFactory.GetResponseHandler(args.Response);
-                        //responseHandler.HandleResponse();
-                    }
-                    Dequeue(((QueryRunner)sender));
-                }
-                else
-                {
-                    //logger.Error("SSX request has not been completed.");
-                    //logger.Error(args.Error);
-                    QueryRunner queryRunner = (QueryRunner)sender;
-                    Dequeue(queryRunner);
-                }
-            }
-            catch (Exception exc)
-            {
-                //logger.Error(exc);
-                QueryRunner queryRunner = (QueryRunner)sender;
-                Dequeue(queryRunner);
-            }
-            finally
-            {
-            }
-        }
-
-        private static void QueryStateChangedSync(object sender, QueryStateArgs args)
-        {
-            try
-            {
-                if (args.Success)
-                {
-                    //IResponseHandler responseHandler = ResponseHandlerFactory.GetResponseHandler(args.Response);
-                    //responseHandler.HandleResponse();
-                }
-                else
-                {
-                    //logger.Error(args.Error);
-                }
-            }
-            catch (Exception exc)
-            {
-                //logger.Error(exc);
-            }
-        }
-        */
     }
 }

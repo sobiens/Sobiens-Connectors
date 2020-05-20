@@ -175,7 +175,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             img.Source = imgSource;
 
             Label lbl = new Label();
-            lbl.Content = folder.Title;
+            string title = folder.Title;
+            if(folder as SPWeb != null && string.IsNullOrEmpty(folder.GetUrl()) == false && title.Equals(folder.GetUrl(), StringComparison.InvariantCultureIgnoreCase) == false)
+                title = folder.Title + " - " + folder.GetUrl();
+            lbl.Content = title;
+            lbl.ToolTip = title;
 
             folderTitleDock.Children.Add(img);
             folderTitleDock.Children.Add(lbl);
@@ -300,21 +304,47 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             }));
 
             {
+                string errorMessage = string.Empty;
                 SiteSetting siteSetting = ApplicationContext.Current.Configuration.SiteSettings[folder.SiteSettingID];
-                List<Folder> subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes, headerText);
-                folder.Folders = subFolders;
-                item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
+                List<Folder> subFolders = null;
+                try
                 {
-                    FoldersTreeView.BeginInit();
-                    item.Items.Clear();
-                    foreach (Folder subFolder in subFolders)
+                    subFolders = ApplicationContext.Current.GetSubFolders(siteSetting, folder, this.IncludedFolderTypes, headerText);
+                }
+                catch(Exception ex)
+                {
+                    errorMessage = ex.Message;
+                }
+                if (string.IsNullOrEmpty(errorMessage) == true)
+                {
+                    folder.Folders = subFolders;
+                    item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
                     {
-                        subFolder.PublicFolder = this.AdministrativeView;
-                        subFolder.Selected = false;
-                        AddNode(item.Items, subFolder, siteSetting.ID);
-                    }
-                    FoldersTreeView.EndInit();
-                }));
+                        FoldersTreeView.BeginInit();
+                        item.Items.Clear();
+                        foreach (Folder subFolder in subFolders)
+                        {
+                            subFolder.PublicFolder = this.AdministrativeView;
+                            subFolder.Selected = false;
+                            AddNode(item.Items, subFolder, siteSetting.ID);
+                        }
+                        FoldersTreeView.EndInit();
+                    }));
+                }
+                else
+                {
+                    item.Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
+                    {
+                        FoldersTreeView.BeginInit();
+                        item.Items.Clear();
+                        TreeViewItem loadingTreeViewItem = new TreeViewItem();
+                        loadingTreeViewItem.Header = "Failed";
+                        loadingTreeViewItem.Tag = "Failed";
+                        loadingTreeViewItem.Foreground = Brushes.Red;
+                        loadingTreeViewItem.ToolTip = "Failed:" + errorMessage;
+                        item.Items.Add(loadingTreeViewItem);
+                    }));
+                }
             }
         }
 
@@ -458,7 +488,7 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 disconnectMenuItem.Click += disconnectMenuItem_Click;
                 this.FoldersTreeView.ContextMenu.Items.Add(disconnectMenuItem);
             }
-            if (item.Tag as SPFolder != null && item.Tag as CRMEntity != null && item.Tag as SQLTable != null) 
+            if (item.Tag as SPFolder != null || item.Tag as CRMEntity != null || item.Tag as SQLTable != null) 
             {
                 MenuItem newQueryMenuItem = new MenuItem() { Header = "New Query", Tag = item };
                 newQueryMenuItem.Click += newQueryMenuItem_Click;
@@ -470,9 +500,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 this.FoldersTreeView.ContextMenu.Items.Add(objectDetailsMenuItem);
                 */
 
+                /*
                 MenuItem createMenuItem = new MenuItem() { Header = "Create", Tag = item };
                 createMenuItem.Click += CreateMenuItem_Click; ;
                 this.FoldersTreeView.ContextMenu.Items.Add(createMenuItem);
+                */
             }
 
             if (item.Tag as SPWeb != null)
@@ -480,6 +512,13 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 MenuItem exportMenuItem = new MenuItem() { Header = "Export", Tag = item };
                 exportMenuItem.Click += exportMenuItem_Click;
                 this.FoldersTreeView.ContextMenu.Items.Add(exportMenuItem);
+            }
+
+            if (item.Tag == "Failed")
+            {
+                MenuItem retryMenuItem = new MenuItem() { Header = "Retry", Tag = item };
+                retryMenuItem.Click += RetryMenuItem_Click;
+                this.FoldersTreeView.ContextMenu.Items.Add(retryMenuItem);
             }
 
             if (item.Tag as SPWeb != null || item.Tag as CRMWeb != null || item.Tag as SQLDB != null
@@ -490,6 +529,19 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 this.FoldersTreeView.ContextMenu.Items.Add(compareMenuItem);
             }
 
+        }
+
+        private void RetryMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.OriginalSource as MenuItem;
+            Folder sourceObject = ((TreeViewItem)menuItem.Tag).Tag as Folder;
+            TreeViewItem parentNode = ((TreeViewItem)menuItem.Tag).Parent as TreeViewItem;
+            RoutedEventArgs e1 = new RoutedEventArgs();
+            e1.RoutedEvent = UIElement.MouseLeftButtonDownEvent;
+            e1.Source = parentNode;
+            parentNode.Items.Clear();
+            AddLoadingNode(parentNode);
+            rootNode_Expanded(null, e1);
         }
 
         private void ObjectDetailsMenuItem_Click(object sender, RoutedEventArgs e)

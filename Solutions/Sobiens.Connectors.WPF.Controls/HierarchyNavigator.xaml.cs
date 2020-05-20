@@ -323,9 +323,9 @@ namespace Sobiens.Connectors.WPF.Controls
 
         }
 
-        private Dictionary<object, object> getFieldMappings(string webURL, List<ApplicationItemProperty> properties, List<ContentType> contentTypes, FolderSettings folderSettings, FolderSetting defaultFolderSetting, ISiteSetting siteSetting, string rootFolder, out ContentType contentType,bool displayFileName)
+        private Dictionary<string, object> getFieldMappings(string webURL, List<ApplicationItemProperty> properties, List<ContentType> contentTypes, FolderSettings folderSettings, FolderSetting defaultFolderSetting, ISiteSetting siteSetting, string rootFolder, out ContentType contentType,bool displayFileName)
         {
-            Dictionary<object, object> mappings = new Dictionary<object, object>();
+            Dictionary<string, object> mappings = new Dictionary<string, object>();
 
             EditItemPropertiesControl editItemPropertiesControl = new EditItemPropertiesControl(webURL, properties, contentTypes, folderSettings, defaultFolderSetting, siteSetting, rootFolder, null,displayFileName);
             bool? dialogResult = editItemPropertiesControl.ShowDialog(null, Languages.Translate("Mappings..."));

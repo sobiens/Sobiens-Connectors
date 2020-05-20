@@ -13,7 +13,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
-    <Grid Style="{DynamicResource ClosableHeaderGridStyle}" Background="DarkSalmon">
+    <Grid Style="{DynamicResource ClosableHeaderGridStyle}" Background="#f3f2f1">
+        <Border x:Name="Border" CornerRadius="2,2,0,0" Background="#6264a7" >
+        </Border>
         <Button Content="X" Height="19" HorizontalAlignment="Right" Margin="0,3,4,0" Name="button_close" VerticalAlignment="Top" Width="20" FontFamily="Courier" FontWeight="Bold" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontStretch="Normal" Visibility="Visible" FontSize="14" Padding="0" ToolTip="Close"/>
         <Label Content="TabItem"  Height="23" HorizontalAlignment="Left" Margin="4,1,0,0" Name="label_TabTitle" VerticalAlignment="Top" FontFamily="Courier" FontSize="12" />
     </Grid>

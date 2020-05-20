@@ -126,14 +126,13 @@ namespace Sobiens.Connectors.WPF.Controls.Selectors
                 lw.Show();
 
                 ContentType selectedContentType;
-                Dictionary<object, object> values = editItemPropertiesControl.GetValues(out selectedContentType);
+                Dictionary<string, object> values = editItemPropertiesControl.GetValues(out selectedContentType);
                 string templateFilePath = documentTemplate.TemplatePath;
                 FileInfo fi = new FileInfo(templateFilePath);
                 string fileName = string.Empty;
-                foreach (object key in values.Keys)
+                foreach (string key in values.Keys)
                 {
-                    Field f = key as Field;
-                    if (f.Name.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == true)
+                    if (key.Equals("Title", StringComparison.InvariantCultureIgnoreCase) == true)
                     {
                         fileName = values[key] + fi.Extension;
                         break;

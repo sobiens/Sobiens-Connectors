@@ -945,7 +945,7 @@ namespace Sobiens.Connectors.Common.SQLServer
             return SqlDbType.NVarChar;
         }
 
-        public void CreateListItem(ISiteSetting siteSetting, string dbName, string tableName, System.Collections.Generic.Dictionary<object, object> fields)
+        public void CreateListItem(ISiteSetting siteSetting, string dbName, string tableName, System.Collections.Generic.Dictionary<string, object> fields)
         {
             try
             {
@@ -963,7 +963,7 @@ namespace Sobiens.Connectors.Common.SQLServer
                         foreach (object _field in fields.Keys)
                         {
                             Field field = (Field)_field;
-                            object value = fields[_field];
+                            object value = fields[field.Name];
                             fieldNameSyntax += field.Name + ",";
                             parameterNameSyntax += "@" + field.Name + ",";
                             SqlParameter parameter = cmd.Parameters.Add("@" + field.Name, GetFieldDBType(field.Type));
@@ -986,6 +986,111 @@ namespace Sobiens.Connectors.Common.SQLServer
                 //LogManager.LogAndShowException(methodName, ex);
                 throw ex;
             }
+        }
+        public bool ValidateImportValue(ISiteSetting siteSetting, Entities.Field field, string value, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            switch (field.Type)
+            {
+                case FieldTypes.Text:
+                case FieldTypes.Note:
+                    if (field.MaxLength < value.Length)
+                    {
+                        errorMessage = "Value on " + field.DisplayName + " field exceeded max length. Value:" + value;
+                    }
+                    break;
+                case FieldTypes.Boolean:
+                    if (value.Trim().ToLower() != "true"
+                        && value.Trim().ToLower() != "false"
+                        && value.Trim() != "0"
+                        && value.Trim() != "1")
+                    {
+                        errorMessage = "Value on " + field.DisplayName + " field should be either of (true, false, 1, 0). Value:" + value;
+                    }
+                    break;
+                case FieldTypes.Number:
+                    double testNumber;
+                    if (double.TryParse(value, out testNumber) == false)
+                    {
+                        errorMessage = "Value on " + field.DisplayName + " field should be a numeric value. Value:" + value;
+                    }
+                    break;
+
+
+            }
+
+            if (string.IsNullOrEmpty(errorMessage) == true)
+                return true;
+            else
+                return false;
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            object objectValue = null;
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                objectValue = null;
+            }
+            else
+            {
+                switch (field.Type)
+                {
+                    case FieldTypes.Text:
+                    case FieldTypes.Note:
+                        objectValue = value;
+                        break;
+                    case FieldTypes.Boolean:
+                        if (value.Trim().ToLower() == "true"
+                            || value.Trim() == "1")
+                        {
+                            objectValue = true;
+                        }
+                        else
+                        {
+                            objectValue = false;
+                        }
+                        break;
+                    case FieldTypes.Number:
+                        objectValue = double.Parse(value);
+                        break;
+                    case FieldTypes.Choice:
+                        string _value = field.ChoiceItems.Where(t => t.DisplayName.Equals(value, StringComparison.InvariantCultureIgnoreCase) == true).First().Value;
+                        objectValue = int.Parse(_value);
+                        break;
+                    case FieldTypes.Lookup:
+                        /*
+                        List<Field> entityFields = new SQLServerService().GetFields(siteSetting, ((SQLSiteSetting)siteSetting) siteSetting.Url, field.List);
+                        CamlFilters filters = new CamlFilters();
+                        filters.IsOr = false;
+                        filters.Add(new CamlFilter("Title", FieldTypes.Text, CamlFilterTypes.Equals, value));
+
+                        if (parameters.ContainsKey("ExcludeInActiveRecords") == true && parameters["ExcludeInActiveRecords"] == "1")
+                        {
+                            Field statusField = entityFields.Where(t => t.Name.Equals("statuscode", StringComparison.InvariantCultureIgnoreCase) == true).First();
+                            foreach (ChoiceDataItem cdi in statusField.ChoiceItems)
+                            {
+                                if (cdi.Parameters["State"] == "1")
+                                    filters.Add(new CamlFilter("statuscode", FieldTypes.Number, CamlFilterTypes.NotEqual, cdi.Value));
+                            }
+                        }
+
+                        List<CamlFieldRef> fieldRefs = new List<CamlFieldRef>();
+                        fieldRefs.Add(new CamlFieldRef("ID"));
+                        fieldRefs.Add(new CamlFieldRef("Title"));
+                        string listItemCollectionPositionNext;
+                        int itemCount;
+                        List<IItem> items = new SQLServerService().GetListItems(siteSetting, new List<CamlOrderBy>(), filters, fieldRefs, new CamlQueryOptions(), siteSetting.Url, field.List, out listItemCollectionPositionNext, out itemCount);
+                        if (itemCount > 1)
+                        {
+                            objectValue = int.Parse(items[0].Properties["ID"]);
+                        }
+                        */
+                        break;
+                }
+            }
+
+            return objectValue;
         }
 
     }

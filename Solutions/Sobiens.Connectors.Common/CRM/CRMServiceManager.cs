@@ -435,14 +435,16 @@ namespace Sobiens.Connectors.Common.CRM
             return properies.ContainsKey(actualKey) ? properies[actualKey] : null;
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, System.Collections.Generic.Dictionary<object, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, System.Collections.Generic.Dictionary<string, object> fields, System.Collections.Generic.Dictionary<string, object> auditInformation)
         {
-
+            CRMService crmService = new CRMService();
+            crmService.UpdateEntityRecord(siteSetting, listName, new Guid(listItemID), fields);
         }
 
-        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, System.Collections.Generic.Dictionary<object, object> fields)
+        public void CreateListItem(ISiteSetting siteSetting, string webUrl, string listName, System.Collections.Generic.Dictionary<string, object> fields)
         {
-
+            CRMService crmService = new CRMService();
+            crmService.CreateEntityRecord(siteSetting, listName, fields);
         }
 
 
@@ -461,7 +463,7 @@ namespace Sobiens.Connectors.Common.CRM
             throw new Exception("Not implemented");
         }
 
-        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, int listItemID, Dictionary<object, object> fields)
+        public void UpdateListItem(ISiteSetting siteSetting, string webUrl, string listName, string listItemID, Dictionary<string, object> fields)
         {
             throw new NotImplementedException();
         }
@@ -552,7 +554,30 @@ namespace Sobiens.Connectors.Common.CRM
                 }
                 else if (sourceObject as CRMEntity != null)
                 {
-                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, null, destinationSiteSetting, null, destinationObject, "Table", CheckIfEquals));
+                    CRMEntity sourceList = sourceObject as CRMEntity;
+                    CRMEntity destinationList = destinationObject as CRMEntity;
+
+                    reportProgressAction(30, "Retrieving source content types...");
+                    //List<ContentType> sourceContentTypes = new CRMService().GetContentTypes(sourceSiteSetting, sourceList.WebUrl, sourceList.RootFolderPath, sourceList.ListName, false);
+                    reportProgressAction(40, "Retrieving source fields...");
+                    string primaryIdAttribute;
+                    string primaryNameAttribute;
+                    List<Field> sourceFields = new CRMService().GetFields(sourceSiteSetting, sourceList.LogicalName, out primaryIdAttribute, out primaryNameAttribute);
+                    sourceFields = GetComparableFields(sourceList, sourceFields, primaryIdAttribute, primaryNameAttribute);
+
+                    reportProgressAction(60, "Retrieving destination content types...");
+                    //List<ContentType> destinationContentTypes = new CRMService().GetContentTypes(destinationSiteSetting, destinationList.WebUrl, destinationList.RootFolderPath, destinationList.ListName, false);
+                    reportProgressAction(70, "Retrieving destination fields...");
+                    List<Field> destinationFields = new CRMService().GetFields(destinationSiteSetting, destinationList.LogicalName, out primaryIdAttribute, out primaryNameAttribute);
+                    destinationFields = GetComparableFields(destinationList, destinationFields, primaryIdAttribute, primaryNameAttribute);
+
+                    reportProgressAction(85, "Comparing retrieved objects...");
+                    //compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceContentTypes.ToList<Folder>(), destinationSiteSetting, destinationContentTypes.ToList<Folder>(), destinationObject, "Content Type", CheckIfEquals));
+                    compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, sourceFields.ToList<Folder>(), destinationSiteSetting, destinationFields.ToList<Folder>(), destinationObject, "Field", CheckIfEquals));
+
+
+
+                    //compareObjectsResults.AddRange(CompareManager.Instance.GetObjectsDifferences(sourceSiteSetting, sourceObject, null, destinationSiteSetting, null, destinationObject, "Table", CheckIfEquals));
                 }
                 return compareObjectsResults;
             }
@@ -562,6 +587,9 @@ namespace Sobiens.Connectors.Common.CRM
             }
         }
 
+        public List<Field> GetComparableFields(CRMEntity entity, List<Field> fields, string primaryIdAttribute, string primaryNameAttribute) {
+            return fields.Where(t => t.Name != primaryIdAttribute && t.Name != primaryNameAttribute && t.FromBaseType == false && t.Type != FieldTypes.Virtual).ToList();
+        }
 
         public bool CheckIfEquals(ISiteSetting sourceSiteSetting, Folder sourceObject, ISiteSetting destinationSiteSetting, Folder destinationObject)
         {
@@ -588,6 +616,16 @@ namespace Sobiens.Connectors.Common.CRM
             return true;
         }
 
+        public bool ValidateImportValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters, out string errorMessage)
+        {
+            return new CRMService().ValidateImportValue(siteSetting, field, value, parameters, out errorMessage);
+        }
+
+        public object ConvertImportValueToFieldValue(ISiteSetting siteSetting, Field field, string value, Dictionary<string, string> parameters)
+        {
+            return new CRMService().ConvertImportValueToFieldValue(siteSetting, field, value, parameters);
+        }
+
 
         public void ApplyMissingCompareObjectsResult(CompareObjectsResult compareObjectsResult, ISiteSetting sourceSiteSetting, ISiteSetting destinationSiteSetting) {
             CRMWeb sourceWeb = compareObjectsResult.SourceParentObject as CRMWeb;
@@ -595,7 +633,7 @@ namespace Sobiens.Connectors.Common.CRM
             {
                 CRMEntity destinationTable = compareObjectsResult.ObjectToCompareWith as CRMEntity;
                 //List<Field> fields = new CRMService().GetFields(sourceSiteSetting, destinationTable.DBName, destinationTable.Title);
-                new CRMService().CreateEntity(sourceSiteSetting, destinationTable.Title);
+                //new CRMService().CreateEntity(sourceSiteSetting, destinationTable.Title);
             }
             else if (compareObjectsResult.ObjectToCompareWith as CRMBusinessUnit != null)
             {
