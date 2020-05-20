@@ -131,85 +131,6 @@ namespace Sobiens.Connectors.Studio.UI.Controls
                 }
             }
 
-            /*
-            if (totalVisibleComponent == 0) 
-            {
-            }
-            else if (totalVisibleComponent == 1)
-            {
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100, GridUnitType.Star) });
-                if (showCriteriaPane == true) 
-                {
-                    _CriteriaPane.SetValue(Grid.RowProperty, 0);
-                    _Grid.Children.Add(_CriteriaPane);
-                }
-                if (showResultPane == true)
-                {
-                    _ResultPane.SetValue(Grid.RowProperty, 0);
-                    _Grid.Children.Add(_ResultPane);
-                }
-                if (showCamlTextEditorPane == true)
-                {
-                    _CamlTextEditorPane.SetValue(Grid.RowProperty, 0);
-                    _Grid.Children.Add(_CamlTextEditorPane);
-                }
-            }
-            else if (totalVisibleComponent == 2)
-            {
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(50, GridUnitType.Star) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(10, GridUnitType.Pixel) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(50, GridUnitType.Star) });
-
-                int currentRowIndex = 0;
-                if (showCriteriaPane == true)
-                {
-                    _CriteriaPane.SetValue(Grid.RowProperty, 0);
-                    _Grid.Children.Add(_CriteriaPane);
-                    currentRowIndex = currentRowIndex+2;
-                }
-                if (showResultPane == true)
-                {
-                    _ResultPane.SetValue(Grid.RowProperty, currentRowIndex);
-                    _Grid.Children.Add(_ResultPane);
-                    currentRowIndex = currentRowIndex + 2;
-                }
-                if (showCamlTextEditorPane == true)
-                {
-                    _CamlTextEditorPane.SetValue(Grid.RowProperty, currentRowIndex);
-                    _Grid.Children.Add(_CamlTextEditorPane);
-                }
-            }
-            else if (totalVisibleComponent == 3)
-            {
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(33, GridUnitType.Star) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(10, GridUnitType.Pixel) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(33, GridUnitType.Star) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(10, GridUnitType.Pixel) });
-                _Grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(33, GridUnitType.Star) });
-
-
-                GridSplitter gs1 = new GridSplitter() { HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch };
-                gs1.SetValue(Grid.RowProperty, 1);
-                GridSplitter gs2 = new GridSplitter() { HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch };
-                gs2.SetValue(Grid.RowProperty, 3);
-
-                _CriteriaPane.SetValue(Grid.RowProperty, 0);
-                _ResultPane.SetValue(Grid.RowProperty, 2);
-                _CamlTextEditorPane.SetValue(Grid.RowProperty, 4);
-                _Grid.Children.Add(_CriteriaPane);
-                _Grid.Children.Add(_ResultPane);
-                _Grid.Children.Add(_CamlTextEditorPane);
-                _Grid.Children.Add(gs1);
-                _Grid.Children.Add(gs2);
-            }
-            */
-            /*
-            ResourceDictionary dict = new ResourceDictionary();
-            dict.Source = new System.Uri("pack://application:,,,/Sobiens.Connectors.Studio.UI.Controls;component/Style/MainStyle.xaml", UriKind.Absolute);
-            Application.Current.Resources.MergedDictionaries.Add(dict);
-            Style style = this.FindResource("TabItemStyle") as Style;
-            this.Style = style; // "{DynamicResource TabItemStyle}"
-            */
         }
 
 
@@ -320,6 +241,11 @@ namespace Sobiens.Connectors.Studio.UI.Controls
         public void PopulateResults(ISiteSetting siteSetting, string webUrl, string listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath)
         {
             _ResultPane.PopulateResults(siteSetting, webUrl, listName, _filters, _viewFields, _orderBys, _queryOptions, folderServerRelativePath, _CriteriaPane.GetPrimaryFields());
+        }
+
+        public void ExportToExcel()
+        {
+            _ResultPane.ExportToExcel();
         }
 
         public List<CamlFieldRef> GetViewFields() 

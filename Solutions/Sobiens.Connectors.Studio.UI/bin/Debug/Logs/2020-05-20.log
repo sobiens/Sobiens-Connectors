@@ -327,3 +327,23 @@ Debug|2020-05-20 18:16:48.8179|2020-05-20 18:16:48,warning,Studio,WorkItem is be
 Debug|2020-05-20 18:17:14.7515|2020-05-20 18:17:14,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
 Debug|2020-05-20 18:17:44.7553|2020-05-20 18:17:44,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
 Debug|2020-05-20 18:18:14.7640|2020-05-20 18:18:14,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:11.1547|2020-05-20 22:07:11,info,BackgroundDataService,Starting service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:11.1837|2020-05-20 22:07:11,info,BackgroundDataService,Creating Service context ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:11.2425|2020-05-20 22:07:11,info,BackgroundDataService,Service started and timer activated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:11.2954|2020-05-20 22:07:11,info,BackgroundDataService,Worker thread for processing request queue has started.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:14.2365|2020-05-20 22:07:14,info,SyncTasksManager,SyncTasks are being loaded from C:\Users\serkant2\AppData\Roaming\Sobiens\Sobiens.Connectors\SyncTasks\SyncTasks.xml|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:14.7062|2020-05-20 22:07:14,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:14.7312|2020-05-20 22:07:14,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:42.2276|2020-05-20 22:07:42,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:42.2276|2020-05-20 22:07:42,error,Service,CRMService GetLists method returned error:Metadata contains a reference that cannot be resolved: 'http://crm.qa.unfccc.int/UNFCCC/XRMServices/2011/Organization.svc?wsdl&sdkversion=8.1'.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:45.6644|2020-05-20 22:07:45,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:45.6644|2020-05-20 22:07:45,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:50.2831|2020-05-20 22:07:50,warning,Studio,WorkItem has been added LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:07:50.2831|2020-05-20 22:07:50,warning,Studio,WorkItem is being processed LogCategory: Title:Populating treeview items WorkItemType:NonCriticalWorkItem|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:12.2574|2020-05-20 22:08:12,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:42.2611|2020-05-20 22:08:42,info,BackgroundDataService,Performing requests OLEYYYY...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:59.2536|2020-05-20 22:08:59,info,BackgroundDataService,Stopping service ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:59.2536|2020-05-20 22:08:59,info,BackgroundDataService,Timer disabled, waiting for pending requests to complete ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:59.2665|2020-05-20 22:08:59,info,BackgroundDataService,No of enqued requests is 0, waiting to terminate ...|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:59.3344|2020-05-20 22:08:59,info,BackgroundDataService,Service successfully terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry
+Debug|2020-05-20 22:08:59.3344|2020-05-20 22:08:59,info,BackgroundDataService,Worker thread for processing request queue is terminated.|Sobiens.Connectors.Entities.Logger.WriteEntry

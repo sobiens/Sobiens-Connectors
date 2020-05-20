@@ -15,6 +15,7 @@ namespace Sobiens.Connectors.Entities.Interfaces
         string FileName { get; }
         void Initialize(string filename, ISiteSetting siteSetting, Folder attachedObject);
         void PopulateResults(ISiteSetting siteSetting, string webUrl, string listName, CamlFilters _filters, List<CamlFieldRef> _viewFields, List<CamlOrderBy> _orderBys, CamlQueryOptions _queryOptions, string folderServerRelativePath);
+        void ExportToExcel();
         List<CamlFieldRef> GetViewFields();
         List<CamlFieldRef> GetAllFields();
         List<CamlOrderBy> GetOrderBys();

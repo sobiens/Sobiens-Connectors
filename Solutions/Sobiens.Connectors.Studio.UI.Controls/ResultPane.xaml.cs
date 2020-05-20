@@ -1,10 +1,12 @@
 ﻿using Sobiens.Connectors.Common;
+using Sobiens.Connectors.Common.SLExcelUtility;
 using Sobiens.Connectors.Entities;
 using Sobiens.Connectors.Entities.Interfaces;
 using Sobiens.Connectors.Entities.Settings;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -79,6 +81,44 @@ namespace Sobiens.Connectors.Studio.UI.Controls
             AttachContextMenu();
         }
 
+        public void ExportToExcel()
+        {
+            DataView dataView = (DataView)ResultGrid.ItemsSource;
+            SLExcelWriter writer = new SLExcelWriter();
+            SLExcelData data = new SLExcelData();
+            List<string> headerRow = new List<string>();
+            foreach (DataColumn dataColumn in dataView.Table.Columns)
+            {
+                headerRow.Add(dataColumn.ColumnName);
+            }
+            data.DataRows.Add(headerRow);
+
+            foreach(DataRow row in dataView.Table.Rows)
+            {
+                List<string> rowValues = new List<string>();
+                foreach (DataColumn dataColumn in dataView.Table.Columns)
+                {
+                    string value = string.Empty;
+                    if (row[dataColumn.ColumnName] != null)
+                        value = row[dataColumn.ColumnName].ToString();
+                    rowValues.Add(value);
+                }
+                data.DataRows.Add(rowValues);
+
+            }
+
+            byte[] excelData = writer.GenerateExcel(data);
+            string folderPath = ConfigurationManager.GetInstance().GetTempFolder();
+            string sourceExportFilePath = folderPath + "\\Export.xlsx";
+
+            using (var fs = new FileStream(sourceExportFilePath, FileMode.Create, FileAccess.Write))
+            {
+                fs.Write(excelData, 0, excelData.Length);
+            }
+
+            System.Diagnostics.Process.Start("explorer.exe", sourceExportFilePath);
+
+        }
         private void AttachContextMenu() {
             ContextMenu ctxMenu = new ContextMenu();
             ResultGrid.ContextMenu = ctxMenu;
